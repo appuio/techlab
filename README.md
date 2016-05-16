@@ -10,7 +10,7 @@ Dieses Techlab basiert auf OpenShift V3.1
 1. [Quicktour durch OpenShift V3](labs/01_quicktour.md)
 2. [OpenShift CLI installieren](labs/02_cli.md)
 3. [Erste Schritte auf der Lab Plattform](labs/03_first_steps.md)
-4. Die erste eigene Applikation deployen
+4. [Ein Docker Image deployen](labs/04_deploy_dockerimage.md)
 5. Routen erstellen
 6. Skalieren
 7. Datenbank deployen und anbinden
