@@ -41,7 +41,7 @@ Ein Projekt in OpenShift ist das Top Leve Konzept um ihre Applikationen, Deploym
 ## Aufgabe: LAB3.1
 Erstellen Sie auf der Lab Plattform ein neues Projekt,
 
-**Note**: verweden Sie für Ihren Projektnamen am besten Ihren github Namen, oder ihren Nachnamen
+**Note**: verweden Sie für Ihren Projektnamen am besten Ihren github Namen, oder ihren Nachnamen eg. `[USER]-example1`
 
 > Wie kann ein neues Projekt erstellt werden?
 
@@ -83,7 +83,7 @@ Sie haben nun ihre erste Applikation mittels so genannetem **[Source to Image](h
 ## Lösung: LAB3.1
 
 ```
-$ oc new-project [NAME]
+$ oc new-project [USER]-example1
 ```
 ---
 

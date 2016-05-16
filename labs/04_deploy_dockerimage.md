@@ -228,6 +228,12 @@ $ oc get deploymentConfig example-spring-boot -o json
 
 ---
 
+## Zusatzaufgabe für Schnelle ;-)
+
+Schauen Sie sich die erstellten Resourcen mit `oc get [ResourceTyp] [Name] -o json` und `oc describe [ResourceTyp] [Name]` aus dem ersten Projekt `[USER]-example1` an.
+
+---
+
 **Ende Lab 4**
 
 [<< zurück zur Übersicht] (../README.md)
