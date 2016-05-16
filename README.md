@@ -14,7 +14,7 @@ Dieses Techlab basiert auf OpenShift V3.1
 5. [Routen erstellen](labs/05_create_route.md)
 6. [Skalieren](labs/06_scale.md)
 7. [Troubleshooting, was ist im Pod?](labs/07_troubleshooting_ops.md)
-8. Datenbank deployen und anbinden
+8. [Datenbank deployen und anbinden](labs/08_database.md)
 9. Code Änderungen via Webhook direkt integrieren
 10. Persistent Storage anbinden und verwenden für Datenbank
 11. Applikationstemplates

@@ -4,7 +4,7 @@ In diesem Lab wird aufgezeigt, wie man im Fehlerfall und Troubleshooting vorgehe
 
 ## In Container einloggen
 
-Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht bspw. durch SSH modifiziert werden. Dennoch gibt es UseCases bei den man sich in die Container für Debugging und Analysen ein loggen muss.
+Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht bspw. durch einloggen über SSH modifiziert werden. Dennoch gibt es UseCases bei den man sich in die Container für Debugging und Analysen einloggen muss.
 
 ## Aufgabe: LAB7.1
 
