@@ -19,5 +19,6 @@
 
 ## Offene Punkte
 
-- Labs 4 - 10
+- Labs 8 - 11
 - oc bash completion link anpassen LAB 02
+- Logging EFK Stack beschreiben LAB 07
