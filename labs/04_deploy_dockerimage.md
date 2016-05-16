@@ -1,6 +1,6 @@
 # Lab 4: Ein Docker Image deployen
 
-In diesem Lab werden wir gemeinsam das erste "pre-built" Docker image deployen. 
+In diesem Lab werden wir gemeinsam das erste "pre-built" Docker image deployen und die OpenShift Konzpte Pod, Service, DeploymentConfig und Imagestream etwas genauer anschauen.
 
 
 ## Aufgabe: LAB4.1

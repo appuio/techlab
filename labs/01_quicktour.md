@@ -66,7 +66,7 @@ Einem Service ist innerhlab eines Projektes eine IP und einen Port zugewiesen un
 
 Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von OpenShift für externe Clients erreicht werden kann. 
 
-Diese Routen werden so im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname Mapping die Request an den entsprechenden Service weiterzuleiten.
+Diese Routen werden so im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname Mapping die Requests an den entsprechenden Service weiterzuleiten.
 
 Sind mehr als ein Pod für einen Service deployed verteilt der Routing Layer die Requests auf die deployeten Pods
 
