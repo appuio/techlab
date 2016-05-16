@@ -12,11 +12,12 @@ Dieses Techlab basiert auf OpenShift V3.1
 3. [Erste Schritte auf der Lab Plattform](labs/03_first_steps.md)
 4. [Ein Docker Image deployen](labs/04_deploy_dockerimage.md)
 5. [Routen erstellen](labs/05_create_route.md)
-6. Skalieren
-7. Datenbank deployen und anbinden
-8. Code Änderungen via Webhook direkt integrieren
-9. Persistent Storage anbinden und verwenden für Datenbank
-10. Applikationstemplates
+6. [Skalieren](labs/06_scale.md)
+7. Troubleshooting, was ist im Pod
+8. Datenbank deployen und anbinden
+9. Code Änderungen via Webhook direkt integrieren
+10. Persistent Storage anbinden und verwenden für Datenbank
+11. Applikationstemplates
 
 
 ## Weiterführende Dokumenation

@@ -224,6 +224,8 @@ Mit dem folgenden Befehl können zusätzliche Informationen über den Deployment
 $ oc get deploymentConfig example-spring-boot -o json
 ```
 
+Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt wie eine Applikation deployed werden soll, definiert man mit dem ReplicationController wie die Applikation während der Laufzeit aussehen soll, also bespw. es sollen immer 3 Replicas laufen.
+
 **Tipp:** für jeden Resource Type gibt es auch einen Kurform, so können sie beispielweise `oc get deploymentConfig` auch einfach als `oc get dc` schreiben.
 
 ---

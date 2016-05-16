@@ -39,6 +39,8 @@ Und nun wollen wir diesen Service veröffentlichen / exposen:
 $ oc expose service example-spring-boot
 ```
 
+Per Default wird eine http Route erstellt.
+
 Mittels `oc get routes` können wir überprüfen, ob die Route angelegt wurde.
 
 ```
@@ -50,7 +52,6 @@ example-spring-boot     example-spring-boot-techlab.example.com               ex
 Die Applikation ist nun vom Internet her über den angegebenen Hostnamen erreichbar, sie können nun auf die Applikation zugreifen.
 
 **Tipp:** wird kein Hostname angegeben, wird der Standardname verwendet: servicename-project.osecluser
-
 
 
 ---
