@@ -40,7 +40,7 @@ Standardmässig wird bei unserer example-spring-boot Applikation eine H2 Memory 
 
 Für die Adresse des MySQL Service können wir entweder die Cluster IP des MySQL Services verwenden. **Tipp:** `oc get service`
 
-oder aber den DNS Namen (<service>.<project>.svc.cluster.local) des MySQL Services verwenden, alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden. 
+oder aber den DNS Namen (`<service>.<project>.svc.cluster.local`) des MySQL Services verwenden, alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden. 
 
 So lautet der Wert für die Variable SPRING_DATASOURCE_URL beispielsweise:
 ```

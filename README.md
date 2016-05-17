@@ -15,7 +15,7 @@ Dieses Techlab basiert auf OpenShift V3.1
 6. [Skalieren](labs/06_scale.md)
 7. [Troubleshooting, was ist im Pod?](labs/07_troubleshooting_ops.md)
 8. [Datenbank deployen und anbinden](labs/08_database.md)
-9. Code Änderungen via Webhook direkt integrieren
+9. [Code Änderungen via Webhook direkt integrieren](labs/09_sourceToImage_webhook.md)
 10. Persistent Storage anbinden und verwenden für Datenbank
 11. Applikationstemplates
 
