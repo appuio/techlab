@@ -131,10 +131,10 @@ spec --> template --> spec --> containers
           readinessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 9000
               scheme: HTTP
-            initialDelaySeconds: 30
-            timeoutSeconds: 2
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
 ...
 ```
 
@@ -153,10 +153,10 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
           readinessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 9000
               scheme: HTTP
-            initialDelaySeconds: 30
-            timeoutSeconds: 2
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
           terminationMessagePath: /dev/termination-log
           imagePullPolicy: IfNotPresent
 ```
