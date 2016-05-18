@@ -17,7 +17,7 @@ Dieses Techlab basiert auf OpenShift V3.1
 8. [Datenbank deployen und anbinden](labs/08_database.md)
 9. [Code Änderungen via Webhook direkt integrieren](labs/09_sourceToImage_webhook.md)
 10. Persistent Storage anbinden und verwenden für Datenbank
-11. Applikationstemplates
+11. [Applikationstemplates](labs/11_template.md) 
 
 
 ## Weiterführende Dokumenation

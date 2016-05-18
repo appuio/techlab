@@ -2,7 +2,7 @@
 
 In diesem Lab zeigen wir den Docker Build Workflow anhand von einem Beispiel auf und Sie lernen wie Sie mit einem Push in das Git Repository einen Build und Deployment der Applikation auf OpenShift starten.
 
-## LAB9.1: Vorbereitung Github Account und Fork
+## Aufgabe: LAB9.1: Vorbereitung Github Account und Fork
 
 ### Github Account
 
@@ -42,7 +42,7 @@ Und exposen Sie nun den Service mit
 $ oc expose service appuio-php-docker-ex
 ```
 
-## LAB9.2: Webhook auf GitHub einrichten
+## Aufgabe: LAB9.2: Webhook auf GitHub einrichten
 
 Beim erstellen der App wurden in der BuildConfig direkt Webhooks definiert. Diese können Sie über den folgenden Befehl anzeigen
 ```
@@ -87,7 +87,7 @@ Fügen Sie die entsprechende GitHub Webhook Url aus Ihrem OpenShift Projek ein u
 
 Ab jetzt triggern alle Pushes auf Ihr GitHub Repository einen direkt einen Build auf OpenShift und deployen anschliessend die Code Änderungen direkt auf der Plattform
 
-## LAB9.3: Code anpassen
+## Aufgabe: LAB9.3: Code anpassen
 
 Klonen Sie Ihr Git Repository und wechseln Sie in das Code Verzeichnis
 ```
@@ -130,7 +130,7 @@ $ oc get builds
 
 Und deployed anschliessend die Änderung.
 
-## LAB9.4: Rollback
+## Aufgabe: LAB9.4: Rollback
 
 Mit OpenShift lassen sich unterschiedliche Software Stände aktivieren und deaktivieren, in dem einfach eine andere Version des Images gestartet wird.
 

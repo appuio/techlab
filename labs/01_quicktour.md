@@ -79,7 +79,7 @@ Aktuell werden folgende Protokolle unterstützt:
 
 ### Templates
 
-Ein Template beschreibt textuell eine Liste von Objekten, das auf OpenShift ausgeführt und die Objekte entsprechend in OpenShift erstellt werden können.
+Ein Template beschreibt textuell eine Liste von Resourcen, das auf OpenShift ausgeführt und die Resourcen entsprechend in OpenShift erstellt werden können.
 
 So hat man die Möglichkeit ganze Infrastrukturen zu beschreiben:
 
