@@ -83,7 +83,7 @@ Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-
 ...
 ```
 
-## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB connection
+## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
 
 Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingelogged werden:
 ```
@@ -117,7 +117,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ```
 
-Anschliessend können sie mit
+Anschliessend können Sie mit
 ```
 show tables;
 ```
