@@ -1,6 +1,6 @@
 # APPUiO - OpenShift V3 Techlab Dokumentation
 
-Dieses Techlab basiert auf OpenShift V3.1
+Dieses Techlab basiert auf OpenShift V3.1.
 
 
 ## Inhalte
@@ -16,11 +16,11 @@ Dieses Techlab basiert auf OpenShift V3.1
 7. [Troubleshooting, was ist im Pod?](labs/07_troubleshooting_ops.md)
 8. [Datenbank deployen und anbinden](labs/08_database.md)
 9. [Code Änderungen via Webhook direkt integrieren](labs/09_sourceToImage_webhook.md)
-10. Persistent Storage anbinden und verwenden für Datenbank
+10. [Persistent Storage anbinden und verwenden für Datenbank](labs/10_persistent_storage.md)
 11. [Applikationstemplates](labs/11_template.md) 
 
 
-## Weiterführende Dokumenation
+## Weiterführende Dokumentation
 
 - [OpenShift V3.1 docs](https://docs.openshift.com/enterprise/3.1/welcome/index.html)
 - [APPUiO docs](http://docs.appuio.ch)
