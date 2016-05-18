@@ -1,12 +1,11 @@
 # Lab 1: Quicktour durch OpenShift V3
 
-In diesem Lab werden die Grundkonzepte von OpenShift kurz aufgezeigt. Des Weiteren zeigen wir auf wie mach sich in de Web Console einlogged und stellen die einzelnen Bereiche kurz vor.
+In diesem Lab werden die Grundkonzepte von OpenShift kurz aufgezeigt. Des Weiteren zeigen wir auf wie mach sich in der Web Console einlogged und stellen die einzelnen Bereiche kurz vor.
 
-Die hier aufgeführten Begriffe und Resourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können 
+Die hier aufgeführten Begriffe und Resourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden: 
 
 > https://docs.openshift.com/enterprise/3.1/architecture/index.html 
 
-entnommen werden. 
 
 ## Grundkonzepte
 
