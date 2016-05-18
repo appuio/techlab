@@ -15,13 +15,13 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 
 ## oc Client herunterladen und installieren
 
-Der oc Client kann direkt von der APPUiO Beta Plattform herunter geladen werden:
+Der oc Client kann direkt von der APPUiO Beta Plattform heruntergeladen werden:
 
 * [Windows](https://master.appuio-beta.ch/console/extensions/clients/windows/oc.exe)
 * [Mac OS X](https://master.appuio-beta.ch/console/extensions/clients/macosx/oc)
 * [Linux](https://master.appuio-beta.ch/console/extensions/clients/linux/oc)
 
-Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis das über den **PATH** erreichbar ist abgelegt werden.
+Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
  
 **Linux**
  
@@ -41,7 +41,7 @@ Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeic
 C:\OpenShift\
 ```
  
-## Korrekte Berechtigung Linux, Mac OS X
+## Korrekte Berechtigung auf Linux und Mac OS X erteilen
 
 Der oc client muss ausgeführt werden können. 
 
@@ -61,7 +61,7 @@ $ export PATH=$PATH:[path to oc client]
 
 ### Windows
 
-Unter Windows kann der PATH in den Erweiterten Systemeinstellungen konfiguriert werden. Dies ist abhängig von der entsprechenden Windows Version:
+Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert werden. Dies ist abhängig von der entsprechenden Windows Version:
 
 - [Windows 7](http://geekswithblogs.net/renso/archive/2009/10/21/how-to-set-the-windows-path-in-windows-7.aspx)
 - [Windows 8](http://www.itechtics.com/customize-windows-environment-variables/)
@@ -74,7 +74,7 @@ Legen sie den oc client direkt im Verzeichnis *C:\Windows* ab
 
 ## Installation verifizieren
 
-Der oc client sollte jetzt korrekt installiert sein, am besten überprüfen wir das in dem wir den folgenden Command ausführen:
+Der oc client sollte jetzt korrekt installiert sein. Am besten überprüfen wir das, indem wir den folgenden Command ausführen:
 ```
 $ oc version
 ```
@@ -90,7 +90,7 @@ Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt ges
 
 ## Erweiterte Bash Completion
 
-Die Bash Completion kann für den oc Command installiert werden, laden Sie dafür das File von hier [openshift bash completions](https://github.com/openshift/origin/blob/master/contrib/completions/bash/oc) herunter und installieren Sie es wie folgt:
+Die Bash Completion kann für den oc Command installiert werden. Laden Sie dafür das File von hier [openshift bash completions](https://github.com/openshift/origin/blob/master/contrib/completions/bash/oc) herunter und installieren Sie es wie folgt:
 
 ```
 sudo mv oc /etc/bash_completion.d/
