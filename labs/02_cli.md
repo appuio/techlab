@@ -6,7 +6,7 @@ In diesem Lab werden wir gemeinsam den oc Client installieren und konfigurieren,
 
 Der **oc client** stellt ein Interface zu OpenShift V3 bereit.
 
-der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher: 
+Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher: 
 
 - Microsoft Windows
 - Mac OS X
@@ -68,9 +68,9 @@ Unter Windows kann der PATH in den Erweiterten Systemeinstellungen konfiguriert 
 - [Windows 10](http://techmixx.de/windows-10-umgebungsvariablen-bearbeiten/)
 
 **Windwos Quick Hack**
-```
-Legen sie den oc client direkt im Verzeichnis C:\Windows ab
-```
+
+Legen sie den oc client direkt im Verzeichnis *C:\Windows* ab
+
 
 ## Installation verifizieren
 
@@ -90,7 +90,7 @@ Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt ges
 
 ## Erweiterte Bash Completion
 
-Die Bash Completion kann für den oc Command installiert werden, laden Sie dafür das File von hier TODO Link herunter und installieren Sie es wie folgt:
+Die Bash Completion kann für den oc Command installiert werden, laden Sie dafür das File von hier [openshift bash completions](https://github.com/openshift/origin/blob/master/contrib/completions/bash/oc) herunter und installieren Sie es wie folgt:
 
 ```
 sudo mv oc /etc/bash_completion.d/

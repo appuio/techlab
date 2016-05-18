@@ -13,6 +13,7 @@ $ oc login [URL]
 ```
 
 **Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktuor zur Verfügung gestellt.
+
 **Note:** Es kann sein, dass Sie gefragt werden, ein Zertifikat einer *unknown authority* zu bestätigen, bestätigen Sie dies mit **y**
 ```
 The server uses a certificate signed by an unknown authority.
@@ -35,7 +36,7 @@ Herzliche Gratulation, Sie sind nun mit der Lab Umgebung verbunden ;-)!!!
 
 ## Projekt erstellen
 
-Ein Projekt in OpenShift ist das Top Leve Konzept um ihre Applikationen, Deployments, Builds, Container, ... zu organisieren. siehe [Lab1](01_quicktour.md)
+Ein Projekt in OpenShift ist das Top Level Konzept um ihre Applikationen, Deployments, Builds, Container, ... zu organisieren. siehe [Lab1](01_quicktour.md)
 
 
 ## Aufgabe: LAB3.1
@@ -57,20 +58,24 @@ Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via B
 ## Aufgabe: LAB3.2
 1. Logen Sie sich nun via Web Console auf der Lab Plafform ein.
 
-**Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktuor zur Verfügung gestellt.
+  **Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktuor zur Verfügung gestellt.
 
-2. Gehen Sie nun in die Übersicht Ihres eben erstellten Projektes, aktuell ist das Projekt noch leer
+1. Gehen Sie nun in die Übersicht Ihres eben erstellten Projektes, aktuell ist das Projekt noch leer.
 
-3. Fügen Sie über *Add to Project* Ihre erste Applikation ihrem Projekt hinzu. Als Beispiel Projekt verwenden wir, ein APPUiO Example.
-3.1 Wählen Sie das Basis Image PHP 5.6 aus
+1. Fügen Sie über *Add to Project* Ihre erste Applikation ihrem Projekt hinzu. Als Beispiel Projekt verwenden wir, ein APPUiO Example.
+
+  3.1. Wählen Sie dazu das Basis Image **php 5.6** aus
 ![php5.6](../images/lab_3_php5.6.png)
-3.2 Geben Sie ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL
+
+  3.2. Geben Sie ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL
 ```
 https://github.com/appuio/example-php-sti-helloworld.git
 ```
 ![php5.6](../images/lab_3_example1.png)
 
-4. Der Build Ihrer Applikation wird gestartet, verfolgend Sie den Build und schauen Sie sich nach dem Deployment die Beispiel APP an.
+1. Die Applikation wurde erstellt. Über den Link **Go to overview** kommt man zur Übersicht.
+
+1. Der Build Ihrer Applikation wird gestartet, verfolgend Sie den Build und schauen Sie sich nach dem Deployment die Beispiel APP an.
 
 ![php5.6](../images/lab_3_example1-deployed.png)
 

@@ -29,7 +29,7 @@ Die Basis Elemente von OpenShift Applikationen sind Docker Container. Mit Docker
 
 Docker Container basieren auf Docker Images. Ein Docker Image ist eine binary Datei, die alle nötigen Komponenten beinhaltet, damit ein einzelner Container ausgeführt werden kann.
 
-Docker Images werden anhand von DockerFiles(textueller Beschrieb wie das Docker Image Schritt für Schritt aufgebaut ist) gebuildet. Grundsätzlich sind Docker Images hierarchisch angewendete Filesystem Snapshots.
+Docker Images werden anhand von DockerFiles (textueller Beschrieb wie das Docker Image Schritt für Schritt aufgebaut ist) gebuildet. Grundsätzlich sind Docker Images hierarchisch angewendete Filesystem Snapshots.
 
 **Beispiel Tomcat**
 - Basis Image (CentOs 7)
@@ -41,11 +41,11 @@ Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry v
 
 ### Projekte
 
-In OpenShift V3 werden Resourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten ...) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes namesapce und erweitert diesen um gewisse Konzepte. 
+In OpenShift V3 werden Resourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten ...) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes namespace und erweitert diesen um gewisse Konzepte. 
 
-Innerhalb eines Projekts können berechtigte User Ihre Resourcen zu verwalten und organisieren. 
+Innerhalb eines Projekts können berechtigte User Ihre Resourcen selbst verwalten und organisieren. 
 
-Die Resourcen innerhalb eines Projektes sind über ein transparentes [SDN](https://de.wikipedia.org/wiki/Software-defined_networking) verbunden. So können die einzelnen Komponeten eines Projektes in einem Multi-Node Setup auf verschiedene Nodes deployed werden.
+Die Resourcen innerhalb eines Projektes sind über ein transparentes [SDN](https://de.wikipedia.org/wiki/Software-defined_networking) verbunden. So können die einzelnen Komponenten eines Projektes in einem Multi-Node Setup auf verschiedene Nodes deployed werden. Dabei sind sie über das SDN untereinander sicht- und zugreif-bar.
 
 ### Pods
 
@@ -53,13 +53,13 @@ OpenShift übernimmt das Konzept der Pods von Kubernetes.
 
 Ein Pod ist ein oder mehrere Container die zusammen auf dem gleichen Host deployed werden. Ein Pod ist die kleinste zu deployende Einheit auf OpenShift.
 
-Ein Pod ist innerhalb einer OpenShift Projektes über den entsprechende Service verfügbar.
+Ein Pod ist innerhalb eines OpenShift Projektes über den entsprechenden Service verfügbar.
 
 ### Services
 
-Ein Service repräsentiert einen internen Loadbalancer auf die dahinterliegenden Pods (Replicas vom gleichen Typ). Der Service dient als Proxy zu den Pods und leitet entsprechende Anfragen an die entsprechenden Pods weiter. So können entsprechend Pods willkürlich einem Service hinzugefügt und entfernt werden, während der Service verfügbar bleibt.
+Ein Service repräsentiert einen internen Loadbalancer auf die dahinterliegenden Pods (Replicas vom gleichen Typ). Der Service dient als Proxy zu den Pods und leitet Anfragen an die entsprechenden Pods weiter. So können Pods willkürlich einem Service hinzugefügt und entfernt werden, während der Service verfügbar bleibt.
 
-Einem Service ist innerhlab eines Projektes eine IP und einen Port zugewiesen und verteilt Requests entsprechend auf die Pod Replicas.
+Einem Service ist innerhalb eines Projektes eine IP und einen Port zugewiesen und verteilt Requests entsprechend auf die Pod Replicas.
 
 ### Routen
 
@@ -67,7 +67,7 @@ Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von O
 
 Diese Routen werden so im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname Mapping die Requests an den entsprechenden Service weiterzuleiten.
 
-Sind mehr als ein Pod für einen Service deployed verteilt der Routing Layer die Requests auf die deployeten Pods
+Sind mehr als ein Pod für einen Service deployed verteilt der Routing Layer die Requests auf die deployten Pods
 
 Aktuell werden folgende Protokolle unterstützt:
 
