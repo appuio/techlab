@@ -81,6 +81,16 @@ Innerhalb eines Container sollen die Logs jeweils auf STDOUT geschrieben werden,
 
 ## Aufgabe: LAB7.3 Port Forwarding
 
+OpenShift 3 erlaubt beliebige Ports von der Entwicklungsworkstation auf ein Pod weiterzuleiten. Dies ist z.B. nützlich um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen die nicht gegen das Internet exponiert werden und sonst nicht erreichbar sind. Im Gegensatz zu OpenShift 2 werden die Portweiterleitungen über die selbe HTTPS Verbindung getunnelt die der OpenShift Client (oc) auch sonst benutzt. Dies erlaubt es auch dann auf OpenShift 3 Platformen zuzugreifen, wenn sich restriktive Firewalls und/oder Proxies zwischen Workstation und OpenShift befinden.
+
+Übung: Auf die Spring Boot Aministrationskonsole aus Lab 4 zugreifen.
+
+```
+oc port-forward -p example-spring-boot 9000:9000
+```
+
+Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu finden: https://docs.openshift.com/enterprise/3.1/dev_guide/port_forwarding.html
+
 ---
 
 **Ende Lab 7**
