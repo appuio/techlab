@@ -4,7 +4,7 @@ In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagie
 
 ## CLI
 
-**Note:** Versichern Sie sich, dass sie Lab 2 erfolgreich abgeschlossen haben.
+**Note:** Versichern Sie sich, dass sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben.
 
 Mit dem folgenden Command können Sie sich auf der Lab OpenShift V3 Plattform anmelden:
 
@@ -68,9 +68,9 @@ Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via B
 ![php5.6](../images/lab_3_php5.6.png)
 
   3.2. Geben Sie Ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL
-```
-https://github.com/appuio/example-php-sti-helloworld.git
-```
+  ```
+  https://github.com/appuio/example-php-sti-helloworld.git
+  ```
 ![php5.6](../images/lab_3_example1.png)
 
 1. Die Applikation wurde erstellt. Über den Link **Go to overview** kommt man zur Übersicht.

@@ -1,15 +1,15 @@
 # Lab 4: Ein Docker Image deployen
 
-In diesem Lab werden wir gemeinsam das erste "pre-built" Docker Image deployen und die OpenShift-Konzepte Pod, Service, DeploymentConfig und Imagestream etwas genauer anschauen.
+In diesem Lab werden wir gemeinsam das erste "pre-built" Docker Image deployen und die OpenShift-Konzepte Pod, Service, DeploymentConfig und ImageStream etwas genauer anschauen.
 
 
 ## Aufgabe: LAB4.1
 
-Nachdem wir im [Lab 3](labs/03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployen eines pre-built Docker Images von Docker Hub oder einer anderen Docker-Registry zu.
+Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployen eines pre-built Docker Images von Docker Hub oder einer anderen Docker-Registry zu.
 
 > [Weiterführende Dokumentation](https://docs.openshift.com/enterprise/3.1/dev_guide/new_app.html#specifying-an-image)
 
-Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen, in welchem berechtigte User (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres) verwalten können. Innerhalb eines OpenShift V3 Clusters muss der Name eines Projektes eindeutig sein.
+Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres). Für das Projekt berechtigte User können diese Resourcen verwalten. Innerhalb eines OpenShift V3 Clusters muss der Name eines Projektes eindeutig sein.
 
 Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-dockerimage`:
 
@@ -80,7 +80,7 @@ Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShif
 
 [Services](https://docs.openshift.com/enterprise/3.1/architecture/core_concepts/pods_and_services.html#services) dienen innerhalb OpenShift als Abstraktionslayer, Einstiegspunkt und Proxy/Loadbalancer auf die dahinterliegenden Pods. Der Service ermöglicht es, innerhalb OpenShift eine Gruppe von Pods des gleichen Typs zu finden und anzusprechen.
 
-Als Beispiel: Wenn eine Applikationsinstanz unseres Beispiels die Last nicht mehr alleine verarbeiten kann, können wir die Applikation bspw. auf drei Pods hochskalieren. OpenShift mapt diese als Endpoints automatisch zum Service. Sobald die Pods bereit sind, werden Requests automatisch auf alle drei Pods geleitet.
+Als Beispiel: Wenn eine Applikationsinstanz unseres Beispiels die Last nicht mehr alleine verarbeiten kann, können wir die Applikation bspw. auf drei Pods hochskalieren. OpenShift mapt diese als Endpoints automatisch zum Service. Sobald die Pods bereit sind, werden Requests automatisch auf alle drei Pods verteilt.
 
 **Note:** Die Applikation kann aktuell von aussen noch nicht erreicht werden, der Service ist ein OpenShift-internes Konzept. Im folgenden Lab werden wir die Applikation öffentlich verfügbar machen.
 
@@ -146,12 +146,14 @@ $ oc get service example-spring-boot -o json
 }
 ```
 
-Mit dem selben Befehl können Sie auch die Details zu einem Pod anzeigen:
+Mit dem entsprechenden Befehl können Sie auch die Details zu einem Pod anzeigen:
 ```
 $ oc get pod example-spring-boot-3-nwzku -o json
 ```
 
-Über den `selector` Bereich im Service wird definiert, welche Pods (`labels`) als Endpoints dienen.
+**Note:** Zuerst den pod Namen aus Ihrem Projekt abfragen (`oc get pods`) und im oberen Befehl ersetzen.
+
+Über den `selector` Bereich im Service wird definiert, welche Pods (`labels`) als Endpoints dienen. Dazu die entsprechenden Konfigurationen vom Service und Pod zusammen betrachten.
 ```
 Service:
 --------
@@ -219,7 +221,7 @@ In der [DeploymentConfig](https://docs.openshift.com/enterprise/3.1/dev_guide/de
 - Replicas, Anzahl der Pods, die deployed werden sollen
 
 
-Mit dem folgenden Befehl können Sie zusätzliche Informationen über die DeploymentConfig auslesen:
+Mit dem folgenden Befehl können zusätzliche Informationen zur DeploymentConfig ausgelesen werden:
 ```
 $ oc get deploymentConfig example-spring-boot -o json
 ```

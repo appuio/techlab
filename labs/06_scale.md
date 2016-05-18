@@ -74,7 +74,7 @@ Skalieren von Pods innerhalb eines Services ist sehr schnell, da OpenShift einfa
 
 Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 
-## Unterbruchsfreihes Skalieren überprüfen
+## Unterbruchsfreies Skalieren überprüfen
 
 Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, währenddem Sie hoch und runter skalieren.
 Ersetzen Sie dafür `[route]` mit ihrer definierten Route:
@@ -112,7 +112,7 @@ Mittels [Container Health Checks](https://docs.openshift.com/enterprise/3.1/dev_
 Grundsätzlich gibt es zwei Checks, die implementiert werden können:
 
 - Liveness Probe, sagt aus, ob ein laufender Container immer noch sauber läuft
-- Readiness Probe, gibt Feedback darüber, ob eine Applikation bereit ist, um Requests zu empfangen, v.a. im Rolling Update relevant
+- Readiness Probe, gibt Feedback darüber, ob eine Applikation bereit ist, um Requests zu empfangen. Ist v.a. im Rolling Update relevant.
 
 Diese beiden Checks können als HTTP Check, Container Execution Check (Shell Script im Container) oder als TCP Socket Check implementiert werden.
 
@@ -165,6 +165,23 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
 Die DeploymentConfig kann via WebConsole oder direkt über `oc` editiert werden.
 ```
 $ oc edit dc example-spring-boot
+```
+
+Oder im json Format editieren:
+```
+$ oc edit dc example-spring-boot -o json
+```
+
+```
+"readinessProbe": {
+        "httpGet": {
+                "path": "/health",
+                "port": 9000,
+                "scheme": "HTTP"
+        },
+        "initialDelaySeconds": 15,
+        "timeoutSeconds": 1
+},
 ```
 
 Verifizieren Sie während eines Deployment der Applikation, ob nun auch ein Update der Applikation unterbruchsfrei verläuft:

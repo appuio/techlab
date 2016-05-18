@@ -1,6 +1,6 @@
 # Lab 5: Unseren Service mittels Route online verfügbar machen
 
-In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) über http vom Internet her erreichbar machen.
+In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) über **http** vom Internet her erreichbar machen.
 
 ## Routen
 
@@ -52,6 +52,8 @@ example-spring-boot     example-spring-boot-techlab.example.com               ex
 Die Applikation ist nun vom Internet her über den angegebenen Hostnamen erreichbar, Sie können also nun auf die Applikation zugreifen.
 
 **Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: *servicename-project.osecluster*
+
+In der Overview der Web Console ist diese Route mit dem Hostnamen jetzt auch sichtbar.
 
 
 ---
