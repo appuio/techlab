@@ -91,7 +91,7 @@ oc port-forward example-spring-boot-1-xj1df 9000:9000
 
 Nicht vergessen den Pod Namen an die eigene Installation anzupassen. Falls installiert kann dafür Autocompletion verwendet werden.
 
-Die Metrics können nun unter folgendem Link abgerufen werden: [http://localhost:9000/](http://localhost:9000/)
+Die Metrics können nun unter folgendem Link abgerufen werden: [http://localhost:9000/metrics/](http://localhost:9000/metrics/) Die Metrics werden Ihnen als Json angezeigt. Mit dem selben Konzept können Sie nun beispielsweise mit ihrem localen SQL Client auf eine Datenbank verbinden.
 
 Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu finden: https://docs.openshift.com/enterprise/3.1/dev_guide/port_forwarding.html
 
