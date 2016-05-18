@@ -7,11 +7,6 @@ Mit einer Platform as a Service (PaaS) ändert sich die Art, wie wir Software en
 - Grundkonzepte verstehen
 - Erste Applikation auf OpenShift deployed
 
-
-## Hilfe
-
-**Tipps** sind durch das folgende Icon gekennzeichnet :information_source:
-
 ---
 
 [<< zurück zur Übersicht] (../README.md)

@@ -4,11 +4,11 @@ In diesem Lab zeigen wir auf, wie Templates ganze Infrastrukturen beschreiben un
 
 ## Templates
 
-Wie Sie in den vorangegangenen Labs gesehen haben können einfach über die Eingabe unterschiedlicher Befehle Applikationen, Datenbank, Services und deren Konfiguration erstellt und deployed werden.
+Wie Sie in den vorangegangenen Labs gesehen haben, können einfach über die Eingabe unterschiedlicher Befehle Applikationen, Datenbanken, Services und deren Konfiguration erstellt und deployed werden.
 
-Dies ist fehleranfällig und etwas mühsamer zu automatisieren.
+Dies ist fehleranfällig und etwas eignet sich schlecht zu automatisieren.
 
-OpenShift biete dafür das Konzept von Templates in welchen man eine Liste von Resourcen beschrieben kann, die über Parameter parametrisiert werden können. Sie sind also quasi ein Rezept für eine ganze Infrastruktur (bspw. 3 ApplikationsContainer, eine Datenbank mit Persistent Storage)
+OpenShift bietet dafür das Konzept von Templates, in welchen man eine Liste von Resourcen beschrieben kann, die über Parameter parametrisiert werden können. Sie sind also quasi ein Rezept für eine ganze Infrastruktur (bspw. 3 ApplikationsContainer, eine Datenbank mit Persistent Storage)
 
 **Note:** der Clusteradmin kann globale Templates erstellen, welche allen Usern zur Verfügung stehen.
 
@@ -17,10 +17,9 @@ Alle vorhandenen Template anzeigen
 $ oc get template -n openshift
 ```
 
-Über die Web Console kann dies via "Add to Project" gemacht werden, dort können Templates dann auch direkt instanziert werden.
+Über die Web Console kann dies via "Add to Project" gemacht werden, über diese Funktionalität können Templates direkt instanziert werden.
 
-Die Templates beschreiben in einem json File, das im Git Repo neben ihrem Code liegen, über eine URL aufgerufen werden oder lokal im Filesystem abgelegt sein kann.
-
+Diese Templates können im Json Format sowohl im Git Repositors neben ihrem Source Code abgelegt werden wie auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein. 
 
 ## Aufgabe: LAB11.1: Template instanzieren.
 
@@ -62,8 +61,9 @@ $ oc new-app example-spring-boot -pMYSQL_DATASOURCE=jdbc:mysql://mysql.[project]
 
 ```
 
-OpenShift startet danach automatisch einen Build und deployed die Container danach wie spezifiziert.
+OpenShift startet danach automatisch einen Build und deployed die Container danach wie im Template spezifiziert.
 
+**Tipp:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
 
 Als Abschluss dieses Labs können Sie sich noch das Template anschauen
 ```
@@ -71,7 +71,7 @@ https://github.com/appuio/example-spring-boot-helloworld/blob/master/example-spr
 ```
 
 
-**Note:** Bestehende Resourcen können als Template exportiert werden, verwenden Sie dafür den `oc export [ResourceType] --as-myapptemplate`
+**Note:** Bestehende Resourcen können als Template exportiert werden, verwenden Sie dafür den `oc export [ResourceType] --as-myapptemplate` Command.
 Bspw. 
 
 ```
@@ -83,7 +83,3 @@ oc export bc,is,dc,route,service --as-template=example-spring-boot -o json > exa
 **Ende Lab 11**
 
 [<< zurück zur Übersicht] (../README.md)
-
-
-
-
