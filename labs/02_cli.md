@@ -15,7 +15,7 @@ der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 
 ## oc Client herunterladen und installieren
 
-Der oc Client kann direkt vom der APPUiO Beta Plattform herunter geladen werden:
+Der oc Client kann direkt von der APPUiO Beta Plattform herunter geladen werden:
 
 * [Windows](https://master.appuio-beta.ch/console/extensions/clients/windows/oc.exe)
 * [Mac OS X](https://master.appuio-beta.ch/console/extensions/clients/macosx/oc)
