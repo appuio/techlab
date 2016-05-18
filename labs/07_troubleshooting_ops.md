@@ -4,11 +4,11 @@ In diesem Lab wird aufgezeigt, wie man im Fehlerfall und Troubleshooting vorgehe
 
 ## In Container einloggen
 
-Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht bspw. durch einloggen über SSH modifiziert werden. Dennoch gibt es UseCases bei den man sich in die Container für Debugging und Analysen einloggen muss.
+Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht modifiziert werden. Dennoch gibt es Usecases, bei denen man sich in die Container für Debugging und Analysen einloggen muss.
 
 ## Aufgabe: LAB7.1
 
-Mit OpenShift können Remote Shells in die Pods geöffnet werden ohne, dass man in jeden Pod einen SSH Deamon installieren muss. Dafür steht einem der Befehl `oc rsh` zur Verfügung.
+Mit OpenShift können Remote Shells in die Pods geöffnet werden ohne dass man darin vorgängig SSH installieren müsste. Dafür steht einem der Befehl `oc rsh` zur Verfügung.
 
 Wählen Sie mittels `oc get pods` einen Pod aus und führen Sie den folgenden Befehl aus:
 ```
@@ -33,7 +33,7 @@ drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 
 ## Aufgabe: LAB7.2
 
-Einzelne Befehle innerhalb des Container können über `oc exec` ausgeführt werden
+Einzelne Befehle innerhalb des Container können über `oc exec` ausgeführt werden:
 
 ```
 $ oc exec [POD] env
@@ -61,27 +61,27 @@ $ oc logs [POD]
 ```
 Der Parameter `-f` bewirkt analoges Verhalten wie `tail -f`
 
-Befindet sich ein Pod Im Status **CrashLoopBackOff**, er konnte also nicht gestartet werden, auch nach n Versuchen. Können die Logfiles mittels
+Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholten Versuchen nicht gestartet werden konnte. Die Logfiles werden mittels
 
  ```
 $ oc logs -p [POD]
 ```
-angezeigt werden.
+angezeigt.
 
 
 ### Logging EFK Stack 
 
-Mit OpenShift wird ein EFK mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. 
+Mit OpenShift wird ein EFK Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. 
 
 TODO
 
-**Bestpractice Logging auf STDOUT**
+**Best Practice Logging auf STDOUT**
 
-Innerhalb eines Container sollen die Logs jeweils auf STDOUT geschrieben werden, damit die Plattform sich entsprechend um die Aggregierung der Logs kümmern kann.
+Innerhalb eines Container sollen die Logs jeweils auf STDOUT geschrieben werden, damit sich die Plattform entsprechend um die Aggregierung der Logs kümmern kann.
 
 ## Aufgabe: LAB7.3 Port Forwarding
 
-OpenShift 3 erlaubt beliebige Ports von der Entwicklungsworkstation auf ein Pod weiterzuleiten. Dies ist z.B. nützlich um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen die nicht gegen das Internet exponiert werden und sonst nicht erreichbar sind. Im Gegensatz zu OpenShift 2 werden die Portweiterleitungen über die selbe HTTPS Verbindung getunnelt die der OpenShift Client (oc) auch sonst benutzt. Dies erlaubt es auch dann auf OpenShift 3 Platformen zuzugreifen, wenn sich restriktive Firewalls und/oder Proxies zwischen Workstation und OpenShift befinden.
+OpenShift 3 erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf einen Pod weiterzuleiten. Dies ist z.B. nützlich, um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen, die nicht gegen das Internet exponiert werden und auch sonst nicht erreichbar sind. Im Gegensatz zu OpenShift 2 werden die Portweiterleitungen über dieselbe HTTPS-Verbindung getunnelt, die der OpenShift Client (oc) auch sonst benutzt. Dies erlaubt es auch dann auf OpenShift 3 Platformen zuzugreifen, wenn sich restriktive Firewalls und/oder Proxies zwischen Workstation und OpenShift befinden.
 
 Übung: Auf die Spring Boot Metrics aus Lab 4 zugreifen.
 
@@ -100,3 +100,4 @@ Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu fi
 **Ende Lab 7**
 
 [<< zurück zur Übersicht] (../README.md)
+
