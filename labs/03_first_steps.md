@@ -4,7 +4,7 @@ In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagie
 
 ## CLI
 
-**Note:** Versichern Sie sich, dass sie Lab 2 erfolgreich abgeschlossen haben
+**Note:** Versichern Sie sich, dass sie Lab 2 erfolgreich abgeschlossen haben.
 
 Mit dem folgenden Command können Sie sich auf der Lab OpenShift V3 Plattform anmelden:
 
@@ -12,7 +12,7 @@ Mit dem folgenden Command können Sie sich auf der Lab OpenShift V3 Plattform an
 $ oc login [URL]
 ```
 
-**Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktuor zur Verfügung gestellt.
+**Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktor zur Verfügung gestellt.
 
 **Note:** Es kann sein, dass Sie gefragt werden, ein Zertifikat einer *unknown authority* zu bestätigen, bestätigen Sie dies mit **y**
 ```
@@ -26,7 +26,7 @@ Als Alternative können Sie dies dem oc command beim Aufruf mitgeben:
 $ oc login [URL] --insecure-skip-tls-verify=true
 ```
 
-Nach dem erfolgreichen Login wird ihnen das folgende angezeigt:
+Nach dem erfolgreichen Login wird Ihnen das Folgende angezeigt:
 ```
 Login successful.
 Welcome to OpenShift! See 'oc help' to get started.
@@ -36,13 +36,13 @@ Herzliche Gratulation, Sie sind nun mit der Lab Umgebung verbunden ;-)!!!
 
 ## Projekt erstellen
 
-Ein Projekt in OpenShift ist das Top Level Konzept um ihre Applikationen, Deployments, Builds, Container, ... zu organisieren. siehe [Lab1](01_quicktour.md)
+Ein Projekt in OpenShift ist das Top Level Konzept um ihre Applikationen, Deployments, Builds, Container etc. zu organisieren. siehe [Lab1](01_quicktour.md)
 
 
 ## Aufgabe: LAB3.1
-Erstellen Sie auf der Lab Plattform ein neues Projekt,
+Erstellen Sie auf der Lab Plattform ein neues Projekt.
 
-**Note**: verweden Sie für Ihren Projektnamen am besten Ihren github Namen, oder ihren Nachnamen eg. `[USER]-example1`
+**Note**: Verwenden Sie für Ihren Projektnamen am besten Ihren Github Namen oder ihren Nachnamen, bspw. `[USER]-example1`
 
 > Wie kann ein neues Projekt erstellt werden?
 
@@ -56,18 +56,18 @@ $ oc help
 Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via Browser vorzunehmen. 
 
 ## Aufgabe: LAB3.2
-1. Logen Sie sich nun via Web Console auf der Lab Plafform ein.
+1. Loggen Sie sich nun via Web Console auf der Lab Plattform ein.
 
-  **Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktuor zur Verfügung gestellt.
+  **Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktor zur Verfügung gestellt.
 
-1. Gehen Sie nun in die Übersicht Ihres eben erstellten Projektes, aktuell ist das Projekt noch leer.
+1. Gehen Sie nun in die Übersicht Ihres eben erstellten Projektes. Aktuell ist das Projekt noch leer.
 
-1. Fügen Sie über *Add to Project* Ihre erste Applikation ihrem Projekt hinzu. Als Beispiel Projekt verwenden wir, ein APPUiO Example.
+1. Fügen Sie über *Add to Project* Ihre erste Applikation Ihrem Projekt hinzu. Als Beispielprojekt verwenden wir ein APPUiO Example.
 
   3.1. Wählen Sie dazu das Basis Image **php 5.6** aus
 ![php5.6](../images/lab_3_php5.6.png)
 
-  3.2. Geben Sie ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL
+  3.2. Geben Sie Ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL
 ```
 https://github.com/appuio/example-php-sti-helloworld.git
 ```
@@ -75,12 +75,12 @@ https://github.com/appuio/example-php-sti-helloworld.git
 
 1. Die Applikation wurde erstellt. Über den Link **Go to overview** kommt man zur Übersicht.
 
-1. Der Build Ihrer Applikation wird gestartet, verfolgend Sie den Build und schauen Sie sich nach dem Deployment die Beispiel APP an.
+1. Der Build Ihrer Applikation wird gestartet. Verfolgen Sie den Build und schauen Sie sich nach dem Deployment die Beispiel APP an.
 
 ![php5.6](../images/lab_3_example1-deployed.png)
 
 
-Sie haben nun ihre erste Applikation mittels so genannetem **[Source to Image](https://docs.openshift.com/enterprise/3.1/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
+Sie haben nun ihre erste Applikation mittels sogenanntem **[Source to Image](https://docs.openshift.com/enterprise/3.1/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
 
 
 ---
