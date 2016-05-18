@@ -1,9 +1,9 @@
 # Instruktionen für den Lead des Techlabs
 
 ## Vorbereitung
-* Lab Umgebung aufsetzen
-* Acconts einrichten
-* inkl. PVs
+- [x] Lab Umgebung aufsetzen
+- [x] Acconts einrichten
+- [x] inkl. PVs
 
 
 ## Ablauf
@@ -13,12 +13,12 @@
 - Lab 1: Selbststudium
 - Lab 2: Gemeinsam Step by Step durch gehen, alle Teilnehmer mitziehen
 - Lab 3: Teilnehmer Lab 3 durchgehen lassen und unterstützen
--- Am Schluss die Einzelnen Komponenten des Example Projektes erklären:
---- Overview, JavaScript Graph, Route, Service, Pods, Configuration 
+   - Am Schluss die Einzelnen Komponenten des Example Projektes erklären:
+      - Overview, JavaScript Graph, Route, Service, Pods, Configuration 
 
 
 ## Offene Punkte
 
-- Labs 8 - 11
-- oc bash completion link anpassen LAB 02
-- Logging EFK Stack beschreiben LAB 07
+- [ ] Labs 10
+- [ ] Logging EFK Stack beschreiben LAB 07
+- [ ] Ablauf beschreiben

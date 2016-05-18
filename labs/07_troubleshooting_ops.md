@@ -54,19 +54,18 @@ KUBERNETES_PORT_53_TCP=tcp://172.30.0.1:53
 
 ## Logfiles anschauen
 
-Die Logfiles zu einem Pod können sowohl in der Web Console wie auch im CLI angezeigt werden.
+Die Logfiles zu einem Pod können sowohl in der Web Console als auch auch im CLI angezeigt werden.
 
 ```
 $ oc logs [POD]
 ```
 Der Parameter `-f` bewirkt analoges Verhalten wie `tail -f`
 
-Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholten Versuchen nicht gestartet werden konnte. Die Logfiles werden mittels
+Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholten Restarten nicht erfolgreich gestartet werden konnte. Die Logfiles können auch wenn der Pod nicht läuft mit dem folgenden Befehl angezeigt werden.
 
  ```
 $ oc logs -p [POD]
 ```
-angezeigt.
 
 
 ### Logging EFK Stack 

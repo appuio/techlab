@@ -4,9 +4,9 @@ Die meisten Applikationen sind in irgend einer Art stateful und speichern Daten 
 
 ## Aufgabe: LAB8.1: MySQL Service anlegen
 
-Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pod alle Daten verloren gehen. In einem späteren Lab werden wir, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen.
+Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pod alle Daten verloren gehen. In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
 
-Den MySQL Service können wir sowohl über die Webconsole als auch über das CLI anlegen.
+Den MySQL Service können wir sowohl über die Web Console als auch über das CLI anlegen.
 
 Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Password und DatabaseServiceName, egal welche Variante verwendet wird, gleich gesetzt werden:
 
@@ -47,7 +47,9 @@ Projektname = techlab-dockerimage
 jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio
 ```
 
-Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem ConfigChange wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und Liquibase kreiert das Schema und die Testdaten.
+Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
+
+**Note:** Liquibase ist eine Open Source, Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
 ```
  $ oc env dc example-spring-boot -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio
@@ -127,7 +129,7 @@ alle Tabellen anzeigen.
 
 ## Aufgabe: LAB8.4: Dump auf MySQL DB einspielen
 
-Die Aufgabe ist es, in den MySQL Pod einen [Dump](./data/08_dump/dump.sql) einzuspielen.
+Die Aufgabe ist es, in den MySQL Pod den [Dump](./data/08_dump/dump.sql) einzuspielen.
 
 
 **Tipp:** Mit `oc rsync` können Sie lokale Datein in einen Pod kopieren.

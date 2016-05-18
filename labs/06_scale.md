@@ -1,12 +1,12 @@
 # Lab 6: Pod Scaling, Readiness Probe und Self Healing
 
-In diesem Lab zeigen wir auf, wie man Applikationen in OpenShift skaliert. Desweiteren zeigen wir, wie OpenShift dafür sorgt, dass jeweils die Anzahl erwarteter Pods gestartet wird und wie eine Applikation der Plattform zurückmelden kann, dass sie bereit für Requests ist.
+In diesem Lab zeigen wir auf, wie man Applikationen in OpenShift skaliert. Des Weiteren zeigen wir, wie OpenShift dafür sorgt, dass jeweils die Anzahl erwarteter Pods gestartet wird und wie eine Applikation der Plattform zurückmelden kann, dass sie bereit für Requests ist.
 
 ## Example Applikation hochskalieren
 
-Wenn wir unsere Example Applikation skalieren wollen, müssen wir unserem ReplicationController mitteilen, dass wir bspw. stets 3 Replicas des Image am laufen haben wollen.
+Wenn wir unsere Example Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Imagea am Laufen haben wollen.
 
-Schauen wir uns mal den ReplicationController (rc) an:
+Schauen wir uns mal den ReplicationController (rc) etwas genauer an:
 
 ```
 $ oc get rc
@@ -21,9 +21,9 @@ Für mehr Details:
 $ oc get rc example-spring-boot-1 -o json
 ```
 
-Der ReplicationController sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployed sind (status).
+Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployed sind (status).
 
-## Aufgabe: LAB6.1
+## Aufgabe: LAB6.1 skalieren unserer Beispiel Applikation
 Nun skalieren wir unsere Example Applikation auf 3 Replicas:
 
 ```
@@ -66,11 +66,11 @@ No events.
 
 ```
 
-Skalieren von Pods innerhalb eines Service ist sehr schnell, da OpenShift einfach eine neue Instanz des Docker Image startet.
+Skalieren von Pods innerhalb eines Services ist sehr schnell, da OpenShift einfach eine neue Instanz des Docker Images als Container startet.
 
-**Tipp:** OpenShift V3 unterstützt auch Autoscaling: https://docs.openshift.com/enterprise/3.1/dev_guide/pod_autoscaling.html
+**Tipp:** OpenShift V3 unterstützt auch Autoscaling, die Dokumentation dazu ist unter dem folgenden Link zu finden: https://docs.openshift.com/enterprise/3.1/dev_guide/pod_autoscaling.html
 
-## Aufgabe: LAB6.2
+## Aufgabe: LAB6.2 skalierte App in der Web Console
 
 Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 
@@ -86,7 +86,7 @@ while true; do sleep 2; curl -s http://[route]/pod; echo ""; done
 ```
 
 und skalieren Sie von 3 Replicas auf 1.
-Der Output zeigt jeweils den Pod an, der den Request verarbeitet:
+Der Output zeigt jeweils den Pod an, der den Request verarbeitete:
 
 ```
 Pod: example-spring-boot-1-rtp39
@@ -116,14 +116,14 @@ Grundsätzlich gibt es zwei Checks, die implementiert werden können:
 
 Diese beiden Checks können als HTTP Check, Container Execution Check (Shell Script im Container) oder als TCP Socket Check implementiert werden.
 
-In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt auf der folgenden URL ein Status Code 200 zurück, sobald die Applikation bereit ist.
+In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt auf der folgenden URL auf Port 9000 (management Port der Spring Applikation) ein Status Code 200 zurück, sobald die Applikation bereit ist.
 ```
 http://[route]/health
 ```
 
 ## Aufgabe: LAB6.3
 
-Die Readiness Probe muss in der Deployment Config hinzugefügt werden, und zwar unter:
+Die Readiness Probe muss in der Deployment Config (dc) hinzugefügt werden, und zwar unter:
 
 spec --> template --> spec --> containers
 
@@ -181,9 +181,9 @@ while true; do sleep 2; curl -s http://[route]/pod; echo ""; done
 
 ## Self Healing
 
-Über den Replication Controller haben wir nun der Plattform mitgeteilt, dass jeweils n Replicas laufen sollen. Was passiert nun, wenn wir einen Pod löschen?
+Über den Replication Controller haben wir nun der Plattform mitgeteilt, dass jeweils **n** Replicas laufen sollen. Was passiert nun, wenn wir einen Pod löschen?
 
-Suchen Sie mittels `oc get pods` einen running Pod aus, den Sie killen können.
+Suchen Sie mittels `oc get pods` einen running Pod aus, den Sie *killen* können.
 Löschen Sie den Pod mit folgendem Befehl
 ``` 
 oc delete pod example-spring-boot-4-4ryze
@@ -194,7 +194,7 @@ und schauen Sie mittels
 oc get pods -w
 ``` 
 
-wie OpenShift dafür sorgt, dass wieder n Replicas des genannten Pods laufen.
+wie OpenShift dafür sorgt, dass wieder **n** Replicas des genannten Pods laufen.
 
 
 ---

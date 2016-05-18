@@ -1,10 +1,10 @@
 # Lab 5: Unseren Service mittels Route online verfügbar machen
 
-In diesem Lab werden wir die Applikation aus Lab 4 über http vom Internet her erreichbar machen.
+In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) über http vom Internet her erreichbar machen.
 
 ## Routen
 
-Der `oc new-app` Befehl aus dem vorherigen Lab erstellt keine Route. Somit ist unser Service von "aussen" her gar nicht erreichbar. Will man einen Service verfügbar machen, muss dafür eine Route eingerichtet werden. Der OpenShift Router erkennt aufgrund des Host Headers auf welchen Service ein Request geleitet werden muss.
+Der `oc new-app` Befehl aus dem vorherigen [Lab](04_deploy_dockerimage.md) erstellt keine Route. Somit ist unser Service von *aussen* her gar nicht erreichbar. Will man einen Service verfügbar machen, muss dafür eine Route eingerichtet werden. Der OpenShift Router erkennt aufgrund des Host Headers auf welchen Service ein Request geleitet werden muss.
 
 Aktuell werden folgende Protokolle unterstützt:
 
@@ -51,7 +51,7 @@ example-spring-boot     example-spring-boot-techlab.example.com               ex
 
 Die Applikation ist nun vom Internet her über den angegebenen Hostnamen erreichbar, Sie können also nun auf die Applikation zugreifen.
 
-**Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: servicename-project.osecluster
+**Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: *servicename-project.osecluster*
 
 
 ---
