@@ -12,14 +12,14 @@ Damit Sie Änderungen am Source Code unserer Beispielapplikation vornehmen könn
 
 **Beispiel-Projekt:** https://github.com/appuio/example-php-sti-helloworld
 
-Gehen Sie auf die [GitHub Projekt-Seite](https://github.com/appuio/example-php-sti-helloworld) und [forken](https://help.github.com/articles/fork-a-repo/) Sie das Projekt.
+Gehen Sie auf die [GitHub Projekt-Seite](https://github.com/appuio/example-php-docker-helloworld) und [forken](https://help.github.com/articles/fork-a-repo/) Sie das Projekt.
 
 ![Fork](../images/lab_9_fork_example.png)
 
 
 Sie haben nun unter
 ```
-https://github.com/[YourGitHubUser]/example-php-sti-helloworld
+https://github.com/[YourGitHubUser]/example-php-docker-helloworld
 ```
 
 einen Fork des Example Projektes, den Sie so erweitern können wie Sie wollen.
