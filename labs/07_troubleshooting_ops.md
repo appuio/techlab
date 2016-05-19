@@ -70,16 +70,23 @@ $ oc logs -p [POD]
 
 ### Logging EFK Stack 
 
-Mit OpenShift wird ein EFK Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert.
-
-TODO
+Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten.
 
 > [Weitere Informationen](https://docs.openshift.com/enterprise/3.1/install_config/aggregate_logging.html)
 
+**Best Practice JSON Logging auf STDOUT**
 
-**Best Practice Logging auf STDOUT**
+Innerhalb eines Container sollten die Logs jeweils auf STDOUT geschrieben werden, damit sich die Plattform entsprechend um die Aggregierung der Logs kümmern kann. Falls die Logs im JSON Format geschrieben werden zerlegt der EFK Stack die Logs automatisch und erlaubt ein Filtern auf Knopfdruck.
 
-Innerhalb eines Container sollen die Logs jeweils auf STDOUT geschrieben werden, damit sich die Plattform entsprechend um die Aggregierung der Logs kümmern kann.
+Java EE Beispielanwendung mit Log4j 2 JSON Logging installieren:
+
+```
+$ oc new-app https://github.com/appuio/ose3-java-logging
+$ oc expose svc ose3-java-logging
+```
+
+Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeintrage zu generieren und anschliessen in der Webconsole unter Browse > Pods das neu erstellte Pod und anschliessen das Log Tab auswählen. Hier ist nun direkt der Standardoutput eines Pods der Applikation sichtbar.
+Über den "View Archive" Knopf kann direkt zu den Aggregierten Logs der Applikation im EFK Stack gewechselt werden. Hier sind nun die Logs aller Pods der ausgewählten Applikation zeitlich sortiert, und sofern im JSON format, nach den einzelnen Feldern geparsed zu sehen:
 
 ## Aufgabe: LAB7.3 Port Forwarding
 
