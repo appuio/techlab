@@ -4,7 +4,7 @@ In diesem Lab wird aufgezeigt, wie man im Fehlerfall und Troubleshooting vorgehe
 
 ## In Container einloggen
 
-Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht modifiziert werden. Dennoch gibt es Usecases, bei denen man sich in die Container für Debugging und Analysen einloggen muss.
+Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht modifiziert werden. Dennoch gibt es Usecases, bei denen man sich in die Container einloggen muss. Zum Beispiel für Debugging und Analysen.
 
 ## Aufgabe: LAB7.1
 
@@ -19,16 +19,16 @@ Sie können nun über diese Shell Analysen im Container ausführen:
 
 ```
 bash-4.2$ ls -la
-total 16                                                                        
-drwxr-xr-x. 7 default root   99 May 16 13:35 .                                  
-drwxr-xr-x. 4 default root   54 May 16 13:36 ..                                 
-drwxr-xr-x. 6 default root   57 May 16 13:35 .gradle                            
-drwxr-xr-x. 3 default root   18 May 16 12:26 .pki                               
-drwxr-xr-x. 9 default root 4096 May 16 13:35 build                              
--rw-r--r--. 1 root    root 1145 May 16 13:33 build.gradle                       
-drwxr-xr-x. 3 root    root   20 May 16 13:34 gradle                             
--rwxr-xr-x. 1 root    root 4971 May 16 13:33 gradlew                            
-drwxr-xr-x. 4 root    root   28 May 16 13:34 src 
+total 16
+drwxr-xr-x. 7 default root   99 May 16 13:35 .
+drwxr-xr-x. 4 default root   54 May 16 13:36 ..
+drwxr-xr-x. 6 default root   57 May 16 13:35 .gradle
+drwxr-xr-x. 3 default root   18 May 16 12:26 .pki
+drwxr-xr-x. 9 default root 4096 May 16 13:35 build
+-rw-r--r--. 1 root    root 1145 May 16 13:33 build.gradle
+drwxr-xr-x. 3 root    root   20 May 16 13:34 gradle
+-rwxr-xr-x. 1 root    root 4971 May 16 13:33 gradlew
+drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 ```
 
 ## Aufgabe: LAB7.2
@@ -70,9 +70,12 @@ $ oc logs -p [POD]
 
 ### Logging EFK Stack 
 
-Mit OpenShift wird ein EFK Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. 
+Mit OpenShift wird ein EFK Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert.
 
 TODO
+
+> [Weitere Informationen](https://docs.openshift.com/enterprise/3.1/install_config/aggregate_logging.html)
+
 
 **Best Practice Logging auf STDOUT**
 

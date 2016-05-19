@@ -8,7 +8,7 @@ Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches 
 
 Den MySQL Service können wir sowohl über die Web Console als auch über das CLI anlegen.
 
-Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Password und DatabaseServiceName, egal welche Variante verwendet wird, gleich gesetzt werden:
+Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Password und DatabaseServiceName gleich gesetzt werden, egal welche Variante verwendet wird:
 
 - MYSQL_USER appuio
 - MYSQL_PASSWORD appuio
@@ -49,7 +49,7 @@ jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio
 
 Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
 
-**Note:** Liquibase ist eine Open Source, Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
+**Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
 ```
  $ oc env dc example-spring-boot -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio
@@ -167,7 +167,9 @@ $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/dump
 
 **Note:** Den Dump kann man wie folgt erstellen:
 
-mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HOST appuio > /tmp/dump.sql 
+```
+mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HOST appuio > /tmp/dump.sql
+```
 
 
 ---
