@@ -48,7 +48,7 @@ $ oc volume dc/mysql --add --name=mysql-data --type pvc --claim-name=mysqlpvc --
 
 ### Daten wiederherstellen
 
-Wiederholen Sie [Lab-Aufgabe 8.4](08_database.md).
+Wiederholen Sie [Lab-Aufgabe 8.4](08_database.md#l%C3%B6sung-lab84).
 
 
 ### Test
