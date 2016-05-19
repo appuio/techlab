@@ -86,7 +86,12 @@ $ oc expose svc ose3-java-logging
 ```
 
 Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeintrage zu generieren und anschliessen in der Webconsole unter Browse > Pods das neu erstellte Pod und anschliessen das Log Tab auswählen. Hier ist nun direkt der Standardoutput eines Pods der Applikation sichtbar.
+
 Über den "View Archive" Knopf kann direkt zu den Aggregierten Logs der Applikation im EFK Stack gewechselt werden. Hier sind nun die Logs aller Pods der ausgewählten Applikation zeitlich sortiert, und sofern im JSON format, nach den einzelnen Feldern geparsed zu sehen:
+
+![Kibana Screenshot](/images/lab_7_kibana1.png)
+
+Alle von der Applikation geloggten Felder sind jetzt noch mit einer Warnunganzeige versehen, da sie noch nicht indiziert sind und somit nicht danach gefiltert, sortiert, etc. werden kann. Um dies zu beheben muss unter Settings > .all auf den reload Button ![Kibana Reload Button](/images/lab_7_kibana2.png) gedrückt werden. Danach kann z.B. durch drücken auf ein Feld eines Logeintrages nach allen Einträgen mit dem selben Wert gesucht werden.
 
 ## Aufgabe: LAB7.3 Port Forwarding
 
