@@ -6,43 +6,31 @@ Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispi
 
 ### Storage anfordern
 
-Um für einen Pod persistenten Speicher zu erhalten, müssen wir diesen zuerst für das Projekt anfordern. Dies geschieht mittels eines sog. PersistentVolumeClaim. Dieser PersistentVolumeClaim wird anschliessend mit einem zur Verfügung stehenden Persistent Volume verbunden, wodurch dieses dann über den Claim verwendet werden kann.
+Das Anhängen von Persistent Storage geschieht eigentlich in zwei Schritten. Der erste Schritt beinhaltet als erstes das Erstellen eines sog. PersistentVolumeClaim für unser Projekt. Im Claim definieren wir u.a. dessen Namen sowie Grösse, also wie viel persistenten Speicher wir überhaupt haben wollen. Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die Ressource selbst. Er wird deshalb automatisch durch OpenShift mit einem zur Verfügung stehenden Persistent Volume verbunden, und zwar mit einem mit mindestens der angeforderten Grösse. Sind nur noch grössere Persistent Volumes vorhanden, wird eines dieser Volumes verwendet und die Grösse des Claims angepasst. Sind nur noch kleinere Persistent Volumes vorhanden, kann der Claim nicht verbunden werden und bleibt solange offen, bis ein Volume der passenden Grösse (oder eben grösser) auftaucht.
 
-Wir erstellen den PVC wie folgt:
+
+### Volume in Pod einbinden
+
+Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In Lab 6 bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu Lab 6 können wir aber mit `oc volume` die Deployment Config automatisch erweitern. Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 ```
-$ cat <<-EOF | oc create -f -
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysqlpvc
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 256Mi
-EOF
+$ oc volume dc/mysql --add --name=mysql-data --type pvc --claim-name=mysqlpvc --claim-size=256Mi --overwrite
 ```
+**Note:** Durch die veränderte Deployment Config deployed OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
 
-**Note:** Dies ist zugleich auch das erste Mal, dass wir mit dem Befehl `oc create` arbeiten. Mit ihm sind wir in der Lage, beliebige Objekte erstellen zu lassen; über das Attribut "kind" weiss OpenShift, welche Art von Objekt es erstellen muss.
-
-Mit dem Befehl `oc get persistentvolumeclaim`, oder etwas einfacher `oc get pvc`, können wir die im Projekt vorhandenen PersistentVolumeClaims anzeigen lassen:
+Mit dem Befehl `oc get persistentvolumeclaim`, oder etwas einfacher `oc get pvc`, können wir uns nun den im Projekt frisch erstellten PersistentVolumeClaim anzeigen lassen:
 ```
 $ oc get pvc
 NAME       LABELS    STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
 mysqlpvc   <none>    Bound     pv18      256Mi      RWO,RWX       3m
 ```
-Die beiden Attribute Status und Volume zeigen uns bereits an, dass unser Claim mit dem Persistent Volume pv18 verbunden wurde.
+Die beiden Attribute Status und Volume zeigen uns an, dass unser Claim mit dem Persistent Volume pv18 verbunden wurde.
 
-
-### Volume in Pod einbinden
-
-Nun fehlt nur noch, den erstellten PVC tatsächlich auch in einen Pod einzubinden. In Lab 6 bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu Lab 6 können wir aber mit `oc volume` die Deployment Config bearbeiten, und zwar so:
+Mit dem folgenden Befehl können wir auch noch überprüfen, ob das Einbinden des Volumes in die Deployment Config geklappt hat:
 ```
-$ oc volume dc/mysql --add --name=mysql-data --type pvc --claim-name=mysqlpvc --overwrite
+$ oc volume dc/mysql
+deploymentconfigs/mysql
+  pvc/mysqlpvc (allocated 256MiB) as mysql-data
 ```
-**Note:** Durch die veränderte Deployment Config deployed OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
-
 
 ## Aufgabe: LAB10.2: Persistenz-Test
 
@@ -52,7 +40,8 @@ Wiederholen Sie [Lab-Aufgabe 8.4](08_database.md#l%C3%B6sung-lab84).
 
 
 ### Test
-Skalieren Sie nun den Pod auf 0 und anschliessend wieder auf 1. Beobachten Sie, dass der neue Pod die Daten nun nicht verloren hat.
+
+Skalieren Sie nun den Pod auf 0 und anschliessend wieder auf 1. Beobachten Sie, dass der neue Pod die Daten nicht mehr verliert.
 
 
 ---
