@@ -39,13 +39,14 @@ $ oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.g
 Mittels Parameter `--strategy=docker` sagen wir dem `oc new-app` Befehl nun explizit, er soll im angegebenen Git Repository nach einem Dockerfile suchen und dieses für den Build verwenden.
 
 Nun exponieren Sie den Service mit:
-``
+```
 $ oc expose service appuio-php-docker-ex
 ```
 
 ## Aufgabe: LAB9.2: Webhook auf GitHub einrichtenn
 
 Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert. Diese können Sie über den folgenden Befehl anzeigen:
+
 ```
 $ oc describe bc appuio-php-docker-ex
 
