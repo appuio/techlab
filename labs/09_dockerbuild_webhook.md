@@ -10,7 +10,7 @@ Damit Sie Änderungen am Source Code unserer Beispielapplikation vornehmen könn
 
 ### Beispiel-Projekt forken
 
-**Beispiel-Projekt:** https://github.com/appuio/example-php-sti-helloworld
+**Beispiel-Projekt:** https://github.com/appuio/example-php-docker-helloworld
 
 Gehen Sie auf die [GitHub Projekt-Seite](https://github.com/appuio/example-php-docker-helloworld) und [forken](https://help.github.com/articles/fork-a-repo/) Sie das Projekt.
 
