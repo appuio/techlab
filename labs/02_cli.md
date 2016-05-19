@@ -90,7 +90,7 @@ Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt ges
 
 ## Erweiterte Bash Completion
 
-Die Bash Completion kann für den oc Command installiert werden. Laden Sie dafür das File von hier [openshift bash completions](https://github.com/openshift/origin/blob/master/contrib/completions/bash/oc) herunter und installieren Sie es wie folgt:
+Die Bash Completion kann für den oc Command installiert werden. Laden Sie dafür das File von hier [openshift bash completions](https://master.appuio-beta.ch/console/extensions/clients/bash-completion/oc) herunter und installieren Sie es wie folgt:
 
 ```
 sudo mv oc /etc/bash_completion.d/
