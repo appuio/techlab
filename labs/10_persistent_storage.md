@@ -1,12 +1,12 @@
 # Lab 10: Persistent Storage anbinden und verwenden für Datenbank
 
-Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispiel der Fall ist. Verschwindet also unser MySQL-Pod bspw. aufgrund einer Änderung des Image, sind die bis zuvor noch vorhandenen Daten im neuen Pod nicht mehr vorhanden. Um genau dies zu verhindern hängen wir nun Persistent Storage an unseren MySQL-Pod an.
+Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispiel der Fall ist. Verschwindet also unser MySQL-Pod bspw. aufgrund einer Änderung des Images, sind die bis zuvor noch vorhandenen Daten im neuen Pod nicht mehr vorhanden. Um genau dies zu verhindern hängen wir nun Persistent Storage an unseren MySQL-Pod an.
 
 ## Aufgabe: LAB10.1: 
 
 ### Storage anfordern
 
-Um für einen Pod persistenten Speicher zu erhalten, müssen wir diesen zuerst für das Projekt anfordern. Dies geschieht anhand eines sog. PersistentVolumeClaim. Dieser PersistentVolumeClaim wird anschliessend mit einem zur Verfügung stehenden Persistent Volume verbunden, wodurch dieses dann über den Claim verwendet werden kann.
+Um für einen Pod persistenten Speicher zu erhalten, müssen wir diesen zuerst für das Projekt anfordern. Dies geschieht mittels eines sog. PersistentVolumeClaim. Dieser PersistentVolumeClaim wird anschliessend mit einem zur Verfügung stehenden Persistent Volume verbunden, wodurch dieses dann über den Claim verwendet werden kann.
 
 Wir erstellen den PVC wie folgt:
 ```
