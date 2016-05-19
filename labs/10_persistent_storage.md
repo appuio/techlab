@@ -6,12 +6,16 @@ Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispi
 
 ### Storage anfordern
 
-Das Anhängen von Persistent Storage geschieht eigentlich in zwei Schritten. Der erste Schritt beinhaltet als erstes das Erstellen eines sog. PersistentVolumeClaim für unser Projekt. Im Claim definieren wir u.a. dessen Namen sowie Grösse, also wie viel persistenten Speicher wir überhaupt haben wollen. Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die Ressource selbst. Er wird deshalb automatisch durch OpenShift mit einem zur Verfügung stehenden Persistent Volume verbunden, und zwar mit einem mit mindestens der angeforderten Grösse. Sind nur noch grössere Persistent Volumes vorhanden, wird eines dieser Volumes verwendet und die Grösse des Claims angepasst. Sind nur noch kleinere Persistent Volumes vorhanden, kann der Claim nicht verbunden werden und bleibt solange offen, bis ein Volume der passenden Grösse (oder eben grösser) auftaucht.
+Das Anhängen von Persistent Storage geschieht eigentlich in zwei Schritten. Der erste Schritt beinhaltet als erstes das Erstellen eines sog. PersistentVolumeClaim für unser Projekt. Im Claim definieren wir u.a. dessen Namen sowie Grösse, also wie viel persistenten Speicher wir überhaupt haben wollen.
+
+Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die Ressource selbst. Er wird deshalb automatisch durch OpenShift mit einem zur Verfügung stehenden Persistent Volume verbunden, und zwar mit einem mit mindestens der angeforderten Grösse. Sind nur noch grössere Persistent Volumes vorhanden, wird eines dieser Volumes verwendet und die Grösse des Claims angepasst. Sind nur noch kleinere Persistent Volumes vorhanden, kann der Claim nicht verbunden werden und bleibt solange offen, bis ein Volume der passenden Grösse (oder eben grösser) auftaucht.
 
 
 ### Volume in Pod einbinden
 
-Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In Lab 6 bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu Lab 6 können wir aber mit `oc volume` die Deployment Config automatisch erweitern. Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
+Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In Lab 6 bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu Lab 6 können wir aber mit `oc volume` die Deployment Config automatisch erweitern.
+
+Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 ```
 $ oc volume dc/mysql --add --name=mysql-data --type pvc --claim-name=mysqlpvc --claim-size=256Mi --overwrite
 ```
