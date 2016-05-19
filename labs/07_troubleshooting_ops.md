@@ -93,6 +93,23 @@ Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeintrage z
 
 Alle von der Applikation geloggten Felder sind jetzt noch mit einer Warnunganzeige versehen, da sie noch nicht indiziert sind und somit nicht danach gefiltert, sortiert, etc. werden kann. Um dies zu beheben muss unter Settings > .all auf den reload Button ![Kibana Reload Button](/images/lab_7_kibana2.png) gedrückt werden. Danach kann z.B. durch drücken auf ein Feld eines Logeintrages nach allen Einträgen mit dem selben Wert gesucht werden.
 
+Die Strukturierung der Log4j 2 JSON Ausgabe ist derzeit für die von der Applikation beigesteuerten Felder nicht ideal:
+
+    "contextMap_0_key": "url",
+    "contextMap_0_value": "http://ose3-java-logging-dtschan.ose3-lab.puzzle.ch/",
+    "contextMap_1_key": "remoteAddr",
+    "contextMap_1_value": "10.255.1.1",
+    "contextMap_2_key": "freeMem",
+    "contextMap_2_value": "16598776",
+
+Gewünscht wäre:
+
+    "url": "http://ose3-java-logging-dtschan.ose3-lab.puzzle.ch/",
+    "remoteAddr": "10.255.1.1",
+    "freeMem": "16598776",
+
+Was auch innerhalb von Kibana zu einer verständlicheren Darstellung führen würde. Siehe auch: https://issues.apache.org/jira/browse/LOG4J2-623.
+
 ## Aufgabe: LAB7.3 Port Forwarding
 
 OpenShift 3 erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf einen Pod weiterzuleiten. Dies ist z.B. nützlich, um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen, die nicht gegen das Internet exponiert werden und auch sonst nicht erreichbar sind. Im Gegensatz zu OpenShift 2 werden die Portweiterleitungen über dieselbe HTTPS-Verbindung getunnelt, die der OpenShift Client (oc) auch sonst benutzt. Dies erlaubt es auch dann auf OpenShift 3 Platformen zuzugreifen, wenn sich restriktive Firewalls und/oder Proxies zwischen Workstation und OpenShift befinden.
