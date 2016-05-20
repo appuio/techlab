@@ -59,7 +59,7 @@ SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/ap
 **Note:** mysql.[USER]-dockerimage.svc.cluster.local löst innerhalb ihres Projektes via DNS Abfrage auf die Custer IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar.
 
 ```
- $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
+ $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
 ```
  
 Über den folgenden Befehl können Sie sich die DeploymentConfig als JSON anschauen. Neu enthält die Config auch die gesetzten Umgebungsvariablen:
