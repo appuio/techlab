@@ -138,7 +138,7 @@ alle Tabellen anzeigen.
 Die Aufgabe ist es, in den MySQL Pod den [Dump](./data/08_dump/dump.sql) einzuspielen.
 
 
-**Tipp:** Mit `oc rsync` können Sie lokale Datein in einen Pod kopieren.
+**Tipp:** Mit `oc rsync` können Sie lokale Dateien in einen Pod kopieren.
 
 **Tipp:** Verwenden Sie das Tool mysql um den Dump einzuspielen.
 
