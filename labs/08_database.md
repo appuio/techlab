@@ -51,10 +51,15 @@ Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-
 
 **Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
-**Note:** Der Hostname des MySQL Service muss auf den Projektnamen Ihres Projekt angepasst werden. Siehe vorheriges Beispiel.
+**Note:** Die Datasource URL (SPRING_DATASOURCE_URL) muss auf den Projektnamen Ihres Projekt angepasst werden. Siehe vorheriges Beispiel.
 
 ```
- $ oc env dc example-spring-boot -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio
+SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/appuio
+```
+**Note:** mysql.[USER]-dockerimage.svc.cluster.local löst innerhalb ihres Projektes via DNS Abfrage auf die Custer IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar.
+
+```
+ $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
 ```
  
 Über den folgenden Befehl können Sie sich die DeploymentConfig als JSON anschauen. Neu enthält die Config auch die gesetzten Umgebungsvariablen:
