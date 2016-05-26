@@ -135,7 +135,7 @@ alle Tabellen anzeigen.
 
 ## Aufgabe: LAB8.4: Dump auf MySQL DB einspielen
 
-Die Aufgabe ist es, in den MySQL Pod den [Dump](./data/08_dump/dump.sql) einzuspielen.
+Die Aufgabe ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.1/labs/data/08_dump/dump.sql) einzuspielen.
 
 
 **Tipp:** Mit `oc rsync` können Sie lokale Dateien in einen Pod kopieren.
