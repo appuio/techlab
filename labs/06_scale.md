@@ -4,6 +4,24 @@ In diesem Lab zeigen wir auf, wie man Applikationen in OpenShift skaliert. Des W
 
 ## Example Applikation hochskalieren
 
+Dafür erstellen wir ein neues Projekt:
+
+```
+$ oc new-project [USER]-scale
+```
+
+Und fügen dem Projekt eine Applikation hinzu
+
+```
+$ oc new-app appuio/example-php-docker-helloworld
+```
+
+und exposen den Service
+
+```
+$ oc expose service example-php-docker-hello
+```
+
 Wenn wir unsere Example Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Imagea am Laufen haben wollen.
 
 Schauen wir uns mal den ReplicationController (rc) etwas genauer an:
@@ -11,14 +29,14 @@ Schauen wir uns mal den ReplicationController (rc) etwas genauer an:
 ```
 $ oc get rc
 
-CONTROLLER                CONTAINER(S)            IMAGE(S)                                                                                                                SELECTOR                                                                                              REPLICAS   AGE
-example-spring-boot-1     example-spring-boot     appuio/example-spring-boot@sha256:7823c6bbfdbdf1edcc20e104b1161fc8d4f33ef6cbbe054d14bd01b6154f90b0                      app=example-spring-boot,deployment=example-spring-boot-1,deploymentconfig=example-spring-boot         1          4h
+CONTROLLER                        CONTAINER(S)                    IMAGE(S)                                                                                                       SELECTOR                                                                                                                      REPLICAS   AGE
+example-php-docker-helloworld-1   example-php-docker-helloworld   appuio/example-php-docker-helloworld@sha256:40bdf6a3aef52d7afa1716fb83457e0fa9fbf14a6f223eb219504b632d7661c9   app=example-php-docker-helloworld,deployment=example-php-docker-helloworld-1,deploymentconfig=example-php-docker-helloworld   1          5s
 ```
 
 Für mehr Details:
 
 ```
-$ oc get rc example-spring-boot-1 -o json
+$ oc get rc example-php-docker-helloworld-1 -o json
 ```
 
 Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployed sind (status).
@@ -27,7 +45,7 @@ Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployed
 Nun skalieren wir unsere Example Applikation auf 3 Replicas:
 
 ```
-$ oc scale --replicas=3 rc example-spring-boot-1
+$ oc scale --replicas=3 rc example-php-docker-helloworld-1
 ```
 
 Überprüfen wir die Anzahl Replicas auf dem ReplicationController:
@@ -35,33 +53,32 @@ $ oc scale --replicas=3 rc example-spring-boot-1
 ```
 $ oc get rc
 
-CONTROLLER                CONTAINER(S)            IMAGE(S)                                                                                                                SELECTOR                                                                                              REPLICAS   AGE
-example-spring-boot-1     example-spring-boot     appuio/example-spring-boot@sha256:7823c6bbfdbdf1edcc20e104b1161fc8d4f33ef6cbbe054d14bd01b6154f90b0                      app=example-spring-boot,deployment=example-spring-boot-1,deploymentconfig=example-spring-boot         3          4h
+CONTROLLER                        CONTAINER(S)                    IMAGE(S)                                                                                                       SELECTOR                                                                                                                      REPLICAS   AGE
+example-php-docker-helloworld-1   example-php-docker-helloworld   appuio/example-php-docker-helloworld@sha256:40bdf6a3aef52d7afa1716fb83457e0fa9fbf14a6f223eb219504b632d7661c9   app=example-php-docker-helloworld,deployment=example-php-docker-helloworld-1,deploymentconfig=example-php-docker-helloworld   3          3m
 ```
 
 und zeigen entsprechend die Pods an:
 
 ```
 $ oc get pods
-NAME                            READY     STATUS      RESTARTS   AGE
-example-spring-boot-3-dujl6     1/1       Running     0          3s
-example-spring-boot-3-nwzku     1/1       Running     0          4h
-example-spring-boot-3-zszkn     1/1       Running     0          10s
+NAME                                    READY     STATUS    RESTARTS   AGE
+example-php-docker-helloworld-1-375nb   1/1       Running   0          1m
+example-php-docker-helloworld-1-vd3oj   1/1       Running   0          3m
+example-php-docker-helloworld-1-zgdvl   1/1       Running   0          1m
 
 ```
 
 Zum Schluss schauen wir uns den Service an. Der sollte jetzt alle drei Endpoints referenzieren:
 ```
-$ oc describe service example-spring-boot
-Name:                   example-spring-boot
-Namespace:              techlab
-Labels:                 app=example-spring-boot
-Selector:               app=example-spring-boot,deploymentconfig=example-spring-boot
-Type:                   ClusterIP
-IP:                     172.30.96.92
-Port:                   8080-tcp        8080/TCP
-Endpoints:              10.255.1.154:8080,10.255.1.159:8080,10.255.2.155:8080
-Session Affinity:       None
+$ oc describe svc example-php-docker-helloName:			example-php-docker-hello
+Namespace:		techlab
+Labels:			app=example-php-docker-helloworld
+Selector:		app=example-php-docker-helloworld,deploymentconfig=example-php-docker-helloworld
+Type:			ClusterIP
+IP:			172.30.82.43
+Port:			8080-tcp	8080/TCP
+Endpoints:		10.255.0.41:8080,10.255.1.28:8080,10.255.1.29:8080
+Session Affinity:	None
 No events.
 
 ```
@@ -82,27 +99,27 @@ Ersetzen Sie dafür `[route]` mit ihrer definierten Route:
 **Tipp:** oc get route
 
 ```
-while true; do sleep 2; curl -s http://[route]/pod; echo ""; done
+while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
 ```
 
 und skalieren Sie von 3 Replicas auf 1.
 Der Output zeigt jeweils den Pod an, der den Request verarbeitete:
 
 ```
-Pod: example-spring-boot-1-rtp39
-Pod: example-spring-boot-1-qnsw4
-Pod: example-spring-boot-1-rtp39
-Pod: example-spring-boot-1-qnsw4
-Pod: example-spring-boot-1-rtp39
-Pod: example-spring-boot-1-qnsw4
-Pod: example-spring-boot-1-rtp39
-Pod: example-spring-boot-1-qnsw4
-Pod: example-spring-boot-1-rtp39
-Pod: example-spring-boot-1-qnsw4
-Pod: example-spring-boot-1-rtp39
-Pod: example-spring-boot-1-qnsw4
-Pod: example-spring-boot-1-rtp39
-Pod: example-spring-boot-1-qnsw4
+example-php-docker-helloworld-1-375nb
+example-php-docker-helloworld-1-zgdvl
+example-php-docker-helloworld-1-vd3oj
+example-php-docker-helloworld-1-375nb
+example-php-docker-helloworld-1-zgdvl
+example-php-docker-helloworld-1-vd3oj
+example-php-docker-helloworld-1-375nb
+example-php-docker-helloworld-1-zgdvl
+example-php-docker-helloworld-1-vd3oj
+example-php-docker-helloworld-1-375nb
+example-php-docker-helloworld-1-zgdvl
+example-php-docker-helloworld-1-vd3oj
+example-php-docker-helloworld-1-vd3oj
+example-php-docker-helloworld-1-zgdvl
 ```
 
 ## Unterbruchsfreihes Deployment mittels Readiness Probe
@@ -144,8 +161,8 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
 ```
       containers:
         -
-          name: example-spring-boot
-          image: 'appuio/example-spring-boot@sha256:6a19d4a1d868163a402709c02af548c80635797f77f25c0c391b9ce8cf9a56cf'
+          name: example-php-docker-helloworld
+          image: 'appuio/example-php-docker-helloworld@sha256:6a19d4a1d868163a402709c02af548c80635797f77f25c0c391b9ce8cf9a56cf'
           ports:
             -
               containerPort: 8080
@@ -164,12 +181,12 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
 
 Die DeploymentConfig kann via WebConsole oder direkt über `oc` editiert werden.
 ```
-$ oc edit dc example-spring-boot
+$ oc edit dc example-php-docker-helloworld
 ```
 
 Oder im json Format editieren:
 ```
-$ oc edit dc example-spring-boot -o json
+$ oc edit dc example-php-docker-helloworld -o json
 ```
 
 ```
@@ -188,11 +205,11 @@ Verifizieren Sie während eines Deployment der Applikation, ob nun auch ein Upda
 
 Starten des Deployment:
 ```
-$ oc deploy example-spring-boot --latest
+$ oc deploy example-php-docker-helloworld --latest
 ```
 Alle zwei Sekunden ein Request:
 ```
-while true; do sleep 2; curl -s http://[route]/pod; echo ""; done
+while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
 ``` 
 
 
@@ -203,7 +220,7 @@ while true; do sleep 2; curl -s http://[route]/pod; echo ""; done
 Suchen Sie mittels `oc get pods` einen running Pod aus, den Sie *killen* können.
 Löschen Sie den Pod mit folgendem Befehl
 ``` 
-oc delete pod example-spring-boot-4-4ryze
+oc delete pod example-php-docker-helloworld-1-zgdvl
 ``` 
 
 und schauen Sie mittels
