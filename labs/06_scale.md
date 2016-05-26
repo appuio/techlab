@@ -150,7 +150,7 @@ spec --> template --> spec --> containers
           readinessProbe:
             httpGet:
               path: /health
-              port: 9000
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
             timeoutSeconds: 1
@@ -172,7 +172,7 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
           readinessProbe:
             httpGet:
               path: /health
-              port: 9000
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
             timeoutSeconds: 1
@@ -194,7 +194,7 @@ $ oc edit dc example-php-docker-helloworld -o json
 "readinessProbe": {
         "httpGet": {
                 "path": "/health",
-                "port": 9000,
+                "port": 8080,
                 "scheme": "HTTP"
         },
         "initialDelaySeconds": 15,
