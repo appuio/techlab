@@ -74,7 +74,7 @@ Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShif
 
 - [Service](https://docs.openshift.com/enterprise/3.1/architecture/core_concepts/pods_and_services.html#services)
 - [ImageStream](https://docs.openshift.com/enterprise/3.1/architecture/core_concepts/builds_and_image_streams.html#image-streams)
-- [DeploymentContig](https://docs.openshift.com/enterprise/3.1/dev_guide/deployments.html)
+- [DeploymentConfig](https://docs.openshift.com/enterprise/3.1/dev_guide/deployments.html)
 
 ### Service
 
