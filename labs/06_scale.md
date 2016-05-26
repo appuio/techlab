@@ -70,7 +70,8 @@ example-php-docker-helloworld-1-zgdvl   1/1       Running   0          1m
 
 Zum Schluss schauen wir uns den Service an. Der sollte jetzt alle drei Endpoints referenzieren:
 ```
-$ oc describe svc example-php-docker-helloName:			example-php-docker-hello
+$ oc describe svc example-php-docker-hello
+Name:			example-php-docker-hello
 Namespace:		techlab
 Labels:			app=example-php-docker-helloworld
 Selector:		app=example-php-docker-helloworld,deploymentconfig=example-php-docker-helloworld
