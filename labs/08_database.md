@@ -4,7 +4,7 @@ Die meisten Applikationen sind in irgend einer Art stateful und speichern Daten 
 
 ## Aufgabe: LAB8.1: MySQL Service anlegen
 
-Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pod alle Daten verloren gehen. In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
+Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pods alle Daten verloren gehen. In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
 
 Den MySQL Service können wir sowohl über die Web Console als auch über das CLI anlegen.
 
@@ -51,12 +51,12 @@ Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-
 
 **Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
-**Note:** Die Datasource URL (SPRING_DATASOURCE_URL) muss auf den Projektnamen Ihres Projekt angepasst werden. Siehe vorheriges Beispiel.
+**Note:** Die Datasource URL (SPRING_DATASOURCE_URL) muss auf den Projektnamen Ihres Projektes angepasst werden. Siehe vorheriges Beispiel.
 
 ```
 SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/appuio
 ```
-**Note:** mysql.[USER]-dockerimage.svc.cluster.local löst innerhalb ihres Projektes via DNS Abfrage auf die Custer IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar.
+**Note:** mysql.[USER]-dockerimage.svc.cluster.local löst innerhalb ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar.
 
 ```
  $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
@@ -93,7 +93,7 @@ SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/ap
 
 ## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
 
-Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingelogged werden:
+Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingeloggt werden:
 ```
 $ oc get pods
 NAME                           READY     STATUS             RESTARTS   AGE
