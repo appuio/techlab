@@ -43,7 +43,7 @@ Nun exponieren Sie den Service mit:
 $ oc expose service appuio-php-docker-ex
 ```
 
-## Aufgabe: LAB9.2: Webhook auf GitHub einrichtenn
+## Aufgabe: LAB9.2: Webhook auf GitHub einrichten
 
 Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert. Diese können Sie über den folgenden Befehl anzeigen:
 
