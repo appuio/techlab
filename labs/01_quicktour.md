@@ -37,7 +37,7 @@ Docker Images werden anhand von DockerFiles (textueller Beschrieb wie das Docker
 - + Install Tomcat
 - + Install App
 
-Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry versioniert abgelegt und stehen der Plattform nach dem Build dann zum Deployment zur Verfügung.
+Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry versioniert abgelegt und stehen der Plattform nach dem Build zum Deployment zur Verfügung.
 
 ### Projekte
 
