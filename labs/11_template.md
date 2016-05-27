@@ -4,15 +4,15 @@ In diesem Lab zeigen wir auf, wie Templates ganze Infrastrukturen beschreiben un
 
 ## Templates
 
-Wie Sie in den vorangegangenen Labs gesehen haben, können einfach über die Eingabe unterschiedlicher Befehle Applikationen, Datenbanken, Services und deren Konfiguration erstellt und deployed werden.
+Wie Sie in den vorangegangenen Labs gesehen haben, können einfach über die Eingabe unterschiedlicher Befehle Applikationen, Datenbanken, Services und deren Konfiguration erstellt und deployt werden.
 
-Dies ist fehleranfällig und etwas eignet sich schlecht zu automatisieren.
+Dies ist fehleranfällig und eignet sich schlecht zum Automatisieren.
 
-OpenShift bietet dafür das Konzept von Templates, in welchen man eine Liste von Resourcen beschrieben kann, die über Parameter parametrisiert werden können. Sie sind also quasi ein Rezept für eine ganze Infrastruktur (bspw. 3 ApplikationsContainer, eine Datenbank mit Persistent Storage)
+OpenShift bietet dafür das Konzept von Templates, in welchen man eine Liste von Resourcen beschreiben kann, die parametrisiert werden können. Sie sind also quasi ein Rezept für eine ganze Infrastruktur (bspw. 3 ApplikationsContainer, eine Datenbank mit Persistent Storage)
 
 **Note:** der Clusteradmin kann globale Templates erstellen, welche allen Usern zur Verfügung stehen.
 
-Alle vorhandenen Template anzeigen
+Alle vorhandenen Templates anzeigen
 ```
 $ oc get template -n openshift
 ```
@@ -61,7 +61,7 @@ $ oc new-app example-spring-boot -pMYSQL_DATASOURCE=jdbc:mysql://mysql.[project]
 
 ```
 
-OpenShift startet danach automatisch einen Build und deployed die Container danach wie im Template spezifiziert.
+OpenShift startet danach automatisch einen Build und deployt die Container danach wie im Template spezifiziert.
 
 **Tipp:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
 
