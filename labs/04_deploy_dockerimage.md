@@ -25,7 +25,7 @@ $ oc get project
 ```
 um alle Projekte anzuzeigen, auf die Sie berechtigt sind.
 
-Sobald das neue Projekt erstellt wurde, wird OpenShift mit dem folgenden Befehl das Docker Image deployen:
+Sobald das neue Projekt erstellt wurde, können wir in OpenShift mit dem folgenden Befehl das Docker Image deployen:
 
 ```
 $ oc new-app appuio/example-spring-boot
@@ -218,7 +218,7 @@ In der [DeploymentConfig](https://docs.openshift.com/enterprise/3.1/dev_guide/de
   - Welches Image soll deployed werden?
   - Environment Configuration für die Pods
   - ImagePullPolicy
-- Replicas, Anzahl der Pods, die deployed werden sollen
+- Replicas, Anzahl der Pods, die deployt werden sollen
 
 
 Mit dem folgenden Befehl können zusätzliche Informationen zur DeploymentConfig ausgelesen werden:
@@ -226,7 +226,7 @@ Mit dem folgenden Befehl können zusätzliche Informationen zur DeploymentConfig
 $ oc get deploymentConfig example-spring-boot -o json
 ```
 
-Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Applikation deployed werden soll, definiert man mit dem ReplicationController, wie die Applikation während der Laufzeit aussehen soll (bspw. dass immer 3 Replicas laufen sollen).
+Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Applikation deployt werden soll, definiert man mit dem ReplicationController, wie die Applikation während der Laufzeit aussehen soll (bspw. dass immer 3 Replicas laufen sollen).
 
 **Tipp:** für jeden Resource Type gibt es auch eine Kurzform. So können Sie bspw. `oc get deploymentconfig` auch einfach als `oc get dc` schreiben.
 

@@ -1,6 +1,6 @@
 # Lab 1: Quicktour durch OpenShift V3
 
-In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren zeigen wir auf, wie man sich in der Web Console einlogged und stellen die einzelnen Bereiche kurz vor.
+In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren zeigen wir auf, wie man sich in der Web Console einloggt und stellen die einzelnen Bereiche kurz vor.
 
 Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden: 
 
@@ -9,11 +9,11 @@ Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziell
 
 ## Grundkonzepte
 
-OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployed und betrieben werden kann. OpenShift V3 kann als Platform as a Service (PaaS) oder als Container Runtime Environment bezeichnet werden.
+OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift V3 kann als Platform as a Service (PaaS) oder als Container Runtime Environment bezeichnet werden.
 
 ### Docker
 
-[Docker](https://www.docker.com/) ist die offene Plattform für Entwickler und Sysadmins und ihre Applikationen. Wählen Sie das für Ihre Technologie passende Basis-Docker-Image aus, OpenShift baut für Sie nach jedem Build automatisch einen aktualisierten Docker-Container und deployt ihn auf Wunsch auch gleich.
+[Docker](https://www.docker.com/) ist die offene Plattform für Entwickler und Sysadmins und ihre Applikationen. Wählen Sie das für Ihre Technologie passende Basis-Docker-Images aus, OpenShift baut für Sie nach jedem Build automatisch einen aktualisierten Docker-Container und deployt ihn auf Wunsch auch gleich.
 
 ### Kubernetes 
 
@@ -25,7 +25,7 @@ Container orchestrieren und managen mit [Kubernetes](http://kubernetes.io/) von 
 
 ### Container und Docker Images
 
-Die Basis Elemente von OpenShift Applikationen sind Docker Container. Mit Docker Container können Prozesse auf einem Linuxsystem so isoliert werden, dass sie nur mit den definierten Ressourcen interagieren können. So können viele unterschiedliche Container auf dem gleichen System laufen, ohne dass sie einander "sehen" (Files, Prozesse, Netzwerk). Typischerweise beinhaltet ein Container einen einzelnen Service (Webserver, Datenbank, Mailservice, Cache). Innerhalb eines Docker Containers können beliebige Prozesse ausgeführt werden.
+Die Basiselemente von OpenShift Applikationen sind Docker Container. Mit Docker Container können Prozesse auf einem Linuxsystem so isoliert werden, dass sie nur mit den definierten Ressourcen interagieren können. So können viele unterschiedliche Container auf dem gleichen System laufen, ohne dass sie einander "sehen" (Files, Prozesse, Netzwerk). Typischerweise beinhaltet ein Container einen einzelnen Service (Webserver, Datenbank, Mailservice, Cache). Innerhalb eines Docker Containers können beliebige Prozesse ausgeführt werden.
 
 Docker Container basieren auf Docker Images. Ein Docker Image ist eine binary Datei, die alle nötigen Komponenten beinhaltet, damit ein einzelner Container ausgeführt werden kann.
 
@@ -37,7 +37,7 @@ Docker Images werden anhand von DockerFiles (textueller Beschrieb wie das Docker
 - + Install Tomcat
 - + Install App
 
-Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry versioniert abgelegt und stehen der Plattform nach dem Build dann zum Deployment zur Verfügung.
+Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry versioniert abgelegt und stehen der Plattform nach dem Build zum Deployment zur Verfügung.
 
 ### Projekte
 
@@ -57,17 +57,17 @@ Ein Pod ist innerhalb eines OpenShift Projektes über den entsprechenden Service
 
 ### Services
 
-Ein Service repräsentiert einen internen Loadbalancer auf die dahinterliegenden Pods (Replicas vom gleichen Typ). Der Service dient als Proxy zu den Pods und leitet Anfragen an die entsprechenden Pods weiter. So können Pods willkürlich einem Service hinzugefügt und entfernt werden, während der Service verfügbar bleibt.
+Ein Service repräsentiert einen internen Loadbalancer auf die dahinterliegenden Pods (Replicas vom gleichen Typ). Der Service dient als Proxy zu den Pods und leitet Anfragen an diese weiter. So können Pods willkürlich einem Service hinzugefügt und entfernt werden, während der Service verfügbar bleibt.
 
-Einem Service ist innerhalb eines Projektes einer IP und einen Port zugewiesen und verteilt Requests entsprechend auf die Pod Replicas.
+Einem Service ist innerhalb eines Projektes eine IP und ein Port zugewiesen und verteilt Requests entsprechend auf die Pod Replicas.
 
 ### Routen
 
-Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von OpenShift für externe Clients erreicht werden kann. 
+Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von OpenShift von externen Clients erreicht werden kann. 
 
 Diese Routen werden im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname-Mapping die Requests an den entsprechenden Service weiterzuleiten.
 
-Sind mehr als ein Pod für einen Service deployed, verteilt der Routing Layer die Requests auf die deployten Pods
+Sind mehr als ein Pod für einen Service deployt, verteilt der Routing Layer die Requests auf die deployten Pods
 
 Aktuell werden folgende Protokolle unterstützt:
 

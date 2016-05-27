@@ -19,7 +19,7 @@ Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstell
 ```
 $ oc volume dc/mysql --add --name=mysql-data --type pvc --claim-name=mysqlpvc --claim-size=256Mi --overwrite
 ```
-**Note:** Durch die veränderte Deployment Config deployed OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
+**Note:** Durch die veränderte Deployment Config deployt OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
 
 Mit dem Befehl `oc get persistentvolumeclaim`, oder etwas einfacher `oc get pvc`, können wir uns nun den im Projekt frisch erstellten PersistentVolumeClaim anzeigen lassen:
 ```

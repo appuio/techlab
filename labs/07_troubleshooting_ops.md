@@ -35,7 +35,7 @@ drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 
 ## Aufgabe: LAB7.2
 
-Einzelne Befehle innerhalb des Container können über `oc exec` ausgeführt werden:
+Einzelne Befehle innerhalb des Containers können über `oc exec` ausgeführt werden:
 
 ```
 $ oc exec [POD] env
@@ -63,7 +63,7 @@ $ oc logs [POD]
 ```
 Der Parameter `-f` bewirkt analoges Verhalten wie `tail -f`
 
-Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholten Restarten nicht erfolgreich gestartet werden konnte. Die Logfiles können auch wenn der Pod nicht läuft mit dem folgenden Befehl angezeigt werden.
+Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholtem Restarten nicht erfolgreich gestartet werden konnte. Die Logfiles können auch wenn der Pod nicht läuft mit dem folgenden Befehl angezeigt werden.
 
  ```
 $ oc logs -p [POD]
@@ -87,13 +87,13 @@ $ oc new-app https://github.com/appuio/ose3-java-logging
 $ oc expose svc ose3-java-logging
 ```
 
-Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeintrage zu generieren und anschliessen in der Webconsole unter Browse > Pods das neu erstellte Pod und anschliessen das Log Tab auswählen. Hier ist nun direkt der Standardoutput eines Pods der Applikation sichtbar.
+Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeinträge zu generieren und anschliessend in der Webconsole unter Browse > Pods das neu erstellte Pod und anschliessend das Log Tab auswählen. Hier ist nun direkt der Standardoutput eines Pods der Applikation sichtbar.
 
-Über den "View Archive" Knopf kann direkt zu den Aggregierten Logs der Applikation im EFK Stack gewechselt werden. Hier sind nun die Logs aller Pods der ausgewählten Applikation zeitlich sortiert, und sofern im JSON format, nach den einzelnen Feldern geparsed zu sehen:
+Über den "View Archive" Knopf kann direkt zu den aggregierten Logs der Applikation im EFK Stack gewechselt werden. Hier sind nun die Logs aller Pods der ausgewählten Applikation zeitlich sortiert, und sofern im JSON format, nach den einzelnen Feldern geparsed zu sehen:
 
 ![Kibana Screenshot](/images/lab_7_kibana1.png)
 
-Alle von der Applikation geloggten Felder sind jetzt noch mit einer Warnunganzeige versehen, da sie noch nicht indiziert sind und somit nicht danach gefiltert, sortiert, etc. werden kann. Um dies zu beheben muss unter Settings > .all auf den reload Button ![Kibana Reload Button](/images/lab_7_kibana2.png) gedrückt werden. Danach kann z.B. durch drücken auf ein Feld eines Logeintrages nach allen Einträgen mit dem selben Wert gesucht werden.
+Alle von der Applikation geloggten Felder sind jetzt noch mit einer Warnanzeige versehen, da sie noch nicht indiziert sind und somit nicht danach gefiltert, sortiert, etc. werden kann. Um dies zu beheben muss unter Settings > .all auf den reload Button ![Kibana Reload Button](/images/lab_7_kibana2.png) gedrückt werden. Danach kann z.B. durch Drücken auf ein Feld eines Logeintrages nach allen Einträgen mit dem selben Wert gesucht werden.
 
 Die Strukturierung der Log4j 2 JSON Ausgabe ist derzeit für die von der Applikation beigesteuerten Felder nicht ideal:
 

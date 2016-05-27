@@ -43,7 +43,7 @@ Nun exponieren Sie den Service mit:
 $ oc expose service appuio-php-docker-ex
 ```
 
-## Aufgabe: LAB9.2: Webhook auf GitHub einrichtenn
+## Aufgabe: LAB9.2: Webhook auf GitHub einrichten
 
 Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert. Diese können Sie über den folgenden Befehl anzeigen:
 
@@ -134,7 +134,7 @@ und deployed anschliessend die Änderung.
 
 ## Aufgabe: LAB9.4: Rollback
 
-Mit OpenShift lassen sich unterschiedliche Software-Stände aktivieren und deaktivieren, indem einfach eine andere Version des Image gestartet wird.
+Mit OpenShift lassen sich unterschiedliche Software-Stände aktivieren und deaktivieren, indem einfach eine andere Version des Images gestartet wird.
 
 Dafür werden die Befehle `oc rollback` und `oc deploy` verwendet.
  
@@ -159,7 +159,7 @@ Warning: the following images triggers were disabled: appuio-php-docker-ex
 
 Sobald das Deployment der alten Version erfolgt ist, können Sie über ihren Browser überprüfen, ob wieder die ursprüngliche Überschrift **Hello APPUiO** angezeigt wird.
 
-**Tipp:** Die automatischen Deployments neuer Versionen ist nun für diese Applikation augeschaltet um ungewollte Änderungen nach dem Rollback zu verhindern. Um das automatische Deployment wieder einzuschalten führen Sie den folgenden Befehl aus:
+**Tipp:** Die automatischen Deployments neuer Versionen ist nun für diese Applikation ausgeschaltet um ungewollte Änderungen nach dem Rollback zu verhindern. Um das automatische Deployment wieder einzuschalten führen Sie den folgenden Befehl aus:
  
 
 ```

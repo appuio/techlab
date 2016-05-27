@@ -4,13 +4,13 @@ In diesem Lab zeigen wir auf, wie man Applikationen in OpenShift skaliert. Des W
 
 ## Example Applikation hochskalieren
 
-Dafür erstellen wir ein neues Projekt:
+Dafür erstellen wir ein neues Projekt
 
 ```
 $ oc new-project [USER]-scale
 ```
 
-Und fügen dem Projekt eine Applikation hinzu
+und fügen dem Projekt eine Applikation hinzu
 
 ```
 $ oc new-app appuio/example-php-docker-helloworld
@@ -22,7 +22,7 @@ und exposen den Service
 $ oc expose service example-php-docker-hello
 ```
 
-Wenn wir unsere Example Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Imagea am Laufen haben wollen.
+Wenn wir unsere Example Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Images am Laufen haben wollen.
 
 Schauen wir uns mal den ReplicationController (rc) etwas genauer an:
 
@@ -39,7 +39,7 @@ Für mehr Details:
 $ oc get rc example-php-docker-helloworld-1 -o json
 ```
 
-Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployed sind (status).
+Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt sind (status).
 
 ## Aufgabe: LAB6.1 skalieren unserer Beispiel Applikation
 Nun skalieren wir unsere Example Applikation auf 3 Replicas:
@@ -95,7 +95,7 @@ Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 ## Unterbruchsfreies Skalieren überprüfen
 
 Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, währenddem Sie hoch und runter skalieren.
-Ersetzen Sie dafür `[route]` mit ihrer definierten Route:
+Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
 
 **Tipp:** oc get route
 
