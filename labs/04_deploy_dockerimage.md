@@ -25,7 +25,7 @@ $ oc get project
 ```
 um alle Projekte anzuzeigen, auf die Sie berechtigt sind.
 
-Sobald das neue Projekt erstellt wurde, wird OpenShift mit dem folgenden Befehl das Docker Image deployen:
+Sobald das neue Projekt erstellt wurde, können wir in OpenShift mit dem folgenden Befehl das Docker Image deployen:
 
 ```
 $ oc new-app appuio/example-spring-boot
