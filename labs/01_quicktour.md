@@ -9,7 +9,7 @@ Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziell
 
 ## Grundkonzepte
 
-OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployed und betrieben werden kann. OpenShift V3 kann als Platform as a Service (PaaS) oder als Container Runtime Environment bezeichnet werden.
+OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift V3 kann als Platform as a Service (PaaS) oder als Container Runtime Environment bezeichnet werden.
 
 ### Docker
 
