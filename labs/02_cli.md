@@ -43,7 +43,7 @@ C:\OpenShift\
  
 ## Korrekte Berechtigung auf Linux und Mac OS X erteilen
 
-Der oc client muss ausgeführt werden können. 
+Der oc Client muss ausgeführt werden können. 
 
 ```
 cd ~/bin
@@ -67,18 +67,18 @@ Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert 
 - [Windows 8](http://www.itechtics.com/customize-windows-environment-variables/)
 - [Windows 10](http://techmixx.de/windows-10-umgebungsvariablen-bearbeiten/)
 
-**Windwos Quick Hack**
+**Windows Quick Hack**
 
-Legen sie den oc client direkt im Verzeichnis *C:\Windows* ab
+Legen sie den oc Client direkt im Verzeichnis *C:\Windows* ab.
 
 
 ## Installation verifizieren
 
-Der oc client sollte jetzt korrekt installiert sein. Am besten überprüfen wir das, indem wir den folgenden Command ausführen:
+Der oc Client sollte jetzt korrekt installiert sein. Am besten überprüfen wir das, indem wir den folgenden Command ausführen:
 ```
 $ oc version
 ```
-Der folgende Output sollte angezeigt werden
+Der folgende Output sollte angezeigt werden:
 ```
 oc v3.1.1.6-33-g81eabcc
 kubernetes v1.1.0-origin-1107-g4c8e6f4
