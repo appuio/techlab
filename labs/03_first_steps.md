@@ -21,7 +21,7 @@ You can bypass the certificate check, but any data you send to the server could 
 Use insecure connections? (y/n): 
 ```
 
-Als Alternative können Sie dies dem oc command beim Aufruf mitgeben:
+Als Alternative können Sie dies dem oc Command beim Aufruf mitgeben:
 ```
 $ oc login [URL] --insecure-skip-tls-verify=true
 ```
