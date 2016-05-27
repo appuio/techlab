@@ -75,7 +75,7 @@ Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via B
 
 1. Die Applikation wurde erstellt. Über den Link **Continue to overview** kommt man zur Übersicht.
 
-1. Der Build Ihrer Applikation wird gestartet. Verfolgen Sie den Build und schauen Sie sich nach dem Deployment die Beispiel APP an.
+1. Der Build Ihrer Applikation wird gestartet. Verfolgen Sie den Build und schauen Sie sich nach dem Deployment die Beispiel App an.
 
 ![php5.6](../images/lab_3_example1-deployed.png)
 
