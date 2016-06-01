@@ -138,7 +138,7 @@ Diese beiden Checks können als HTTP Check, Container Execution Check (Shell Scr
 
 In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt auf der folgenden URL auf Port 9000 (management Port der Spring Applikation) ein Status Code 200 zurück, sobald die Applikation bereit ist.
 ```
-http://[route]/health
+http://[route]/health/
 ```
 
 ## Aufgabe: LAB6.3
@@ -195,10 +195,10 @@ spec --> template --> spec --> containers
 ...
           readinessProbe:
             httpGet:
-              path: /health
+              path: /health/
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 15
+            initialDelaySeconds: 10
             timeoutSeconds: 1
 ...
 ```
@@ -218,10 +218,10 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
           resources: {  }
           readinessProbe:
             httpGet:
-              path: /health
+              path: /health/
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 15
+            initialDelaySeconds: 10
             timeoutSeconds: 1
           terminationMessagePath: /dev/termination-log
           imagePullPolicy: IfNotPresent
