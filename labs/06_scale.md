@@ -125,7 +125,7 @@ example-php-docker-helloworld-1-zgdvl
 
 ## Unterbruchsfreies Deployment mittels Readiness Probe und Rolling Update
 
-Die Update Strategie (Rolling)[https://docs.openshift.com/enterprise/3.1/dev_guide/deployments.html#strategies] ermöglicht unterbruchsfreie Deployemnts. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
+Die Update Strategie [Rolling)](https://docs.openshift.com/enterprise/3.1/dev_guide/deployments.html#strategies) ermöglicht unterbruchsfreie Deployemnts. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
 
 Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/enterprise/3.1/dev_guide/application_health.html) die deployete Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden geben.
 
@@ -143,6 +143,50 @@ http://[route]/health
 
 ## Aufgabe: LAB6.3
 
+In der Deployment Config (dc) definieren im Abschnitt der Rolling Update Strategie, dass bei einem Update die App immer verfügbar sein soll: `maxUnavailable: 0%`
+
+Dies kann in der Deployment Config (dc) konfiguriert werden:
+
+```
+...
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 2
+      intervalSeconds: 2
+      timeoutSeconds: 30
+      maxUnavailable: 0%
+      maxSurge: 25%
+    resources: {  }
+...
+```
+
+Die Deployment Config kann via WebConsole (Browse --> Deployments --> example-php-docker-helloworld, edit) oder direkt über `oc` editiert werden.
+```
+$ oc edit dc example-php-docker-helloworld
+```
+
+Oder im json Format editieren:
+```
+$ oc edit dc example-php-docker-helloworld -o json
+```
+
+```
+"strategy": {
+    "type": "Rolling",
+    "rollingParams": {
+          "updatePeriodSeconds": 1,
+          "intervalSeconds": 1,
+          "timeoutSeconds": 600,
+          "maxUnavailable": "0%",
+          "maxSurge": "25%"
+    },
+    "resources": {}
+}
+
+```
+
 Die Readiness Probe muss in der Deployment Config (dc) hinzugefügt werden, und zwar unter:
 
 spec --> template --> spec --> containers
@@ -158,6 +202,7 @@ spec --> template --> spec --> containers
             timeoutSeconds: 1
 ...
 ```
+Passen Sie das entsprechend analog oben an.
 
 Die Konfiguration unter Container muss dann wie folgt aussehen:
 
@@ -182,27 +227,6 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
           imagePullPolicy: IfNotPresent
 ```
 
-Die DeploymentConfig kann via WebConsole oder direkt über `oc` editiert werden.
-```
-$ oc edit dc example-php-docker-helloworld
-```
-
-Oder im json Format editieren:
-```
-$ oc edit dc example-php-docker-helloworld -o json
-```
-
-```
-"readinessProbe": {
-        "httpGet": {
-                "path": "/health",
-                "port": 8080,
-                "scheme": "HTTP"
-        },
-        "initialDelaySeconds": 15,
-        "timeoutSeconds": 1
-},
-```
 
 Verifizieren Sie während eines Deployment der Applikation, ob nun auch ein Update der Applikation unterbruchsfrei verläuft:
 
