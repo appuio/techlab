@@ -87,6 +87,12 @@ Sie haben nun ihre erste Applikation mittels sogenanntem **[Source to Image](htt
 $ oc project [projectname]
 ```
 
+**Tipp:** Mit den folgenden Befehlen kann das obere Beispiel aus der Kommandozeile erstellt werden:
+```
+$ oc new-app https://github.com/appuio/example-php-sti-helloworld.git
+$ oc expose svc example-php-sti-hellowor
+```
+
 ---
 
 ## Lösung: LAB3.1
