@@ -123,9 +123,11 @@ example-php-docker-helloworld-1-vd3oj
 example-php-docker-helloworld-1-zgdvl
 ```
 
-## Unterbruchsfreihes Deployment mittels Readiness Probe
+## Unterbruchsfreies Deployment mittels Readiness Probe und Rolling Update
 
-Mittels [Container Health Checks](https://docs.openshift.com/enterprise/3.1/dev_guide/application_health.html) kann die Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden geben.
+Die Update Strategie (Rolling)[https://docs.openshift.com/enterprise/3.1/dev_guide/deployments.html#strategies] ermöglicht unterbruchsfreie Deployemnts. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
+
+Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/enterprise/3.1/dev_guide/application_health.html) die deployete Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden geben.
 
 Grundsätzlich gibt es zwei Checks, die implementiert werden können:
 
