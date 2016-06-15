@@ -16,7 +16,7 @@ und fügen dem Projekt eine Applikation hinzu
 $ oc new-app appuio/example-php-docker-helloworld
 ```
 
-und exposen den Service
+und stellen den Service zur Verfügung (expose) 
 
 ```
 $ oc expose service example-php-docker-hello
@@ -94,7 +94,7 @@ Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 
 ## Unterbruchsfreies Skalieren überprüfen
 
-Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, währenddem Sie hoch und runter skalieren.
+Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, während Sie hoch und runter skalieren.
 Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
 
 **Tipp:** oc get route
@@ -125,18 +125,18 @@ example-php-docker-helloworld-1-zgdvl
 
 ## Unterbruchsfreies Deployment mittels Readiness Probe und Rolling Update
 
-Die Update Strategie [Rolling)](https://docs.openshift.com/enterprise/3.1/dev_guide/deployments.html#strategies) ermöglicht unterbruchsfreie Deployemnts. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
+Die Update Strategie [Rolling](https://docs.openshift.com/enterprise/3.1/dev_guide/deployments.html#strategies) ermöglicht unterbruchsfreie Deployments. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
 
-Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/enterprise/3.1/dev_guide/application_health.html) die deployete Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden geben.
+Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/enterprise/3.1/dev_guide/application_health.html) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden geben.
 
 Grundsätzlich gibt es zwei Checks, die implementiert werden können:
 
-- Liveness Probe, sagt aus, ob ein laufender Container immer noch sauber läuft
+- Liveness Probe, sagt aus, ob ein laufender Container immer noch sauber läuft.
 - Readiness Probe, gibt Feedback darüber, ob eine Applikation bereit ist, um Requests zu empfangen. Ist v.a. im Rolling Update relevant.
 
 Diese beiden Checks können als HTTP Check, Container Execution Check (Shell Script im Container) oder als TCP Socket Check implementiert werden.
 
-In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt auf der folgenden URL auf Port 9000 (management Port der Spring Applikation) ein Status Code 200 zurück, sobald die Applikation bereit ist.
+In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt auf der folgenden URL auf Port 9000 (Management-Port der Spring Applikation) ein Status Code 200 zurück, sobald die Applikation bereit ist.
 ```
 http://[route]/health/
 ```
@@ -244,7 +244,7 @@ while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
 
 Über den Replication Controller haben wir nun der Plattform mitgeteilt, dass jeweils **n** Replicas laufen sollen. Was passiert nun, wenn wir einen Pod löschen?
 
-Suchen Sie mittels `oc get pods` einen running Pod aus, den Sie *killen* können.
+Suchen Sie mittels `oc get pods` einen Pod im Status "running" aus, den Sie *killen* können.
 Löschen Sie den Pod mit folgendem Befehl
 ``` 
 oc delete pod example-php-docker-helloworld-1-zgdvl
