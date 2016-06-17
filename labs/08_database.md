@@ -42,6 +42,7 @@ Für die Adresse des MySQL Service können wir entweder dessen Cluster IP (`oc g
 
 So lautet der Wert für die Variable SPRING_DATASOURCE_URL bspw.:
 ```
+Name des Services: mysql
 
 jdbc:mysql://mysql/appuio
 ```
@@ -54,7 +55,13 @@ Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-
 ```
 SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio
 ```
-**Note:** mysql löst innerhalb ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. der ganze name lautet: .svc.cluster.local
+**Note:** mysql löst innerhalb ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. Der Service ist ebenfalls über den folgenden Namen erreichbar:
+
+```
+Projektname = techlab-dockerimage
+
+mysql.techlab-dockerimage.svc.cluster.local
+```
 
 ```
  $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
@@ -83,7 +90,7 @@ SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio
 	        },
 	        {
 	            "name": "SPRING_DATASOURCE_URL",
-	            "value": "jdbc:mysql://mysql.techlab.svc.cluster.local/appuio"
+	            "value": "jdbc:mysql://mysql/appuio"
 	        }
 	    ],
 ...

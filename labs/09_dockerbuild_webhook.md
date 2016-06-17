@@ -50,22 +50,23 @@ Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert.
 ```
 $ oc describe bc appuio-php-docker-ex
 
-Name:			appuio-php-docker-ex
-Created:		About a minute ago
-Labels:			app=appuio-php-docker-ex
-Annotations:		openshift.io/generated-by=OpenShiftNewApp
-Latest Version:		1
+Name:		appuio-php-docker-ex
+Created:	57 seconds ago
+Labels:		app=appuio-php-docker-ex
+Annotations:	openshift.io/generated-by=OpenShiftNewApp
+Latest Version:	1
+
 Strategy:		Docker
-Source Type:		Git
 URL:			https://github.com/appuio/example-php-docker-helloworld.git
-From Image:		ImageStreamTag openshift/php:5.6
+From Image:		ImageStreamTag php-56-centos7:latest
 Output to:		ImageStreamTag appuio-php-docker-ex:latest
 Triggered by:		Config, ImageChange
-Webhook GitHub:		https://example.com:8443/oapi/v1/namespaces/example3/buildconfigs/appuio-php-docker-ex/webhooks/_Nxh9v9jE8u6wEXfloBr/github
-Webhook Generic:	https://example.com:8443/oapi/v1/namespaces/example3/buildconfigs/appuio-php-docker-ex/webhooks/fAyPWZ5vqlXQYu4HVfRB/generic
+Webhook Generic:	https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example3/buildconfigs/appuio-php-docker-ex/webhooks/EqEq18JtxaY3vG2zvPSU/generic
+Webhook GitHub:		https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example3/buildconfigs/appuio-php-docker-ex/webhooks/hqQ3h1CzUGIXvWqjiV-G/github
 
 Build			Status		Duration		Creation Time
-appuio-php-docker-ex-1 	running 	running for 59s 	2016-05-17 18:04:39 +0200 CEST
+appuio-php-docker-ex-1 	running 	running for 56s 	2016-06-17 16:56:34 +0200 CEST
+
 
 ```
 

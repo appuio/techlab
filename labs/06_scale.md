@@ -101,30 +101,83 @@ Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
 **Tipp:** oc get route
 
 ```
-while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
+while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"; done
 ```
 
 und skalieren Sie von **3** Replicas auf **1**.
 Der Output zeigt jeweils den Pod an, der den Request verarbeitete:
 
 ```
-POD: appuio-php-docker-1-tolpx
-POD: appuio-php-docker-1-453rs
-POD: appuio-php-docker-1-453rs
-POD: appuio-php-docker-1-3kcnf
-POD: appuio-php-docker-1-3kcnf
-POD: appuio-php-docker-1-tolpx
-POD: appuio-php-docker-1-tolpx
-POD: appuio-php-docker-1-453rs
-POD: appuio-php-docker-1-453rs
-POD: appuio-php-docker-1-3kcnf
-POD: appuio-php-docker-1-3kcnf
-POD: appuio-php-docker-1-tolpx
-POD: appuio-php-docker-1-tolpx
-POD: appuio-php-docker-1-tolpx
-POD: appuio-php-docker-1-tolpx
-POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-6-9w9t4 TIME: 16:40:04,991
+POD: appuio-php-docker-6-9w9t4 TIME: 16:40:06,053
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:07,091
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:08,128
+POD: appuio-php-docker-6-ctbrs TIME: 16:40:09,175
+POD: appuio-php-docker-6-ctbrs TIME: 16:40:10,212
+POD: appuio-php-docker-6-9w9t4 TIME: 16:40:11,279
+POD: appuio-php-docker-6-9w9t4 TIME: 16:40:12,332
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:13,369
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:14,407
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:15,441
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:16,493
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:17,543
+POD: appuio-php-docker-6-6xg2b TIME: 16:40:18,591
 ```
+Die Requests werden an die unterschiedlichen Pods geleitet, sobald man runterskaliert auf einen Pod, gibt dann nur noch einer Antwort
+
+Was passiert nun, wenn wir nun während dem der While Befehl oben läuft, ein neues Deployment starten:
+
+```
+$ oc deploy appuio-php-docker --latest
+```
+Währen einer kurzen Zeit gibt die öffentliche Route keine Antwort
+```
+POD: appuio-php-docker-6-6xg2b TIME: 16:42:17,743
+POD: appuio-php-docker-6-6xg2b TIME: 16:42:18,776
+POD: appuio-php-docker-6-6xg2b TIME: 16:42:19,813
+POD: appuio-php-docker-6-6xg2b TIME: 16:42:20,853
+POD: appuio-php-docker-6-6xg2b TIME: 16:42:21,891
+POD: appuio-php-docker-6-6xg2b TIME: 16:42:22,943
+POD: appuio-php-docker-6-6xg2b TIME: 16:42:23,980
+# keine Antwort
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:42,134
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:43,181
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:44,226
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:45,259
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:46,297
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:47,571
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:48,606
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:49,645
+POD: appuio-php-docker-7-pxnr3 TIME: 16:42:50,684
+```
+
+In unserem Beispiel verwenden wir einen sehr leichtgewichtigen Pod. Das Verhalten ist ausgeprägter, wenn der Container länger braucht bis er Requests abarbeiten kann. Bspw. Java Applikation von LAB 4: **Startup: 30 Sekunden**
+
+```
+Pod: example-spring-boot-2-73aln TIME: 16:48:25,251
+Pod: example-spring-boot-2-73aln TIME: 16:48:26,305
+Pod: example-spring-boot-2-73aln TIME: 16:48:27,400
+Pod: example-spring-boot-2-73aln TIME: 16:48:28,463
+Pod: example-spring-boot-2-73aln TIME: 16:48:29,507
+<html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+ TIME: 16:48:33,562
+<html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+ TIME: 16:48:34,601
+ ...
+Pod: example-spring-boot-3-tjdkj TIME: 16:49:20,114
+Pod: example-spring-boot-3-tjdkj TIME: 16:49:21,181
+Pod: example-spring-boot-3-tjdkj TIME: 16:49:22,231
+ 
+```
+
+Es kann dann sogar sein, dass der Service gar nicht mehr online ist und der Routing Layer ein **503 Error** zurück gibt.
+
+Im Folgenden Kapitel wird beschrieben, wie Sie ihre Services konfigurieren können, dass unterbruchsfreie Deployments möglich werden.
+
 
 ## Unterbruchsfreies Deployment mittels Readiness Probe und Rolling Update
 
@@ -282,16 +335,15 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
 
 Verifizieren Sie während eines Deployment der Applikation, ob nun auch ein Update der Applikation unterbruchsfrei verläuft:
 
-Alle zwei Sekunden ein Request:
+Einmal pro Sekunde ein Request:
 ```
-while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
+while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"; done
 ``` 
 
 Starten des Deployment:
 ```
 $ oc deploy appuio-php-docker --latest
 ```
-
 
 
 ## Self Healing
