@@ -45,7 +45,7 @@ Mittels `oc get routes` können wir überprüfen, ob die Route angelegt wurde.
 
 ```
 $ oc get routes
-NAME                  HOST/PORT                                        PATH      SERVICE                        TERMINATION   LABELS
+NAME                  HOST/PORT                                   PATH      SERVICE                        TERMINATION   LABELS
 example-spring-boot   example-spring-boot-techlab.app.appuio.ch             example-spring-boot:8080-tcp                 app=example-spring-boot
 ```
 

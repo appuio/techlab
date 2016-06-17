@@ -13,13 +13,13 @@ $ oc new-project [USER]-scale
 und fügen dem Projekt eine Applikation hinzu
 
 ```
-$ oc new-app appuio/example-php-docker-helloworld
+$ oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker
 ```
 
 und stellen den Service zur Verfügung (expose) 
 
 ```
-$ oc expose service example-php-docker-hello
+$ oc expose service appuio-php-docker
 ```
 
 Wenn wir unsere Example Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Images am Laufen haben wollen.
@@ -29,14 +29,14 @@ Schauen wir uns mal den ReplicationController (rc) etwas genauer an:
 ```
 $ oc get rc
 
-CONTROLLER                        CONTAINER(S)                    IMAGE(S)                                                                                                       SELECTOR                                                                                                                      REPLICAS   AGE
-example-php-docker-helloworld-1   example-php-docker-helloworld   appuio/example-php-docker-helloworld@sha256:40bdf6a3aef52d7afa1716fb83457e0fa9fbf14a6f223eb219504b632d7661c9   app=example-php-docker-helloworld,deployment=example-php-docker-helloworld-1,deploymentconfig=example-php-docker-helloworld   1          5s
+NAME                  DESIRED   CURRENT   AGE
+appuio-php-docker-1   1         1         33s
 ```
 
 Für mehr Details:
 
 ```
-$ oc get rc example-php-docker-helloworld-1 -o json
+$ oc get rc appuio-php-docker-1 -o json
 ```
 
 Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt sind (status).
@@ -45,7 +45,7 @@ Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt 
 Nun skalieren wir unsere Example Applikation auf 3 Replicas:
 
 ```
-$ oc scale --replicas=3 rc example-php-docker-helloworld-1
+$ oc scale --replicas=3 rc appuio-php-docker-1
 ```
 
 Überprüfen wir die Anzahl Replicas auf dem ReplicationController:
@@ -53,32 +53,33 @@ $ oc scale --replicas=3 rc example-php-docker-helloworld-1
 ```
 $ oc get rc
 
-CONTROLLER                        CONTAINER(S)                    IMAGE(S)                                                                                                       SELECTOR                                                                                                                      REPLICAS   AGE
-example-php-docker-helloworld-1   example-php-docker-helloworld   appuio/example-php-docker-helloworld@sha256:40bdf6a3aef52d7afa1716fb83457e0fa9fbf14a6f223eb219504b632d7661c9   app=example-php-docker-helloworld,deployment=example-php-docker-helloworld-1,deploymentconfig=example-php-docker-helloworld   3          3m
+NAME                  DESIRED   CURRENT   AGE
+appuio-php-docker-1   3         3         1m
+
 ```
 
 und zeigen entsprechend die Pods an:
 
 ```
 $ oc get pods
-NAME                                    READY     STATUS    RESTARTS   AGE
-example-php-docker-helloworld-1-375nb   1/1       Running   0          1m
-example-php-docker-helloworld-1-vd3oj   1/1       Running   0          3m
-example-php-docker-helloworld-1-zgdvl   1/1       Running   0          1m
+NAME                        READY     STATUS    RESTARTS   AGE
+appuio-php-docker-1-2uc89   1/1       Running   0          21s
+appuio-php-docker-1-evcre   1/1       Running   0          21s
+appuio-php-docker-1-tolpx   1/1       Running   0          2m
 
 ```
 
 Zum Schluss schauen wir uns den Service an. Der sollte jetzt alle drei Endpoints referenzieren:
 ```
-$ oc describe svc example-php-docker-hello
-Name:			example-php-docker-hello
-Namespace:		techlab
-Labels:			app=example-php-docker-helloworld
-Selector:		app=example-php-docker-helloworld,deploymentconfig=example-php-docker-helloworld
+$ oc describe svc appuio-php-docker
+Name:			appuio-php-docker
+Namespace:		techlab-scale
+Labels:			app=appuio-php-docker
+Selector:		app=appuio-php-docker,deploymentconfig=appuio-php-docker
 Type:			ClusterIP
-IP:			172.30.82.43
+IP:				172.30.166.88
 Port:			8080-tcp	8080/TCP
-Endpoints:		10.255.0.41:8080,10.255.1.28:8080,10.255.1.29:8080
+Endpoints:		10.1.3.23:8080,10.1.4.13:8080,10.1.5.15:8080
 Session Affinity:	None
 No events.
 
@@ -103,24 +104,26 @@ Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
 while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
 ```
 
-und skalieren Sie von 3 Replicas auf 1.
+und skalieren Sie von **3** Replicas auf **1**.
 Der Output zeigt jeweils den Pod an, der den Request verarbeitete:
 
 ```
-example-php-docker-helloworld-1-375nb
-example-php-docker-helloworld-1-zgdvl
-example-php-docker-helloworld-1-vd3oj
-example-php-docker-helloworld-1-375nb
-example-php-docker-helloworld-1-zgdvl
-example-php-docker-helloworld-1-vd3oj
-example-php-docker-helloworld-1-375nb
-example-php-docker-helloworld-1-zgdvl
-example-php-docker-helloworld-1-vd3oj
-example-php-docker-helloworld-1-375nb
-example-php-docker-helloworld-1-zgdvl
-example-php-docker-helloworld-1-vd3oj
-example-php-docker-helloworld-1-vd3oj
-example-php-docker-helloworld-1-zgdvl
+POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-1-453rs
+POD: appuio-php-docker-1-453rs
+POD: appuio-php-docker-1-3kcnf
+POD: appuio-php-docker-1-3kcnf
+POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-1-453rs
+POD: appuio-php-docker-1-453rs
+POD: appuio-php-docker-1-3kcnf
+POD: appuio-php-docker-1-3kcnf
+POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-1-tolpx
+POD: appuio-php-docker-1-tolpx
 ```
 
 ## Unterbruchsfreies Deployment mittels Readiness Probe und Rolling Update
@@ -147,15 +150,16 @@ In der Deployment Config (dc) definieren im Abschnitt der Rolling Update Strateg
 
 Dies kann in der Deployment Config (dc) konfiguriert werden:
 
+**YAML:**
 ```
 ...
 spec:
   strategy:
     type: Rolling
     rollingParams:
-      updatePeriodSeconds: 2
-      intervalSeconds: 2
-      timeoutSeconds: 30
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
       maxUnavailable: 0%
       maxSurge: 25%
     resources: {  }
@@ -169,9 +173,9 @@ $ oc edit dc example-php-docker-helloworld
 
 Oder im json Format editieren:
 ```
-$ oc edit dc example-php-docker-helloworld -o json
+$ oc edit dc appuio-php-docker -o json
 ```
-
+**json**
 ```
 "strategy": {
     "type": "Rolling",
@@ -189,10 +193,13 @@ $ oc edit dc example-php-docker-helloworld -o json
 
 Die Readiness Probe muss in der Deployment Config (dc) hinzugefügt werden, und zwar unter:
 
-spec --> template --> spec --> containers
+spec --> template --> spec --> containers unter halb von `resources: {  }` 
+
+**YAML:**
 
 ```
 ...
+          resources: {  }
           readinessProbe:
             httpGet:
               path: /health/
@@ -202,10 +209,27 @@ spec --> template --> spec --> containers
             timeoutSeconds: 1
 ...
 ```
+
+**json:**
+```
+...
+                        "resources": {},
+                        "readinessProbe": {
+                            "httpGet": {
+                                "path": "/health/",
+                                "port": 8080,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 10,
+                            "timeoutSeconds": 1
+                        }
+...
+```
+
 Passen Sie das entsprechend analog oben an.
 
 Die Konfiguration unter Container muss dann wie folgt aussehen:
-
+**YAML:**
 ```
       containers:
         -
@@ -227,17 +251,47 @@ Die Konfiguration unter Container muss dann wie folgt aussehen:
           imagePullPolicy: IfNotPresent
 ```
 
+**json:**
+```
+                "containers": [
+                    {
+                        "name": "appuio-php-docker",
+                        "image": "appuio/example-php-docker-helloworld@sha256:9e927f9d6b453f6c58292cbe79f08f5e3db06ac8f0420e22bfd50c750898c455",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {},
+                        "readinessProbe": {
+                            "httpGet": {
+                                "path": "/health/",
+                                "port": 8080,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 10,
+                            "timeoutSeconds": 1
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+```
+
 
 Verifizieren Sie während eines Deployment der Applikation, ob nun auch ein Update der Applikation unterbruchsfrei verläuft:
 
-Starten des Deployment:
-```
-$ oc deploy example-php-docker-helloworld --latest
-```
 Alle zwei Sekunden ein Request:
 ```
 while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
 ``` 
+
+Starten des Deployment:
+```
+$ oc deploy appuio-php-docker --latest
+```
+
 
 
 ## Self Healing
@@ -245,17 +299,18 @@ while true; do sleep 2; curl -s http://[route]/pod/; echo ""; done
 Über den Replication Controller haben wir nun der Plattform mitgeteilt, dass jeweils **n** Replicas laufen sollen. Was passiert nun, wenn wir einen Pod löschen?
 
 Suchen Sie mittels `oc get pods` einen Pod im Status "running" aus, den Sie *killen* können.
-Löschen Sie den Pod mit folgendem Befehl
-``` 
-oc delete pod example-php-docker-helloworld-1-zgdvl
-``` 
 
-und schauen Sie mittels
+Starten sie in einem eigenen Terminal den folgenden Befehl (anzeige der Änderungen an Pods)
 ``` 
 oc get pods -w
 ``` 
+Löschen Sie im anderen Terminal einen Pod mit folgendem Befehl
+``` 
+oc delete pod appuio-php-docker-3-788j5
+``` 
 
-wie OpenShift dafür sorgt, dass wieder **n** Replicas des genannten Pods laufen.
+
+OpenShift sorgt dafür, dass wieder **n** Replicas des genannten Pods laufen. 
 
 
 ---
