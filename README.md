@@ -1,6 +1,6 @@
 # APPUiO - OpenShift V3 Techlab Dokumentation
 
-Dieses Techlab basiert auf OpenShift V3.1.
+Dieses Techlab basiert auf OpenShift V3.2.
 
 
 ## Inhalte
@@ -28,7 +28,7 @@ Dieses Techlab basiert auf OpenShift V3.1.
 
 ## Weiterführende Dokumentation
 
-- [OpenShift V3.1 docs](https://docs.openshift.com/enterprise/3.1/welcome/index.html)
+- [OpenShift V3.2 docs](https://docs.openshift.com/enterprise/3.2/welcome/index.html)
 - [APPUiO docs](http://docs.appuio.ch)
 
 ### APPUiO Examples
@@ -38,5 +38,5 @@ Dieses Techlab basiert auf OpenShift V3.1.
 - [APPUiO Cron Job Example](https://github.com/appuio/example-cron-traditional)
 
 ### OpenShift Examples
-- [OpenShift Creating New Applications Docs](https://docs.openshift.com/enterprise/3.1/dev_guide/new_app.html)
+- [OpenShift Creating New Applications Docs](https://docs.openshift.com/enterprise/3.2/dev_guide/new_app.html)
 

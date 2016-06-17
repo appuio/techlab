@@ -89,8 +89,8 @@ $ oc project [projectname]
 
 **Tipp:** Mit den folgenden Befehlen kann das obere Beispiel aus der Kommandozeile erstellt werden:
 ```
-$ oc new-app https://github.com/appuio/example-php-sti-helloworld.git
-$ oc expose svc example-php-sti-hellowor
+$ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=appuio-php-sti-example
+$ oc expose svc appuio-php-sti-example
 ```
 
 ---
