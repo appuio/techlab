@@ -29,8 +29,8 @@ Aktuell gibt es noch keine Route. Jetzt brauchen wir den Servicenamen:
 
 ```
 $ oc get services
-NAME                    CLUSTER_IP       EXTERNAL_IP   PORT(S)    SELECTOR                                                           AGE
-example-spring-boot     172.30.96.92     <none>        8080/TCP   app=example-spring-boot,deploymentconfig=example-spring-boot       2h
+NAME                  CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+example-spring-boot   172.30.124.20   <none>        8080/TCP   11m
 ```
 
 Und nun wollen wir diesen Service veröffentlichen / exposen:
@@ -45,8 +45,8 @@ Mittels `oc get routes` können wir überprüfen, ob die Route angelegt wurde.
 
 ```
 $ oc get routes
-NAME                    HOST/PORT                                      PATH      SERVICE                 LABELS                      INSECURE POLICY   TLS TERMINATION
-example-spring-boot     example-spring-boot-techlab.example.com               example-spring-boot     app=example-spring-boot
+NAME                  HOST/PORT                                        PATH      SERVICE                        TERMINATION   LABELS
+example-spring-boot   example-spring-boot-techlab.app.appuio.ch             example-spring-boot:8080-tcp                 app=example-spring-boot
 ```
 
 Die Applikation ist nun vom Internet her über den angegebenen Hostnamen erreichbar, Sie können also nun auf die Applikation zugreifen.
