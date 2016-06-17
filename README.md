@@ -20,6 +20,12 @@ Dieses Techlab basiert auf OpenShift V3.1.
 11. [Applikationstemplates](labs/11_template.md) 
 
 
+### Zusätzliche Labs
+
+- [Logging EFK Stack](additional-labs/logging_efk_stack.md) 
+
+
+
 ## Weiterführende Dokumentation
 
 - [OpenShift V3.1 docs](https://docs.openshift.com/enterprise/3.1/welcome/index.html)
