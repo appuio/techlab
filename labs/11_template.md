@@ -38,30 +38,34 @@ $ oc create -f https://raw.githubusercontent.com/appuio/example-spring-boot-hell
 Template instanzieren (Ersetzen Sie `[project]` mit `[USER]-template`)
 
 ```
-$ oc new-app example-spring-boot -pMYSQL_DATASOURCE=jdbc:mysql://mysql.[project].svc.cluster.local/appuio
+$ oc new-app example-spring-boot
 
 --> Deploying template example-spring-boot for "example-spring-boot"
      With parameters:
       APPLICATION_DOMAIN=
-      DATABASE_SERVICE_NAME=postgresql
       MYSQL_DATABASE_NAME=appuio
       MYSQL_USER=appuio
       MYSQL_PASSWORD=appuio
-      MYSQL_DATASOURCE=jdbc:mysql://mysql.techlab-template.svc.cluster.local/appuio
+      MYSQL_DATASOURCE=jdbc:mysql://mysql/appuio?autoReconnect=true
       MYSQL_DRIVER=com.mysql.jdbc.Driver
 --> Creating resources ...
-    ImageStream "example-spring-boot" created
-    DeploymentConfig "example-spring-boot" created
-    DeploymentConfig "mysql" created
-    Route "example-spring-boot" created
-    Service "example-spring-boot" created
-    Service "mysql" created
+    imagestream "example-spring-boot" created
+    deploymentconfig "example-spring-boot" created
+    deploymentconfig "mysql" created
+    route "example-spring-boot" created
+    service "example-spring-boot" created
+    service "mysql" created
 --> Success
     Run 'oc status' to view your app.
 
 ```
 
-OpenShift startet danach automatisch einen Build und deployt die Container danach wie im Template spezifiziert.
+Mittels:
+```
+oc deploy example-spring-boot --latest
+```
+
+startet OpenShift danach einen Build und deployt die Container wie im Template spezifiziert.
 
 **Tipp:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
 

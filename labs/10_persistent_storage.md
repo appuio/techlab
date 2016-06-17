@@ -21,13 +21,21 @@ $ oc volume dc/mysql --add --name=mysql-data --type pvc --claim-name=mysqlpvc --
 ```
 **Note:** Durch die veränderte Deployment Config deployt OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
 
+Unsere Applikation erstellt beim Starten das DB Schema eigenständig. 
+
+**Tipp:** redeployen Sie den Applikations-Pod:
+
+```
+$ oc deploy example-spring-boot --latest
+```
+
 Mit dem Befehl `oc get persistentvolumeclaim`, oder etwas einfacher `oc get pvc`, können wir uns nun den im Projekt frisch erstellten PersistentVolumeClaim anzeigen lassen:
 ```
 $ oc get pvc
-NAME       LABELS    STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
-mysqlpvc   <none>    Bound     pv18      256Mi      RWO,RWX       3m
+NAME       STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
+mysqlpvc   Bound     pv34      256Mi      RWO,RWX       14s
 ```
-Die beiden Attribute Status und Volume zeigen uns an, dass unser Claim mit dem Persistent Volume pv18 verbunden wurde.
+Die beiden Attribute Status und Volume zeigen uns an, dass unser Claim mit dem Persistent Volume pv34 verbunden wurde.
 
 Mit dem folgenden Befehl können wir auch noch überprüfen, ob das Einbinden des Volumes in die Deployment Config geklappt hat:
 ```
@@ -45,8 +53,7 @@ Wiederholen Sie [Lab-Aufgabe 8.4](08_database.md#l%C3%B6sung-lab84).
 
 ### Test
 
-Skalieren Sie nun den Pod auf 0 und anschliessend wieder auf 1. Beobachten Sie, dass der neue Pod die Daten nicht mehr verliert.
-
+Skalieren Sie nun den mysql Pod auf 0 und anschliessend wieder auf 1. Beobachten Sie, dass der neue Pod die Daten nicht mehr verliert.
 
 ---
 

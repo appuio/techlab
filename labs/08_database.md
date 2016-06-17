@@ -36,7 +36,7 @@ Standardmässig wird bei unserer example-spring-boot Applikation eine H2 Memory 
 - SPRING_DATASOURCE_USERNAME appuio
 - SPRING_DATASOURCE_PASSWORD appuio
 - SPRING_DATASOURCE_DRIVER_CLASS_NAME com.mysql.jdbc.Driver
-- SPRING_DATASOURCE_URL jdbc:mysql://[Adresse des MySQL Service]/appuio
+- SPRING_DATASOURCE_URL jdbc:mysql://[Adresse des MySQL Service]/appuio?autoReconnect=true
 
 Für die Adresse des MySQL Service können wir entweder dessen Cluster IP (`oc get service`) oder aber dessen DNS-Namen (`<service>`) verwenden. Alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden.
 
@@ -44,7 +44,7 @@ So lautet der Wert für die Variable SPRING_DATASOURCE_URL bspw.:
 ```
 Name des Services: mysql
 
-jdbc:mysql://mysql/appuio
+jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
 
 Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
@@ -53,7 +53,7 @@ Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-
 
 
 ```
-SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio
+SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
 **Note:** mysql löst innerhalb ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. Der Service ist ebenfalls über den folgenden Namen erreichbar:
 
@@ -64,7 +64,7 @@ mysql.techlab-dockerimage.svc.cluster.local
 ```
 
 ```
- $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
+ $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
 ```
  
 Über den folgenden Befehl können Sie sich die DeploymentConfig als JSON anschauen. Neu enthält die Config auch die gesetzten Umgebungsvariablen:
