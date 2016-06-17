@@ -69,7 +69,7 @@ Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch
 $ oc logs -p [POD]
 ```
 
-Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten. Weitere Informationen und ein optionales LAB finden sie [hier](additional-labs/logging_efk_stack.md).
+Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten. Weitere Informationen und ein optionales LAB finden sie [hier](../additional-labs/logging_efk_stack.md).
 
 
 ## Aufgabe: LAB7.3 Port Forwarding
