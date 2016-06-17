@@ -2,6 +2,9 @@
 
 Dieses Techlab basiert auf OpenShift V3.1.
 
+Für das LAB in der Version 3.2 wechseln Sie in den entsprechenden [Branch lab-3.2](https://github.com/appuio/techlab/tree/lab-3.2), dieses Repos
+
+
 
 ## Inhalte
 
