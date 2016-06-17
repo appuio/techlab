@@ -32,16 +32,26 @@ $ oc new-app appuio/example-spring-boot
 ```
 Output:
 ```
---> Found Docker image 7823c6b (58 minutes old) from Docker Hub for "appuio/example-spring-boot"
+--> Found Docker image d790313 (3 weeks old) from Docker Hub for "appuio/example-spring-boot"
+
+    APPUiO Spring Boot App 
+    ---------------------- 
+    Example Spring Boot App
+
+    Tags: builder, springboot
+
     * An image stream will be created as "example-spring-boot:latest" that will track this image
     * This image will be deployed in deployment config "example-spring-boot"
     * Port 8080/tcp will be load balanced by service "example-spring-boot"
+      * Other containers can access this service through the hostname "example-spring-boot"
+
 --> Creating resources with label app=example-spring-boot ...
-    ImageStream "example-spring-boot" created
-    DeploymentConfig "example-spring-boot" created
-    Service "example-spring-boot" created
+    imagestream "example-spring-boot" created
+    deploymentconfig "example-spring-boot" created
+    service "example-spring-boot" created
 --> Success
     Run 'oc status' to view your app.
+
 ```
 
 Für unser Lab verwenden wir ein APPUiO-Beispiel (Java Spring Boot Applikation):
@@ -91,11 +101,11 @@ $ oc get services
 ```
 
 ```
-NAME                    CLUSTER_IP       EXTERNAL_IP   PORT(S)    SELECTOR                                                           AGE
-example-spring-boot     172.30.96.92     <none>        8080/TCP   app=example-spring-boot,deploymentconfig=example-spring-boot       2h
+NAME                  CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+example-spring-boot   172.30.124.20   <none>        8080/TCP   2m
 ```
 
-Wie Sie am Output sehen, ist unser Service (example-spring-boot) über eine IP und Port erreichbar (172.30.96.92:8080) **Note:** Ihre IP kann unterschiedlich sein.
+Wie Sie am Output sehen, ist unser Service (example-spring-boot) über eine IP und Port erreichbar (172.30.124.20:8080) **Note:** Ihre IP kann unterschiedlich sein.
 
 **Note:** Service IPs bleiben während ihrer Lebensdauer immer gleich.
 
@@ -112,9 +122,9 @@ $ oc get service example-spring-boot -o json
         "name": "example-spring-boot",
         "namespace": "techlab",
         "selfLink": "/api/v1/namespaces/techlab/services/example-spring-boot",
-        "uid": "d4277ccc-1b40-11e6-a1ae-001a4a026f33",
-        "resourceVersion": "2291956",
-        "creationTimestamp": "2016-05-16T08:33:13Z",
+        "uid": "b32d0197-347e-11e6-a2cd-525400f6ccbc",
+        "resourceVersion": "17247237",
+        "creationTimestamp": "2016-06-17T11:29:05Z",
         "labels": {
             "app": "example-spring-boot"
         },
@@ -135,8 +145,8 @@ $ oc get service example-spring-boot -o json
             "app": "example-spring-boot",
             "deploymentconfig": "example-spring-boot"
         },
-        "portalIP": "172.30.96.92",
-        "clusterIP": "172.30.96.92",
+        "portalIP": "172.30.124.20",
+        "clusterIP": "172.30.124.20",
         "type": "ClusterIP",
         "sessionAffinity": "None"
     },
@@ -170,7 +180,7 @@ Pod:
 ...
 "labels": {
     "app": "example-spring-boot",
-    "deployment": "example-spring-boot-3",
+    "deployment": "example-spring-boot-1",
     "deploymentconfig": "example-spring-boot"
 },
 ...
@@ -183,15 +193,15 @@ $ oc describe service example-spring-boot
 ```
 
 ```
-Name:                   example-spring-boot
-Namespace:              techlab
-Labels:                 app=example-spring-boot
-Selector:               app=example-spring-boot,deploymentconfig=example-spring-boot
-Type:                   ClusterIP
-IP:                     172.30.96.92
-Port:                   8080-tcp        8080/TCP
-Endpoints:              10.255.1.154:8080
-Session Affinity:       None
+Name:			example-spring-boot
+Namespace:		techlab
+Labels:			app=example-spring-boot
+Selector:		app=example-spring-boot,deploymentconfig=example-spring-boot
+Type:			ClusterIP
+IP:				172.30.124.20
+Port:			8080-tcp	8080/TCP
+Endpoints:		10.1.3.20:8080
+Session Affinity:	None
 No events.
 ```
 
