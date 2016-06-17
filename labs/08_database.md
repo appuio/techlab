@@ -26,7 +26,7 @@ $ oc new-app mysql-ephemeral -pMYSQL_USER=appuio -pMYSQL_PASSWORD=appuio -pMYSQL
 ### Web Console
 
 In der Web Console kann der MySQL Service dem Projekt über "Add to Project" hinzugefügt werden.
-![MySQLService](../images/lab_7_addmysql_service.png)
+![MySQLService](../images/lab_8_addmysql_service.png)
 
 
 ## Aufgabe: LAB8.2: Applikation an die Datenbank anbinden
@@ -38,28 +38,26 @@ Standardmässig wird bei unserer example-spring-boot Applikation eine H2 Memory 
 - SPRING_DATASOURCE_DRIVER_CLASS_NAME com.mysql.jdbc.Driver
 - SPRING_DATASOURCE_URL jdbc:mysql://[Adresse des MySQL Service]/appuio
 
-Für die Adresse des MySQL Service können wir entweder dessen Cluster IP (`oc get service`) oder aber dessen DNS-Namen (`<service>.<project>.svc.cluster.local`) verwenden. Alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden.
+Für die Adresse des MySQL Service können wir entweder dessen Cluster IP (`oc get service`) oder aber dessen DNS-Namen (`<service>`) verwenden. Alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden.
 
 So lautet der Wert für die Variable SPRING_DATASOURCE_URL bspw.:
 ```
-Projektname = techlab-dockerimage
 
-jdbc:mysql://mysql.techlab-dockerimage.svc.cluster.local/appuio
+jdbc:mysql://mysql/appuio
 ```
 
 Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
 
 **Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
-**Note:** Die Datasource URL (SPRING_DATASOURCE_URL) muss auf den Projektnamen Ihres Projektes angepasst werden. Siehe vorheriges Beispiel.
 
 ```
-SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/appuio
+SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio
 ```
-**Note:** mysql.[USER]-dockerimage.svc.cluster.local löst innerhalb ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar.
+**Note:** mysql löst innerhalb ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. der ganze name lautet: .svc.cluster.local
 
 ```
- $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql.[USER]-dockerimage.svc.cluster.local/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
+ $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
 ```
  
 Über den folgenden Befehl können Sie sich die DeploymentConfig als JSON anschauen. Neu enthält die Config auch die gesetzten Umgebungsvariablen:
