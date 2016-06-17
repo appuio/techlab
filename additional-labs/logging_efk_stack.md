@@ -11,7 +11,7 @@ Innerhalb eines Container sollten die Logs jeweils auf STDOUT geschrieben werden
 Java EE Beispielanwendung mit Log4j 2 JSON Logging installieren:
 
 ```
-$ oc new-app https://github.com/appuio/ose3-java-logging
+$ oc new-app openshift/wildfly-100-centos7~https://github.com/appuio/ose3-java-logging.git
 $ oc expose svc ose3-java-logging
 ```
 
