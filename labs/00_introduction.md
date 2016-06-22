@@ -7,6 +7,10 @@ Mit einer Platform as a Service (PaaS) ändert sich die Art, wie wir Software en
 - Grundkonzepte verstehen
 - Erste Applikation auf OpenShift deployed
 
+## Kurze Techlab Einführung als Slidedeck
+
+* https://speakerdeck.com/appuio/appuio-openshift-techlab-overview
+
 ---
 
 [<< zurück zur Übersicht] (../README.md)
