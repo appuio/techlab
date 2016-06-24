@@ -104,6 +104,16 @@ Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
 while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"; done
 ```
 
+oder in PowerShell
+
+```
+while(true) {
+	Start-Sleep -s 1
+	Invoke-RestMethod http://[route]/pod/
+	Get-Date -Uformat "+ TIME: %H:%M:%S,%3N"
+}
+```
+
 und skalieren Sie von **3** Replicas auf **1**.
 Der Output zeigt jeweils den Pod an, der den Request verarbeitete:
 
