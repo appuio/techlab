@@ -93,6 +93,15 @@ $ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=app
 $ oc expose svc appuio-php-sti-example
 ```
 
+**Tipp:** eine ganze App kann mit dem folgenden Befehl gelöscht werden:
+```
+$ oc delete all -l app=appname
+```
+bspw.
+```
+$ oc delete all -l app=appuio-php-sti-example
+```
+
 ---
 
 ## Lösung: LAB3.1
