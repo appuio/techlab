@@ -62,7 +62,7 @@ OpenShift legt die nötigen Ressourcen an, lädt das Docker Image in diesem Fall
 
 **Tipp:** Verwenden Sie `oc status` um sich einen Überblick über das Projekt zu verschaffen.
 
-Oder verwenden Sie den `oc get` Befehl um Änderungen an den Ressourcen des Typs Pod anzuzeigen:
+Oder verwenden Sie den `oc get` Befehl mit dem `-w` Parameter, um fortlaufend Änderungen an den Ressourcen des Typs Pod anzuzeigen (abbrechen mit ctrl+c):
 ```
 $ oc get pods -w
 ```
