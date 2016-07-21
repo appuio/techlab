@@ -285,7 +285,7 @@ spec --> template --> spec --> containers unter halb von `resources: {  }`
                             },
                             "initialDelaySeconds": 10,
                             "timeoutSeconds": 1
-                        }
+                        },
 ...
 ```
 
