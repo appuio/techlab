@@ -107,7 +107,7 @@ while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"
 oder in PowerShell
 
 ```
-while(true) {
+while(1) {
 	Start-Sleep -s 1
 	Invoke-RestMethod http://[route]/pod/
 	Get-Date -Uformat "+ TIME: %H:%M:%S,%3N"
