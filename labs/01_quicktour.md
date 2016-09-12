@@ -2,20 +2,20 @@
 
 In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren zeigen wir auf, wie man sich in der Web Console einloggt und stellen die einzelnen Bereiche kurz vor.
 
-Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden: 
+Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden:
 
-> https://docs.openshift.com/enterprise/3.2/architecture/index.html 
+> https://docs.openshift.com/enterprise/3.2/architecture/index.html
 
 
 ## Grundkonzepte
 
-OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift V3 kann als Platform as a Service (PaaS) oder als Container Runtime Environment bezeichnet werden.
+OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift V3 kann als Container Platform oder Platform as a Service (PaaS) bezeichnet werden.
 
 ### Docker
 
 [Docker](https://www.docker.com/) ist die offene Plattform für Entwickler und Sysadmins und ihre Applikationen. Wählen Sie das für Ihre Technologie passende Basis-Docker-Images aus, OpenShift baut für Sie nach jedem Build automatisch einen aktualisierten Docker-Container und deployt ihn auf Wunsch auch gleich.
 
-### Kubernetes 
+### Kubernetes
 
 Container orchestrieren und managen mit [Kubernetes](http://kubernetes.io/) von Google. Sie definieren, wie viele Instanzen Ihrer Applikation parallel laufen sollen und Kubernetes kümmert sich um die Skalierung, das Loadbalancing und die Stabilität.
 
@@ -33,7 +33,7 @@ Docker Images werden anhand von DockerFiles (textueller Beschrieb wie das Docker
 
 **Beispiel Tomcat**
 - Basis Image (CentOs 7)
-- + Install Java 
+- + Install Java
 - + Install Tomcat
 - + Install App
 
@@ -41,9 +41,9 @@ Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry v
 
 ### Projekte
 
-In OpenShift V3 werden Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten etc.) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes Namespace und erweitert diesen um gewisse Konzepte. 
+In OpenShift V3 werden Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten etc.) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes Namespace und erweitert diesen um gewisse Konzepte.
 
-Innerhalb eines Projekts können berechtigte User ihre Ressourcen selber verwalten und organisieren. 
+Innerhalb eines Projekts können berechtigte User ihre Ressourcen selber verwalten und organisieren.
 
 Die Ressourcen innerhalb eines Projektes sind über ein transparentes [SDN](https://de.wikipedia.org/wiki/Software-defined_networking) verbunden. So können die einzelnen Komponenten eines Projektes in einem Multi-Node Setup auf verschiedene Nodes deployed werden. Dabei sind sie über das SDN untereinander sicht- und zugreifbar.
 
@@ -63,7 +63,7 @@ Einem Service ist innerhalb eines Projektes eine IP und ein Port zugewiesen und 
 
 ### Routen
 
-Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von OpenShift von externen Clients erreicht werden kann. 
+Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von OpenShift von externen Clients erreicht werden kann.
 
 Diese Routen werden im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname-Mapping die Requests an den entsprechenden Service weiterzuleiten.
 

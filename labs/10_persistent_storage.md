@@ -2,7 +2,7 @@
 
 Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispiel der Fall ist. Verschwindet also unser MySQL-Pod bspw. aufgrund einer Änderung des Images, sind die bis zuvor noch vorhandenen Daten im neuen Pod nicht mehr vorhanden. Um genau dies zu verhindern hängen wir nun Persistent Storage an unseren MySQL-Pod an.
 
-## Aufgabe: LAB10.1: 
+## Aufgabe: LAB10.1:
 
 ### Storage anfordern
 
@@ -13,15 +13,16 @@ Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die
 
 ### Volume in Pod einbinden
 
-Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In Lab 6 bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu Lab 6 können wir aber mit `oc volume` die Deployment Config automatisch erweitern.
+Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In [LAB 6](06_scale.md) bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu [LAB 6](06_scale.md) können wir aber mit `oc volume` die Deployment Config automatisch erweitern.
 
 Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 ```
-$ oc volume dc/mysql --add --name=mysql-data --type pvc --claim-name=mysqlpvc --claim-size=256Mi --overwrite
+$ oc volume dc/mysql --add --name=mysql-data --type pvc \
+     --claim-name=mysqlpvc --claim-size=256Mi --overwrite
 ```
 **Note:** Durch die veränderte Deployment Config deployt OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
 
-Unsere Applikation erstellt beim Starten das DB Schema eigenständig. 
+Unsere Applikation erstellt beim Starten das DB Schema eigenständig.
 
 **Tipp:** redeployen Sie den Applikations-Pod:
 
@@ -60,4 +61,3 @@ Skalieren Sie nun den mysql Pod auf 0 und anschliessend wieder auf 1. Beobachten
 **Ende Lab 10**
 
 [<< zurück zur Übersicht] (../README.md)
-

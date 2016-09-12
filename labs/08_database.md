@@ -14,7 +14,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 - MYSQL_USER appuio
 - MYSQL_PASSWORD appuio
-- MYSQL_DATABASE appuio 
+- MYSQL_DATABASE appuio
 - DATABASE_SERVICE_NAME mysql
 
 ### CLI
@@ -22,7 +22,9 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 Über das CLI kann der MySQL Service wie folgt angelegt werden:
 
 ```
-$ oc new-app mysql-ephemeral -pMYSQL_USER=appuio -pMYSQL_PASSWORD=appuio -pMYSQL_DATABASE=appuio -pDATABASE_SERVICE_NAME=mysql
+$ oc new-app mysql-ephemeral \
+     -pMYSQL_USER=appuio -pMYSQL_PASSWORD=appuio \
+     -pMYSQL_DATABASE=appuio -pDATABASE_SERVICE_NAME=mysql
 ```
 
 ### Web Console
@@ -65,12 +67,16 @@ Projektname = techlab-dockerimage
 mysql.techlab-dockerimage.svc.cluster.local
 ```
 
+Befehl für das Setzen der Umgebungsvariablen:
 ```
- $ oc env dc example-spring-boot -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver 
+ $ oc env dc example-spring-boot \
+      -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true \
+      -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio \
+      -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
- 
+
 Über den folgenden Befehl können Sie sich die DeploymentConfig als JSON anschauen. Neu enthält die Config auch die gesetzten Umgebungsvariablen:
- 
+
 ```
  $ oc get dc example-spring-boot -o json
 ```
@@ -97,6 +103,10 @@ mysql.techlab-dockerimage.svc.cluster.local
 	    ],
 ...
 ```
+
+Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
+
+(Browse --> Deployments --> example-spring-boot, Actions, Edit YAML)
 
 ## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
 
@@ -158,7 +168,7 @@ Die Aufgabe ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.co
 
 Ein ganzes Verzeichnis (dump) syncen. Darin enthalten ist das File `dump.sql`.
 ```
-oc rsync ./data/08_dump mysql-1-diccy:/tmp/
+oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/
 ```
 In den MySQL Pod einloggen:
 
@@ -169,13 +179,13 @@ $ oc rsh mysql-1-diccy
 Bestehende Datenbank löschen:
 ```
 $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
-... 
+...
 mysql> drop database appuio;
 mysql> create database appuio;
 ```
 Dump einspielen:
 ```
-$ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/dump.sql
+$ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/08_dump/dump.sql
 ```
 
 **Note:** Den Dump kann man wie folgt erstellen:
@@ -190,4 +200,3 @@ mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HO
 **Ende Lab 8**
 
 [<< zurück zur Übersicht] (../README.md)
-

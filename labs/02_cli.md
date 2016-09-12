@@ -6,7 +6,7 @@ In diesem Lab werden wir gemeinsam den oc Client installieren und konfigurieren,
 
 Der **oc client** stellt ein Interface zu OpenShift V3 bereit.
 
-Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher: 
+Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher:
 
 - Microsoft Windows
 - Mac OS X
@@ -22,28 +22,28 @@ Der oc Client kann direkt von der APPUiO Beta Plattform heruntergeladen werden:
 * [Linux](https://master.appuio-beta.ch/console/extensions/clients/linux/oc)
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
- 
+
 **Linux**
- 
+
 ```
 ~/bin
 ```
- 
+
 **Mac OS X**
- 
+
 ```
 ~/bin
 ```
- 
+
 **Windows**
- 
+
 ```
 C:\OpenShift\
 ```
- 
+
 ## Korrekte Berechtigung auf Linux und Mac OS X erteilen
 
-Der oc Client muss ausgeführt werden können. 
+Der oc Client muss ausgeführt werden können.
 
 ```
 cd ~/bin
@@ -52,7 +52,7 @@ chmod +x oc
 
 ## den oc Client im PATH registrieren
 
-Unter **Linux** und **Mac OS X** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden. 
+Unter **Linux** und **Mac OS X** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
 
 Falls der oc Client in einem anderen Verzeichnis abgelegt wurde, kann der PATH wie folgt gesetzt werden:
 ```
@@ -84,7 +84,7 @@ oc v3.2.0.46-1-g3fab54d
 kubernetes v1.2.0-36-g4a3f9c5
 ```
 
-Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt gesetzt. 
+Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt gesetzt.
 
 ---
 
