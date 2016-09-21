@@ -79,7 +79,8 @@ OpenShift 3 erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf ein
 Übung: Auf die Spring Boot Metrics aus [Lab 4](04_deploy_dockerimage.md) zugreifen.
 
 ```
-oc port-forward example-spring-boot-1-xj1df 9000:9000
+oc get po --namespace="[USER]-dockerimage"
+oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="[USER]-dockerimage"
 ```
 
 Nicht vergessen den Pod Namen an die eigene Installation anzupassen. Falls installiert kann dafür Autocompletion verwendet werden.
