@@ -104,7 +104,7 @@ Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
 while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"; done
 ```
 
-oder in PowerShell
+oder in PowerShell (Achtung: erst ab PowerShell-Version 3.0!):
 
 ```
 while(1) {
