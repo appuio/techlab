@@ -13,4 +13,5 @@ Mit einer Platform as a Service (PaaS) ändert sich die Art, wie wir Software en
 
 ---
 
-[<< zurück zur Übersicht] (../README.md)
+<p width="100px" align="right"><a href="01_quicktour.md">Quicktour durch OpenShift V3 →</a></p>
+[← zurück zur Übersicht] (../README.md)

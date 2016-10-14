@@ -138,7 +138,7 @@ und deployed anschliessend die Änderung.
 Mit OpenShift lassen sich unterschiedliche Software-Stände aktivieren und deaktivieren, indem einfach eine andere Version des Images gestartet wird.
 
 Dafür werden die Befehle `oc rollback` und `oc deploy` verwendet.
- 
+
 Um ein Rollback auszuführen, brauchen Sie den Namen der DeploymentConfig:
 
 ```
@@ -161,7 +161,7 @@ Warning: the following images triggers were disabled: appuio-php-docker-ex
 Sobald das Deployment der alten Version erfolgt ist, können Sie über ihren Browser überprüfen, ob wieder die ursprüngliche Überschrift **Hello APPUiO** angezeigt wird.
 
 **Tipp:** Die automatischen Deployments neuer Versionen ist nun für diese Applikation ausgeschaltet um ungewollte Änderungen nach dem Rollback zu verhindern. Um das automatische Deployment wieder einzuschalten führen Sie den folgenden Befehl aus:
- 
+
 
 ```
 $ oc deploy appuio-php-docker-ex --enable-triggers
@@ -171,5 +171,5 @@ $ oc deploy appuio-php-docker-ex --enable-triggers
 
 **Ende Lab 9**
 
-[<< zurück zur Übersicht] (../README.md)
-
+<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
+[← zurück zur Übersicht] (../README.md)

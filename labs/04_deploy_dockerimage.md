@@ -17,7 +17,7 @@ Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-dockerimage`:
 $ oc new-project [USER]-dockerimage
 ```
 
-`oc new-project` wechselt automatisch in das eben neu angelegte Projekt. Mit dem `oc get` Command können Ressourcen von einem bestimmten Typ angezeigt werden. 
+`oc new-project` wechselt automatisch in das eben neu angelegte Projekt. Mit dem `oc get` Command können Ressourcen von einem bestimmten Typ angezeigt werden.
 
 Verwenden Sie
 ```
@@ -34,8 +34,8 @@ Output:
 ```
 --> Found Docker image d790313 (3 weeks old) from Docker Hub for "appuio/example-spring-boot"
 
-    APPUiO Spring Boot App 
-    ---------------------- 
+    APPUiO Spring Boot App
+    ----------------------
     Example Spring Boot App
 
     Tags: builder, springboot
@@ -250,5 +250,5 @@ Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o 
 
 **Ende Lab 4**
 
-[<< zurück zur Übersicht] (../README.md)
-
+<p width="100px" align="right"><a href="05_create_route.md">Routen erstellen →</a></p>
+[← zurück zur Übersicht] (../README.md)

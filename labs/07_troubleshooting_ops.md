@@ -14,7 +14,7 @@ Mit OpenShift können Remote Shells in die Pods geöffnet werden ohne dass man d
 
 Wählen Sie mittels `oc get pods` einen Pod aus und führen Sie den folgenden Befehl aus:
 ```
-$ oc rsh [POD] 
+$ oc rsh [POD]
 ```
 
 Sie können nun über diese Shell Analysen im Container ausführen:
@@ -93,5 +93,5 @@ Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu fi
 
 **Ende Lab 7**
 
-[<< zurück zur Übersicht] (../README.md)
-
+<p width="100px" align="right"><a href="08_database.md">Datenbank deployen und anbinden →</a></p>
+[← zurück zur Übersicht] (../README.md)
