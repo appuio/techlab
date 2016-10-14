@@ -18,7 +18,7 @@ $ oc login [URL]
 ```
 The server uses a certificate signed by an unknown authority.
 You can bypass the certificate check, but any data you send to the server could be intercepted by others.
-Use insecure connections? (y/n): 
+Use insecure connections? (y/n):
 ```
 
 Als Alternative können Sie dies dem oc Command beim Aufruf mitgeben:
@@ -46,14 +46,14 @@ Erstellen Sie auf der Lab Plattform ein neues Projekt.
 
 > Wie kann ein neues Projekt erstellt werden?
 
-**Tipp** :information_source: 
+**Tipp** :information_source:
 ```
 $ oc help
 ```
 
 ## Web Console
 
-Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via Browser vorzunehmen. 
+Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via Browser vorzunehmen.
 
 ## Aufgabe: LAB3.2
 1. Loggen Sie sich nun via Web Console auf der Lab Plattform ein.
@@ -111,6 +111,7 @@ $ oc new-project [USER]-example1
 ```
 ---
 
-**Ende Lab 3** 
+**Ende Lab 3**
 
-[<< zurück zur Übersicht] (../README.md)
+<p width="100px" align="right"><a href="04_deploy_dockerimage.md">Ein Docker Image deployen →</a></p>
+[← zurück zur Übersicht] (../README.md)

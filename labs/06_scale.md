@@ -16,7 +16,7 @@ und fügen dem Projekt eine Applikation hinzu
 $ oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker
 ```
 
-und stellen den Service zur Verfügung (expose) 
+und stellen den Service zur Verfügung (expose)
 
 ```
 $ oc expose service appuio-php-docker
@@ -181,7 +181,7 @@ No server is available to handle this request.
 Pod: example-spring-boot-3-tjdkj TIME: 16:49:20,114
 Pod: example-spring-boot-3-tjdkj TIME: 16:49:21,181
 Pod: example-spring-boot-3-tjdkj TIME: 16:49:22,231
- 
+
 ```
 
 Es kann dann sogar sein, dass der Service gar nicht mehr online ist und der Routing Layer ein **503 Error** zurück gibt.
@@ -256,7 +256,7 @@ $ oc edit dc appuio-php-docker -o json
 
 Die Readiness Probe muss in der Deployment Config (dc) hinzugefügt werden, und zwar unter:
 
-spec --> template --> spec --> containers unter halb von `resources: {  }` 
+spec --> template --> spec --> containers unter halb von `resources: {  }`
 
 **YAML:**
 
@@ -348,7 +348,7 @@ Verifizieren Sie während eines Deployment der Applikation, ob nun auch ein Upda
 Einmal pro Sekunde ein Request:
 ```
 while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"; done
-``` 
+```
 
 Starten des Deployment:
 ```
@@ -363,21 +363,21 @@ $ oc deploy appuio-php-docker --latest
 Suchen Sie mittels `oc get pods` einen Pod im Status "running" aus, den Sie *killen* können.
 
 Starten sie in einem eigenen Terminal den folgenden Befehl (anzeige der Änderungen an Pods)
-``` 
+```
 oc get pods -w
-``` 
+```
 Löschen Sie im anderen Terminal einen Pod mit folgendem Befehl
-``` 
+```
 oc delete pod appuio-php-docker-3-788j5
-``` 
+```
 
 
-OpenShift sorgt dafür, dass wieder **n** Replicas des genannten Pods laufen. 
+OpenShift sorgt dafür, dass wieder **n** Replicas des genannten Pods laufen.
 
 
 ---
 
 **Ende Lab 6**
 
-[<< zurück zur Übersicht] (../README.md)
-
+<p width="100px" align="right"><a href="07_troubleshooting_ops.md">Troubleshooting, was ist im Pod? →</a></p>
+[← zurück zur Übersicht] (../README.md)

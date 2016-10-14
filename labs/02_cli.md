@@ -102,4 +102,5 @@ sudo chmod g-w /etc/bash_completion.d/oc
 
 **Ende Lab 2**
 
-[<< zurück zur Übersicht] (../README.md)
+<p width="100px" align="right"><a href="03_first_steps.md">Erste Schritte auf der Lab Plattform →</a></p>
+[← zurück zur Übersicht] (../README.md)
