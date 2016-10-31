@@ -48,14 +48,11 @@ Wenn verschiede Imagestreams in Frage kommen könnten oder keiner gefunden wurde
 $ oc new-app . --image-stream=wildfly:latest -o json
 ```
 
-Der Output der Konsole beginnt immer mit dem Kind: List.
+`oc new-app` erstellt immer eine Liste von Ressourcen. Bei Bedarf kann eine solche mit [jq](https://stedolan.github.io/jq/) in ein Template konvertiert werden:
 ```
-{
-    "kind": "List",
-    "apiVersion": "v1",
-    ...
+$ oc new-app . --image-stream=wildfly:latest -o json | \
+  jq '{ kind: "Template", apiVersion: .apiVersion, metadata: {name: "mytemplate" }, objects: .items }'
 ```
-Der Kind muss für ein Template in *template* geändert werden.
 
 ### Generierung nach Erstellung
 Bestehende Resourcen werden mit **oc export** exportiert.
