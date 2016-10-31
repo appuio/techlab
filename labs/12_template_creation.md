@@ -92,9 +92,9 @@ $ oc export is,bc,pvc,dc,route,service --as-template=my-template -o json |
 
 Attribute mit Wert `null` sowie die Annotation `openshift.io/generated-by` dürfen aus dem Template entfernt werden.
 Templates können mit `oc new-app -f <FILE>|<URL> -p <PARAM1>=<VALUE1>,<PARAM2>=<VALUE2>...` instanziert werden.
-`oc new-app` fügt standardmässig das Label `app=<template name>` in alle instanzierten Resourcen ein. Bei einigen
+`oc new-app` fügt standardmässig das Label `app=<TEMPLATE NAME>` in alle instanzierten Resourcen ein. Bei einigen
 OpenShift Versionen kann dies zu [ungültigen](https://github.com/openshift/origin/issues/10782) Resourcendefinitionen führen.
-Als Workaround kann mit  `oc new-app -l <label name>=<label value> ...` ein alternatives Label konfiguriert werden.
+Als Workaround kann mit `oc new-app -l <LABEL NAME>=<LABEL VALUE> ...` ein alternatives Label konfiguriert werden.
 
 * Welche Teile behalten?
 * Was Anpassen, Abändern?
