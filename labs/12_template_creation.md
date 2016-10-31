@@ -126,15 +126,23 @@ MEMORY_MYSQL_LIMIT             Maximum amount of memory the MySQL container can 
 
 ## Template Merge
 
-## Imagestream Varianten
-* mit oder ohne automatischem Update
 
 ## Metadata
 * Labels
 
-## Docker swarm2kube
+## Ressourcen aus docker-compose.yml erstellen
 
+Seit Version 3.3 bietet die OpenShift Container Platform die Möglichkeit Resourcen aus der Docker Compose Konfigurationdatei `docker-compose.yml` zu erstellen. Diese Funktionalität ist noch als experimentell eingestuft. Beispiel:
+```
+git clone -b techlab https://github.com/appuio/weblate-docker#techlab
+oc import docker-compose -f docker-compose.yml -o json
+```
 
+Die Möglichkeit eine Datei direkt via URL zu importieren ist vorgesehen aber noch nicht implementiert. Durch weglassen der Option `-o json` werden die Resourcen direkt angelegt statt ausgegeben. Momentan werden Services für bereits vorhandene Docker images nur angelegt falls eine explizite Portkonfiguration in `docker-compose.yml` vorhanden ist. Diese können in der Zwischenzeit mit Hilfe von `oc new-app` angelegt werden:
+```
+oc new-app --name=database postgres:9.4 -o json|jq '.items[] | select(.kind == "Service")' | oc create -f -
+oc new-app --name=cache memcached:1.4 -o json|jq '.items[] | select(.kind == "Service")'|oc create -f -
+```
 
 ---
 
