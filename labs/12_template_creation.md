@@ -79,7 +79,23 @@ $ oc export is,bc,pvc,dc,route,service --as-template=my-template -o json > my-te
 ```
 Ohne die Option *--as-template* würde eine Liste von Items anstatt einem Template mit Objects exportiert.
 
-Viele Angaben sind nicht relevant oder störend für ein Template. Die Definitionen müssen gesäubert werden. Weiter ist es sinnvoll die Resourcen mit Labels zu erweitern.
+Momentan gibt es ein offenes [issue](https://github.com/openshift/origin/issues/8327) welches zur Folge hat,
+dass image streams nach dem re-importieren nicht mehr korrekt funktionieren. Als Workaround kann das Attribut
+`.spec.dockerImageRepository` wo vorhanden mit dem Wert des Attributes `.tags[0].annotations["openshift.io/imported-from"]`
+ersetzt werden. Mit [jq](https://stedolan.github.io/jq/) kann dies gleich automatisch erledigt werden:
+
+```
+$ oc export is,bc,pvc,dc,route,service --as-template=my-template -o json |
+  jq '(.objects[] | select(.kind == "ImageStream") | .spec) |= \
+    (.dockerImageRepository = .tags[0].annotations["openshift.io/imported-from"])' > my-template.json 
+```
+
+Attribute mit Wert `null` sowie die Annotation `openshift.io/generated-by` dürfen aus dem Template entfernt werden.
+Templates können mit `oc new-app -f <FILE>|<URL> -p <PARAM1>=<VALUE1>,<PARAM2>=<VALUE2>...` instanziert werden.
+`oc new-app` fügt standardmässig das Label `app=<template name>` in alle instanzierten Resourcen ein. Bei einigen
+OpenShift Versionen kann dies zu [ungültigen](https://github.com/openshift/origin/issues/10782) Resourcendefinitionen führen.
+Als Workaround kann mit  `oc new-app -l <label name>=<label value> ...` ein alternatives Label konfiguriert werden.
+
 * Welche Teile behalten?
 * Was Anpassen, Abändern?
 
