@@ -29,8 +29,8 @@ $ oc describe <RESOURCE_TYPE> <RESOURCE_NAME>
 
 Für den produktiven Einsatz reicht das meinstens nicht aus. Da braucht es mehr Kontrolle über die Konfiguration. Dazu sind eigene Templates die Lösung. Sie müssen jedoch nicht von Hand geschrieben werden sondern können als Vorlage generiert werden.
 
-### oc new-app
-OpenShift parst die gegebenen Images, Templates, Source Code Repositories usw. und erstellt die Resourcen Definitionen. Mit der Option **-o** erhält man die Definitionen ohne dass die Resourcen angelegt werden.
+### Generierung vor Erstellung
+Mit **oc new-app** parst OpenShift die gegebenen Images, Templates, Source Code Repositories usw. und erstellt die Resourcen Definitionen. Mit der Option **-o** erhält man die Definitionen ohne dass die Resourcen angelegt werden.
 
 So sieht die Definition vom hello-world Image aus.
 ```
@@ -55,16 +55,55 @@ Der Output der Konsole beginnt immer mit dem Kind: List.
     "apiVersion": "v1",
     ...
 ```
-Dies muss für ein Template in *template* geändert werden.
+Der Kind muss für ein Template in *template* geändert werden.
 
+### Generierung nach Erstellung
+Bestehende Resourcen werden mit **oc export** exportiert.
+```
+$ oc export route my-route
+```
 
-* oc export
- * welche Resourcen exportieren?
- * welche Teile behalten?
- * was Anpassen?
+Welche Resourcen braucht es?
+
+Für ein vollständiges Template sind folgende Resourcen notwendig:
+* Image Streams
+* Build Configurations
+* Deployment Configurations
+* Persistent-Volume Claims
+* Routes
+* Services
+
+Beispiel Befehl für einen Export der wichtigsten Resourcen als Template.
+```
+$ oc export is,bc,pvc,dc,route,service --as-template=my-template -o json > my-template.json
+```
+Ohne die Option *--as-template* würde eine Liste von Items anstatt einem Template mit Objects exportiert.
+
+Viele Angaben sind nicht relevant oder störend für ein Template. Die Definitionen müssen gesäubert werden. Weiter ist es sinnvoll die Resourcen mit Labels zu erweitern.
+* Welche Teile behalten?
+* Was Anpassen, Abändern?
 
 ## Parameter
-* process
+Damit die Applikationen für die eigenen Bedürfnisse angepasst werden kann, gibt es Parameter.
+
+### Parameter von Templates Anzeigen
+Verfügbare Templates sind im OpenShift Namespace hinterlegt. So werden alle Templates aufgelistet:
+```
+$ oc get templates -n openshift
+```
+
+Mit **oc process** werden die Parameter eines Templates angezeigt. Hier wollen wir sehen, welche Paramter im Cakephp Mysql Template definiert sind:
+```
+$ oc process --parameters cakephp-mysql-example -n openshift
+NAME                           DESCRIPTION                                                                GENERATOR VALUE
+NAME                           The name assigned to all of the frontend objects defined in this template.           cakephp-mysql-example
+NAMESPACE                      The OpenShift Namespace where the ImageStream resides.                               openshift
+MEMORY_LIMIT                   Maximum amount of memory the CakePHP container can use.                              512Mi
+MEMORY_MYSQL_LIMIT             Maximum amount of memory the MySQL container can use.                                512Mi
+...
+```
+
+
 * generate
  * Definition
 * int param
