@@ -84,17 +84,10 @@ ersetzt werden. Mit [jq](https://stedolan.github.io/jq/) kann dies gleich automa
 ```
 $ oc export is,bc,pvc,dc,route,service --as-template=my-template -o json |
   jq '(.objects[] | select(.kind == "ImageStream") | .spec) |= \
-    (.dockerImageRepository = .tags[0].annotations["openshift.io/imported-from"])' > my-template.json 
+    (.dockerImageRepository = .tags[0].annotations["openshift.io/imported-from"])' > my-template.json
 ```
 
 Attribute mit Wert `null` sowie die Annotation `openshift.io/generated-by` dürfen aus dem Template entfernt werden.
-Templates können mit `oc new-app -f <FILE>|<URL> -p <PARAM1>=<VALUE1>,<PARAM2>=<VALUE2>...` instanziert werden.
-`oc new-app` fügt standardmässig das Label `app=<TEMPLATE NAME>` in alle instanzierten Resourcen ein. Bei einigen
-OpenShift Versionen kann dies zu [ungültigen](https://github.com/openshift/origin/issues/10782) Resourcendefinitionen führen.
-Als Workaround kann mit `oc new-app -l <LABEL NAME>=<LABEL VALUE> ...` ein alternatives Label konfiguriert werden.
-
-* Welche Teile behalten?
-* Was Anpassen, Abändern?
 
 ### Vorhandene Templates exportieren
 Es können auch bestehenden Templates der Plattform abgeholt werden um eigene Templates zu erstellen.
@@ -143,18 +136,37 @@ oc process -f eap70-mysql-persistent-s2i.json \
 ```
 
 ## Templates schreiben
+OpenShift Dokumentation:
+* [Template Konzept](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/templates.html)
+* [Templates Schreiben](https://docs.openshift.com/container-platform/3.3/dev_guide/templates.html)
 
+Applikationen sollten so gebaut werden, dass sich pro Umgebung nur ein paar Konfigurationen unterscheiden. Diese Werte werden im Template als Parameter definiert.
+Somit ist der erste Schritt nach dem Generieren einer Template Definition, das Definieren von Parameter. Das Template wird mit Variablen erweitert, welche dann mit den Parameter Werten ersetzt werden. So wird die Variable `${DB_PASSWORD}` mit dem Parameter mit dem Namen `DB_PASSWORD` ersetzt.
 
+### Generierte Parameter
+Oft werden Passwörter automatisch generiert, da der Wert nur im OpenShift Projekt verwendet wird. Dies kann mit einer Generate Definition erreicht werden.
+```
+parameters:
+  - name: DB_PASSWORD
+    description: "DB connection password"
+    generate: expression
+    from: "[a-zA-Z0-9]{13}"
+```
+Diese Definition würde ein zufälliges, 13 Zeichen langes Passwort mit Klein-, Grossbuchstaben und Zahlen generieren.
 
-* generate
- * Definition
-* int param
+Auch wenn ein Parameter mit Generate Definition konfiguriert ist, kann er bei der Erzeugung überschrieben werden.
 
-## Template Merge
+### Template Merge
+Wenn z.B eine App mit einer Datenbank zusammen verwendet wird, können die zwei Templates zusammengelegt werden. Dabei ist es wichtig die Template Parameter zu konsolidieren. Dies sind meinstens Werte für die Verbindung zur Datenbank. Dabei einfach in beiden Templates die gleiche Variable vom gemeinsamen Parameter verwenden.
 
+## Anwenden vom Templates
+Templates können mit `oc new-app -f <FILE>|<URL> -p <PARAM1>=<VALUE1>,<PARAM2>=<VALUE2>...` instanziert werden.
+Wenn die Parameter vom Template bereits mit `oc process` gesetzt wurden, braucht es die Angabe der Parameter nicht mehr.
 
-## Metadata
-* Labels
+### Metadata / Labels
+`oc new-app` fügt standardmässig das Label `app=<TEMPLATE NAME>` in alle instanzierten Resourcen ein. Bei einigen
+OpenShift Versionen kann dies zu [ungültigen](https://github.com/openshift/origin/issues/10782) Resourcendefinitionen führen.
+Als Workaround kann mit `oc new-app -l <LABEL NAME>=<LABEL VALUE> ...` ein alternatives Label konfiguriert werden.
 
 ## Ressourcen aus docker-compose.yml erstellen
 
