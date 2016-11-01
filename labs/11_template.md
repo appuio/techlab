@@ -82,7 +82,7 @@ Bspw.
 oc export is,bc,dc,route,service --as-template=example-spring-boot -o json > example-spring-boot-template.json
 ```
 
-Wichtig ist, dass die Imagestreams zuoberst im Template File definiert sind. Ansonsten wird der erste Deploy nicht funktionieren.
+Wichtig ist, dass die Imagestreams zuoberst im Template File definiert sind. Ansonsten wird der erste Build nicht funktionieren.
 
 ---
 

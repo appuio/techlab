@@ -96,16 +96,24 @@ Als Workaround kann mit `oc new-app -l <LABEL NAME>=<LABEL VALUE> ...` ein alter
 * Welche Teile behalten?
 * Was Anpassen, Abändern?
 
-## Parameter
-Damit die Applikationen für die eigenen Bedürfnisse angepasst werden kann, gibt es Parameter.
+### Vorhandene Templates exportieren
+Es können auch bestehenden Templates der Plattform abgeholt werden um eigene Templates zu erstellen.
 
-### Parameter von Templates Anzeigen
 Verfügbare Templates sind im OpenShift Namespace hinterlegt. So werden alle Templates aufgelistet:
 ```
 $ oc get templates -n openshift
 ```
 
-Mit **oc process** werden die Parameter eines Templates angezeigt. Hier wollen wir sehen, welche Paramter im Cakephp Mysql Template definiert sind:
+So erhalten wir eine Kopie vom eap70-mysql-persistent-s2i Template.
+```
+$ oc export template eap70-mysql-persistent-s2i -o json -n openshift > eap70-mysql-persistent-s2i.json
+```
+
+## Parameter
+Damit die Applikationen für die eigenen Bedürfnisse angepasst werden kann, gibt es Parameter. Generierte oder exportierte Templates sollten fixe Werte, wie Hostnamen oder Passwörter, durch Parameter ersetzt werden.
+
+### Parameter von Templates Anzeigen
+Mit **oc process --parameters** werden die Parameter eines Templates angezeigt. Hier wollen wir sehen, welche Paramter im Cakephp MySQL Template definiert sind.
 ```
 $ oc process --parameters cakephp-mysql-example -n openshift
 NAME                           DESCRIPTION                                                                GENERATOR VALUE
@@ -115,6 +123,27 @@ MEMORY_LIMIT                   Maximum amount of memory the CakePHP container ca
 MEMORY_MYSQL_LIMIT             Maximum amount of memory the MySQL container can use.                                512Mi
 ...
 ```
+
+### Parameter von Templates mit Werten Ersetzen
+Für die Erzeugung der Applikationen können gewünschte Parameter mit Werten ersetzt werden. Dazu **oc process** verwenden:
+```
+oc process -f eap70-mysql-persistent-s2i.json \
+  -v PARAM1=value1,PARAM2=value2 > processed-template.json
+```
+So werden Parameter vom Template mit den gegebenen Werten ersetzt und in eine neue Datei geschrieben. Diese Datei wird eine Liste von Resourcen/Items sein, welche mit **oc create** erstellt werden können.
+```
+oc create -f processed-template.json
+
+```
+Dies kann auch in einem Schritt gemacht werden:
+```
+oc process -f eap70-mysql-persistent-s2i.json \
+  -v PARAM1=value1,PARAM2=value2 \
+  | oc create -f -
+```
+
+## Templates schreiben
+
 
 
 * generate
