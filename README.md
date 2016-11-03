@@ -19,12 +19,12 @@ Dieses Techlab basiert auf OpenShift V3.2.
 8. [Datenbank deployen und anbinden](labs/08_database.md)
 9. [Code Änderungen via Webhook direkt integrieren](labs/09_dockerbuild_webhook.md)
 10. [Persistent Storage anbinden und verwenden für Datenbank](labs/10_persistent_storage.md)
-11. [Applikationstemplates](labs/11_template.md) 
-
+11. [Applikationstemplates](labs/11_template.md)
+12. [Eigene Templates erstellen](labs/12_template_creation.md) 
 
 ### Zusätzliche Labs
 
-- [Logging EFK Stack](additional-labs/logging_efk_stack.md) 
+- [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
 
 
@@ -41,4 +41,3 @@ Dieses Techlab basiert auf OpenShift V3.2.
 
 ### OpenShift Examples
 - [OpenShift Creating New Applications Docs](https://docs.openshift.com/enterprise/3.2/dev_guide/new_app.html)
-

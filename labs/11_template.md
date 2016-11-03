@@ -19,11 +19,11 @@ $ oc get template -n openshift
 
 Über die Web Console kann dies via "Add to Project" gemacht werden, über diese Funktionalität können Templates direkt instanziert werden.
 
-Diese Templates können im Json Format sowohl im Git Repositors neben ihrem Source Code abgelegt werden wie auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein. 
+Diese Templates können im Json Format sowohl im Git Repositors neben ihrem Source Code abgelegt werden wie auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein.
 
 ## Aufgabe: LAB11.1: Template instanzieren.
 
-Die einzelnen Schritte die wir in den vorherigen Labs manuell vorgenommen haben, können nun mittels Template in einem "Rutsch" durchgeführt werden. 
+Die einzelnen Schritte die wir in den vorherigen Labs manuell vorgenommen haben, können nun mittels Template in einem "Rutsch" durchgeführt werden.
 
 ```
 $ oc new-project [USER]-template
@@ -76,11 +76,13 @@ https://github.com/appuio/example-spring-boot-helloworld/blob/master/example-spr
 
 
 **Note:** Bestehende Resourcen können als Template exportiert werden, verwenden Sie dafür den `oc export [ResourceType] --as-myapptemplate` Command.
-Bspw. 
+Bspw.
 
 ```
-oc export bc,is,dc,route,service --as-template=example-spring-boot -o json > example-spring-boot-template.json
+oc export is,bc,dc,route,service --as-template=example-spring-boot -o json > example-spring-boot-template.json
 ```
+
+Wichtig ist, dass die Imagestreams zuoberst im Template File definiert sind. Ansonsten wird der erste Build nicht funktionieren.
 
 ---
 
