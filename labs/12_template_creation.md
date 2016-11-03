@@ -126,7 +126,6 @@ oc process -f eap70-mysql-persistent-s2i.json \
 So werden Parameter vom Template mit den gegebenen Werten ersetzt und in eine neue Datei geschrieben. Diese Datei wird eine Liste von Resourcen/Items sein, welche mit **oc create** erstellt werden können.
 ```
 oc create -f processed-template.json
-
 ```
 Dies kann auch in einem Schritt gemacht werden:
 ```
