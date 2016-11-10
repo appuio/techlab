@@ -88,14 +88,17 @@ Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt ges
 
 ---
 
-## Erweiterte Bash Completion
+## bash/zsh completion
 
-Die Bash Completion kann für den oc Command installiert werden. Laden Sie dafür das File von hier [openshift bash completions](https://master.appuio-beta.ch/console/extensions/clients/bash-completion/oc) herunter und installieren Sie es wie folgt:
+Mit Linux und Mac kann die bash completion mit folgendem Befehl temporär eingerichtet werden:
 
 ```
-sudo mv oc /etc/bash_completion.d/
-sudo chown root: /etc/bash_completion.d/oc
-sudo chmod g-w /etc/bash_completion.d/oc
+source <(oc completion bash)
+```
+
+Oder für zsh:
+```
+source <(oc completion zsh)
 ```
 
 ---
