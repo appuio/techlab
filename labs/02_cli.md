@@ -15,7 +15,7 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 
 ## oc Client herunterladen und installieren
 
-Der oc Client wird vom GitHub-Repository von OpenShift Origin heruntergeladen:
+Der oc Client wird vom [GitHub-Repository von OpenShift Origin](https://github.com/openshift/origin/releases/tag/v1.3.1) heruntergeladen:
 
 * [Windows](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-windows.zip)
 * [Mac](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-2748423-mac.zip)
