@@ -19,7 +19,7 @@ Der oc Client wird vom [GitHub-Repository von OpenShift Origin](https://github.c
 
 * [Windows](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-windows.zip)
 * [Mac](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-2748423-mac.zip)
-* [Linux 64bit](https://master.appuio-beta.ch/console/extensions/clients/linux/o://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-linux-64bit.tar.gz)
+* [Linux 64bit](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-linux-64bit.tar.gz)
 * [Linux 32bit](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-linux-32bit.tar.gz)
 * [CHECKSUM](https://github.com/openshift/origin/releases/download/v1.3.1/CHECKSUM)
 
