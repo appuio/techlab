@@ -9,17 +9,19 @@ Der **oc client** stellt ein Interface zu OpenShift V3 bereit.
 Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher:
 
 - Microsoft Windows
-- Mac OS X
+- macOS
 - Linux
 
 
 ## oc Client herunterladen und installieren
 
-Der oc Client kann direkt von der APPUiO Beta Plattform heruntergeladen werden:
+Der oc Client wird vom GitHub-Repository von OpenShift Origin heruntergeladen:
 
-* [Windows](https://master.appuio-beta.ch/console/extensions/clients/windows/oc.exe)
-* [Mac OS X](https://master.appuio-beta.ch/console/extensions/clients/macosx/oc)
-* [Linux](https://master.appuio-beta.ch/console/extensions/clients/linux/oc)
+* [Windows](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-windows.zip)
+* [Mac](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-2748423-mac.zip)
+* [Linux 64bit](https://master.appuio-beta.ch/console/extensions/clients/linux/o://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-linux-64bit.tar.gz)
+* [Linux 32bit](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-linux-32bit.tar.gz)
+* [CHECKSUM](https://github.com/openshift/origin/releases/download/v1.3.1/CHECKSUM)
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
 
@@ -29,7 +31,7 @@ Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeic
 ~/bin
 ```
 
-**Mac OS X**
+**macOS**
 
 ```
 ~/bin
@@ -41,7 +43,7 @@ Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeic
 C:\OpenShift\
 ```
 
-## Korrekte Berechtigung auf Linux und Mac OS X erteilen
+## Korrekte Berechtigung auf Linux und macOS erteilen
 
 Der oc Client muss ausgeführt werden können.
 
@@ -52,7 +54,7 @@ chmod +x oc
 
 ## den oc Client im PATH registrieren
 
-Unter **Linux** und **Mac OS X** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
+Unter **Linux** und **macOS** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
 
 Falls der oc Client in einem anderen Verzeichnis abgelegt wurde, kann der PATH wie folgt gesetzt werden:
 ```
@@ -80,8 +82,8 @@ $ oc version
 ```
 Der folgende Output sollte angezeigt werden:
 ```
-oc v3.2.0.46-1-g3fab54d
-kubernetes v1.2.0-36-g4a3f9c5
+oc v1.3.1
+kubernetes v1.3.0+52492b4
 ```
 
 Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt gesetzt.
@@ -103,7 +105,7 @@ source <(oc completion zsh)
 
 ---
 
-**Ende Lab 2**
+
 
 <p width="100px" align="right"><a href="03_first_steps.md">Erste Schritte auf der Lab Plattform →</a></p>
 [← zurück zur Übersicht] (../README.md)
