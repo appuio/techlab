@@ -1,8 +1,8 @@
 # APPUiO - OpenShift V3 Techlab Dokumentation
 
-Dieses Techlab basiert auf OpenShift V3.2.
+Dieses Techlab basiert auf OpenShift V3.3.
 
-**Tipp** Das Techlab zur Version 3.1 ist im [Branch lab-3.1](https://github.com/appuio/techlab/tree/lab-3.1) zu finden
+**Tipp** Das Techlab zur Version 3.2 ist im [Branch lab-3.2](https://github.com/appuio/techlab/tree/lab-3.2) und das Techlab zur Version 3.1 ist im [Branch lab-3.1](https://github.com/appuio/techlab/tree/lab-3.1) zu finden.
 
 
 ## Inhalte
@@ -20,7 +20,7 @@ Dieses Techlab basiert auf OpenShift V3.2.
 9. [Code Änderungen via Webhook direkt integrieren](labs/09_dockerbuild_webhook.md)
 10. [Persistent Storage anbinden und verwenden für Datenbank](labs/10_persistent_storage.md)
 11. [Applikationstemplates](labs/11_template.md)
-12. [Eigene Templates erstellen](labs/12_template_creation.md) 
+12. [Eigene Templates erstellen](labs/12_template_creation.md)
 
 ### Zusätzliche Labs
 
@@ -30,7 +30,7 @@ Dieses Techlab basiert auf OpenShift V3.2.
 
 ## Weiterführende Dokumentation
 
-- [OpenShift V3.2 docs](https://docs.openshift.com/enterprise/3.2/welcome/index.html)
+- [OpenShift V3.3 docs](https://docs.openshift.com/container-platform/3.3/welcome/index.html)
 - [APPUiO docs](http://docs.appuio.ch)
 
 ### APPUiO Examples
@@ -40,4 +40,4 @@ Dieses Techlab basiert auf OpenShift V3.2.
 - [APPUiO Cron Job Example](https://github.com/appuio/example-cron-traditional)
 
 ### OpenShift Examples
-- [OpenShift Creating New Applications Docs](https://docs.openshift.com/enterprise/3.2/dev_guide/new_app.html)
+- [OpenShift Creating New Applications Docs](https://docs.openshift.com/container-platform/3.3/dev_guide/new_app.html)
