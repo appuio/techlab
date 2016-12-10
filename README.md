@@ -26,7 +26,11 @@ Dieses Techlab basiert auf OpenShift V3.3.
 
 - [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
+### OpenShift Test Plattform
 
+Anleitungen um eine OpenShift Test-Instanz zu Benutzen.
+
+- [Test Plattform](misc/test_platform.md)
 
 ## Weiterführende Dokumentation
 
