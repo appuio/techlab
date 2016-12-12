@@ -1,18 +1,19 @@
 # Test Plattform
-
 Wo kann ich die Labs durchführen, wie komme ich an eine APPUiO oder OpenShift Container Plattform?
 
 ## Lokal
+
+### OC Tool
 Seit der Version 1.3 vom OC Tool gibt es eine tolle Variante, ein OpenShift lokal zu starten. Einfach diesen Befehl eingeben:
 ```
 $ oc cluster up
 ```
 Damit dies funktioniert, muss Docker und das OC Tool installiert und konfiguriert sein.
 
-### RHEL / Fedora / MacOS / Windows Setup
+#### RHEL / Fedora / MacOS / Windows Setup
 Offizielle Anleitung befolgen: https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md
 
-### Ubuntu 16.04
+#### Ubuntu 16.04
 Spezielle Anleitung für Ubuntu 16.04, da der Registry Zugriff anders konfiguriert werden muss.
 
 | ACHTUNG |
@@ -46,6 +47,9 @@ Cluster Stoppen:
 ```
 $ oc cluster down
 ```
+
+### Vagrant
+Mit dem [Puppet Modul für OpenShift 3](https://github.com/puzzle/puppet-openshift3/tree/dev) ist die Installation der Plattform in Vagrant automatisiert. Dieses Puppet Modul wird für die Installation und Aktualisierung produktiver Instanzen verwendet.
 
 ---
 
