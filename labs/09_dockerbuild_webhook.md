@@ -28,7 +28,7 @@ einen Fork des Example Projektes, den Sie so erweitern können wie Sie wollen.
 
 Erstellen Sie ein neues Projekt:
 ```
-$ oc new-project [USER]-example3
+$ oc new-project [USER]-example4
 ```
 
 Erstellen Sie für Ihren Fork eine neue App. **Note:** Ersetzen Sie `[YourGithubUser]` mit dem Namen Ihres GitHub Accounts:
@@ -61,8 +61,8 @@ URL:			https://github.com/appuio/example-php-docker-helloworld.git
 From Image:		ImageStreamTag php-56-centos7:latest
 Output to:		ImageStreamTag appuio-php-docker-ex:latest
 Triggered by:		Config, ImageChange
-Webhook Generic:	https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example3/buildconfigs/appuio-php-docker-ex/webhooks/EqEq18JtxaY3vG2zvPSU/generic
-Webhook GitHub:		https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example3/buildconfigs/appuio-php-docker-ex/webhooks/hqQ3h1CzUGIXvWqjiV-G/github
+Webhook Generic:	https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example4/buildconfigs/appuio-php-docker-ex/webhooks/EqEq18JtxaY3vG2zvPSU/generic
+Webhook GitHub:		https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example4/buildconfigs/appuio-php-docker-ex/webhooks/hqQ3h1CzUGIXvWqjiV-G/github
 
 Build			Status		Duration		Creation Time
 appuio-php-docker-ex-1 	running 	running for 56s 	2016-06-17 16:56:34 +0200 CEST
