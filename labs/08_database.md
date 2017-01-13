@@ -23,6 +23,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 ```
 $ oc new-app mysql-ephemeral \
+     -pMEMORY_LIMIT=128Mi \
      -pMYSQL_USER=appuio -pMYSQL_PASSWORD=appuio \
      -pMYSQL_DATABASE=appuio -pDATABASE_SERVICE_NAME=mysql
 ```
