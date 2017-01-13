@@ -71,7 +71,7 @@ Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShif
 
 1. Loggen Sie sich in der Web Console ein
 2. Wählen Sie Ihr Projekt `[USER]-dockerimage` aus
-3. Klicken Sie auf Browse
+3. Klicken Sie auf Applications
 4. Wählen Sie Pods aus
 
 

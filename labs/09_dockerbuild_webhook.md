@@ -70,7 +70,7 @@ appuio-php-docker-ex-1 	running 	running for 56s 	2016-06-17 16:56:34 +0200 CEST
 
 ```
 
-Den GitHub Webhook können Sie auch von der Web Console kopieren. Gehen Sie dafür via Browse --> Builds auf den entsprechenden Build und wählen Sie das Tab Configuration aus:
+Den GitHub Webhook können Sie auch von der Web Console kopieren. Gehen Sie dafür via Builds → Builds auf den entsprechenden Build und wählen Sie das Tab Configuration aus:
 
 ![Webhook](../images/lab_9_webhook_ose3.png)
 

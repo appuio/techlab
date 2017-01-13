@@ -229,12 +229,12 @@ spec:
 ...
 ```
 
-Die Deployment Config kann via WebConsole (Browse --> Deployments --> example-php-docker-helloworld, edit) oder direkt über `oc` editiert werden.
+Die Deployment Config kann via Web Console (Applications → Deployments → example-php-docker-helloworld, edit) oder direkt über `oc` editiert werden.
 ```
 $ oc edit dc appuio-php-docker
 ```
 
-Oder im json Format editieren:
+Oder im JSON-Format editieren:
 ```
 $ oc edit dc appuio-php-docker -o json
 ```

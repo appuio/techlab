@@ -106,7 +106,7 @@ Befehl für das Setzen der Umgebungsvariablen:
 
 Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
 
-(Browse --> Deployments --> example-spring-boot, Actions, Edit YAML)
+(Applications → Deployments → example-spring-boot, Actions, Edit YAML)
 
 ## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
 
