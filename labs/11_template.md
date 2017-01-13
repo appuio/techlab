@@ -8,7 +8,7 @@ Wie Sie in den vorangegangenen Labs gesehen haben, können einfach über die Ein
 
 Dies ist fehleranfällig und eignet sich schlecht zum Automatisieren.
 
-OpenShift bietet dafür das Konzept von Templates, in welchen man eine Liste von Resourcen beschreiben kann, die parametrisiert werden können. Sie sind also quasi ein Rezept für eine ganze Infrastruktur (bspw. 3 ApplikationsContainer, eine Datenbank mit Persistent Storage)
+OpenShift bietet dafür das Konzept von Templates, in welchen man eine Liste von Ressourcen beschreiben kann, die parametrisiert werden können. Sie sind also quasi ein Rezept für eine ganze Infrastruktur (bspw. 3 ApplikationsContainer, eine Datenbank mit Persistent Storage)
 
 **Note:** der Clusteradmin kann globale Templates erstellen, welche allen Usern zur Verfügung stehen.
 
@@ -75,7 +75,7 @@ https://github.com/appuio/example-spring-boot-helloworld/blob/master/example-spr
 ```
 
 
-**Note:** Bestehende Resourcen können als Template exportiert werden, verwenden Sie dafür den `oc export [ResourceType] --as-myapptemplate` Command.
+**Note:** Bestehende Ressourcen können als Template exportiert werden, verwenden Sie dafür den `oc export [ResourceType] --as-myapptemplate` Command.
 Bspw.
 
 ```

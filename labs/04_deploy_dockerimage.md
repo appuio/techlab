@@ -9,7 +9,7 @@ Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet
 
 > [Weiterführende Dokumentation](https://docs.openshift.com/container-platform/3.3/dev_guide/new_app.html#specifying-an-image)
 
-Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres). Für das Projekt berechtigte User können diese Resourcen verwalten. Innerhalb eines OpenShift V3 Clusters muss der Name eines Projektes eindeutig sein.
+Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres). Für das Projekt berechtigte User können diese Ressourcen verwalten. Innerhalb eines OpenShift V3 Clusters muss der Name eines Projektes eindeutig sein.
 
 Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-dockerimage`:
 
