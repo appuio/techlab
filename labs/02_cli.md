@@ -15,13 +15,13 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 
 ## oc Client herunterladen und installieren
 
-Der oc Client wird vom [GitHub-Repository von OpenShift Origin](https://github.com/openshift/origin/releases/tag/v1.3.1) heruntergeladen:
+Der oc Client wird vom [GitHub-Repository von OpenShift Origin](https://github.com/openshift/origin/releases/tag/v1.3.2) heruntergeladen:
 
-* [Windows](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-windows.zip)
-* [Mac](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-2748423-mac.zip)
-* [Linux 64bit](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-linux-64bit.tar.gz)
-* [Linux 32bit](https://github.com/openshift/origin/releases/download/v1.3.1/openshift-origin-client-tools-v1.3.1-dad658de7465ba8a234a4fb40b5b446a45a4cee1-linux-32bit.tar.gz)
-* [CHECKSUM](https://github.com/openshift/origin/releases/download/v1.3.1/CHECKSUM)
+* [Windows](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-windows.zip)
+* [Mac](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-mac.zip)
+* [Linux 64bit](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-linux-64bit.tar.gz  )
+* [Linux 32bit](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-linux-32bit.tar.gz)
+* [CHECKSUM](https://github.com/openshift/origin/releases/download/v1.3.2/CHECKSUM)
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
 
