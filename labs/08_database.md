@@ -156,7 +156,7 @@ alle Tabellen anzeigen.
 Die Aufgabe ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) einzuspielen.
 
 
-**Tipp:** Mit `oc rsync` können Sie lokale Dateien in einen Pod kopieren.
+**Tipp:** Mit `oc rsync` können Sie lokale Dateien in einen Pod kopieren. **Achtung:** Beachten Sie, dass dabei der rsync-Befehl des Betriebssystems verwendet wird. Auf UNIX-Systemen kann rsync mit dem Paketmanager, auf Windows kann bspw. [cwRsync](https://www.itefix.net/cwrsync) installiert werden. Ist eine Installation von rsync nicht möglich, kann stattdessen bspw. in den Pod eingeloggt und via `curl -O <URL>` der Dump heruntergeladen werden.
 
 **Tipp:** Verwenden Sie das Tool mysql um den Dump einzuspielen.
 
@@ -167,7 +167,7 @@ Die Aufgabe ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.co
 
 ## Lösung: LAB8.4
 
-Ein ganzes Verzeichnis (dump) syncen. Darin enthalten ist das File `dump.sql`.
+Ein ganzes Verzeichnis (dump) syncen. Darin enthalten ist das File `dump.sql`. Beachten Sie zum rsync-Befehl auch obenstehenden Tipp.
 ```
 oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/
 ```
