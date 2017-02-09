@@ -2,53 +2,11 @@
 
 In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagieren, dies sowohl über den oc Client wie auch über die Web Console
 
-## CLI
+## Login
 
 **Note:** Versichern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben.
 
-**Note:** Falls Sie GitHub als Authentisierungs-Methode verwenden, springen Sie zum Kapitel [GitHub-Authentisierung](#github-authentisierung).
-
-Mit dem folgenden Command können Sie sich auf der Lab OpenShift V3 Plattform anmelden:
-
-```
-$ oc login [URL]
-```
-
-**Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktor zur Verfügung gestellt.
-
-**Note:** Es kann sein, dass Sie gefragt werden, ein Zertifikat einer *unknown authority* zu bestätigen, bestätigen Sie dies mit **y**.
-```
-The server uses a certificate signed by an unknown authority.
-You can bypass the certificate check, but any data you send to the server could be intercepted by others.
-Use insecure connections? (y/n):
-```
-
-Als Alternative können Sie dies oc beim Aufruf mitgeben:
-```
-$ oc login [URL] --insecure-skip-tls-verify=true
-```
-
-Nach dem erfolgreichen Login wird Ihnen folgendes angezeigt:
-```
-Login successful.
-Welcome to OpenShift! See 'oc help' to get started.
-```
-
-Herzliche Gratulation, Sie sind nun mit der Lab Umgebung verbunden ;-)!
-
-### GitHub-Authentisierung
-
-Die Authentisierung mit GitHub-Credentials ist leicht unterschiedlich zu den anderen, wie bspw. LDAP.
-
-Rufen Sie zuerst folgende URL in einem Browser auf: https://ose3-lab-master.puzzle.ch:8443/oauth/token/request.
-
-Wählen Sie GitHub als Login-Methode.
-
-Nach erfolgreichem Login bei GitHub werden Sie gefragt, ob Sie die Applikation "APPUiO OpenShift" autorisieren möchten, gewisse Berechtigungen zu erhalten.
-
-Sie sehen nun eine Seite mit dem Hinweis "Log in with this token", worunter der oc-Befehl angegeben wird, mit dem Sie sich nun an der Techlab Plattform anmelden können.
-
-Herzliche Gratulation, Sie sind nun mit der Lab Umgebung verbunden ;-)!
+Bitte verwenden Sie für das Login auf dem Webinterface sowie mit `oc` die durch den Instruktor zur Verfügung gestellten Angaben.
 
 
 ## Projekt erstellen
