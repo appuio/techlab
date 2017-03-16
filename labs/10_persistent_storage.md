@@ -17,7 +17,7 @@ Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In
 
 Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 ```
-$ oc volume dc/mysql --add --name=mysql-data --type pvc \
+$ oc volume dc/mysql --add --name=mysql-data --type persistentVolumeClaim \
      --claim-name=mysqlpvc --claim-size=256Mi --overwrite
 ```
 **Note:** Durch die veränderte Deployment Config deployt OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
