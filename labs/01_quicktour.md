@@ -90,4 +90,5 @@ So hat man die Möglichkeit ganze Infrastrukturen zu beschreiben:
 
 **Ende Lab 1**
 <p width="100px" align="right"><a href="02_cli.md">OpenShift CLI installieren →</a></p>
-[← zurück zur Übersicht] (../README.md)
+
+[← zurück zur Übersicht](../README.md)

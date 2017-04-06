@@ -172,4 +172,5 @@ $ oc deploy appuio-php-docker-ex --enable-triggers
 **Ende Lab 9**
 
 <p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
-[← zurück zur Übersicht] (../README.md)
+
+[← zurück zur Übersicht](../README.md)

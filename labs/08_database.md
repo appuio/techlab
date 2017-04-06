@@ -201,4 +201,5 @@ mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HO
 **Ende Lab 8**
 
 <p width="100px" align="right"><a href="09_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
-[← zurück zur Übersicht] (../README.md)
+
+[← zurück zur Übersicht](../README.md)

@@ -94,4 +94,5 @@ Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu fi
 **Ende Lab 7**
 
 <p width="100px" align="right"><a href="08_database.md">Datenbank deployen und anbinden →</a></p>
-[← zurück zur Übersicht] (../README.md)
+
+[← zurück zur Übersicht](../README.md)
