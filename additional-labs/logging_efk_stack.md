@@ -42,6 +42,6 @@ Was auch innerhalb von Kibana zu einer verständlicheren Darstellung führen wü
 
 ---
 
-**Ende **
+**Ende**
 
-[<< zurück zur Übersicht] (../README.md)
+[← zurück zur Übersicht](../README.md)

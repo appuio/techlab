@@ -70,6 +70,6 @@ Ein [Blogpost von Red Hat](https://developers.redhat.com/blog/2016/10/11/four-cr
 
 ---
 
-**Ende **
+**Ende**
 
-[<< zurück zur Übersicht] (../README.md)
+[← zurück zur Übersicht](../README.md)
