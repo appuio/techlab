@@ -15,13 +15,13 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 
 ## oc Client herunterladen und installieren
 
-Der oc Client wird vom [GitHub-Repository von OpenShift Origin](https://github.com/openshift/origin/releases/tag/v1.3.2) heruntergeladen:
+Der oc Client wird vom [GitHub-Repository von OpenShift Origin](https://github.com/openshift/origin/releases/tag/v1.3.3) heruntergeladen:
 
-* [Windows](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-windows.zip)
-* [Mac](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-mac.zip)
-* [Linux 64bit](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-linux-64bit.tar.gz  )
-* [Linux 32bit](https://github.com/openshift/origin/releases/download/v1.3.2/openshift-origin-client-tools-v1.3.2-ac1d579-linux-32bit.tar.gz)
-* [CHECKSUM](https://github.com/openshift/origin/releases/download/v1.3.2/CHECKSUM)
+* [Windows](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-windows.zip)
+* [Mac](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-mac.zip)
+* [Linux 64bit](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-linux-64bit.tar.gz)
+* [Linux 32bit](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-linux-32bit.tar.gz)
+* [CHECKSUM](https://github.com/openshift/origin/releases/download/v1.3.3/CHECKSUM)
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
 
@@ -82,7 +82,7 @@ $ oc version
 ```
 Der folgende Output sollte angezeigt werden:
 ```
-oc v1.3.1
+oc v1.3.3
 kubernetes v1.3.0+52492b4
 ```
 
@@ -90,7 +90,7 @@ Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt ges
 
 ---
 
-## bash/zsh completion
+## bash/zsh completion (optional)
 
 Mit Linux und Mac kann die bash completion mit folgendem Befehl temporär eingerichtet werden:
 
