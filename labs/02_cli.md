@@ -116,4 +116,5 @@ source <(oc completion zsh)
 
 
 <p width="100px" align="right"><a href="03_first_steps.md">Erste Schritte auf der Lab Plattform →</a></p>
-[← zurück zur Übersicht] (../README.md)
+
+[← zurück zur Übersicht](../README.md)
