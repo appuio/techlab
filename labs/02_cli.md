@@ -12,6 +12,14 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 - macOS
 - Linux
 
+### Fedora
+
+Fedora bietet via Repository das Paket `origin-clients`, welches bereits sämtliche hier beschriebenen Installationsschritte erledigt. Für die komplette Installation muss also lediglich folgender Befehl ausgeführt werden:
+```
+dnf install origin-clients
+```
+Für andere Betriebssysteme oder Linux-Distributionen müssen die im folgenden beschriebenen Schritte durchgeführt werden.
+
 
 ## oc Client herunterladen und installieren
 
