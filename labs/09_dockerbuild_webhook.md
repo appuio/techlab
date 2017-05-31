@@ -158,7 +158,7 @@ Warning: the following images triggers were disabled: appuio-php-docker-ex
   You can re-enable them with: oc deploy appuio-php-docker-ex --enable-triggers -n phptest
 ```
 
-Sobald das Deployment der alten Version erfolgt ist, können Sie über ihren Browser überprüfen, ob wieder die ursprüngliche Überschrift **Hello APPUiO** angezeigt wird.
+Sobald das Deployment der alten Version erfolgt ist, können Sie über Ihren Browser überprüfen, ob wieder die ursprüngliche Überschrift **Hello APPUiO** angezeigt wird.
 
 **Tipp:** Die automatischen Deployments neuer Versionen ist nun für diese Applikation ausgeschaltet um ungewollte Änderungen nach dem Rollback zu verhindern. Um das automatische Deployment wieder einzuschalten führen Sie den folgenden Befehl aus:
 

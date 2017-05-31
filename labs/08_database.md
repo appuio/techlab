@@ -60,7 +60,7 @@ Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-
 ```
 SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
-**Note:** mysql löst innerhalb ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. Der Service ist ebenfalls über den folgenden Namen erreichbar:
+**Note:** mysql löst innerhalb Ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. Der Service ist ebenfalls über den folgenden Namen erreichbar:
 
 ```
 Projektname = techlab-dockerimage

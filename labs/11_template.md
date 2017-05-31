@@ -19,7 +19,7 @@ $ oc get template -n openshift
 
 Über die Web Console kann dies via "Add to Project" gemacht werden, über diese Funktionalität können Templates direkt instanziert werden.
 
-Diese Templates können im Json Format sowohl im Git Repositors neben ihrem Source Code abgelegt werden wie auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein.
+Diese Templates können im JSON-Format sowohl im Git Repository neben Ihrem Source Code abgelegt werden als auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein.
 
 ## Aufgabe: LAB11.1: Template instanzieren.
 

@@ -11,13 +11,13 @@ Bitte verwenden Sie für das Login auf dem Webinterface sowie mit `oc` die durch
 
 ## Projekt erstellen
 
-Ein Projekt in OpenShift ist das Top Level Konzept um ihre Applikationen, Deployments, Builds, Container etc. zu organisieren. Siehe [Lab1](01_quicktour.md).
+Ein Projekt in OpenShift ist das Top Level Konzept um Ihre Applikationen, Deployments, Builds, Container etc. zu organisieren. Siehe [Lab1](01_quicktour.md).
 
 
 ## Aufgabe: LAB3.1
 Erstellen Sie auf der Lab Plattform ein neues Projekt.
 
-**Note**: Verwenden Sie für Ihren Projektnamen am besten Ihren Github Namen oder ihren Nachnamen, bspw. `[USER]-example1`
+**Note**: Verwenden Sie für Ihren Projektnamen am besten Ihren Github Namen oder Ihren Nachnamen, bspw. `[USER]-example1`
 
 > Wie kann ein neues Projekt erstellt werden?
 
@@ -55,7 +55,7 @@ Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via B
 ![php5.6](../images/lab_3_example1-deployed.png)
 
 
-Sie haben nun ihre erste Applikation mittels sogenanntem **[Source to Image](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
+Sie haben nun Ihre erste Applikation mittels sogenanntem **[Source to Image](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
 
 **Tipp:** mit dem folgenden Command können Sie in ein anderes Projekt wechseln:
 ```

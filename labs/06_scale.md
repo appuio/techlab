@@ -186,7 +186,7 @@ Pod: example-spring-boot-3-tjdkj TIME: 16:49:22,231
 
 Es kann dann sogar sein, dass der Service gar nicht mehr online ist und der Routing Layer ein **503 Error** zurück gibt.
 
-Im Folgenden Kapitel wird beschrieben, wie Sie ihre Services konfigurieren können, dass unterbruchsfreie Deployments möglich werden.
+Im Folgenden Kapitel wird beschrieben, wie Sie Ihre Services konfigurieren können, dass unterbruchsfreie Deployments möglich werden.
 
 
 ## Unterbruchsfreies Deployment mittels Readiness Probe und Rolling Update
