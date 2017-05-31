@@ -30,7 +30,7 @@ $ oc new-app mysql-ephemeral \
 
 ### Web Console
 
-In der Web Console kann der MySQL Service dem Projekt über "Add to Project" hinzugefügt werden.
+In der Web Console kann der MySQL (Ephemeral) Service dem Projekt über "Add to Project" und anschliessend "Data Stores" hinzugefügt werden.
 ![MySQLService](../images/lab_8_addmysql_service.png)
 
 
