@@ -12,24 +12,12 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 - macOS
 - Linux
 
-### Fedora
-
-Fedora bietet via Repository das Paket `origin-clients`, welches bereits sämtliche hier beschriebenen Installationsschritte erledigt. Für die komplette Installation muss also lediglich folgender Befehl ausgeführt werden:
-```
-dnf install origin-clients
-```
-Für andere Betriebssysteme oder Linux-Distributionen müssen die im folgenden beschriebenen Schritte durchgeführt werden.
-
-
 ## oc Client herunterladen und installieren
 
-Der oc Client wird vom [GitHub-Repository von OpenShift Origin](https://github.com/openshift/origin/releases/tag/v1.3.3) heruntergeladen:
-
-* [Windows](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-windows.zip)
-* [Mac](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-mac.zip)
-* [Linux 64bit](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-linux-64bit.tar.gz)
-* [Linux 32bit](https://github.com/openshift/origin/releases/download/v1.3.3/openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-linux-32bit.tar.gz)
-* [CHECKSUM](https://github.com/openshift/origin/releases/download/v1.3.3/CHECKSUM)
+Die für die Techlab-Plattform passende Client-Version kann unter folgenden URLs 
+* [Linux](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/linux/oc)
+* [Mac](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/macosx/oc)
+* [Windows](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/windows/oc.exe)
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
 
