@@ -27,7 +27,7 @@ Unsere Applikation erstellt beim Starten das DB Schema eigenständig.
 **Tipp:** redeployen Sie den Applikations-Pod:
 
 ```
-$ oc deploy example-spring-boot --latest
+$ oc rollout latest example-spring-boot
 ```
 
 Mit dem Befehl `oc get persistentvolumeclaim`, oder etwas einfacher `oc get pvc`, können wir uns nun den im Projekt frisch erstellten PersistentVolumeClaim anzeigen lassen:

@@ -62,7 +62,7 @@ $ oc new-app example-spring-boot
 
 Mittels:
 ```
-oc deploy example-spring-boot --latest
+oc rollback latest example-spring-boot
 ```
 
 startet OpenShift danach einen Build und deployt die Container wie im Template spezifiziert.

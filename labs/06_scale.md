@@ -138,7 +138,7 @@ Die Requests werden an die unterschiedlichen Pods geleitet, sobald man runterska
 Was passiert nun, wenn wir nun während dem der While Befehl oben läuft, ein neues Deployment starten:
 
 ```
-$ oc deploy appuio-php-docker --latest
+$ oc rollout latest appuio-php-docker
 ```
 Währen einer kurzen Zeit gibt die öffentliche Route keine Antwort
 ```
@@ -350,9 +350,9 @@ Einmal pro Sekunde ein Request:
 while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"; done
 ```
 
-Starten des Deployment:
+Starten des Deployments:
 ```
-$ oc deploy appuio-php-docker --latest
+$ oc rollout latest appuio-php-docker
 ```
 
 
