@@ -55,7 +55,7 @@ Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via B
 ![php5.6](../images/lab_3_example1-deployed.png)
 
 
-Sie haben nun Ihre erste Applikation mittels sogenanntem **[Source to Image](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
+Sie haben nun Ihre erste Applikation mittels sogenanntem **[Source to Image](https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
 
 **Tipp:** mit dem folgenden Command können Sie in ein anderes Projekt wechseln:
 ```

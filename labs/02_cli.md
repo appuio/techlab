@@ -78,8 +78,9 @@ $ oc version
 ```
 Der folgende Output sollte angezeigt werden:
 ```
-oc v1.3.3
-kubernetes v1.3.0+52492b4
+oc v3.4.1.24
+kubernetes v1.4.0+776c994
+[...]
 ```
 
 Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt gesetzt.

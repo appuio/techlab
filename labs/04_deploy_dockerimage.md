@@ -7,7 +7,7 @@ In diesem Lab werden wir gemeinsam das erste "pre-built" Docker Image deployen u
 
 Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployen eines pre-built Docker Images von Docker Hub oder einer anderen Docker-Registry zu.
 
-> [Weiterführende Dokumentation](https://docs.openshift.com/container-platform/3.3/dev_guide/new_app.html#specifying-an-image)
+> [Weiterführende Dokumentation](https://docs.openshift.com/container-platform/3.4/dev_guide/new_app.html#specifying-an-image)
 
 Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres). Für das Projekt berechtigte User können diese Ressourcen verwalten. Innerhalb eines OpenShift V3 Clusters muss der Name eines Projektes eindeutig sein.
 
@@ -75,20 +75,20 @@ Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShif
 4. Wählen Sie Pods aus
 
 
-**Tipp** Um Ihre eigenen Docker Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.3/creating_images/guidelines.html
+**Tipp** Um Ihre eigenen Docker Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.4/creating_images/guidelines.html
 
 
 ## Betrachten der erstellten Ressourcen
 
 Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt. Die werden dafür benötigt, dieses Docker Image zu deployen:
 
-- [Service](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/pods_and_services.html#services)
-- [ImageStream](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html#image-streams)
-- [DeploymentConfig](https://docs.openshift.com/container-platform/3.3/dev_guide/deployments/how_deployments_work.html)
+- [Service](https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/pods_and_services.html#services)
+- [ImageStream](https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/builds_and_image_streams.html#image-streams)
+- [DeploymentConfig](https://docs.openshift.com/container-platform/3.4/dev_guide/deployments/how_deployments_work.html)
 
 ### Service
 
-[Services](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/pods_and_services.html#services) dienen innerhalb OpenShift als Abstraktionslayer, Einstiegspunkt und Proxy/Loadbalancer auf die dahinterliegenden Pods. Der Service ermöglicht es, innerhalb OpenShift eine Gruppe von Pods des gleichen Typs zu finden und anzusprechen.
+[Services](https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/pods_and_services.html#services) dienen innerhalb OpenShift als Abstraktionslayer, Einstiegspunkt und Proxy/Loadbalancer auf die dahinterliegenden Pods. Der Service ermöglicht es, innerhalb OpenShift eine Gruppe von Pods des gleichen Typs zu finden und anzusprechen.
 
 Als Beispiel: Wenn eine Applikationsinstanz unseres Beispiels die Last nicht mehr alleine verarbeiten kann, können wir die Applikation bspw. auf drei Pods hochskalieren. OpenShift mapt diese als Endpoints automatisch zum Service. Sobald die Pods bereit sind, werden Requests automatisch auf alle drei Pods verteilt.
 
@@ -209,7 +209,7 @@ Unter Endpoints finden Sie nun den aktuell laufenden Pod.
 
 
 ### ImageStream
-[ImageStreams](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html#image-streams) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Images oder des Basisimages verfügbar ist.
+[ImageStreams](https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/builds_and_image_streams.html#image-streams) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Images oder des Basisimages verfügbar ist.
 
 Builds und Deployments können Image Streams beobachten und auf Änderungen entsprechend reagieren. In unserem Beispiel wird der Image Stream dafür verwendet, ein Deployment zu triggern, sobald etwas am Image geändert hat.
 
@@ -220,7 +220,7 @@ $ oc get imagestream example-spring-boot -o json
 
 ### DeploymentConfig
 
-In der [DeploymentConfig](https://docs.openshift.com/container-platform/3.3/dev_guide/deployments/how_deployments_work.html) werden folgende Punkte definiert:
+In der [DeploymentConfig](https://docs.openshift.com/container-platform/3.4/dev_guide/deployments/how_deployments_work.html) werden folgende Punkte definiert:
 
 - Update Strategy: wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
 - Triggers: Welche Triggers führen zu einem Deployment? In unserem Beispiel ImageChange
