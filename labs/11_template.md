@@ -65,7 +65,13 @@ Mittels:
 oc import-image example-spring-boot 
 ```
 
-wird das image importiert und das deployment gestartet
+wird das image importiert und das deployment gestartet.
+
+Mittels:
+```
+oc deploy mysql --latest
+```
+wird ebenso die Datenbank deployed
 
 **Tipp:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
 
