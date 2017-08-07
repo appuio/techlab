@@ -45,7 +45,7 @@ Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt 
 Nun skalieren wir unsere Example Applikation auf 3 Replicas:
 
 ```
-$ oc scale --replicas=3 rc appuio-php-docker-1
+$ oc scale --replicas=3 dc appuio-php-docker
 ```
 
 Überprüfen wir die Anzahl Replicas auf dem ReplicationController:
