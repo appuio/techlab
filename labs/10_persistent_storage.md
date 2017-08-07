@@ -15,6 +15,8 @@ Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die
 
 Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In [LAB 6](06_scale.md) bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu [LAB 6](06_scale.md) können wir aber mit `oc volume` die Deployment Config automatisch erweitern.
 
+Wir verwenden dafür wieder das Projekt aus [LAB 6](06_scale.md) [USER]-scale
+
 Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 ```
 $ oc volume dc/mysql --add --name=mysql-data --type persistentVolumeClaim \
