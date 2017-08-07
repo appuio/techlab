@@ -144,8 +144,8 @@ Um ein Rollback auszuführen, brauchen Sie den Namen der DeploymentConfig:
 ```
 $ oc get dc
 
-NAME                  TRIGGERS                    LATEST
-appuio-php-docker-ex   ConfigChange, ImageChange   2
+NAME                   REVISION   DESIRED   CURRENT   TRIGGERED BY
+appuio-php-docker-ex   4          1         1         config,image(appuio-php-docker-ex:latest)
 
 ```
 
