@@ -69,7 +69,7 @@ wird das image importiert und das deployment gestartet.
 
 Mittels:
 ```
-oc deploy mysql --latest
+oc rollout latest mysql
 ```
 wird ebenso die Datenbank deployed
 
