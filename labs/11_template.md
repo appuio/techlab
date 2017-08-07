@@ -62,10 +62,10 @@ $ oc new-app example-spring-boot
 
 Mittels:
 ```
-oc rollout latest example-spring-boot
+oc import-image example-spring-boot 
 ```
 
-startet OpenShift danach einen Build und deployt die Container wie im Template spezifiziert.
+wird das image importiert und das deployment gestartet
 
 **Tipp:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
 
