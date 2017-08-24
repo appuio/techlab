@@ -100,6 +100,14 @@ Oder für zsh:
 source <(oc completion zsh)
 ```
 
+Damit die bash completion funktioniert, muss vorher das Paket `bash-completion` installiert werden.
+
+Ubuntu:
+
+```
+sudo apt install bash-completion
+```
+
 ---
 
 
