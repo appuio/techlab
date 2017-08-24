@@ -167,7 +167,7 @@ Als Workaround kann mit `oc new-app -l <LABEL NAME>=<LABEL VALUE> ...` ein alter
 
 Seit Version 3.3 bietet die OpenShift Container Platform die Möglichkeit, Ressourcen aus der Docker Compose Konfigurationdatei `docker-compose.yml` zu erstellen. Diese Funktionalität ist noch als experimentell eingestuft. Beispiel:
 ```
-git clone -b techlab https://github.com/appuio/weblate-docker#techlab
+git clone -b techlab https://github.com/appuio/weblate-docker.git
 oc import docker-compose -f docker-compose.yml -o json
 ```
 
