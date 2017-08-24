@@ -35,7 +35,7 @@ Template erstellen
 $ oc create -f https://raw.githubusercontent.com/appuio/example-spring-boot-helloworld/master/example-spring-boot-template.json
 ```
 
-Template instanzieren (Ersetzen Sie `[project]` mit `[USER]-template`)
+Template instanzieren
 
 ```
 $ oc new-app example-spring-boot
