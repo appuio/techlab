@@ -78,8 +78,8 @@ $ oc version
 ```
 Der folgende Output sollte angezeigt werden:
 ```
-oc v3.4.1.24
-kubernetes v1.4.0+776c994
+oc v3.5.5.31
+kubernetes v1.5.2+43a9be4
 [...]
 ```
 

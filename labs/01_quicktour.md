@@ -4,7 +4,7 @@ In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren z
 
 Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden:
 
-> https://docs.openshift.com/container-platform/3.4/architecture/index.html
+> https://docs.openshift.com/container-platform/3.5/architecture/index.html
 
 
 ## Grundkonzepte
