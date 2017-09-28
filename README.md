@@ -3,6 +3,7 @@
 Dieses Techlab basiert auf OpenShift 3.5.
 
 **Tipp** Die Techlabs zu früheren Versionen sind in deren eigenen Branches zu finden:
+- [Branch lab-3.4](https://github.com/appuio/techlab/tree/lab-3.4)
 - [Branch lab-3.3](https://github.com/appuio/techlab/tree/lab-3.3)
 - [Branch lab-3.2](https://github.com/appuio/techlab/tree/lab-3.2)
 - [Branch lab-3.1](https://github.com/appuio/techlab/tree/lab-3.1)
