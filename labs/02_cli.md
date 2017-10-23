@@ -14,7 +14,7 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 
 ## oc Client herunterladen und installieren
 
-Die für die Techlab-Plattform passende Client-Version kann unter folgenden URLs 
+Die für die Techlab-Plattform passende Client-Version kann unter folgenden URLs
 * [Linux](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/linux/oc)
 * [Mac](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/macosx/oc)
 * [Windows](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/windows/oc.exe)
@@ -110,7 +110,7 @@ sudo apt install bash-completion
 
 ---
 
-
+**Ende Lab 2**
 
 <p width="100px" align="right"><a href="03_first_steps.md">Erste Schritte auf der Lab Plattform →</a></p>
 
