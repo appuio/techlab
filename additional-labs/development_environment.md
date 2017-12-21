@@ -2,6 +2,50 @@
 
 Diese Seite zeigt verschiedene Möglichkeiten, wie selbst entwickelte Docker Container oder OpenShift Templates etc. getestet werden können, ohne auf eine vollständige, produktive OpenShift-Plattform wie bspw. APPUiO Zugriff zu haben.
 
+## minishift
+https://github.com/minishift/minishift
+Minishift erlaubt den Betrieb einer lokalen Openshift Installation auf dem eigenen Notebook in einer VM unter KVM, xhyve, Hyper-V und VirtualBox.
+
+Vorgehen:
+Minishift runterladen:
+```
+$ wget https://github.com/minishift/minishift/releases/download/v1.10.0/minishift-1.10.0-linux-amd64.tgz
+```
+
+Entpacken
+```
+$ tar -xzf minishift-1.10.0-linux-amd64.tgz
+```
+Pfad Exportieren
+```
+$ export PATH="/PATH/TO/HOME/.minishift/cache/oc/v3.6.0/linux:$PATH"
+$ export PATH=$PATH:/PATH/TO/MINISHIFT
+```
+Minishift starten
+```
+$ minishift start --metrics --openshift-version v3.6.0 --memory 6GB
+```
+
+Minishift stoppen
+```
+$ minishift stop
+```
+
+Minishift löschen
+```
+$ minishift delete
+```
+
+### Dokumentation
+
+Die vollständige Dokumentation befindet sich unter https://github.com/minishift/minishift
+
+### Troubleshooting
+
+Wenn zum Beispiel xyz.[IP].nip.io nicht aufgelöst werden kann, kann man zum Beispiel die Google DNS Server (8.8.8.8 und 8.8.4.4) hinterlegen.
+Doku
+http://nip.io/
+
 ## oc cluster up
 
 Seit Version 1.3 des OpenShift Clients "oc" existiert die Möglichkeit, ein OpenShift lokal auf dem eigenen Laptop zu starten. Hierfür wird ein Docker Container heruntergeladen, der eine OpenShift-Installation beinhaltet, und anschliessend gestartet.
