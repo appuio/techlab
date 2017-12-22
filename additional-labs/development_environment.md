@@ -3,7 +3,8 @@
 Diese Seite zeigt verschiedene Möglichkeiten, wie selbst entwickelte Docker Container oder OpenShift Templates etc. getestet werden können, ohne auf eine vollständige, produktive OpenShift-Plattform wie bspw. APPUiO Zugriff zu haben.
 
 ## Minishift
-Minishift erlaubt den Betrieb einer lokalen Openshift Installation auf dem eigenen Notebook in einer VM unter KVM, xhyve, Hyper-V und VirtualBox.
+
+Minishift erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM unter KVM, xhyve, Hyper-V oder VirtualBox.
 Anleitung:
 https://docs.openshift.org/latest/minishift/getting-started/installing.html
 
