@@ -2,6 +2,24 @@
 
 Diese Seite zeigt verschiedene Möglichkeiten, wie selbst entwickelte Docker Container oder OpenShift Templates etc. getestet werden können, ohne auf eine vollständige, produktive OpenShift-Plattform wie bspw. APPUiO Zugriff zu haben.
 
+## Minishift
+
+Minishift erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM mit KVM, xhyve, Hyper-V oder VirtualBox.
+
+### Installation und Dokumentation
+
+Für die Installation bitte der offiziellen Anleitung unter https://docs.openshift.org/latest/minishift/getting-started/installing.html folgen.
+
+
+### Troubleshooting
+
+#### DNS-Probleme
+
+Minishift setzt bei der DNS-Auflösung auf nip.io (http://nip.io/). Wenn der auf dem eigenen Notebook konfigurierte DNS-Server [private_ip_range].nip.io nicht auflösen kann, kann z.B. der DNS-Server von Quad 9 (9.9.9.9) eingetragen werden.
+
+Infos Quad 9 DNS: https://www.quad9.net
+
+
 ## oc cluster up
 
 Seit Version 1.3 des OpenShift Clients "oc" existiert die Möglichkeit, ein OpenShift lokal auf dem eigenen Laptop zu starten. Hierfür wird ein Docker Container heruntergeladen, der eine OpenShift-Installation beinhaltet, und anschliessend gestartet.
