@@ -4,18 +4,20 @@ Diese Seite zeigt verschiedene Möglichkeiten, wie selbst entwickelte Docker Con
 
 ## Minishift
 
-Minishift erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM unter KVM, xhyve, Hyper-V oder VirtualBox.
-Anleitung:
-https://docs.openshift.org/latest/minishift/getting-started/installing.html
+Minishift erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM mit KVM, xhyve, Hyper-V oder VirtualBox.
+
+### Installation und Dokumentation
+
+Für die Installation bitte der offiziellen Anleitung unter https://docs.openshift.org/latest/minishift/getting-started/installing.html folgen.
+
 
 ### Troubleshooting
 
-Minishift setzt bei der DNS Auflösung auf nip.io (http://nip.io/)
+#### DNS-Probleme
 
-Wenn der konfigurierte DNS auf dem eigenen Notebook [private_ip_range].nip.io nicht auflöst, kann man zum Beispiel der quad9 DNS Server (9.9.9.9) hinterlegt werden.
+Minishift setzt bei der DNS-Auflösung auf nip.io (http://nip.io/). Wenn der auf dem eigenen Notebook konfigurierte DNS-Server [private_ip_range].nip.io nicht auflösen kann, kann z.B. der DNS-Server von Quad 9 (9.9.9.9) eingetragen werden.
 
-Infos quad9 DNS:
-https://www.quad9.net
+Infos Quad 9 DNS: https://www.quad9.net
 
 
 ## oc cluster up
