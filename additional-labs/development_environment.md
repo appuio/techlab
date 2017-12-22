@@ -11,7 +11,9 @@ https://docs.openshift.org/latest/minishift/getting-started/installing.html
 ### Troubleshooting
 
 Minishift setzt bei der DNS Auflösung auf nip.io (http://nip.io/)
+
 Wenn der konfigurierte DNS auf dem eigenen Notebook [private_ip_range].nip.io nicht auflöst, kann man zum Beispiel der quad9 DNS Server (9.9.9.9) hinterlegt werden.
+
 Infos quad9 DNS:
 https://www.quad9.net
 
