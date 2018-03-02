@@ -14,10 +14,10 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 
 ## oc Client herunterladen und installieren
 
-Die für die Techlab-Plattform passende Client-Version kann unter folgenden URLs
-* [Linux](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/linux/oc)
-* [Mac](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/macosx/oc)
-* [Windows](https://ose3-lab-master.puzzle.ch:8443/console/extensions/clients/windows/oc.exe)
+Die für die Techlab-Plattform passende Client-Version kann unter folgenden URLs 
+* [Linux](https://ose3-lab-master.puzzle.ch/console/extensions/clients/linux/oc)
+* [Mac](https://ose3-lab-master.puzzle.ch/console/extensions/clients/macosx/oc)
+* [Windows](https://ose3-lab-master.puzzle.ch/console/extensions/clients/windows/oc.exe)
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
 
