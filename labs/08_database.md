@@ -185,6 +185,7 @@ $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
 ...
 mysql> drop database appuio;
 mysql> create database appuio;
+mysql> exit
 ```
 Dump einspielen:
 ```
