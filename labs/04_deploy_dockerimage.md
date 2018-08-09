@@ -2,36 +2,32 @@
 
 In this lab, we will jointly deploy the first "pre-built" Docker image and take a closer look at the OpenShift concepts Pod, Service, DeploymentConfig and ImageStream.
 
-
 ## Task: LAB4.1
 
-Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployen eines pre-built Docker Images von Docker Hub oder einer anderen Docker-Registry zu.
+After deploying with the Source-to-Image workfrow in [Lab 3](03_first_steps.md) we now turn towards deploying a pre-built Docker Image from Docker Hub or another Docker-Registry.
 
-> [Weiterführende Dokumentation](https://docs.openshift.com/container-platform/3.5/dev_guide/application_lifecycle/new_app.html#specifying-an-image)
+> [Further Documentation](https://docs.openshift.com/container-platform/3.5/dev_guide/application_lifecycle/new_app.html#specifying-an-image)
 
-Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres). Für das Projekt berechtigte User können diese Ressourcen verwalten. Innerhalb eines OpenShift V3 Clusters muss der Name eines Projektes eindeutig sein.
+In a first step we create a new project. A project is a grouping of resources (containers and docker images, pods, services, routes, configurations, quotas, limits and more).Authorized Users for this Project can manage these ressources. Within an OpenShift V3 cluster the name of a project must be unique.
 
-Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-dockerimage`:
+Therefore create a new project called `[USER]-dockerimage`:
 
-```
+```bash
 $ oc new-project [USER]-dockerimage
 ```
 
-`oc new-project` wechselt automatisch in das eben neu angelegte Projekt. Mit dem `oc get` Command können Ressourcen von einem bestimmten Typ angezeigt werden.
+`oc new-project` switches automatically into the new Project. The `oc get` Command shows ressources of a particular type.
 
-Verwenden Sie
+eg.
 ```
 $ oc get project
 ```
-um alle Projekte anzuzeigen, auf die Sie berechtigt sind.
+to show all projects the current user is authorized to see.
 
-Sobald das neue Projekt erstellt wurde, können wir in OpenShift mit dem folgenden Befehl das Docker Image deployen:
+Once you crated the new project you can deploy the Docker Image in Openshift using:
 
-```
+```bash
 $ oc new-app appuio/example-spring-boot
-```
-Output:
-```
 --> Found Docker image d790313 (3 weeks old) from Docker Hub for "appuio/example-spring-boot"
 
     APPUiO Spring Boot App
@@ -54,33 +50,31 @@ Output:
 
 ```
 
-Für unser Lab verwenden wir ein APPUiO-Beispiel (Java Spring Boot Applikation):
+For our Lab we use an APPUiO-Example (Java Spring Boot Application):
 - Docker Hub: https://hub.docker.com/r/appuio/example-spring-boot/
 - GitHub (Source): https://github.com/appuio/example-spring-boot-helloworld
 
-OpenShift legt die nötigen Ressourcen an, lädt das Docker Image in diesem Fall von Docker Hub herunter und deployt anschliessend den ensprechenden Pod.
+OpenShift creates the necessary resources, downloads the Docker Image (in this case from Docker Hub) and deploys the Pod.
 
-**Hint:** Verwenden Sie `oc status` um sich einen Überblick über das Projekt zu verschaffen.
+**Hint:** Use `oc status` to get an overview of the project.
 
-Oder verwenden Sie den `oc get` Befehl mit dem `-w` Parameter, um fortlaufend Änderungen an den Ressourcen des Typs Pod anzuzeigen (abbrechen mit ctrl+c):
+Or use the `oc get` Command with `-w` parameter, to get changes displayed continuous. (abort with ctrl+c):
 ```
 $ oc get pods -w
 ```
 
-Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShift Node bereits heruntergeladen wurde, kann das eine Weile dauern. Schauen Sie sich doch in der Web Console den aktuellen Status des Deployments an:
+Depending on your internet connection and wheter the image was allready downloaded to the node this can take a while. Check the current status of your deployment in the Web Console:
 
-1. Loggen Sie sich in der Web Console ein
-2. Wählen Sie Ihr Projekt `[USER]-dockerimage` aus
-3. Klicken Sie auf Applications
-4. Wählen Sie Pods aus
-
-
-**Hint** Um Ihre eigenen Docker Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
+1. Loggen in to the Web Console
+2. Select your project `[USER]-dockerimage`
+3. Click Applications
+4. Select Pods
 
 
-## Betrachten der erstellten Ressourcen
+**Hint** To Create your own Docker Image to run on Openshift, you should follow these best Practices: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
 
-Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt. Die werden dafür benötigt, dieses Docker Image zu deployen:
+## Examine the created resources
+When we first executed `oc new-app appuio/example-spring-boot` OpenShift created some resources for us in the background. These are required to deploy this docker image:
 
 - [Service](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/pods_and_services.html#services)
 - [ImageStream](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#image-streams)
@@ -88,33 +82,28 @@ Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShif
 
 ### Service
 
-[Services](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/pods_and_services.html#services) dienen innerhalb OpenShift als Abstraktionslayer, Einstiegspunkt und Proxy/Loadbalancer auf die dahinterliegenden Pods. Der Service ermöglicht es, innerhalb OpenShift eine Gruppe von Pods des gleichen Typs zu finden und anzusprechen.
+[Services](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/pods_and_services.html#services) serve as an abstraction layer, entry point and Proxy/Loadbalancer to the Pods. The Service allows OpenShift to find and approach a group of pods.
 
-Als Beispiel: Wenn eine Applikationsinstanz unseres Beispiels die Last nicht mehr alleine verarbeiten kann, können wir die Applikation bspw. auf drei Pods hochskalieren. OpenShift mapt diese als Endpoints automatisch zum Service. Sobald die Pods bereit sind, werden Requests automatisch auf alle drei Pods verteilt.
+As an example, if an application can't carry the load alone we can scale it to more pods. Openshift automaticaly maps those endpoints to the service and as soon as the pods are ready the requests are balanced to all the running pods.
 
-**Note:** Die Applikation kann aktuell von aussen noch nicht erreicht werden, der Service ist ein OpenShift-internes Konzept. Im folgenden Lab werden wir die Applikation öffentlich verfügbar machen.
+**Note:** At the moment, our application isn't available from the outside. A service is a OpenShift internal concept. We will achive this in the next lab.
 
-Nun schauen wir uns unseren Service mal etwas genauer an:
+But first, let us take a closer look at the service:
 
-```
+```bash
 $ oc get services
-```
-
-```
 NAME                  CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 example-spring-boot   172.30.124.20   <none>        8080/TCP   2m
 ```
 
-Wie Sie am Output sehen, ist unser Service (example-spring-boot) über eine IP und Port erreichbar (172.30.124.20:8080) **Note:** Ihre IP kann unterschiedlich sein.
+As you can see on the output, our service (example-spring-boot) is accessible via an IP and port (172.30.124.20:8080) **Note**: Your IP may be different.
 
-**Note:** Service IPs bleiben während ihrer Lebensdauer immer gleich.
+**Note:** Service IPs remain the same for their lifetime.
 
-Mit dem folgenden Befehl können Sie zusätzliche Informationen über den Service auslesen:
-```
+Use the following command to read additional information about the service:
+
+```bash
 $ oc get service example-spring-boot -o json
-```
-
-```
 {
     "kind": "Service",
     "apiVersion": "v1",
