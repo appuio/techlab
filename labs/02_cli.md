@@ -114,4 +114,4 @@ sudo apt install bash-completion
 
 <p width="100px" align="right"><a href="03_first_steps.md">Erste Schritte auf der Lab Plattform →</a></p>
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

@@ -252,4 +252,4 @@ Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o 
 
 <p width="100px" align="right"><a href="05_create_route.md">Routen erstellen →</a></p>
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

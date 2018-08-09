@@ -90,4 +90,4 @@ Ein [Blogpost von Red Hat](https://developers.redhat.com/blog/2016/10/11/four-cr
 
 **Ende**
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

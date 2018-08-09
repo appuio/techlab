@@ -44,4 +44,4 @@ Was auch innerhalb von Kibana zu einer verständlicheren Darstellung führen wü
 
 **Ende**
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

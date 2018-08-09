@@ -96,4 +96,4 @@ Wichtig ist, dass die Imagestreams zuoberst im Template File definiert sind. Ans
 
 <p width="100px" align="right"><a href="12_template_creation.md">Eigene Templates erstellen →</a></p>
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)
