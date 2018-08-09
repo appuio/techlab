@@ -2,7 +2,7 @@
 
 Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispiel der Fall ist. Verschwindet also unser MySQL-Pod bspw. aufgrund einer Änderung des Images, sind die bis zuvor noch vorhandenen Daten im neuen Pod nicht mehr vorhanden. Um genau dies zu verhindern hängen wir nun Persistent Storage an unseren MySQL-Pod an.
 
-## Aufgabe: LAB10.1:
+## Task: LAB10.1:
 
 ### Storage anfordern
 
@@ -15,7 +15,7 @@ Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die
 
 Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In [LAB 6](06_scale.md) bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu [LAB 6](06_scale.md) können wir aber mit `oc volume` die Deployment Config automatisch erweitern.
 
-Wir verwenden dafür wieder das Projekt aus [LAB 8](08_database.md) [USER]-dockerimage. **Tipp:** `oc project [USER]-dockerimage`
+Wir verwenden dafür wieder das Projekt aus [LAB 8](08_database.md) [USER]-dockerimage. **Hint:** `oc project [USER]-dockerimage`
 
 Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 ```
@@ -26,7 +26,7 @@ $ oc volume dc/mysql --add --name=mysql-data --type persistentVolumeClaim \
 
 Unsere Applikation erstellt beim Starten das DB Schema eigenständig.
 
-**Tipp:** redeployen Sie den Applikations-Pod:
+**Hint:** redeployen Sie den Applikations-Pod:
 
 ```
 $ oc rollout latest example-spring-boot
@@ -47,11 +47,11 @@ deploymentconfigs/mysql
   pvc/mysqlpvc (allocated 256MiB) as mysql-data
 ```
 
-## Aufgabe: LAB10.2: Persistenz-Test
+## Task: LAB10.2: Persistenz-Test
 
 ### Daten wiederherstellen
 
-Wiederholen Sie [Lab-Aufgabe 8.4](08_database.md#l%C3%B6sung-lab84).
+Wiederholen Sie [Lab-Task 8.4](08_database.md#l%C3%B6sung-lab84).
 
 
 ### Test

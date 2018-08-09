@@ -1,9 +1,9 @@
-# Lab 4: Ein Docker Image deployen
+# Lab 4: Deploy a Docker Image
 
-In diesem Lab werden wir gemeinsam das erste "pre-built" Docker Image deployen und die OpenShift-Konzepte Pod, Service, DeploymentConfig und ImageStream etwas genauer anschauen.
+In this lab, we will jointly deploy the first "pre-built" Docker image and take a closer look at the OpenShift concepts Pod, Service, DeploymentConfig and ImageStream.
 
 
-## Aufgabe: LAB4.1
+## Task: LAB4.1
 
 Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployen eines pre-built Docker Images von Docker Hub oder einer anderen Docker-Registry zu.
 
@@ -60,7 +60,7 @@ Für unser Lab verwenden wir ein APPUiO-Beispiel (Java Spring Boot Applikation):
 
 OpenShift legt die nötigen Ressourcen an, lädt das Docker Image in diesem Fall von Docker Hub herunter und deployt anschliessend den ensprechenden Pod.
 
-**Tipp:** Verwenden Sie `oc status` um sich einen Überblick über das Projekt zu verschaffen.
+**Hint:** Verwenden Sie `oc status` um sich einen Überblick über das Projekt zu verschaffen.
 
 Oder verwenden Sie den `oc get` Befehl mit dem `-w` Parameter, um fortlaufend Änderungen an den Ressourcen des Typs Pod anzuzeigen (abbrechen mit ctrl+c):
 ```
@@ -75,7 +75,7 @@ Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShif
 4. Wählen Sie Pods aus
 
 
-**Tipp** Um Ihre eigenen Docker Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
+**Hint** Um Ihre eigenen Docker Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
 
 
 ## Betrachten der erstellten Ressourcen
@@ -238,11 +238,11 @@ $ oc get deploymentConfig example-spring-boot -o json
 
 Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Applikation deployt werden soll, definiert man mit dem ReplicationController, wie die Applikation während der Laufzeit aussehen soll (bspw. dass immer 3 Replicas laufen sollen).
 
-**Tipp:** für jeden Resource Type gibt es auch eine Kurzform. So können Sie bspw. `oc get deploymentconfig` auch einfach als `oc get dc` schreiben.
+**Hint:** für jeden Resource Type gibt es auch eine Kurzform. So können Sie bspw. `oc get deploymentconfig` auch einfach als `oc get dc` schreiben.
 
 ---
 
-## Zusatzaufgabe für Schnelle ;-)
+## ZusatzTask für Schnelle ;-)
 
 Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an.
 

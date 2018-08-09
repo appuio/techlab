@@ -41,7 +41,7 @@ $ oc get rc appuio-php-docker-1 -o json
 
 Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt sind (status).
 
-## Aufgabe: LAB6.1 skalieren unserer Beispiel Applikation
+## Task: LAB6.1 skalieren unserer Beispiel Applikation
 Nun skalieren wir unsere Example Applikation auf 3 Replicas:
 
 ```
@@ -87,9 +87,9 @@ No events.
 
 Skalieren von Pods innerhalb eines Services ist sehr schnell, da OpenShift einfach eine neue Instanz des Docker Images als Container startet.
 
-**Tipp:** OpenShift V3 unterstützt auch Autoscaling, die Dokumentation dazu ist unter dem folgenden Link zu finden: https://docs.openshift.com/container-platform/3.5/dev_guide/pod_autoscaling.html
+**Hint:** OpenShift V3 unterstützt auch Autoscaling, die Dokumentation dazu ist unter dem folgenden Link zu finden: https://docs.openshift.com/container-platform/3.5/dev_guide/pod_autoscaling.html
 
-## Aufgabe: LAB6.2 skalierte App in der Web Console
+## Task: LAB6.2 skalierte App in der Web Console
 
 Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 
@@ -98,7 +98,7 @@ Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, während Sie hoch und runter skalieren.
 Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
 
-**Tipp:** oc get route
+**Hint:** oc get route
 
 ```
 while true; do sleep 1; curl -s http://[route]/pod/; date "+ TIME: %H:%M:%S,%3N"; done
@@ -207,7 +207,7 @@ In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für
 http://[route]/health/
 ```
 
-## Aufgabe: LAB6.3
+## Task: LAB6.3
 
 In der Deployment Config (dc) definieren im Abschnitt der Rolling Update Strategie, dass bei einem Update die App immer verfügbar sein soll: `maxUnavailable: 0%`
 

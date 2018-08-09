@@ -14,71 +14,74 @@ A project in OpenShift is the top level concept to organize your applications, d
 
 
 ## Task: LAB3.1
-Erstellen Sie auf der Lab Plattform ein neues Projekt.
+Create a new project on the lab plattform.
 
-**Note**: Verwenden Sie für Ihren Projektnamen am besten Ihren Github Namen oder Ihren Nachnamen, bspw. `[USER]-example1`
+**Note**: For your project name, use your github name or your last name, for example:`[USER]-example1`
 
-> Wie kann ein neues Projekt erstellt werden?
+> How can I create a new project?
 
-**Tipp** :information_source:
+**Hint**:  the oc tool has a built-in help function:
 ```
 $ oc help
 ```
 
 ## Web Console
 
-Die OpenShift V3 Web Console erlaubt es den Benutzern gewisse Tasks direkt via Browser vorzunehmen.
+The OpenShift V3 Web Console allows users to perform certain tasks directly via a browser.
 
-## Aufgabe: LAB3.2
-1. Loggen Sie sich nun via Web Console auf der Lab Plattform ein.
+## Task: LAB3.2
 
-  **Note:** Die **URL**, Benutzernamen und Passwort für Ihren Account wird Ihnen entsprechend am Techlab durch den Instruktor zur Verfügung gestellt.
+1. Log on to the Lab platform using the Web Console.
 
-1. Gehen Sie nun in die Übersicht Ihres eben erstellten Projektes. Aktuell ist das Projekt noch leer.
+  **Note:** The **URL**, ser name and password for your account will be provided to you by the Instructor.
 
-1. Fügen Sie über *Add to Project* Ihre erste Applikation Ihrem Projekt hinzu. Als Beispielprojekt verwenden wir ein APPUiO Example.
+2. Now go to the overview of your newly created project. Currently the project is still empty.
 
-  3.1. Wählen Sie dazu das Basis Image **php 5.6** aus
+3. Add your first application to your project using *Add to Project*. As an example project we use an APPUiO Example.
+
+  3.1. To start choose the base Image **php 5.6**
 ![php5.6](../images/lab_3_php5.6.png)
 
-  3.2. Geben Sie Ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL
+  3.2. Give your example a recognisable name and the following URL as Repo URL
   ```
   https://github.com/appuio/example-php-sti-helloworld.git
   ```
 ![php5.6](../images/lab_3_example1.png)
 
-1. Die Applikation wurde erstellt. Über den Link **Go to overview** kommt man zur Übersicht.
+4. The application has been created. The link **Go to overview** gives you an overview.
 
-1. Der Build Ihrer Applikation wird gestartet. Verfolgen Sie den Build und schauen Sie sich nach dem Deployment die Beispiel App an.
+5. The build of your application is started. Follow the build and look at the sample app after deployment.
 
 ![php5.6](../images/lab_3_example1-deployed.png)
 
+You have now deployed your first application using the so-called **[Source to Image](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#source-build)** build on OpenShift deployed.
 
-Sie haben nun Ihre erste Applikation mittels sogenanntem **[Source to Image](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
-
-**Tipp:** mit dem folgenden Command können Sie in ein anderes Projekt wechseln:
+**Hint:** Use the following command to switch to another project:
 ```
 $ oc project [projectname]
 ```
 
-**Tipp:** Mit den folgenden Befehlen kann das obere Beispiel aus der Kommandozeile erstellt werden:
+**Hint:** The following commands can be used to create the above example from the command line:
 ```
 $ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=appuio-php-sti-example
 $ oc expose svc appuio-php-sti-example
 ```
 
-**Tipp:** eine ganze App kann mit dem folgenden Befehl gelöscht werden:
+**Hint:** a whole app can be deleted with the following command:
+
 ```
 $ oc delete all -l app=appname
 ```
-bspw.
+
+For example:
+
 ```
 $ oc delete all -l app=appuio-php-sti-example
 ```
 
 ---
 
-## Lösung: LAB3.1
+## Solution: LAB3.1
 
 ```
 $ oc new-project [USER]-example1
@@ -87,6 +90,6 @@ $ oc new-project [USER]-example1
 
 **Ende Lab 3**
 
-<p width="100px" align="right"><a href="04_deploy_dockerimage.md">Ein Docker Image deployen →</a></p>
+<p width="100px" align="right"><a href="04_deploy_dockerimage.md">Deploy a Docker Image→</a></p>
 
 [← back to overview](../README.md)

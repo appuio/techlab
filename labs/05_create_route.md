@@ -13,13 +13,13 @@ Aktuell werden folgende Protokolle unterstützt:
 - WebSockets
 - TLS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
 
-## Aufgabe: LAB5.1
+## Task: LAB5.1
 
-Vergewissern Sie sich, dass Sie sich im Projekt `[USER]-dockerimage` befinden. **Tipp:** `oc project [USER]-dockerimage`
+Vergewissern Sie sich, dass Sie sich im Projekt `[USER]-dockerimage` befinden. **Hint:** `oc project [USER]-dockerimage`
 
 Erstellen Sie für den Service `example-spring-boot` eine Route und machen Sie ihn darüber öffentlich verfügbar.
 
-**Tipp:** Mittels `oc get routes` können Sie sich die Routen eines Projekts anzeigen lassen.
+**Hint:** Mittels `oc get routes` können Sie sich die Routen eines Projekts anzeigen lassen.
 
 ```
 $ oc get routes
@@ -51,7 +51,7 @@ example-spring-boot   example-spring-boot-techlab.app.appuio.ch             exam
 
 Die Applikation ist nun vom Internet her über den angegebenen Hostnamen erreichbar, Sie können also nun auf die Applikation zugreifen.
 
-**Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: *servicename-project.osecluster*
+**Hint:** Wird kein Hostname angegeben wird der Standardname verwendet: *servicename-project.osecluster*
 
 In der Overview der Web Console ist diese Route mit dem Hostnamen jetzt auch sichtbar.
 

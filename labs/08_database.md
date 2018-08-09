@@ -2,9 +2,9 @@
 
 Die meisten Applikationen sind in irgend einer Art stateful und speichern Daten persistent ab. Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore. In diesem Lab werden wir in unserem Projekt einen MySQL Service anlegen und an unsere Applikation anbinden, sodass mehrere Applikationspods auf die gleiche Datenbank zugreifen können.
 
-Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Tipp:** `oc project [USER]-dockerimage`
+Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
 
-## Aufgabe: LAB8.1: MySQL Service anlegen
+## Task: LAB8.1: MySQL Service anlegen
 
 Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pods alle Daten verloren gehen. In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
 
@@ -34,7 +34,7 @@ In der Web Console kann der MySQL (Ephemeral) Service dem Projekt über "Add to 
 ![MySQLService](../images/lab_8_addmysql_service.png)
 
 
-## Aufgabe: LAB8.2: Applikation an die Datenbank anbinden
+## Task: LAB8.2: Applikation an die Datenbank anbinden
 
 Standardmässig wird bei unserer example-spring-boot Applikation eine H2 Memory Datenbank verwendet. Dies kann über das Setzen der folgenden Umgebungsvariablen entsprechend auf unseren neuen MySQL Service umgestellt werden:
 
@@ -109,7 +109,7 @@ Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
 
 (Applications → Deployments → example-spring-boot, Actions, Edit YAML)
 
-## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
+## Task: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
 
 Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingeloggt werden:
 ```
@@ -151,25 +151,25 @@ show tables;
 alle Tabellen anzeigen.
 
 
-## Aufgabe: LAB8.4: Dump auf MySQL DB einspielen
+## Task: LAB8.4: Dump auf MySQL DB einspielen
 
-Die Aufgabe ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) einzuspielen.
+Die Task ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) einzuspielen.
 
 
-**Tipp:** Mit `oc rsync` können Sie lokale Dateien in einen Pod kopieren.
+**Hint:** Mit `oc rsync` können Sie lokale Dateien in einen Pod kopieren.
 
 **Achtung:** Beachten Sie, dass dabei der rsync-Befehl des Betriebssystems verwendet wird. Auf UNIX-Systemen kann rsync mit dem Paketmanager, auf Windows kann bspw. [cwRsync](https://www.itefix.net/cwrsync) installiert werden. Ist eine Installation von rsync nicht möglich, kann stattdessen bspw. in den Pod eingeloggt und via `curl -O <URL>` der Dump heruntergeladen werden.
 
-**Tipp:** Verwenden Sie das Tool mysql um den Dump einzuspielen.
+**Hint:** Verwenden Sie das Tool mysql um den Dump einzuspielen.
 
-**Tipp:** Die bestehende Datenbank muss vorgängig leer sein. Sie kann auch gelöscht und neu angelegt werden.
+**Hint:** Die bestehende Datenbank muss vorgängig leer sein. Sie kann auch gelöscht und neu angelegt werden.
 
 
 ---
 
 ## Lösung: LAB8.4
 
-Ein ganzes Verzeichnis (dump) syncen. Darin enthalten ist das File `dump.sql`. Beachten Sie zum rsync-Befehl auch obenstehenden Tipp sowie den fehlenden trailing slash.
+Ein ganzes Verzeichnis (dump) syncen. Darin enthalten ist das File `dump.sql`. Beachten Sie zum rsync-Befehl auch obenstehenden Hint sowie den fehlenden trailing slash.
 ```
 oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/
 ```

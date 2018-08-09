@@ -21,7 +21,7 @@ $ oc get template -n openshift
 
 Diese Templates können im JSON-Format sowohl im Git Repository neben Ihrem Source Code abgelegt werden als auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein.
 
-## Aufgabe: LAB11.1: Template instanzieren.
+## Task: LAB11.1: Template instanzieren.
 
 Die einzelnen Schritte die wir in den vorherigen Labs manuell vorgenommen haben, können nun mittels Template in einem "Rutsch" durchgeführt werden.
 
@@ -73,7 +73,7 @@ oc rollout latest mysql
 ```
 wird ebenso die Datenbank deployed
 
-**Tipp:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
+**Hint:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
 
 Als Abschluss dieses Labs können Sie sich noch das Template anschauen
 ```
