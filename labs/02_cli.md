@@ -1,25 +1,26 @@
-# Lab 2: OpenShift CLI installieren
+# Lab 2: Install the OpenShift CLI
 
-In diesem Lab werden wir gemeinsam den oc Client installieren und konfigurieren, damit wir danach die ersten Schritte auf der OpenShift Techlab Plattform durchführen können.
+In this lab, we will install and configure the oc client so that we can then take the first steps on the OpenShift Techlab platform.
 
 ## Command Line Interface
 
-Der **oc client** stellt ein Interface zu OpenShift V3 bereit.
+The **oc client** provides an interface to OpenShift V3.
 
-Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher:
+The client is programmed in Go and comes as a single binary for the following operating systems:
 
 - Microsoft Windows
 - macOS
 - Linux
 
-## oc Client herunterladen und installieren
+## Download oc and install client
 
-Die für die Techlab-Plattform passende Client-Version kann unter folgenden URLs 
-* [Linux](https://ose3-lab-master.puzzle.ch/console/extensions/clients/linux/oc)
-* [Mac](https://ose3-lab-master.puzzle.ch/console/extensions/clients/macosx/oc)
-* [Windows](https://ose3-lab-master.puzzle.ch/console/extensions/clients/windows/oc.exe)
+The matching oc Client Version for this Techlab Version can be downloaded from the following URLs:
 
-Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
+- [Linux](https://ose3-lab-master.puzzle.ch/console/extensions/clients/linux/oc)
+- [Mac](https://ose3-lab-master.puzzle.ch/console/extensions/clients/macosx/oc)
+- [Windows](https://ose3-lab-master.puzzle.ch/console/extensions/clients/windows/oc.exe)
+
+Once the client has been downloaded, it must be placed on the system in a directory accessible via the **PATH** variable.
 
 **Linux**
 
@@ -39,27 +40,27 @@ Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeic
 C:\OpenShift\
 ```
 
-## Korrekte Berechtigung auf Linux und macOS erteilen
+## Proper authorization on Linux and macOS
 
-Der oc Client muss ausgeführt werden können.
+The oc Client must be an executable:
 
 ```
 cd ~/bin
 chmod +x oc
 ```
 
-## den oc Client im PATH registrieren
+## register the oc client in the PATH variable
 
-Unter **Linux** und **macOS** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
+Under **Linux** and **macOS** the directory ~/bin is already in the PATH, so nothing has to be done here.
 
-Falls der oc Client in einem anderen Verzeichnis abgelegt wurde, kann der PATH wie folgt gesetzt werden:
+If the oc client has been placed in a different directory, the PATH can be set as follows:
 ```
 $ export PATH=$PATH:[path to oc client]
 ```
 
 ### Windows
 
-Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert werden. Dies ist abhängig von der entsprechenden Windows Version:
+On Windows, the PATH can be configured in the advanced system settings. This is dependent on the corresponding Windows version:
 
 - [Windows 7](http://geekswithblogs.net/renso/archive/2009/10/21/how-to-set-the-windows-path-in-windows-7.aspx)
 - [Windows 8](http://www.itechtics.com/customize-windows-environment-variables/)
@@ -67,40 +68,42 @@ Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert 
 
 **Windows Quick Hack**
 
-Legen sie den oc Client direkt im Verzeichnis *C:\Windows* ab.
+Place the oc client directly in the directory *C:\Windows*.
 
+## Verify the installation
 
-## Installation verifizieren
+The oc client should now be installed correctly. The best way to do this is to run the following command:
 
-Der oc Client sollte jetzt korrekt installiert sein. Am besten überprüfen wir das, indem wir den folgenden Command ausführen:
 ```
 $ oc version
 ```
-Der folgende Output sollte angezeigt werden:
+
+The following output should be displayed:
+
 ```
 oc v3.5.5.31
 kubernetes v1.5.2+43a9be4
 [...]
 ```
 
-Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt gesetzt.
+If this is not the case, the PATH variable may not be set correctly.
 
 ---
 
 ## bash/zsh completion (optional)
 
-Mit Linux und Mac kann die bash completion mit folgendem Befehl temporär eingerichtet werden:
+With Linux and Mac, the bashcompletion can be temporarily set with the following command:
 
 ```
 source <(oc completion bash)
 ```
 
-Oder für zsh:
+Or for zsh:
 ```
 source <(oc completion zsh)
 ```
 
-Damit die bash completion funktioniert, muss vorher das Paket `bash-completion` installiert werden.
+To use bash completion the pakage `bash-completion` has to be installed.
 
 Ubuntu:
 
@@ -112,6 +115,6 @@ sudo apt install bash-completion
 
 **Ende Lab 2**
 
-<p width="100px" align="right"><a href="03_first_steps.md">Erste Schritte auf der Lab Plattform →</a></p>
+<p width="100px" align="right"><a href="03_first_steps.md">First steps through the Lab Plattform →</a></p>
 
 [← back to overview](../README.md)

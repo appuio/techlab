@@ -1,20 +1,19 @@
-# Lab 3: Erste Schritte auf der Lab Plattform
+# Lab 3: First steps through the Lab Plattform
 
-In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagieren, dies sowohl über den oc Client wie auch über die Web Console
+In this lab, we will be interacting with the Lab platform for the first time, via the oc client as well as the web console
 
 ## Login
 
-**Note:** Versichern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben.
+**Note:** Make sure you have successfully completed [Lab 2](02_cli.md).
 
-Bitte verwenden Sie für das Login auf dem Webinterface sowie mit `oc` die durch den Instruktor zur Verfügung gestellten Angaben.
+Please use the information provided by the instructor for the login on the web interface as well as with oc.
+
+## Create a project
+
+A project in OpenShift is the top level concept to organize your applications, deployments, builds, containers, etc. See [Lab1](01_quicktour.md).
 
 
-## Projekt erstellen
-
-Ein Projekt in OpenShift ist das Top Level Konzept um Ihre Applikationen, Deployments, Builds, Container etc. zu organisieren. Siehe [Lab1](01_quicktour.md).
-
-
-## Aufgabe: LAB3.1
+## Task: LAB3.1
 Erstellen Sie auf der Lab Plattform ein neues Projekt.
 
 **Note**: Verwenden Sie für Ihren Projektnamen am besten Ihren Github Namen oder Ihren Nachnamen, bspw. `[USER]-example1`

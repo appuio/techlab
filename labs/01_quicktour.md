@@ -44,31 +44,31 @@ In OpenShift V3, resources (containers and docker images, pods, services, routes
 
 Within a project, authorized users can manage and organize their own resources.
 
-Die Ressourcen innerhalb eines Projektes sind über ein transparentes [SDN](https://de.wikipedia.org/wiki/Software-defined_networking) verbunden. So können die einzelnen Komponenten eines Projektes in einem Multi-Node Setup auf verschiedene Nodes deployed werden. Dabei sind sie über das SDN untereinander sicht- und zugreifbar.
+The resources within a project are linked via a transparent [SDN](https://de.wikipedia.org/wiki/Software-defined_networking). The resources within a project are linked via a transparent.
 
 ### Pods
 
-OpenShift übernimmt das Konzept der Pods von Kubernetes.
+OpenShift adopts the Concept of Pods from Kubernetes.
 
-Ein Pod ist ein oder mehrere Container, die zusammen auf den gleichen Host deployed werden. Ein Pod ist die kleinste zu deployende Einheit auf OpenShift.
+A pod is one or more containers that are deployed together on the same host. A pod is the smallest unit to deploy on OpenShift.
 
-Ein Pod ist innerhalb eines OpenShift Projektes über den entsprechenden Service verfügbar.
+A pod is available within an OpenShift project via the appropriate service.
 
 ### Services
 
-Ein Service repräsentiert einen internen Loadbalancer auf die dahinterliegenden Pods (Replicas vom gleichen Typ). Der Service dient als Proxy zu den Pods und leitet Anfragen an diese weiter. So können Pods willkürlich einem Service hinzugefügt und entfernt werden, während der Service verfügbar bleibt.
+A service represents an internal loadbalancer on the pods behind it (replicas of the same type). The service serves as a proxy to the pods and forwards requests to them. This allows pods to be arbitrarily added to and removed from a service while the service remains available.
 
-Einem Service ist innerhalb eines Projektes eine IP und ein Port zugewiesen und verteilt Requests entsprechend auf die Pod Replicas.
+A service is assigned an IP and a port within a project and distributes requests accordingly to the pod replicas.
 
 ### Routen
 
-Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von OpenShift von externen Clients erreicht werden kann.
+With a route you define how a service can be accessed by external clients.
 
-Diese Routen werden im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname-Mapping die Requests an den entsprechenden Service weiterzuleiten.
+These routes are entered in the routing layer and then allow the platform to forward the requests to the relevant service via hostname mapping.
 
-Sind mehr als ein Pod für einen Service deployt, verteilt der Routing Layer die Requests auf die deployten Pods
+If more than one pod is deployed for a service, the routing layer distributes the requests to the deployed pods
 
-Aktuell werden folgende Protokolle unterstützt:
+The following protocols are currently supported:
 
 - HTTP
 - HTTPS ([SNI](https://en.wikipedia.org/wiki/Server_Name_Indication))
@@ -77,17 +77,17 @@ Aktuell werden folgende Protokolle unterstützt:
 
 ### Templates
 
-Ein Template beschreibt textuell eine Liste von Ressourcen, die auf OpenShift ausgeführt und entsprechend in OpenShift erstellt werden können.
+A template describes a list of resources that can be executed on OpenShift and created accordingly in OpenShift.
 
-So hat man die Möglichkeit ganze Infrastrukturen zu beschreiben:
+This way you have the possibility to describe entire infrastructures:
 
-- Java Applikation Service (3 Replicas, rolling Upgrade)
-- Datenbank Service
-- über Route https://java.app.appuio-beta.ch im Internet verfügbar
+- Java Application Service (3 Replicas, rolling Upgrade)
+- Databank Service
+- Via Route https://java.app.appuio-beta.ch available on the internet
 
 ---
 
-**Ende Lab 1**
+**End Lab 1**
 
 <p width="100px" align="right"><a href="02_cli.md">install OpenShift CLI →</a></p>
 
