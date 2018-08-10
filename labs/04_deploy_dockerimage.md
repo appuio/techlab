@@ -145,14 +145,16 @@ $ oc get service example-spring-boot -o json
 }
 ```
 
-Mit dem entsprechenden Befehl können Sie auch die Details zu einem Pod anzeigen:
+Accordingly you can get detials to a pod:
+
 ```
 $ oc get pod example-spring-boot-3-nwzku -o json
 ```
 
-**Note:** Zuerst den pod Namen aus Ihrem Projekt abfragen (`oc get pods`) und im oberen Befehl ersetzen.
+**Note:** First get the name of the pod (`oc get pods`) and then use it for the above command.
 
-Über den `selector` Bereich im Service wird definiert, welche Pods (`labels`) als Endpoints dienen. Dazu die entsprechenden Konfigurationen vom Service und Pod zusammen betrachten.
+Trough the `selector` area in a service you'll see wich Pods (`labels`) serve as an endpoint. To do so, consider the corresponding configurations of the service and pod together.
+
 ```
 Service:
 --------
@@ -176,12 +178,9 @@ Pod:
 
 ```
 
-Diese Verknüpfung ist mittels dem `oc describe` Befehl zu sehen:
-```
+This link can be viewed using the `oc describe` command:
+```bash
 $ oc describe service example-spring-boot
-```
-
-```
 Name:			example-spring-boot
 Namespace:		techlab
 Labels:			app=example-spring-boot
@@ -194,51 +193,50 @@ Session Affinity:	None
 No events.
 ```
 
-Unter Endpoints finden Sie nun den aktuell laufenden Pod.
+Under Endpoints, you will now find the currently running pod.
 
 
 ### ImageStream
-[ImageStreams](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#image-streams) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Images oder des Basisimages verfügbar ist.
+[ImageStreams](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#image-streams) are used to perform automatic tasks such as updating a deployment when a new Version of the image or base image is available.
 
-Builds und Deployments können Image Streams beobachten und auf Änderungen entsprechend reagieren. In unserem Beispiel wird der Image Stream dafür verwendet, ein Deployment zu triggern, sobald etwas am Image geändert hat.
+Builds and deployments can monitor image streams and respond to changes appropriately. In our example, the ImageStream is used to trigger a deployment when something changes to the image.
 
-Mit dem folgenden Befehl können Sie zusätzliche Informationen über den Image Stream auslesen:
+Use the following command to read additional information about the Image Stream:
 ```
 $ oc get imagestream example-spring-boot -o json
 ```
 
 ### DeploymentConfig
 
-In der [DeploymentConfig](https://docs.openshift.com/container-platform/3.5/dev_guide/deployments/how_deployments_work.html) werden folgende Punkte definiert:
+The following points are defined in [DeploymentConfig](https://docs.openshift.com/container-platform/3.5/dev_guide/deployments/how_deployments_work.html):
 
-- Update Strategy: wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
-- Triggers: Welche Triggers führen zu einem Deployment? In unserem Beispiel ImageChange
+- Update Strategy: How are application updates executed, how is the container replaced?
+- Triggers: Which triggers lead to a deployment? In our example, ImageChange
 - Container
-  - Welches Image soll deployed werden?
-  - Environment Configuration für die Pods
+  - Which image should be deployed?
+  - Environment Configuration for the pods
   - ImagePullPolicy
-- Replicas, Anzahl der Pods, die deployt werden sollen
+- Replicas, number of pods to be deployed
 
-
-Mit dem folgenden Befehl können zusätzliche Informationen zur DeploymentConfig ausgelesen werden:
+The following command can be used to read additional information about DeploymentConfig:
 ```
 $ oc get deploymentConfig example-spring-boot -o json
 ```
 
-Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Applikation deployt werden soll, definiert man mit dem ReplicationController, wie die Applikation während der Laufzeit aussehen soll (bspw. dass immer 3 Replicas laufen sollen).
+In contrast to DeploymentConfig, which tells OpenShift how an application is to be deployed, the ReplicationController defines how the application should look during the runtime (for example, 3 replicas should always run).
 
-**Hint:** für jeden Resource Type gibt es auch eine Kurzform. So können Sie bspw. `oc get deploymentconfig` auch einfach als `oc get dc` schreiben.
-
----
-
-## ZusatzTask für Schnelle ;-)
-
-Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an.
+**Hint:** for each resource type, there is also a short form. For example, you can simply write `oc get deploymentconfig` as `oc get dc`.
 
 ---
 
-**Ende Lab 4**
+## Additional tasks for the fast ones ;-)
 
-<p width="100px" align="right"><a href="05_create_route.md">Routen erstellen →</a></p>
+Look at the created resources with  `oc get [ResourceType] [Name] -o json` and `oc describe [ResourceType] [Name]` from the first project `[USER]-example1`.
+
+---
+
+**End Lab 4**
+
+<p width="100px" align="right"><a href="05_create_route.md">create routes →</a></p>
 
 [← back to overview](../README.md)

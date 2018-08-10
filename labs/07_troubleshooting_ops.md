@@ -1,4 +1,4 @@
-# Lab 7: Troubleshooting, was ist im Pod?
+# Lab 7: Troubleshooting whats in the pod?
 
 In diesem Lab wird aufgezeigt, wie man im Fehlerfall und Troubleshooting vorgehen kann und welche Tools einem dabei zur Verfügung stehen.
 
