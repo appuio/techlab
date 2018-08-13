@@ -72,25 +72,24 @@ With Openshift an EFK (Elasticsearch, Fluentd, Kibana) stack is delivered, which
 
 ## Task: LAB7.3 Port Forwarding
 
-OpenShift 3 erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf einen Pod weiterzuleiten. Dies ist z.B. nützlich, um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen, die nicht gegen das Internet exponiert werden und auch sonst nicht erreichbar sind. Im Gegensatz zu OpenShift 2 werden die Portweiterleitungen über dieselbe HTTPS-Verbindung getunnelt, die der OpenShift Client (oc) auch sonst benutzt. Dies erlaubt es auch dann auf OpenShift 3 Platformen zuzugreifen, wenn sich restriktive Firewalls und/oder Proxies zwischen Workstation und OpenShift befinden.
+OpenShift 3 allows us to forward any port from our workstation to the pod. This is usefull to use adminstrationconsoles, databases and so on which should not be exposed towards the internet. In contrast to Openshift 2 the portforwarding is tunneled through the same HTTPS-connection as the Openshift Client (`oc`) uses. This is usefull if there are restrictive Firewalls and/or Proxies between your Workstation and Openshift.
 
-Übung: Auf die Spring Boot Metrics aus [Lab 4](04_deploy_dockerimage.md) zugreifen.
+Excercise: Acces the Spring Boot Metrics from [Lab 4](04_deploy_dockerimage.md).
 
 ```
 oc get po --namespace="[USER]-dockerimage"
 oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="[USER]-dockerimage"
 ```
 
-Nicht vergessen den Pod Namen an die eigene Installation anzupassen. Falls installiert kann dafür Autocompletion verwendet werden.
+Don't forgett to change the Pod Name accordingly. If installed you can use the TAB-completion.
 
-Die Metrics können nun unter folgendem Link abgerufen werden: [http://localhost:9000/metrics/](http://localhost:9000/metrics/) Die Metrics werden Ihnen als Json angezeigt. Mit dem selben Konzept können Sie nun beispielsweise mit Ihrem localen SQL Client auf eine Datenbank verbinden.
+The Metrics can be found under [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be shown in json. With the same concept you could connect a local SQL Client with your database.
 
-Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu finden: https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html
-
+Further Documentation to port forwarding can be found under: https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html
 ---
 
-**Ende Lab 7**
+**End Lab 7**
 
-<p width="100px" align="right"><a href="08_database.md">Datenbank deployen und anbinden →</a></p>
+<p width="100px" align="right"><a href="08_database.md">Deploy and Attach a Database →</a></p>
 
 [← back to overview](../README.md)
