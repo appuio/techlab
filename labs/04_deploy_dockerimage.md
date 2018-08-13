@@ -163,10 +163,10 @@ $ oc get pod example-spring-boot-3-nwzku -o json
 
 **Note:** Zuerst den pod Namen aus Ihrem Projekt abfragen (`oc get pods`) und im oberen Befehl ersetzen.
 
-Über den `selector` Bereich im Service wird definiert, welche Pods (`labels`) als Endpoints dienen. Dazu die entsprechenden Konfigurationen vom Service und Pod zusammen betrachten.
+Über den `selector` Bereich im Service wird definiert, welche Pods (`labels`) als Endpoints dienen. Dazu können die entsprechenden Konfigurationen von Service und Pod zusammen betrachtet werden.
+
+Service (`oc get service <Service Name>`):
 ```
-Service:
---------
 ...
 "selector": {
     "app": "example-spring-boot",
@@ -174,9 +174,10 @@ Service:
 },
 
 ...
+```
 
-Pod:
-----
+Pod (`oc get pod <Pod Name>`):
+```
 ...
 "labels": {
     "app": "example-spring-boot",
@@ -184,10 +185,9 @@ Pod:
     "deploymentconfig": "example-spring-boot"
 },
 ...
-
 ```
 
-Diese Verknüpfung ist mittels dem `oc describe` Befehl zu sehen:
+Diese Verknüpfung ist besser mittels `oc describe` Befehl zu sehen:
 ```
 $ oc describe service example-spring-boot
 ```
@@ -252,4 +252,4 @@ Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o 
 
 <p width="100px" align="right"><a href="05_create_route.md">Routen erstellen →</a></p>
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

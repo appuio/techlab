@@ -64,4 +64,4 @@ Skalieren Sie nun den mysql Pod auf 0 und anschliessend wieder auf 1. Beobachten
 
 <p width="100px" align="right"><a href="11_template.md">Applikationstemplates →</a></p>
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

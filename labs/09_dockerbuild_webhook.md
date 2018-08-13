@@ -173,4 +173,4 @@ $ oc set triggers dc/appuio-php-docker-ex --auto
 
 <p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

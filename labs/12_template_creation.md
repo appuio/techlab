@@ -181,4 +181,4 @@ oc new-app --name=cache memcached:1.4 -o json|jq '.items[] | select(.kind == "Se
 
 **Ende Lab 12**
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)

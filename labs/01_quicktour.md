@@ -1,49 +1,48 @@
-# Lab 1: Quicktour durch OpenShift V3
+# Lab 1: Quicktour through OpenShift V3
 
-In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren zeigen wir auf, wie man sich in der Web Console einloggt und stellen die einzelnen Bereiche kurz vor.
+In this lab the basic concepts of OpenShift are presented. We will also show you how to log in to the web console and briefly present the individual areas.
 
-Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden:
+The terms and resources listed here are an excerpt from the official OpenShift documentation, further information about OpenShift can be found here:
 
 > https://docs.openshift.com/container-platform/3.5/architecture/index.html
 
+## Basic concepts
 
-## Grundkonzepte
-
-OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift V3 kann als Container Platform oder Platform as a Service (PaaS) bezeichnet werden.
+OpenShift V3 is based on modern Open Source concepts such as Docker and Kubernetes, providing a platform that can be used to build, deploy, and operate software in containers. OpenShift V3 can be called Container Platform or Platform as a Service (PaaS).
 
 ### Docker
 
-[Docker](https://www.docker.com/) ist die offene Plattform für Entwickler und Sysadmins und ihre Applikationen. Wählen Sie das für Ihre Technologie passende Basis-Docker-Images aus, OpenShift baut für Sie nach jedem Build automatisch einen aktualisierten Docker-Container und deployt ihn auf Wunsch auch gleich.
+[Docker](https://www.docker.com/) is the open platform for developers and sysadmins and their applications. Choose the base docker images that match your technology, and OpenShift automatically builds an updated Docker container after you build it, and deploy it as you want.
 
 ### Kubernetes
 
-Container orchestrieren und managen mit [Kubernetes](http://kubernetes.io/) von Google. Sie definieren, wie viele Instanzen Ihrer Applikation parallel laufen sollen und Kubernetes kümmert sich um die Skalierung, das Loadbalancing und die Stabilität.
+Orchestrate and manage containers with[Kubernetes](http://kubernetes.io/) by Google. You define how many instances of your application should run in parallel, and Kubernetes takes care of the scaling, load balancing and stability.
 
-## Übersicht
+## Overview
 
 ![Overview](../images/ose3-overview.png)
 
 ### Container und Docker Images
 
-Die Basiselemente von OpenShift Applikationen sind Docker Container. Mit Docker Container können Prozesse auf einem Linuxsystem so isoliert werden, dass sie nur mit den definierten Ressourcen interagieren können. So können viele unterschiedliche Container auf dem gleichen System laufen, ohne dass sie einander "sehen" (Files, Prozesse, Netzwerk). Typischerweise beinhaltet ein Container einen einzelnen Service (Webserver, Datenbank, Mailservice, Cache). Innerhalb eines Docker Containers können beliebige Prozesse ausgeführt werden.
+The basic elements of OpenShift applications are docker containers. With docker containers, processes on a Linux system can be isolated so that they can only interact with the defined resources. This allows many different containers to run on the same system without seeing each other (files, processes, network). Typically, a container contains a single service (web server, database, mail service, cache). Within a Docker container, any process can be executed.
 
-Docker Container basieren auf Docker Images. Ein Docker Image ist eine binary Datei, die alle nötigen Komponenten beinhaltet, damit ein einzelner Container ausgeführt werden kann.
+Docker containers are based on docker images. A docker image is a binary file that contains all the necessary components to run a single container.
 
-Docker Images werden anhand von DockerFiles (textueller Beschrieb wie das Docker Image Schritt für Schritt aufgebaut ist) gebuildet. Grundsätzlich sind Docker Images hierarchisch angewendete Filesystem Snapshots.
+Docker images are created by dockerfiles (textual description of how the docker image is built step by step). Basically, docker images are hierarchically applied file system snapshots.
 
-**Beispiel Tomcat**
+**Tomcat Example**
 - Basis Image (CentOs 7)
 - + Install Java
 - + Install Tomcat
 - + Install App
 
-Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry versioniert abgelegt und stehen der Plattform nach dem Build zum Deployment zur Verfügung.
+The docker images are stored in version control in the OpenShift internal Docker Registry and are available to the platform for deployment after the build.
 
-### Projekte
+### Projects
 
-In OpenShift V3 werden Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten etc.) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes Namespace und erweitert diesen um gewisse Konzepte.
+In OpenShift V3, resources (containers and docker images, pods, services, routes, configuration, quotas and limits etc.) are structured in projects. From a technical point of view, a project corresponds to a Kubernetes namespace and extends these concepts with certain concepts.
 
-Innerhalb eines Projekts können berechtigte User ihre Ressourcen selber verwalten und organisieren.
+Within a project, authorized users can manage and organize their own resources.
 
 Die Ressourcen innerhalb eines Projektes sind über ein transparentes [SDN](https://de.wikipedia.org/wiki/Software-defined_networking) verbunden. So können die einzelnen Komponenten eines Projektes in einem Multi-Node Setup auf verschiedene Nodes deployed werden. Dabei sind sie über das SDN untereinander sicht- und zugreifbar.
 
@@ -90,6 +89,6 @@ So hat man die Möglichkeit ganze Infrastrukturen zu beschreiben:
 
 **Ende Lab 1**
 
-<p width="100px" align="right"><a href="02_cli.md">OpenShift CLI installieren →</a></p>
+<p width="100px" align="right"><a href="02_cli.md">install OpenShift CLI →</a></p>
 
-[← zurück zur Übersicht](../README.md)
+[← back to overview](../README.md)
