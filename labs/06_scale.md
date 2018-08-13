@@ -234,7 +234,7 @@ The Deployment Config can be edited via Web Console (Applications → Deployment
 $ oc edit dc appuio-php-docker
 ```
 
-Oder im JSON-Format editieren:
+Or edit it in the json format:
 
 ```bash
 $ oc edit dc appuio-php-docker -o json
