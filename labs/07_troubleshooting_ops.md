@@ -1,23 +1,23 @@
 # Lab 7: Troubleshooting whats in the pod?
 
-In diesem Lab wird aufgezeigt, wie man im Fehlerfall und Troubleshooting vorgehen kann und welche Tools einem dabei zur Verfügung stehen.
+This lab will shjow you how to deal with errors and troubleshooting, and which toosl are available to you.
 
-## In Container einloggen
+## Log in to the cntainer
 
-Wir verwenden dafür wieder das Projekt aus [Lab 4](04_deploy_dockerimage.md) `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
+We use the project from [Lab 4](04_deploy_dockerimage.md) `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
 
-Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht modifiziert werden. Dennoch gibt es Usecases, bei denen man sich in die Container einloggen muss. Zum Beispiel für Debugging und Analysen.
+Running containers are treated as immutable infrastructure and shouldn't be modified. However there are usecases where you should log in to a container. For example, debugging and analysis.
 
 ## Task: LAB7.1
 
-Mit OpenShift können Remote Shells in die Pods geöffnet werden ohne dass man darin vorgängig SSH installieren müsste. Dafür steht einem der Befehl `oc rsh` zur Verfügung.
+With Openshift remote shells to Pods can be opened without installing SSH beforehand. For this the command `oc rsh` is availanle.
 
-Wählen Sie mittels `oc get pods` einen Pod aus und führen Sie den folgenden Befehl aus:
+Select a Pod using `oc get pods` and issue the following command:
 ```
 $ oc rsh [POD]
 ```
 
-Sie können nun über diese Shell Analysen im Container ausführen:
+You now have a shell within the container and can perfom analyzes:
 
 ```
 bash-4.2$ ls -la
@@ -35,7 +35,7 @@ drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 
 ## Task: LAB7.2
 
-Einzelne Befehle innerhalb des Containers können über `oc exec` ausgeführt werden:
+A single command within the container can be executed using `oc exec`:
 
 ```
 $ oc exec [POD] env
@@ -54,23 +54,21 @@ KUBERNETES_PORT_53_TCP=tcp://172.30.0.1:53
 ...
 ```
 
-## Logfiles anschauen
+## View log files
 
-Die Logfiles zu einem Pod können sowohl in der Web Console als auch auch im CLI angezeigt werden.
+The log files for a pod can be displayed in the web console as well as in the cli:
 
 ```
 $ oc logs [POD]
 ```
-Der Parameter `-f` bewirkt analoges Verhalten wie `tail -f`
-
-Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholtem Restarten nicht erfolgreich gestartet werden konnte. Die Logfiles können auch wenn der Pod nicht läuft mit dem folgenden Befehl angezeigt werden.
+The `-f` parameter has the same behavior as `tail -f`
+If a pod has the status **CrashLoopBackOff** this means it could not be started succesfully even after repeated restarts. The logfiles still can be displayed even if the pod is not running with the following command:
 
  ```
 $ oc logs -p [POD]
 ```
 
-Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten. Weitere Informationen und ein optionales LAB finden sie [hier](../additional-labs/logging_efk_stack.md).
-
+With Openshift an EFK (Elasticsearch, Fluentd, Kibana) stack is delivered, which collects, rotates and aggregates all log files. Kibana allows logs to be searched, filtered and graphically edited. For more information and an optional Lab see [here](../additional-labs/logging_efk_stack.md).
 
 ## Task: LAB7.3 Port Forwarding
 
