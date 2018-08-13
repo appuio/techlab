@@ -86,6 +86,7 @@ Don't forgett to change the Pod Name accordingly. If installed you can use the T
 The Metrics can be found under [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be shown in json. With the same concept you could connect a local SQL Client with your database.
 
 Further Documentation to port forwarding can be found under: https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html
+
 ---
 
 **End Lab 7**
