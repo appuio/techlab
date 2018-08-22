@@ -2,7 +2,7 @@
 
 Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten.
 
-> [Weitere Informationen](https://docs.openshift.com/container-platform/3.5/install_config/aggregate_logging.html)
+> [Weitere Informationen](https://docs.openshift.com/container-platform/3.9/install_config/aggregate_logging.html)
 
 **Best Practice JSON Logging auf STDOUT**
 

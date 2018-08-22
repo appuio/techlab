@@ -133,8 +133,8 @@ oc process -f eap70-mysql-persistent-s2i.json \
 
 ## Templates schreiben
 OpenShift Dokumentation:
-* [Template Konzept](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/templates.html)
-* [Templates schreiben](https://docs.openshift.com/container-platform/3.5/dev_guide/templates.html)
+* [Template Konzept](https://docs.openshift.com/container-platform/3.9/architecture/core_concepts/templates.html)
+* [Templates schreiben](https://docs.openshift.com/container-platform/3.9/dev_guide/templates.html)
 
 Applikationen sollten so gebaut werden, dass sich pro Umgebung nur ein paar Konfigurationen unterscheiden. Diese Werte werden im Template als Parameter definiert.
 Somit ist der erste Schritt nach dem Generieren einer Template-Definition das Definieren von Parametern. Das Template wird mit Variablen erweitert, welche dann mit den Parameterwerten ersetzt werden. So wird die Variable `${DB_PASSWORD}` durch den Parameter mit Namen `DB_PASSWORD` ersetzt.

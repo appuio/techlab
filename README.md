@@ -1,6 +1,6 @@
 # APPUiO - OpenShift 3 Techlab Dokumentation
 
-Dieses Techlab basiert auf OpenShift 3.5.
+Dieses Techlab basiert auf OpenShift 3.9.
 
 **Tipp** Die Techlabs zu früheren Versionen sind in deren eigenen Branches zu finden:
 - [Branch lab-3.4](https://github.com/appuio/techlab/tree/lab-3.4)
@@ -33,7 +33,7 @@ Dieses Techlab basiert auf OpenShift 3.5.
 
 ## Weiterführende Dokumentation
 
-- [OpenShift Container Platform 3.5 docs](https://docs.openshift.com/container-platform/3.5/welcome/index.html)
+- [OpenShift Container Platform 3.9 docs](https://docs.openshift.com/container-platform/3.9/welcome/index.html)
 - [APPUiO docs](http://docs.appuio.ch)
 
 ### APPUiO Examples
@@ -43,4 +43,4 @@ Dieses Techlab basiert auf OpenShift 3.5.
 - [APPUiO Cron Job Example](https://github.com/appuio/example-cron-traditional)
 
 ### OpenShift Examples
-- [OpenShift Creating New Applications Docs](https://docs.openshift.com/container-platform/3.5/dev_guide/application_lifecycle/new_app.html)
+- [OpenShift Creating New Applications Docs](https://docs.openshift.com/container-platform/3.9/dev_guide/application_lifecycle/new_app.html)

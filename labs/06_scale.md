@@ -87,7 +87,7 @@ No events.
 
 Skalieren von Pods innerhalb eines Services ist sehr schnell, da OpenShift einfach eine neue Instanz des Docker Images als Container startet.
 
-**Tipp:** OpenShift V3 unterstützt auch Autoscaling, die Dokumentation dazu ist unter dem folgenden Link zu finden: https://docs.openshift.com/container-platform/3.5/dev_guide/pod_autoscaling.html
+**Tipp:** OpenShift unterstützt auch Autoscaling, die Dokumentation dazu ist unter dem folgenden Link zu finden: https://docs.openshift.com/container-platform/3.9/dev_guide/pod_autoscaling.html
 
 ## Aufgabe: LAB6.2 skalierte App in der Web Console
 
@@ -191,9 +191,9 @@ Im Folgenden Kapitel wird beschrieben, wie Sie Ihre Services konfigurieren könn
 
 ## Unterbruchsfreies Deployment mittels Readiness Probe und Rolling Update
 
-Die Update Strategie [Rolling](https://docs.openshift.com/container-platform/3.5/dev_guide/deployments/deployment_strategies.html#rolling-strategy) ermöglicht unterbruchsfreie Deployments. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
+Die Update Strategie [Rolling](https://docs.openshift.com/container-platform/3.9/dev_guide/deployments/deployment_strategies.html#rolling-strategy) ermöglicht unterbruchsfreie Deployments. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
 
-Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/container-platform/3.5/dev_guide/application_health.html) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden geben.
+Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/container-platform/3.9/dev_guide/application_health.html) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden geben.
 
 Grundsätzlich gibt es zwei Checks, die implementiert werden können:
 

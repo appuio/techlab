@@ -4,7 +4,7 @@ In diesem Lab werden wir gemeinsam den oc Client installieren und konfigurieren,
 
 ## Command Line Interface
 
-Der **oc client** stellt ein Interface zu OpenShift V3 bereit.
+Der **oc client** stellt ein Interface zu OpenShift bereit.
 
 Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher:
 
@@ -78,8 +78,8 @@ $ oc version
 ```
 Der folgende Output sollte angezeigt werden:
 ```
-oc v3.5.5.31
-kubernetes v1.5.2+43a9be4
+oc v3.9.40
+kubernetes v1.9.1+a0ce1bc657
 [...]
 ```
 

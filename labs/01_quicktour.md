@@ -1,15 +1,15 @@
-# Lab 1: Quicktour durch OpenShift V3
+# Lab 1: Quicktour durch OpenShift
 
 In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren zeigen wir auf, wie man sich in der Web Console einloggt und stellen die einzelnen Bereiche kurz vor.
 
 Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden:
 
-> https://docs.openshift.com/container-platform/3.5/architecture/index.html
+> https://docs.openshift.com/container-platform/3.9/architecture/index.html
 
 
 ## Grundkonzepte
 
-OpenShift V3 basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift V3 kann als Container Platform oder Platform as a Service (PaaS) bezeichnet werden.
+OpenShift basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift kann als Container Platform oder Platform as a Service (PaaS) bezeichnet werden.
 
 ### Docker
 
@@ -41,7 +41,7 @@ Die gebuildeten Docker Images werden in der OpenShift internen Docker Registry v
 
 ### Projekte
 
-In OpenShift V3 werden Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten etc.) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes Namespace und erweitert diesen um gewisse Konzepte.
+In OpenShift werden Ressourcen (Container und Docker Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten etc.) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes Namespace und erweitert diesen um gewisse Konzepte.
 
 Innerhalb eines Projekts können berechtigte User ihre Ressourcen selber verwalten und organisieren.
 
