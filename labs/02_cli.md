@@ -9,15 +9,21 @@ Der **oc client** stellt ein Interface zu OpenShift bereit.
 Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher:
 
 - Microsoft Windows
-- macOS
+- Mac OS X
 - Linux
+
+
+## Auf Webinterface einloggen
+
+Als erstes loggen wir auf der OpenShift Techlab Plattform ein. Die dazu benötigten Angaben werden vom Instruktor verteilt.
+
 
 ## oc Client herunterladen und installieren
 
-Die für die Techlab-Plattform passende Client-Version kann unter folgenden URLs 
-* [Linux](https://ose3-lab-master.puzzle.ch/console/extensions/clients/linux/oc)
-* [Mac](https://ose3-lab-master.puzzle.ch/console/extensions/clients/macosx/oc)
-* [Windows](https://ose3-lab-master.puzzle.ch/console/extensions/clients/windows/oc.exe)
+Auf dem nun zu sehenden Webinterface oben rechts auf das Fragezeichen und anschliessend auf "Command Line Tools" klicken:
+![cli](../images/lab_2_cli.png)
+
+Nun erscheinen Links für den Download des Clients für die verschiedenen Betriebssysteme.
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
 
@@ -27,7 +33,7 @@ Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeic
 ~/bin
 ```
 
-**macOS**
+**Mac OS X**
 
 ```
 ~/bin
@@ -50,7 +56,7 @@ chmod +x oc
 
 ## den oc Client im PATH registrieren
 
-Unter **Linux** und **macOS** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
+Unter **Linux** und **Mac OS X** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
 
 Falls der oc Client in einem anderen Verzeichnis abgelegt wurde, kann der PATH wie folgt gesetzt werden:
 ```
