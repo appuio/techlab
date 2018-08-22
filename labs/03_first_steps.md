@@ -4,9 +4,13 @@ In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagie
 
 ## Login
 
-**Note:** Versichern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben.
+**Note:** Vergewissern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben, d.h. erfolgreich auf dem Webinterface einloggen sowie den `oc` Client installieren konnten.
 
-Bitte verwenden Sie für das Login auf dem Webinterface sowie mit `oc` die durch den Instruktor zur Verfügung gestellten Angaben.
+Der Befehl für das Login mit `oc` kann komfortabel via Webinterface kopiert werden. Dazu oben rechts auf das Account-Symbol und anschliessend auf "Copy Login Command" klicken:
+
+![oc-login](../images/lab_3_login.png)
+
+Den Befehl nun in einem Terminal-Fenster einfügen.
 
 
 ## Projekt erstellen
