@@ -84,7 +84,8 @@ So hat man die Möglichkeit ganze Infrastrukturen zu beschreiben:
 
 - Java Applikation Service (3 Replicas, rolling Upgrade)
 - Datenbank Service
-- über Route https://java.app.appuio-beta.ch im Internet verfügbar
+- bspw. über Route java.app.appuio-beta.ch im Internet verfügbar
+- ...
 
 ---
 
