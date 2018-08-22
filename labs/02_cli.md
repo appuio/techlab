@@ -21,6 +21,7 @@ Als erstes loggen wir auf der OpenShift Techlab Plattform ein. Die dazu benötig
 ## oc Client herunterladen und installieren
 
 Auf dem nun zu sehenden Webinterface oben rechts auf das Fragezeichen und anschliessend auf "Command Line Tools" klicken:
+
 ![cli](../images/lab_2_cli.png)
 
 Nun erscheinen Links für den Download des Clients für die verschiedenen Betriebssysteme.
