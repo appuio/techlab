@@ -2,12 +2,6 @@
 
 Dieses Techlab basiert auf OpenShift 3.9.
 
-**Tipp** Die Techlabs zu früheren Versionen sind in deren eigenen Branches zu finden:
-- [Branch lab-3.4](https://github.com/appuio/techlab/tree/lab-3.4)
-- [Branch lab-3.3](https://github.com/appuio/techlab/tree/lab-3.3)
-- [Branch lab-3.2](https://github.com/appuio/techlab/tree/lab-3.2)
-- [Branch lab-3.1](https://github.com/appuio/techlab/tree/lab-3.1)
-
 
 ## Inhalte
 
@@ -26,15 +20,18 @@ Dieses Techlab basiert auf OpenShift 3.9.
 11. [Applikationstemplates](labs/11_template.md)
 12. [Eigene Templates erstellen](labs/12_template_creation.md)
 
+
 ### Zusätzliche Labs
 
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 - [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
+
 ## Weiterführende Dokumentation
 
 - [OpenShift Container Platform 3.9 docs](https://docs.openshift.com/container-platform/3.9/welcome/index.html)
 - [APPUiO docs](http://docs.appuio.ch)
+
 
 ### APPUiO Examples
 
@@ -42,5 +39,19 @@ Dieses Techlab basiert auf OpenShift 3.9.
 - [APPUiO PHP Dockerbuild hello World Example](https://github.com/appuio/example-php-docker-helloworld)
 - [APPUiO Cron Job Example](https://github.com/appuio/example-cron-traditional)
 
+
 ### OpenShift Examples
+
 - [OpenShift Creating New Applications Docs](https://docs.openshift.com/container-platform/3.9/dev_guide/application_lifecycle/new_app.html)
+
+
+## Ältere Inhalte
+
+Die Techlabs zu früheren Versionen sind in deren eigenen Branches zu finden:
+
+- [Branch lab-3.5](https://github.com/appuio/techlab/tree/lab-3.5)
+- [Branch lab-3.4](https://github.com/appuio/techlab/tree/lab-3.4)
+- [Branch lab-3.3](https://github.com/appuio/techlab/tree/lab-3.3)
+- [Branch lab-3.2](https://github.com/appuio/techlab/tree/lab-3.2)
+- [Branch lab-3.1](https://github.com/appuio/techlab/tree/lab-3.1)
+
