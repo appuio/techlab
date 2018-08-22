@@ -23,15 +23,16 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 ```
 $ oc new-app mysql-ephemeral \
-     -pMEMORY_LIMIT=256Mi \
-     -pMYSQL_USER=appuio -pMYSQL_PASSWORD=appuio \
-     -pMYSQL_DATABASE=appuio -pDATABASE_SERVICE_NAME=mysql
+     -pMYSQL_USER=appuio \
+     -pMYSQL_PASSWORD=appuio \
+     -pMYSQL_DATABASE=appuio
 ```
 
 ### Web Console
 
-In der Web Console kann der MySQL (Ephemeral) Service dem Projekt über "Add to Project" und anschliessend "Data Stores" hinzugefügt werden.
-![MySQLService](../images/lab_8_addmysql_service.png)
+In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hinzugefügt werden. Dazu oben rechts auf *Add to Project*, *Browse Catalog* klicken und anschliessend unter dem Reiter *Databases* *MySQL* und *MySQL (Ephemeral)* auswählen:
+
+![MySQLService](../images/lab_8_mysql.png)
 
 
 ## Aufgabe: LAB8.2: Applikation an die Datenbank anbinden
