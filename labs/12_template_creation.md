@@ -163,20 +163,6 @@ Wenn die Parameter des Templates bereits mit `oc process` gesetzt wurden, brauch
 `oc new-app` fügt standardmässig das Label `app=<TEMPLATE NAME>` in alle instanzierten Ressourcen ein. Bei einigen OpenShift-Versionen kann dies zu [ungültigen](https://github.com/openshift/origin/issues/10782) Ressourcendefinitionen führen.
 Als Workaround kann mit `oc new-app -l <LABEL NAME>=<LABEL VALUE> ...` ein alternatives Label konfiguriert werden.
 
-## Ressourcen aus docker-compose.yml erstellen
-
-Seit Version 3.3 bietet die OpenShift Container Platform die Möglichkeit, Ressourcen aus der Docker Compose Konfigurationdatei `docker-compose.yml` zu erstellen. Diese Funktionalität ist noch als experimentell eingestuft. Beispiel:
-```
-git clone -b techlab https://github.com/appuio/weblate-docker.git
-oc import docker-compose -f docker-compose.yml -o json
-```
-
-Die Möglichkeit eine Datei direkt via URL zu importieren ist vorgesehen aber noch nicht implementiert. Durch Weglassen der Option `-o json` werden die Ressourcen direkt angelegt statt ausgegeben. Momentan werden Services für bereits vorhandene Docker Images nur angelegt, falls eine explizite Portkonfiguration in `docker-compose.yml` vorhanden ist. Diese können in der Zwischenzeit mithilfe von `oc new-app` angelegt werden:
-```
-oc new-app --name=database postgres:9.4 -o json|jq '.items[] | select(.kind == "Service")' | oc create -f -
-oc new-app --name=cache memcached:1.4 -o json|jq '.items[] | select(.kind == "Service")'|oc create -f -
-```
-
 ---
 
 **Ende Lab 12**
