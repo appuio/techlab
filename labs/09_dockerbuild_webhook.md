@@ -85,7 +85,7 @@ Klicken Sie auf Webhooks & services:
 Fügen Sie einen Webhook hinzu:
 ![Github Webhook](../images/lab_09_webhook_github3.png)
 
-Fügen Sie die entsprechende GitHub Webhook URL aus Ihrem OpenShift Projekt ein und "disablen" Sie die SSL verification. Auf der Lab Plattform verfügen wir nur über self-signed Zertifikate.
+Fügen Sie die entsprechende GitHub Webhook URL aus Ihrem OpenShift Projekt ein:
 ![Github Webhook](../images/lab_09_webhook_github4.png)
 
 Ab jetzt triggern alle Pushes auf Ihrem GitHub Repository einen Build und deployen anschliessend die Code-Änderungen direkt auf die OpenShift-Plattform.
