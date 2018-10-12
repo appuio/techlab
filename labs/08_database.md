@@ -35,23 +35,23 @@ In the Web Console one can create the MySQL (Ephemeral) Service via "Add to Proj
 
 ## Task: LAB8.2: Applikation an die Datenbank anbinden
 
-Standardmässig wird bei unserer example-spring-boot Applikation eine H2 Memory Datenbank verwendet. Dies kann über das Setzen der folgenden Umgebungsvariablen entsprechend auf unseren neuen MySQL Service umgestellt werden:
+By default, a H2 memory database is used for our example-spring-boot application. This can be changed to our new MySQL service by setting the following environment variables:
 
 - SPRING_DATASOURCE_USERNAME appuio
 - SPRING_DATASOURCE_PASSWORD appuio
 - SPRING_DATASOURCE_DRIVER_CLASS_NAME com.mysql.jdbc.Driver
-- SPRING_DATASOURCE_URL jdbc:mysql://[Adresse des MySQL Service]/appuio?autoReconnect=true
+- SPRING_DATASOURCE_URL jdbc:mysql://[Adress of the MySQL Service]/appuio?autoReconnect=true
 
-Für die Adresse des MySQL Service können wir entweder dessen Cluster IP (`oc get service`) oder aber dessen DNS-Namen (`<service>`) verwenden. Alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden.
+For the address of the MySQL service, we can use either its cluster IP  (`oc get service`) or its DNS name (`<service>`). All services and pods within a project can be resolved via DNS.
 
-So lautet der Wert für die Variable SPRING_DATASOURCE_URL bspw.:
+For example, the value for the variable SPRING_DATASOURCE_URL is:
 ```
-Name des Services: mysql
+Name of the Services: mysql
 
 jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
 
-Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
+We can now set these environment variables in the DeploymentConfig example-spring-boot. After the **ConfigChange** (ConfigChange is registered as a trigger in the DeploymentConfig), the application is automatically deployed again. Because of the new environment variables the application connects to the MySQL DB and [Liquibase](http://www.liquibase.org/) creates the schema and imports the test data.
 
 **Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
