@@ -28,6 +28,9 @@ Once you crated the new project you can deploy the Docker Image in Openshift usi
 
 ```bash
 $ oc new-app appuio/example-spring-boot
+```
+Output:
+```
 --> Found Docker image d790313 (3 weeks old) from Docker Hub for "appuio/example-spring-boot"
 
     APPUiO Spring Boot App
@@ -92,6 +95,9 @@ But first, let us take a closer look at the service:
 
 ```bash
 $ oc get services
+```
+
+```
 NAME                  CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 example-spring-boot   172.30.124.20   <none>        8080/TCP   2m
 ```
@@ -104,6 +110,9 @@ Use the following command to read additional information about the service:
 
 ```bash
 $ oc get service example-spring-boot -o json
+```
+
+```
 {
     "kind": "Service",
     "apiVersion": "v1",
@@ -181,6 +190,9 @@ Pod:
 This link can be viewed using the `oc describe` command:
 ```bash
 $ oc describe service example-spring-boot
+```
+
+```
 Name:			example-spring-boot
 Namespace:		techlab
 Labels:			app=example-spring-boot
