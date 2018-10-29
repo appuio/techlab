@@ -1,67 +1,70 @@
-# Lab 10: Persistent Storage anbinden und verwenden für Datenbank
+# Lab 10: Persistent Storage and use for database
 
-Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispiel der Fall ist. Verschwindet also unser MySQL-Pod bspw. aufgrund einer Änderung des Images, sind die bis zuvor noch vorhandenen Daten im neuen Pod nicht mehr vorhanden. Um genau dies zu verhindern hängen wir nun Persistent Storage an unseren MySQL-Pod an.
+Data in a pod is not persistent, which is also the case in our example. If, for example, our MySQL pod disappears because of a change to the image, the existing data in the new pod will no longer exist. To prevent this, we are now attaching persistent storage to our MySQL pod.
 
-## Task: LAB10.1:
+## Task: LAB10.1
 
 ### Storage anfordern
 
-Das Anhängen von Persistent Storage geschieht eigentlich in zwei Schritten. Der erste Schritt beinhaltet als erstes das Erstellen eines sog. PersistentVolumeClaim für unser Projekt. Im Claim definieren wir u.a. dessen Namen sowie Grösse, also wie viel persistenten Speicher wir überhaupt haben wollen.
+Appending Persistent Storage is actually done in two steps. The first step involves the creation of a so-called PersistentVolumeClaim for our project. In the claim, we define, among other things, its name and size, so how much persistent memory we want to have at all.
 
-Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die Ressource selbst. Er wird deshalb automatisch durch OpenShift mit einem zur Verfügung stehenden Persistent Volume verbunden, und zwar mit einem mit mindestens der angeforderten Grösse. Sind nur noch grössere Persistent Volumes vorhanden, wird eines dieser Volumes verwendet und die Grösse des Claims angepasst. Sind nur noch kleinere Persistent Volumes vorhanden, kann der Claim nicht verbunden werden und bleibt solange offen, bis ein Volume der passenden Grösse (oder eben grösser) auftaucht.
+However, the PersistentVolumeClaim represents the request, but not the resource itself. It is therefore automatically linked by OpenShift to a persistent volume available, with one with at least the requested size. If there are only larger persistent volumes, one of these volumes is used and the size of the claim is adapted. If there are only smaller Persistent volumes, the claim can not be linked and remains open until a volume of the appropriate size (or even larger) appears.
 
+### Include volume in pod
 
-### Volume in Pod einbinden
+In the second step, the previously created PVC is integrated into the correct pod. In  [LAB 6](06_scale.md) we edited the Deployment Config to insert the Readiness Probe. The same is true for the Persistent Volume. In contrast to [LAB 6](06_scale.md) we can expand the Deployment Config automatically with `oc volume`.
 
-Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In [LAB 6](06_scale.md) bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu [LAB 6](06_scale.md) können wir aber mit `oc volume` die Deployment Config automatisch erweitern.
+We will use the project from [LAB 8](08_database.md) `[USER]-dockerimage` again. **Hint:** `oc project [USER]-dockerimage`
 
-Wir verwenden dafür wieder das Projekt aus [LAB 8](08_database.md) [USER]-dockerimage. **Hint:** `oc project [USER]-dockerimage`
+The following command executes both the steps described at the same time, so it first creates the claim and then binds it as a volume in the pod:
 
-Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
-```
+```bash
 $ oc volume dc/mysql --add --name=mysql-data --type persistentVolumeClaim \
      --claim-name=mysqlpvc --claim-size=256Mi --overwrite
 ```
-**Note:** Durch die veränderte Deployment Config deployt OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
 
-Unsere Applikation erstellt beim Starten das DB Schema eigenständig.
+**Note:** The modified Deployment Config will automatically deploy a new pod to OpenShift. This means, unfortunately, that the previously created DB schema and already inserted data have been lost.
 
-**Hint:** redeployen Sie den Applikations-Pod:
+Our application creates the DB schema at startup.
+
+**Hint:** redeploy the application pod:
 
 ```
 $ oc rollout latest example-spring-boot
 ```
 
-Mit dem Befehl `oc get persistentvolumeclaim`, oder etwas einfacher `oc get pvc`, können wir uns nun den im Projekt frisch erstellten PersistentVolumeClaim anzeigen lassen:
-```
+With the command `oc get persistentvolumeclaim`, or something simple `oc get pvc`, we can now display the newly created PersistentVolumeClaim in the project:
+
+```bash
 $ oc get pvc
 NAME       STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
 mysqlpvc   Bound     pv34      256Mi      RWO,RWX       14s
 ```
-Die beiden Attribute Status und Volume zeigen uns an, dass unser Claim mit dem Persistent Volume pv34 verbunden wurde.
 
-Mit dem folgenden Befehl können wir auch noch überprüfen, ob das Einbinden des Volumes in die Deployment Config geklappt hat:
-```
+The two status and volume attributes tell us that our claim was linked to Persistent Volume pv34.
+
+With the following command, we can also check whether the volume has been integrated into the Deployment Config:
+
+```bash
 $ oc volume dc/mysql
 deploymentconfigs/mysql
   pvc/mysqlpvc (allocated 256MiB) as mysql-data
 ```
 
-## Task: LAB10.2: Persistenz-Test
+## Task: LAB10.2: Persistence test
 
-### Daten wiederherstellen
+### Restore Data
 
-Wiederholen Sie [Lab-Task 8.4](08_database.md#l%C3%B6sung-lab84).
-
+Repeat [Lab-Task 8.4](08_database.md#l%C3%B6sung-lab84).
 
 ### Test
 
-Skalieren Sie nun den mysql Pod auf 0 und anschliessend wieder auf 1. Beobachten Sie, dass der neue Pod die Daten nicht mehr verliert.
+Now scale the mysql pod to 0 and then back to 1. Observe that the new pod is no longer losing the data.
 
 ---
 
-**Ende Lab 10**
+**End Lab 10**
 
-<p width="100px" align="right"><a href="11_template.md">Applikationstemplates →</a></p>
+<p width="100px" align="right"><a href="11_template.md">Application templates →</a></p>
 
 [← back to overview](../README.md)
