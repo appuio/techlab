@@ -1,43 +1,45 @@
-# Lab 11: Applikationstemplates
+# Lab 11: Application templates
 
-In diesem Lab zeigen wir auf, wie Templates ganze Infrastrukturen beschreiben und entsprechend mit einem Befehl instanziert werden können.
+In this lab we show how templates can describe entire infrastructures and can be instantiated with a command.
 
 ## Templates
 
-Wie Sie in den vorangegangenen Labs gesehen haben, können einfach über die Eingabe unterschiedlicher Befehle Applikationen, Datenbanken, Services und deren Konfiguration erstellt und deployt werden.
+As you've seen in the previous labs, you can easily create and deploy applications, databases, services, and their configuration by entering different commands.
 
-Dies ist fehleranfällig und eignet sich schlecht zum Automatisieren.
+This is error-prone and is not suitable for automating.
 
-OpenShift bietet dafür das Konzept von Templates, in welchen man eine Liste von Ressourcen beschreiben kann, die parametrisiert werden können. Sie sind also quasi ein Rezept für eine ganze Infrastruktur (bspw. 3 ApplikationsContainer, eine Datenbank mit Persistent Storage)
+OpenShift offers the concept of templates in which you can describe a list of resources that can be parameterized. So you are almost a recipe for a whole infrastructure (for example, 3 application containers, a database with Persistent Storage)
 
-**Note:** der Clusteradmin kann globale Templates erstellen, welche allen Usern zur Verfügung stehen.
+**Note:** Clusteradmin can create global templates, which are available to all users.
 
-Alle vorhandenen Templates anzeigen
-```
-$ oc get template -n openshift
-```
+View all existing templates
 
-Über die Web Console kann dies via "Add to Project" gemacht werden, über diese Funktionalität können Templates direkt instanziert werden.
-
-Diese Templates können im JSON-Format sowohl im Git Repository neben Ihrem Source Code abgelegt werden als auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein.
-
-## Task: LAB11.1: Template instanzieren.
-
-Die einzelnen Schritte die wir in den vorherigen Labs manuell vorgenommen haben, können nun mittels Template in einem "Rutsch" durchgeführt werden.
-
-```
-$ oc new-project [USER]-template
+```bash
+oc get template -n openshift
 ```
 
-Template erstellen
+Using the Web Console, this can be done via "Add to Project". This functionality allows templates to be directly instantiated.
 
+These templates can be stored in json format in the Git repository next to their source code, as well as via a URL called or even locally stored in the filesystem.
+
+## Task: LAB11.1: Instance Template
+
+The individual steps we have done manually in the previous labs can now be carried out using a template in a "slide".
+
+```bash
+oc new-project [USER]-template
 ```
+
+Create template
+
+```bash
 $ oc create -f https://raw.githubusercontent.com/appuio/example-spring-boot-helloworld/master/example-spring-boot-template.json
+[...]
 ```
 
-Template instanzieren
+instantiat template
 
-```
+```bash
 $ oc new-app example-spring-boot
 
 --> Deploying template example-spring-boot for "example-spring-boot"
@@ -60,40 +62,44 @@ $ oc new-app example-spring-boot
 
 ```
 
-Mittels:
-```
-oc import-image example-spring-boot 
+With:
+
+```bash
+oc import-image example-spring-boot
 ```
 
-wird das image importiert und das deployment gestartet.
+the image will be imported and started.
 
-Mittels:
-```
+With:
+
+```bash
 oc rollout latest mysql
 ```
-wird ebenso die Datenbank deployed
 
-**Hint:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
+the databasae will be deployed
 
-Als Abschluss dieses Labs können Sie sich noch das Template anschauen
-```
+**Hint:** You could also process templates directly by calling a template directly `$ oc new-app -f template.json -p Param = value`
+
+To conclude this lab you can still see the template
+
+```txt
 https://github.com/appuio/example-spring-boot-helloworld/blob/master/example-spring-boot-template.json
 ```
 
+**Note:** Existing resources can be exported as a template using the `oc export [ResourceType] --as-myapptemplate` Command.
 
-**Note:** Bestehende Ressourcen können als Template exportiert werden, verwenden Sie dafür den `oc export [ResourceType] --as-myapptemplate` Command.
-Bspw.
+For example:
 
-```
+```bash
 oc export is,bc,dc,route,service --as-template=example-spring-boot -o json > example-spring-boot-template.json
 ```
 
-Wichtig ist, dass die Imagestreams zuoberst im Template File definiert sind. Ansonsten wird der erste Build nicht funktionieren.
+It is important that the Imagestreams are defined at the top in the template file. Otherwise, the first build will not work.
 
 ---
 
-**Ende Lab 11**
+**End Lab 11**
 
-<p width="100px" align="right"><a href="12_template_creation.md">Eigene Templates erstellen →</a></p>
+<p width="100px" align="right"><a href="12_template_creation.md">Create your own Templates →</a></p>
 
 [← back to overview](../README.md)
