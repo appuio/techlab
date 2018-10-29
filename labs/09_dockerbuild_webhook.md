@@ -1,8 +1,8 @@
-# Lab 9: Code Changes durch Webhook triggern Rebuild auf OpenShift
+# Lab 9: Directly integrate code changes via Webhook
 
-In diesem Lab zeigen wir den Docker Build Workflow anhand eines Beispiels auf und Sie lernen, wie Sie mit einem Push in das Git Repository einen Build und ein Deployment der Applikation auf OpenShift starten.
+In this lab, we'll show you the Docker Build Workflow by example, and you'll learn how to push a build and deploy the application to OpenShift with a push into the Git repository.
 
-## Task: LAB9.1: Vorbereitung Github Account und Fork
+## Task: LAB9.1: Preparation of Github Account and Fork
 
 ### Github Account
 
