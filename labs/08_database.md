@@ -1,16 +1,16 @@
-# Lab 8: Datenbank anbinden
+# Lab 8: Deploy and Attach a Database
 
-Die meisten Applikationen sind in irgend einer Art stateful und speichern Daten persistent ab. Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore. In diesem Lab werden wir in unserem Projekt einen MySQL Service anlegen und an unsere Applikation anbinden, sodass mehrere Applikationspods auf die gleiche Datenbank zugreifen können.
+Most Applications are in a way stateful and safe their Data persistent in a Database, as a file or in a objectstore. In this Lab we will add an MySQL Service to our Project and attach it, so that multiple application pods can access the same database.
 
-Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
+As an Example we use our Springboot App from [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
 
-## Task: LAB8.1: MySQL Service anlegen
+## Task: LAB8.1: Create a MySQL service
 
-Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pods alle Daten verloren gehen. In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
+For our Example in this Lab we use an OpenShift Template which will create a MySQL Database with an EmptyDir Data Storage. This Setup is only recommended for test environements since all the Data is lost if the MySQL Pod is restarted. In a later Lab we will show you how to create a persistent volume for the Databank, so that the data doesn't get lost if the pod restarts.
 
-Den MySQL Service können wir sowohl über die Web Console als auch über das CLI anlegen.
+The MySQL Service can be created in the Web Console as well as the CLI
 
-Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Password und DatabaseServiceName gleich gesetzt werden, egal welche Variante verwendet wird:
+To get the same result one simply has to set the database name, username, password and DatabaseServiceName regardless of the method:
 
 - MYSQL_USER appuio
 - MYSQL_PASSWORD appuio
@@ -19,7 +19,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 ### CLI
 
-Über das CLI kann der MySQL Service wie folgt angelegt werden:
+Using the cli the MySQL Service can be created as follows:
 
 ```
 $ oc new-app mysql-ephemeral \
@@ -29,30 +29,29 @@ $ oc new-app mysql-ephemeral \
 ```
 
 ### Web Console
-
-In der Web Console kann der MySQL (Ephemeral) Service dem Projekt über "Add to Project" und anschliessend "Data Stores" hinzugefügt werden.
+In the Web Console one can create the MySQL (Ephemeral) Service via "Add to Project" -> "Data Stores":
 ![MySQLService](../images/lab_8_addmysql_service.png)
 
 
 ## Task: LAB8.2: Applikation an die Datenbank anbinden
 
-Standardmässig wird bei unserer example-spring-boot Applikation eine H2 Memory Datenbank verwendet. Dies kann über das Setzen der folgenden Umgebungsvariablen entsprechend auf unseren neuen MySQL Service umgestellt werden:
+By default, a H2 memory database is used for our example-spring-boot application. This can be changed to our new MySQL service by setting the following environment variables:
 
 - SPRING_DATASOURCE_USERNAME appuio
 - SPRING_DATASOURCE_PASSWORD appuio
 - SPRING_DATASOURCE_DRIVER_CLASS_NAME com.mysql.jdbc.Driver
-- SPRING_DATASOURCE_URL jdbc:mysql://[Adresse des MySQL Service]/appuio?autoReconnect=true
+- SPRING_DATASOURCE_URL jdbc:mysql://[Adress of the MySQL Service]/appuio?autoReconnect=true
 
-Für die Adresse des MySQL Service können wir entweder dessen Cluster IP (`oc get service`) oder aber dessen DNS-Namen (`<service>`) verwenden. Alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden.
+For the address of the MySQL service, we can use either its cluster IP  (`oc get service`) or its DNS name (`<service>`). All services and pods within a project can be resolved via DNS.
 
-So lautet der Wert für die Variable SPRING_DATASOURCE_URL bspw.:
+For example, the value for the variable SPRING_DATASOURCE_URL is:
 ```
-Name des Services: mysql
+Name of the Services: mysql
 
 jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
 
-Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
+We can now set these environment variables in the DeploymentConfig example-spring-boot. After the **ConfigChange** (ConfigChange is registered as a trigger in the DeploymentConfig), the application is automatically deployed again. Because of the new environment variables the application connects to the MySQL DB and [Liquibase](http://www.liquibase.org/) creates the schema and imports the test data.
 
 **Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
