@@ -115,6 +115,15 @@ Ubuntu:
 sudo apt install bash-completion
 ```
 
+Mac:
+
+```bash
+brew install bash-completion
+source $(brew --prefix)/etc/bash_completion
+```
+
+Um die bash/zsh completion nicht nur temporär einzurichten kann man die oben erwähnte Zeile in die `.bash_profile` oder `.zshrc` einfügen.
+
 ---
 
 **Ende Lab 2**
