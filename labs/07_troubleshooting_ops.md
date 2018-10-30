@@ -10,7 +10,7 @@ Running containers are treated as immutable infrastructure and shouldn't be modi
 
 ## Task: LAB7.1
 
-With Openshift remote shells to Pods can be opened without installing SSH beforehand. For this the command `oc rsh` is availanle.
+Openshift allows us to open remote shells into pods without installing SSH.
 
 Select a Pod using `oc get pods` and issue the following command:
 ```
