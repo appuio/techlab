@@ -2,7 +2,7 @@
 
 This lab will shjow you how to deal with errors and troubleshooting, and which toosl are available to you.
 
-## Log in to the cntainer
+## Log in to the container
 
 We use the project from [Lab 4](04_deploy_dockerimage.md) `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
 
