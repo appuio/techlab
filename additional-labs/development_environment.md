@@ -1,36 +1,36 @@
-# OpenShift Entwicklungsumgebung
+# OpenShift Development Environement
 
-Diese Seite zeigt verschiedene Möglichkeiten, wie selbst entwickelte Docker Container oder OpenShift Templates etc. getestet werden können, ohne auf eine vollständige, produktive OpenShift-Plattform wie bspw. APPUiO Zugriff zu haben.
+This Page will show you different possibilities, how to test self developed Docker containers or OpenShift templates and so on, whitout having access to a fully produvtiv OpenShift-plattform like for Example Appuio.
 
 ## Minishift
 
-Minishift erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM mit KVM, xhyve, Hyper-V oder VirtualBox.
+Minishift allows you to operate a locale OpenShift installation on your own Notebook in a VM with KVM, xhyve, Hyper-V or VirtualBox.
 
-### Installation und Dokumentation
+### Installation and Documentation
 
-Für die Installation bitte der offiziellen Anleitung unter https://docs.openshift.org/latest/minishift/getting-started/installing.html folgen.
-
+For the installation please follow the official Documentation: https://docs.openshift.org/latest/minishift/getting-started/installing.html
 
 ### Troubleshooting
 
-#### DNS-Probleme
+#### DNS-Problems
 
-Minishift setzt bei der DNS-Auflösung auf nip.io (http://nip.io/). Wenn der auf dem eigenen Notebook konfigurierte DNS-Server [private_ip_range].nip.io nicht auflösen kann, kann z.B. der DNS-Server von Quad 9 (9.9.9.9) eingetragen werden.
+Minishift uses nip.io (http://nip.io) for DNS-resolution. If the DNS-Server on your notebook can't resolve [private_ip_range].nip.io, you can use the DNS-Server of Quad 9 (9.9.9.9).
 
 Infos Quad 9 DNS: https://www.quad9.net
 
 
 ## oc cluster up
 
-Seit Version 1.3 des OpenShift Clients "oc" existiert die Möglichkeit, ein OpenShift lokal auf dem eigenen Laptop zu starten. Hierfür wird ein Docker Container heruntergeladen, der eine OpenShift-Installation beinhaltet, und anschliessend gestartet.
+Since the Version 1.3 of the OpenShift Client "oc" there is a possibility to start Openshift localy on your Laptop. This downloads a Dockercontainer which contains an OpenShift installation and starts it.
 
-Voraussetzungen:
+Prerequisites:
 * oc 1.3+
 * Docker 1.10
 
-Sind die Voraussetzung erfüllt und Docker gestartet, kann mit folgendem Befehl die OpenShift-Umgebung gestartet werden:
-```
-$ oc cluster up
+If all the prerequisits are met and docker is running, openshift can be started with:
+
+```bash
+oc cluster up
 ```
 
 ### Dokumentation und Troubleshooting
