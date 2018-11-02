@@ -4,7 +4,7 @@ This Page will show you different possibilities, how to test self developed Dock
 
 ## Minishift
 
-Minishift allows you to operate a locale OpenShift installation on your own Notebook in a VM with KVM, xhyve, Hyper-V or VirtualBox.
+Minishift allows you to operate a local OpenShift installation on your own Notebook in a VM with KVM, xhyve, Hyper-V or VirtualBox.
 
 ### Installation and Documentation
 
