@@ -27,7 +27,7 @@ Prerequisites:
 * oc 1.3+
 * Docker 1.10
 
-If all the prerequisits are met and docker is running, openshift can be started with:
+If all the prerequisits are met and Docker is running, Openshift can be started with:
 
 ```bash
 oc cluster up
