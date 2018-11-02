@@ -1,6 +1,6 @@
 # Lab 7: Troubleshooting whats in the pod?
 
-This lab will shjow you how to deal with errors and troubleshooting, and which toosl are available to you.
+This lab will show you how to deal with errors and troubleshooting, and which tools are available to you.
 
 ## Log in to the container
 
