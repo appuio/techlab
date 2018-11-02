@@ -21,13 +21,13 @@ Infos Quad 9 DNS: https://www.quad9.net
 
 ## oc cluster up
 
-Since the Version 1.3 of the OpenShift Client "oc" there is a possibility to start Openshift localy on your Laptop. This downloads a Dockercontainer which contains an OpenShift installation and starts it.
+Since the Version 1.3 of the OpenShift Client "oc" there is a possibility to start OpenShift localy on your Laptop. This downloads a Dockercontainer which contains an OpenShift installation and starts it.
 
 Prerequisites:
 * oc 1.3+
 * Docker 1.10
 
-If all the prerequisits are met and Docker is running, Openshift can be started with:
+If all the prerequisites are met and Docker is running, OpenShift can be started with:
 
 ```bash
 oc cluster up

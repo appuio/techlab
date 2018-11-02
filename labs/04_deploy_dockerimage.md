@@ -24,7 +24,7 @@ $ oc get project
 ```
 to show all projects the current user is authorized to see.
 
-Once you crated the new project you can deploy the Docker Image in Openshift using:
+Once you crated the new project you can deploy the Docker Image in OpenShift using:
 
 ```bash
 $ oc new-app appuio/example-spring-boot
@@ -74,7 +74,7 @@ Depending on your internet connection and wheter the image was allready download
 4. Select Pods
 
 
-**Hint** To Create your own Docker Image to run on Openshift, you should follow these best Practices: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
+**Hint** To Create your own Docker Image to run on OpenShift, you should follow these best Practices: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
 
 ## Examine the created resources
 When we first executed `oc new-app appuio/example-spring-boot` OpenShift created some resources for us in the background. These are required to deploy this docker image:
@@ -87,7 +87,7 @@ When we first executed `oc new-app appuio/example-spring-boot` OpenShift created
 
 [Services](https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/pods_and_services.html#services) serve as an abstraction layer, entry point and Proxy/Loadbalancer to the Pods. The Service allows OpenShift to find and approach a group of pods.
 
-As an example, if an application can't carry the load alone we can scale it to more pods. Openshift automaticaly maps those endpoints to the service and as soon as the pods are ready the requests are balanced to all the running pods.
+As an example, if an application can't carry the load alone we can scale it to more pods. OpenShift automaticaly maps those endpoints to the service and as soon as the pods are ready the requests are balanced to all the running pods.
 
 **Note:** At the moment, our application isn't available from the outside. A service is a OpenShift internal concept. We will achive this in the next lab.
 

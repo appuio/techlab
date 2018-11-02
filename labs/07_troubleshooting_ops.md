@@ -10,7 +10,7 @@ Running containers are treated as immutable infrastructure and shouldn't be modi
 
 ## Task: LAB7.1
 
-Openshift allows us to open remote shells into pods without installing SSH.
+OpenShift allows us to open remote shells into pods without installing SSH.
 
 Select a Pod using `oc get pods` and issue the following command:
 ```
@@ -68,11 +68,11 @@ If a pod has the status **CrashLoopBackOff** this means it could not be started 
 $ oc logs -p [POD]
 ```
 
-With Openshift an EFK (Elasticsearch, Fluentd, Kibana) stack is delivered, which collects, rotates and aggregates all log files. Kibana allows logs to be searched, filtered and graphically edited. For more information and an optional Lab see [here](../additional-labs/logging_efk_stack.md).
+With OpenShift an EFK (Elasticsearch, Fluentd, Kibana) stack is delivered, which collects, rotates and aggregates all log files. Kibana allows logs to be searched, filtered and graphically edited. For more information and an optional Lab see [here](../additional-labs/logging_efk_stack.md).
 
 ## Task: LAB7.3 Port Forwarding
 
-OpenShift 3 allows us to forward any port from our workstation to the pod. This is useful to use admin-consoles, databases etc. which should not be exposed towards the internet. In contrast to Openshift 2 the portforwarding is tunneled through the same HTTPS-connection as the Openshift Client (`oc`) uses. This is useful if there are restrictive firewalls and/or proxies between your workstation and Openshift.
+OpenShift 3 allows us to forward any port from our workstation to the pod. This is useful to use admin consoles, databases etc., which should not be exposed towards the internet. In contrast to OpenShift 2 the portforwarding is tunneled through the same HTTPS-connection as the OpenShift client (`oc`) uses. This is useful if there are restrictive firewalls and/or proxies between your workstation and OpenShift.
 
 Excercise: Access the Spring Boot Metrics from [Lab 4](04_deploy_dockerimage.md).
 
@@ -81,9 +81,9 @@ oc get po --namespace="[USER]-dockerimage"
 oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="[USER]-dockerimage"
 ```
 
-Don't forget to change the pod name accordingly. If installed you can use TAB-completion.
+Don't forget to change the pod name accordingly. If installed you can use tab completion.
 
-The Metrics can be found under [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be shown in json. With the same concept you could connect a local SQL Client with your database.
+The Metrics can be found under [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be shown in json. With the same concept you could connect a local SQL client with your database.
 
 Further Documentation to port forwarding can be found under: https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html
 

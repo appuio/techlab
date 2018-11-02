@@ -28,7 +28,7 @@ This Techlab is based on OpenShift 3.5.
 
 ### Additional Labs
 
-- [Own Openshift development Environement](additional-labs/development_environment.md)
+- [Own OpenShift development Environement](additional-labs/development_environment.md)
 - [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
 ## Further Documentation
