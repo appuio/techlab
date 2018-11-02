@@ -1,4 +1,4 @@
-# OpenShift Development Environement
+# OpenShift Development Environment
 
 This Page will show you different possibilities, how to test self developed Docker containers or OpenShift templates and so on, whitout having access to a fully produvtiv OpenShift-plattform like for Example Appuio.
 
