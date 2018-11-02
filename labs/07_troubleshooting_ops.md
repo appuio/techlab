@@ -81,7 +81,7 @@ oc get po --namespace="[USER]-dockerimage"
 oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="[USER]-dockerimage"
 ```
 
-Don't forgett to change the Pod Name accordingly. If installed you can use the TAB-completion.
+Don't forget to change the pod name accordingly. If installed you can use TAB-completion.
 
 The Metrics can be found under [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be shown in json. With the same concept you could connect a local SQL Client with your database.
 
