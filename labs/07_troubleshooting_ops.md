@@ -74,7 +74,7 @@ With Openshift an EFK (Elasticsearch, Fluentd, Kibana) stack is delivered, which
 
 OpenShift 3 allows us to forward any port from our workstation to the pod. This is useful to use admin-consoles, databases etc. which should not be exposed towards the internet. In contrast to Openshift 2 the portforwarding is tunneled through the same HTTPS-connection as the Openshift Client (`oc`) uses. This is useful if there are restrictive firewalls and/or proxies between your workstation and Openshift.
 
-Excercise: Acces the Spring Boot Metrics from [Lab 4](04_deploy_dockerimage.md).
+Excercise: Access the Spring Boot Metrics from [Lab 4](04_deploy_dockerimage.md).
 
 ```
 oc get po --namespace="[USER]-dockerimage"
