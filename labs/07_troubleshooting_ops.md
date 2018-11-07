@@ -17,7 +17,7 @@ Select a Pod using `oc get pods` and issue the following command:
 $ oc rsh [POD]
 ```
 
-You now have a shell within the container and can perfom analyzes:
+You now have a shell within the container and can perfom analysis:
 
 ```
 bash-4.2$ ls -la
