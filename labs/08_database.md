@@ -75,7 +75,7 @@ Command for setting the environment variables:
       -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
 
-You can use the following command to view DeploymentConfig as JSON. New, the Config also contains the set environment variables:
+You can use the following command to view the DeploymentConfig as JSON. Now the config also contains the freshly set environment variables:
 
 ```
  $ oc get dc example-spring-boot -o json
