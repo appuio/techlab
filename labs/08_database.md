@@ -42,7 +42,7 @@ By default a H2 memory database is used for our example-spring-boot application.
 - SPRING_DATASOURCE_DRIVER_CLASS_NAME com.mysql.jdbc.Driver
 - SPRING_DATASOURCE_URL jdbc:mysql://[MySQL service's address]/appuio?autoReconnect=true
 
-For the address of the MySQL service, we can use either its cluster IP  (`oc get service`) or its DNS name (`<service>`). All services and pods within a project can be resolved via DNS.
+As the MySQL service's address we can either use its cluster IP (`oc get service`) or its DNS name (`<service>`). All services and pods within a project can be resolved via DNS.
 
 For example, the value for the variable SPRING_DATASOURCE_URL is:
 ```
