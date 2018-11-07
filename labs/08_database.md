@@ -35,7 +35,7 @@ In the Web Console one can create the MySQL (Ephemeral) Service via "Add to Proj
 
 ## Task: LAB8.2: Applikation an die Datenbank anbinden
 
-By default, a H2 memory database is used for our example-spring-boot application. This can be changed to our new MySQL service by setting the following environment variables:
+By default a H2 memory database is used for our example-spring-boot application. This can be changed to our new MySQL service by setting the following environment variables:
 
 - SPRING_DATASOURCE_USERNAME appuio
 - SPRING_DATASOURCE_PASSWORD appuio
