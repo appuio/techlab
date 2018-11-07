@@ -161,7 +161,7 @@ The task is to import the [provided dump](https://raw.githubusercontent.com/appu
 
 **Attention:** Note that the rsync command of the operating system is used. On most UNIX systems rsync can be installed via package manager, on Windows use e.g. [cwRsync](https://www.itefix.net/cwrsync). If an installation of rsync is not possible, you can still log into the pod and download the dump via `curl -O <URL>`.
 
-**Hint:** Use the mysql tool to load the dump.
+**Hint:** Use the mysql tool to import the dump.
 
 **Hint:** The existing database must be empty beforehand. It can also be deleted and re-created.
 
