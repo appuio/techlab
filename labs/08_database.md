@@ -152,7 +152,7 @@ show tables;
 ```
 
 
-## Task: LAB8.4: Import dump to MySQL DB
+## Task: LAB8.4: Importing a Dump Into Our Database
 
 The task is to put the [dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) into the MySQL database.
 
