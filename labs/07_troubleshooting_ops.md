@@ -54,7 +54,7 @@ KUBERNETES_PORT_53_TCP=tcp://172.30.0.1:53
 ...
 ```
 
-## View log files
+## Viewing Log Files
 
 The log files for a pod can be displayed in the web console as well as in the cli:
 
