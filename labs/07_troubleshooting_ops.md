@@ -85,7 +85,7 @@ Don't forget to change the pod name accordingly. If installed you can use tab co
 
 Metrics can be found at [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be displayed in json. With the same concept you could connect a local SQL client with your database.
 
-Further Documentation to port forwarding can be found under: https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html
+Further documentation on port forwarding can be found at <https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html>.
 
 ---
 
