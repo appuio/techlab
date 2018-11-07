@@ -108,7 +108,7 @@ The configuration can also be viewed and changed in the web console:
 
 (Applications → Deployments → example-spring-boot, Actions, Edit YAML)
 
-## Task: LAB8.3: Log into MySQL Service Pod and connect to DB manually
+## Task: LAB8.3: Manually Connect to Database
 
 As described in the Lab [07](07_troubleshooting_ops.md) you can log into a pod using  `oc rsh [POD]`:
 
