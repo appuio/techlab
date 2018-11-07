@@ -53,7 +53,7 @@ jdbc:mysql://mysql/appuio?autoReconnect=true
 
 We can now set these environment variables in the DeploymentConfig example-spring-boot. After the **ConfigChange** (ConfigChange is registered as a trigger in the DeploymentConfig), the application is automatically deployed again. Because of the new environment variables the application connects to the MySQL DB and [Liquibase](http://www.liquibase.org/) creates the schema and imports the test data.
 
-**Note:** Liquibase is open source. It is a database independent library to manage database changes and to apply them to the database. Liquibase recognizes when starting the application, whether DB changes have to be applied to the database or not. See Logs.
+**Note:** Liquibase is open source. It is a database-independent library to manage and apply database changes. Liquibase recognizes when starting the application, whether database changes have to be applied to the database or not. See Logs.
 
 
 ```
