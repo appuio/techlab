@@ -181,7 +181,7 @@ Log in to the MySQL pod:
 oc rsh mysql-1-diccy
 ```
 
-Delete the existing Database:
+Delete the existing database:
 
 ```bash
 $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
