@@ -157,7 +157,7 @@ show tables;
 The task is to import the [provided dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) into the MySQL database.
 
 
-**Hint:** Use `oc rsync` to copy local files to a pod.
+**Hint:** Use `oc rsync` to copy local files into a pod.
 
 **Attention:** Note that the rsync command of the operating system is used. On UNIX systems, rsync can be installed with the package manager, on Windows, for example, [cwRsync](https://www.itefix.net/cwrsync). If an installation of rsync is not possible, you can, for example, log into the pod and download the dump via `curl -O <URL>`.
 
