@@ -126,7 +126,7 @@ Then log into the MySQL pod:
 oc rsh mysql-1-diccy
 ```
 
-Now you can connect to the database using mysql tool and display the tables:
+Now you can connect to the database using the mysql client and display the tables:
 
 ```bash
 $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
