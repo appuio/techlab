@@ -197,7 +197,7 @@ Insert dump:
 mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/08_dump/dump.sql
 ```
 
-**Note:** he dump can be created as follows:
+**Note:** The dump can be created as follows:
 
 ```bash
 mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HOST appuio > /tmp/dump.sql
