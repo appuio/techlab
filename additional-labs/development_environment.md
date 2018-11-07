@@ -36,7 +36,7 @@ oc cluster up
 ### Documentation und Troubleshooting
 
 #### iptables
-The local firewall often is a source for issues. Docker uses iptables to allow the containers access to the internet. It can happen that certain rules conflict with each other. Usually a flush of the rule chain after stopping the OpenShift instance with `oc cluster down` helps:
+The local firewall often is a source for issues. Docker uses iptables to allow the containers access to the internet. There's the possibility that certain rules conflict with each other. Usually, a flush of the rule chain after stopping the OpenShift instance with `oc cluster down` helps:
 
 ```bash
 iptables -F
