@@ -19,7 +19,7 @@ To get the same result one has to simply set the database name, username, passwo
 
 ### CLI
 
-Using the cli the MySQL Service can be created as follows:
+Using the cli the MySQL service can be created as follows:
 
 ```
 $ oc new-app mysql-ephemeral \
