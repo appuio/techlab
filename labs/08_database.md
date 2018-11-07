@@ -46,7 +46,7 @@ As the MySQL service's address we can either use its cluster IP (`oc get service
 
 E.g. the value for the variable SPRING_DATASOURCE_URL is:
 ```
-Name of the Services: mysql
+Name of the services: mysql
 
 jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
