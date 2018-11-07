@@ -4,7 +4,7 @@ This page will show you different possibilities on how to test self-developed Do
 
 ## Minishift
 
-Minishift allows you to operate a local OpenShift installation on your own Notebook in a VM with KVM, xhyve, Hyper-V or VirtualBox.
+Minishift allows you to operate a local, virtualized OpenShift installation on your own machine using KVM, xhyve, Hyper-V or VirtualBox.
 
 ### Installation and Documentation
 
