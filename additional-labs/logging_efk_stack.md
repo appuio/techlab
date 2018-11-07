@@ -1,6 +1,6 @@
 # Lab: Logging EFK Stack
 
-Witch OpenShift an EFK (Elasticsearch, Fluentd, Kibana) Stack will be provided. It collects all the log files, rotates and aggregates them. Kibana allows it to search through the logs and to filter as well as to represent them graphically.
+OpenShift provides an integrated EFK (Elasticsearch, Fluentd, Kibana) stack used to collect, rotate and aggregate all log files. Kibana is then used for visualizing, searching and filtering these logs.
 
 > [More Information](https://docs.openshift.com/container-platform/3.5/install_config/aggregate_logging.html)
 
