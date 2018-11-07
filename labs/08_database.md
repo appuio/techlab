@@ -10,7 +10,7 @@ In this lab we're going to use an OpenShift template which will create a MySQL d
 
 The MySQL service can be created in the Web Console as well as with the CLI.
 
-To get the same result one simply has to set the database name, username, password and DatabaseServiceName regardless of the method:
+To get the same result one has to simply set the database name, username, password and database service name regardless of the method:
 
 - MYSQL_USER appuio
 - MYSQL_PASSWORD appuio
