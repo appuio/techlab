@@ -74,7 +74,7 @@ Depending on your internet connection and wheter the image was allready download
 4. Select Pods
 
 
-**Hint** To Create your own Docker Image to run on OpenShift, you should follow these best Practices: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
+**Hint** In order to create your own container image to run on OpenShift, you should follow these best practices: https://docs.openshift.com/container-platform/3.5/creating_images/guidelines.html
 
 ## Examine the created resources
 When we first executed `oc new-app appuio/example-spring-boot` OpenShift created some resources for us in the background. These are required to deploy this docker image:
