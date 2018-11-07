@@ -1,4 +1,4 @@
-# Lab 1: Quicktour through OpenShift V3
+# Lab 1: OpenShift Quicktour
 
 In this lab the basic concepts of OpenShift are presented. We will also show you how to log in to the web console and briefly present the individual areas.
 
@@ -87,8 +87,8 @@ This way you have the possibility to describe entire infrastructures:
 
 ---
 
-**End Lab 1**
+**End of lab 1**
 
-<p width="100px" align="right"><a href="02_cli.md">install OpenShift CLI →</a></p>
+<p width="100px" align="right"><a href="02_cli.md">OpenShift CLI Installation →</a></p>
 
 [← back to overview](../README.md)

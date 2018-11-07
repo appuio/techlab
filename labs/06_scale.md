@@ -1,4 +1,4 @@
-# Lab 6: Pod Scaling, Readiness Probe und Self Healing
+# Lab 6: Scaling
 
 In this lab we will show you how to scale applications in OpenShift. We also show how OpenShift ensures that the number of expected pods is started and how an application can report back to the platform that it is ready for requests.
 
@@ -385,8 +385,8 @@ OpenShift ensures that again **n** replicas of the mentioned pod are running.
 
 ---
 
-**End Lab 6**
+**End of lab 6**
 
-<p width="100px" align="right"><a href="07_troubleshooting_ops.md">Troubleshooting what's in the pod? →</a></p>
+<p width="100px" align="right"><a href="07_troubleshooting_ops.md">Troubleshooting →</a></p>
 
 [← back to overview](../README.md)

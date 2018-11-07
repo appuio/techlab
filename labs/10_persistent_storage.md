@@ -1,4 +1,4 @@
-# Lab 10: Persistent Storage and use for database
+# Lab 10: Persistent Storage
 
 Data in a pod is not persistent, which is also the case in our example. If, for example, our MySQL pod disappears because of a change to the image, the existing data in the new pod will no longer exist. To prevent this, we are now attaching persistent storage to our MySQL pod.
 
@@ -63,8 +63,8 @@ Now scale the mysql pod to 0 and then back to 1. Observe that the new pod is no 
 
 ---
 
-**End Lab 10**
+**End of lab 10**
 
-<p width="100px" align="right"><a href="11_template.md">Application templates →</a></p>
+<p width="100px" align="right"><a href="11_template.md">Templates →</a></p>
 
 [← back to overview](../README.md)

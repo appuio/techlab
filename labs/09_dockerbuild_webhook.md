@@ -1,4 +1,4 @@
-# Lab 9: Integrating Code Changes Via Webhook
+# Lab 9: Automatically Integrating Code Changes
 
 In this lab we'll show you the Docker build workflow and how to push a build and deploy the application to OpenShift with a push into a Git repository.
 
@@ -178,8 +178,8 @@ oc set triggers dc/appuio-php-docker-ex --auto
 
 ---
 
-**Ende Lab 9**
+**End of lab 9**
 
-<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage and use for database →</a></p>
+<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage →</a></p>
 
 [← back to overview](../README.md)

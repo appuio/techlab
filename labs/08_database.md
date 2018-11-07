@@ -1,4 +1,4 @@
-# Lab 8: Deploy and Attach a Database
+# Lab 8: Deploying and Attaching a Database
 
 There's mostly two different kinds of state when talking about stateful applications. The easier method is state that can be preserved in e.g. some kind of database, as a file or in an object store. In this lab we are going to add a MySQL service to our project and attach it so that multiple application pods can access the same database.
 
@@ -205,8 +205,8 @@ mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HO
 
 ---
 
-**Ende Lab 8**
+**End of lab 8**
 
-<p width="100px" align="right"><a href="09_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
+<p width="100px" align="right"><a href="09_dockerbuild_webhook.md">Automatically Integrating Code Changes →</a></p>
 
 [← back to overview](../README.md)

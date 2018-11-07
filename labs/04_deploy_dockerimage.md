@@ -1,4 +1,4 @@
-# Lab 4: Deploy a Docker Image
+# Lab 4: Deploying a Docker Image
 
 In this lab, we will jointly deploy the first "pre-built" Docker image and take a closer look at the OpenShift concepts Pod, Service, DeploymentConfig and ImageStream.
 
@@ -247,8 +247,8 @@ Look at the created resources with  `oc get [ResourceType] [Name] -o json` and `
 
 ---
 
-**End Lab 4**
+**End of lab 4**
 
-<p width="100px" align="right"><a href="05_create_route.md">create routes →</a></p>
+<p width="100px" align="right"><a href="05_create_route.md">Creating Routes →</a></p>
 
 [← back to overview](../README.md)

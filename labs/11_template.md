@@ -1,4 +1,4 @@
-# Lab 11: Application templates
+# Lab 11: Templates
 
 In this lab we show how templates can describe entire infrastructures and can be instantiated with a command.
 
@@ -98,8 +98,8 @@ It is important that the Imagestreams are defined at the top in the template fil
 
 ---
 
-**End Lab 11**
+**End of lab 11**
 
-<p width="100px" align="right"><a href="12_template_creation.md">Create your own Templates →</a></p>
+<p width="100px" align="right"><a href="12_template_creation.md">Creating Your Own Templates →</a></p>
 
 [← back to overview](../README.md)

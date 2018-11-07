@@ -1,4 +1,4 @@
-# Lab 12: Create your own Templates
+# Lab 12: Creating Your Own Templates
 
 In contrast to [Lab 11](11_template.md) we write / define our own templates before we create applications.
 
@@ -208,6 +208,6 @@ oc new-app --name=cache memcached:1.4 -o json|jq '.items[] | select(.kind == "Se
 
 ---
 
-**End Lab 12**
+**End of lab 12**
 
 [← back to overview](../README.md)

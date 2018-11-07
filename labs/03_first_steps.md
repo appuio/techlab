@@ -1,4 +1,4 @@
-# Lab 3: First steps through the Lab Plattform
+# Lab 3: First Steps
 
 In this lab, we will be interacting with the Lab platform for the first time, via the oc client as well as the web console
 
@@ -88,8 +88,8 @@ $ oc new-project [USER]-example1
 ```
 ---
 
-**Ende Lab 3**
+**End of lab 3**
 
-<p width="100px" align="right"><a href="04_deploy_dockerimage.md">Deploy a Docker Image→</a></p>
+<p width="100px" align="right"><a href="04_deploy_dockerimage.md">Deploying a Docker Image→</a></p>
 
 [← back to overview](../README.md)

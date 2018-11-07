@@ -1,4 +1,4 @@
-# Lab 2: Install the OpenShift CLI
+# Lab 2: OpenShift CLI Installation
 
 In this lab, we will install and configure the oc client so that we can then take the first steps on the OpenShift Techlab platform.
 
@@ -113,8 +113,8 @@ sudo apt install bash-completion
 
 ---
 
-**Ende Lab 2**
+**End of lab 2**
 
-<p width="100px" align="right"><a href="03_first_steps.md">First steps through the Lab Plattform →</a></p>
+<p width="100px" align="right"><a href="03_first_steps.md">First Steps →</a></p>
 
 [← back to overview](../README.md)

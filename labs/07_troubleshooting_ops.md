@@ -1,4 +1,4 @@
-# Lab 7: Troubleshooting whats in the pod?
+# Lab 7: Troubleshooting
 
 This lab will show you how to deal with errors and troubleshooting, and which tools are available to you.
 
@@ -89,8 +89,8 @@ Further documentation on port forwarding can be found at <https://docs.openshift
 
 ---
 
-**End Lab 7**
+**End of lab 7**
 
-<p width="100px" align="right"><a href="08_database.md">Deploy and Attach a Database →</a></p>
+<p width="100px" align="right"><a href="08_database.md">Deploying and Attaching a Database →</a></p>
 
 [← back to overview](../README.md)

@@ -1,4 +1,4 @@
-# Lab 5: Make our service available online with routes
+# Lab 5: Creating Routes
 
 In this lab we will make the application from [Lab 4](04_deploy_dockerimage.md) accessible **http** from the Internet.
 
@@ -58,8 +58,8 @@ This route with the hostname is now also visible in the web console's overview.
 
 ---
 
-**End Lab 5**
+**End of lab 5**
 
-<p width="100px" align="right"><a href="06_scale.md">Scale →</a></p>
+<p width="100px" align="right"><a href="06_scale.md">Scaling →</a></p>
 
 [← back to overview](../README.md)
