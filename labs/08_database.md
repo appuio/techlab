@@ -159,7 +159,7 @@ The task is to import the [provided dump](https://raw.githubusercontent.com/appu
 
 **Hint:** Use `oc rsync` to copy local files into a pod.
 
-**Attention:** Note that the rsync command of the operating system is used. On UNIX systems, rsync can be installed with the package manager, on Windows, for example, [cwRsync](https://www.itefix.net/cwrsync). If an installation of rsync is not possible, you can, for example, log into the pod and download the dump via `curl -O <URL>`.
+**Attention:** Note that the rsync command of the operating system is used. On most UNIX systems rsync can be installed via package manager, on Windows use e.g. [cwRsync](https://www.itefix.net/cwrsync). If an installation of rsync is not possible, you can still log into the pod and download the dump via `curl -O <URL>`.
 
 **Hint:** Use the mysql tool to load the dump.
 
