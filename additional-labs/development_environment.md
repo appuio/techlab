@@ -14,7 +14,7 @@ For the installation please follow [the official documentation](https://docs.ope
 
 #### DNS-Problems
 
-Minishift uses nip.io (http://nip.io) for DNS-resolution. If the DNS-Server on your notebook can't resolve [private_ip_range].nip.io, you can use the DNS-Server of Quad 9 (9.9.9.9).
+Minishift uses [nip.io](http://nip.io) for DNS resolution. If the DNS server on your machine can't resolve [private_ip_range].nip.io you can use another DNS service such as Quad 9 (`9.9.9.9`).
 
 Infos Quad 9 DNS: https://www.quad9.net
 
