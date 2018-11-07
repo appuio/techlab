@@ -1,29 +1,29 @@
 # Lab: Logging EFK Stack
 
-Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten.
+OpenShift provides an integrated EFK (Elasticsearch, Fluentd, Kibana) stack used to collect, rotate and aggregate all log files. Kibana is then used for visualizing, searching and filtering these logs.
 
-> [Weitere Informationen](https://docs.openshift.com/container-platform/3.5/install_config/aggregate_logging.html)
+> [More Information](https://docs.openshift.com/container-platform/3.5/install_config/aggregate_logging.html)
 
-**Best Practice JSON Logging auf STDOUT**
+**Best Practice JSON Logging to STDOUT**
 
-Innerhalb eines Container sollten die Logs jeweils auf STDOUT geschrieben werden, damit sich die Plattform entsprechend um die Aggregierung der Logs kümmern kann. Falls die Logs im JSON Format geschrieben werden zerlegt der EFK Stack die Logs automatisch und erlaubt ein Filtern auf Knopfdruck.
+In a container logs should be written to STDOUT so that the platform can take care of their aggregation. If the logs are written in the JSON format, EFK stack will automatically dis-aggregate them and allows filtering by the push of a button.
 
-Java EE Beispielanwendung mit Log4j 2 JSON Logging installieren:
+Install a Java EE example with Log4j 2 JSON Logging:
 
+```bash
+oc new-app openshift/wildfly-100-centos7~https://github.com/appuio/ose3-java-logging.git
+oc expose svc ose3-java-logging
 ```
-$ oc new-app openshift/wildfly-100-centos7~https://github.com/appuio/ose3-java-logging.git
-$ oc expose svc ose3-java-logging
-```
 
-Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeinträge zu generieren und anschliessend in der Webconsole unter Browse > Pods das neu erstellte Pod und anschliessend das Log Tab auswählen. Hier ist nun direkt der Standardoutput eines Pods der Applikation sichtbar.
+Afterwards open the application several times with your browser to generate a few logs, then open the web console under Browse > Pods find the new pod and klick its Log tab. Now you can see its STDOUT.
 
-Über den "View Archive" Knopf kann direkt zu den aggregierten Logs der Applikation im EFK Stack gewechselt werden. Hier sind nun die Logs aller Pods der ausgewählten Applikation zeitlich sortiert, und sofern im JSON format, nach den einzelnen Feldern geparsed zu sehen:
+Via the "View Archive" button you can jump directly to the aggregated logs of the application in the EFK stack. Here there are all the logs of all the pods of the chosen application sorted after time, and if they are in a JSON format, parsed after the different fields:
 
 ![Kibana Screenshot](/images/kibana1.png)
 
-Alle von der Applikation geloggten Felder sind jetzt noch mit einer Warnanzeige versehen, da sie noch nicht indiziert sind und somit nicht danach gefiltert, sortiert, etc. werden kann. Um dies zu beheben muss unter Settings > .all auf den reload Button ![Kibana Reload Button](/images/kibana2.png) gedrückt werden. Danach kann z.B. durch Drücken auf ein Feld eines Logeintrages nach allen Einträgen mit dem selben Wert gesucht werden.
+All logged fields of an application are still shown with a warning sign since they aren't indexed now and so can't be filtert or sorted yet. To resolve this klick under Settings > .all the reload button ![Kibana Reload Button](/images/kibana2.png). Afterwards it is possible to klick a field of a log entry to get all the entries with the same value.
 
-Die Strukturierung der Log4j 2 JSON Ausgabe ist derzeit für die von der Applikation beigesteuerten Felder nicht ideal:
+The structure of the Log4j 2 JSON output isn't ideal at the moment:
 
     "contextMap_0_key": "url",
     "contextMap_0_value": "http://ose3-java-logging-dtschan.ose3-lab.puzzle.ch/",
@@ -32,16 +32,16 @@ Die Strukturierung der Log4j 2 JSON Ausgabe ist derzeit für die von der Applika
     "contextMap_2_key": "freeMem",
     "contextMap_2_value": "16598776",
 
-Gewünscht wäre:
+desired would be:
 
     "url": "http://ose3-java-logging-dtschan.ose3-lab.puzzle.ch/",
     "remoteAddr": "10.255.1.1",
     "freeMem": "16598776",
 
-Was auch innerhalb von Kibana zu einer verständlicheren Darstellung führen würde. Siehe auch: https://issues.apache.org/jira/browse/LOG4J2-623.
+Which would also lead to a more comprehensible representation in Kibana. See: https://issues.apache.org/jira/browse/LOG4J2-623.
 
 ---
 
-**Ende**
+**End**
 
 [← back to overview](../README.md)

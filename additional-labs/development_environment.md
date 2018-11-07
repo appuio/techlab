@@ -1,93 +1,95 @@
-# OpenShift Entwicklungsumgebung
+# OpenShift Development Environment
 
-Diese Seite zeigt verschiedene Möglichkeiten, wie selbst entwickelte Docker Container oder OpenShift Templates etc. getestet werden können, ohne auf eine vollständige, produktive OpenShift-Plattform wie bspw. APPUiO Zugriff zu haben.
+This page will show you different possibilities on how to test self-developed Docker containers or OpenShift templates and so on without having access to a fully productive OpenShift platform like APPUiO.
 
 ## Minishift
 
-Minishift erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM mit KVM, xhyve, Hyper-V oder VirtualBox.
+Minishift allows you to operate a local, virtualized OpenShift installation on your own machine using KVM, xhyve, Hyper-V or VirtualBox.
 
-### Installation und Dokumentation
+### Installation and Documentation
 
-Für die Installation bitte der offiziellen Anleitung unter https://docs.openshift.org/latest/minishift/getting-started/installing.html folgen.
-
+For the installation please follow [the official documentation](https://docs.openshift.org/latest/minishift/getting-started/installing.html).
 
 ### Troubleshooting
 
-#### DNS-Probleme
+#### DNS-Problems
 
-Minishift setzt bei der DNS-Auflösung auf nip.io (http://nip.io/). Wenn der auf dem eigenen Notebook konfigurierte DNS-Server [private_ip_range].nip.io nicht auflösen kann, kann z.B. der DNS-Server von Quad 9 (9.9.9.9) eingetragen werden.
+Minishift uses [nip.io](http://nip.io) for DNS resolution. If the DNS server on your machine can't resolve [private_ip_range].nip.io you can use another DNS service such as Quad 9 (`9.9.9.9`).
 
 Infos Quad 9 DNS: https://www.quad9.net
 
 
 ## oc cluster up
 
-Seit Version 1.3 des OpenShift Clients "oc" existiert die Möglichkeit, ein OpenShift lokal auf dem eigenen Laptop zu starten. Hierfür wird ein Docker Container heruntergeladen, der eine OpenShift-Installation beinhaltet, und anschliessend gestartet.
+As of `oc` release 1.3 there is a possibility to start OpenShift locally on your machine. This downloads a Docker container which contains an OpenShift installation and starts it.
 
-Voraussetzungen:
+Prerequisites:
 * oc 1.3+
 * Docker 1.10
 
-Sind die Voraussetzung erfüllt und Docker gestartet, kann mit folgendem Befehl die OpenShift-Umgebung gestartet werden:
-```
-$ oc cluster up
+If all the prerequisites are met and Docker is running, OpenShift can be started with:
+
+```bash
+oc cluster up
 ```
 
-### Dokumentation und Troubleshooting
+### Documentation und Troubleshooting
 
 #### iptables
-Eine häufige Fehlerquelle ist die lokale Firewall. Docker verwendet iptables, um den Containern den Zugriff ins Internet zu gewährleisten. Es kann dabei vorkommen, dass sich bestimmte Rules in die Quere kommen. Häufig hilft ein Flushen der iptables Rulechains, nachdem die OpenShift-Instanz mit einem `oc cluster down` heruntergefahren wurde:
-```
-$ iptables -F
-```
-Anschliessend kann nochmals ein `oc cluster up` versucht werden.
+The local firewall often is a source for issues. Docker uses iptables to allow the containers access to the internet. There's the possibility that certain rules conflict with each other. Usually, a flush of the rule chain after stopping the OpenShift instance with `oc cluster down` helps:
 
-#### Dokumentation
+```bash
+iptables -F
+```
 
-Die vollständige Dokumentation befindet sich unter https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md.
+Afterwards you can retry by using `oc cluster up`.
+
+#### Documentation
+
+You can find the complete documentation at <https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md>.
 
 #### Ubuntu 16.04
 
-Der Setup für Ubuntu 16.04 gestaltet sich ein wenig anders, als dies auf Fedora, CentOS oder RHEL der Fall ist, da der Registry Zugriff anders konfiguriert werden muss.
+The setup for Ubuntu 16.04 is a little bit different as it is for Fedora, CentOS or RHEL, since the registry access has to be configured differently.
 
-1. Docker installieren.
-2. Docker Daemon für eine unsichere Docker Registry konfigurieren.
-   - Dazu die Datei `/etc/docker/daemon.json` mit folgendem Inhalt erstellen:
-     ```
+1. Install Docker
+2. Add OpenShift's registry as an insecure registry by editing `/etc/docker/daemon.json` as follows:
+     ```txt
      {
        "insecure-registries": ["172.30.0.0/16"]
      }
      ```
 
-   - Nach dem Erstellen der Konfiguration den Docker Daemon neu starten.
+   - After editing/creating the file, restart docker.
+     ```bash
+     sudo systemctl restart docker
      ```
-     $ sudo systemctl restart docker
-     ```
 
-3. oc installieren
+3. Install `oc`
 
-   Anleitung im Lab [OpenShift CLI installieren](labs/02_cli.md) befolgen.
+   Follow the instructions in [lab 2 "Installing the OpenShift CLI](labs/02_cli.md)
 
-4. Terminal öffnen und mit einem auf Docker berechtigten Benutzer diesen Befehl ausführen:
-   ```
-   $ oc cluster up
+4. Open the terminal and issue the command with a user that is authorized to use Docker:
+   ```bash
+   oc cluster up
    ```
 
-Cluster stoppen:
-```
-$ oc cluster down
+Stopp the cluster:
+
+```bash
+oc cluster down
 ```
 
 ## Vagrant
 
-Mit dem [Puppet Modul für OpenShift 3](https://github.com/puzzle/puppet-openshift3/tree/dev) ist die Installation der Plattform in Vagrant automatisiert. Dieses Puppet Modul wird für die Installation und Aktualisierung produktiver Instanzen verwendet.
+With the [Puppet Modul for OpenShift 3](https://github.com/puzzle/puppet-openshift3/tree/dev) the installation with Vagrant is automated. This Puppet Modul is used for the installation and update of productive Clusters.
 
-## Weitere Möglichkeiten
+## Other Variants
 
-Ein [Blogpost von Red Hat](https://developers.redhat.com/blog/2016/10/11/four-creative-ways-to-create-an-openshiftkubernetes-dev-environment/) beschreibt neben `oc cluster up` noch weitere Varianten, wie eine lokale Entwicklungsumgebung aufgesetzt werden kann.
+The [Blogpost from Red Hat](https://developers.redhat.com/blog/2016/10/11/four-creative-ways-to-create-an-openshiftkubernetes-dev-environment/) describes other possibilities for a local development environment besides `oc cluster up`.
 
 ---
 
-**Ende**
+**End**
 
 [← back to overview](../README.md)

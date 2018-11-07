@@ -1,16 +1,16 @@
-# Lab 8: Datenbank anbinden
+# Lab 8: Deploy and Attach a Database
 
-Die meisten Applikationen sind in irgend einer Art stateful und speichern Daten persistent ab. Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore. In diesem Lab werden wir in unserem Projekt einen MySQL Service anlegen und an unsere Applikation anbinden, sodass mehrere Applikationspods auf die gleiche Datenbank zugreifen können.
+There's mostly two different kinds of state when talking about stateful applications. The easier method is state that can be preserved in e.g. some kind of database, as a file or in an object store. In this lab we are going to add a MySQL service to our project and attach it so that multiple application pods can access the same database.
 
-Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
+We're going to use our Springboot app from [lab 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
 
-## Task: LAB8.1: MySQL Service anlegen
+## Task: LAB8.1: Create a MySQL service
 
-Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pods alle Daten verloren gehen. In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
+In this lab we're going to use an OpenShift template which will create a MySQL database with ephemeral storage, meaning the database's data will not (yet) be persistent. This setup is therefore only recommended for test environments since all the data is lost if the MySQL pod is restarted. We are going to attach persistent storage to our database in a later lab.
 
-Den MySQL Service können wir sowohl über die Web Console als auch über das CLI anlegen.
+The MySQL service can be created in the Web Console as well as with the CLI.
 
-Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Password und DatabaseServiceName gleich gesetzt werden, egal welche Variante verwendet wird:
+To get the same result one has to simply set the database name, username, password and database service name regardless of the method:
 
 - MYSQL_USER appuio
 - MYSQL_PASSWORD appuio
@@ -19,7 +19,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 ### CLI
 
-Über das CLI kann der MySQL Service wie folgt angelegt werden:
+Using the cli the MySQL service can be created as follows:
 
 ```
 $ oc new-app mysql-ephemeral \
@@ -29,46 +29,45 @@ $ oc new-app mysql-ephemeral \
 ```
 
 ### Web Console
-
-In der Web Console kann der MySQL (Ephemeral) Service dem Projekt über "Add to Project" und anschliessend "Data Stores" hinzugefügt werden.
+In the Web Console one can create the MySQL (Ephemeral) Service via "Add to Project" -> "Data Stores":
 ![MySQLService](../images/lab_8_addmysql_service.png)
 
 
 ## Task: LAB8.2: Applikation an die Datenbank anbinden
 
-Standardmässig wird bei unserer example-spring-boot Applikation eine H2 Memory Datenbank verwendet. Dies kann über das Setzen der folgenden Umgebungsvariablen entsprechend auf unseren neuen MySQL Service umgestellt werden:
+By default a H2 memory database is used for our example-spring-boot application. This can be changed to our new MySQL service by setting the following environment variables:
 
 - SPRING_DATASOURCE_USERNAME appuio
 - SPRING_DATASOURCE_PASSWORD appuio
 - SPRING_DATASOURCE_DRIVER_CLASS_NAME com.mysql.jdbc.Driver
-- SPRING_DATASOURCE_URL jdbc:mysql://[Adresse des MySQL Service]/appuio?autoReconnect=true
+- SPRING_DATASOURCE_URL jdbc:mysql://[MySQL service's address]/appuio?autoReconnect=true
 
-Für die Adresse des MySQL Service können wir entweder dessen Cluster IP (`oc get service`) oder aber dessen DNS-Namen (`<service>`) verwenden. Alle Services und Pods innerhalb eines Projektes können über DNS aufgelöst werden.
+As the MySQL service's address we can either use its cluster IP (`oc get service`) or its DNS name (`<service>`). All services and pods within a project can be resolved via DNS.
 
-So lautet der Wert für die Variable SPRING_DATASOURCE_URL bspw.:
+E.g. the value for the variable SPRING_DATASOURCE_URL is:
 ```
-Name des Services: mysql
+Name of the services: mysql
 
 jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
 
-Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
+We can now set these environment variables in the DeploymentConfig example-spring-boot. After the **ConfigChange** (ConfigChange is registered as a trigger in the DeploymentConfig), the application is automatically deployed again. Because of the new environment variables the application connects to the MySQL DB and [Liquibase](http://www.liquibase.org/) creates the schema and imports the test data.
 
-**Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
+**Note:** Liquibase is open source. It is a database-independent library to manage and apply database changes. Liquibase recognizes when starting the application, whether database changes have to be applied to the database or not. See Logs.
 
 
 ```
 SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
-**Note:** mysql löst innerhalb Ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. Der Service ist ebenfalls über den folgenden Namen erreichbar:
+**Note:** `mysql` resolves the cluster IP of the MySQL service within its project via DNS query. The MySQL database is only available within the project. The service is also available by the following name:
 
 ```
-Projektname = techlab-dockerimage
+Project name = techlab-dockerimage
 
 mysql.techlab-dockerimage.svc.cluster.local
 ```
 
-Befehl für das Setzen der Umgebungsvariablen:
+Command for setting the environment variables:
 ```
  $ oc env dc example-spring-boot \
       -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
@@ -76,7 +75,7 @@ Befehl für das Setzen der Umgebungsvariablen:
       -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
 
-Über den folgenden Befehl können Sie sich die DeploymentConfig als JSON anschauen. Neu enthält die Config auch die gesetzten Umgebungsvariablen:
+You can use the following command to view the DeploymentConfig as JSON. Now the config also contains the freshly set environment variables:
 
 ```
  $ oc get dc example-spring-boot -o json
@@ -105,14 +104,15 @@ Befehl für das Setzen der Umgebungsvariablen:
 ...
 ```
 
-Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
+The configuration can also be viewed and changed in the web console:
 
 (Applications → Deployments → example-spring-boot, Actions, Edit YAML)
 
-## Task: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
+## Task: LAB8.3: Manually Connect to Database
 
-Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingeloggt werden:
-```
+As described in [lab 07](07_troubleshooting_ops.md) you can log into a pod using `oc rsh [pod name]`:
+
+```bash
 $ oc get pods
 NAME                           READY     STATUS             RESTARTS   AGE
 example-spring-boot-8-wkros    1/1       Running            0          10m
@@ -120,13 +120,15 @@ mysql-1-diccy                  1/1       Running            0          50m
 
 ```
 
-Danach in den MySQL Pod einloggen:
-```
-$ oc rsh mysql-1-diccy
+Then log into the MySQL pod:
+
+```bash
+oc rsh mysql-1-diccy
 ```
 
-Nun können Sie mittels mysql Tool auf die Datenbank verbinden und die Tabellen anzeigen:
-```
+Now you can connect to the database using the mysql client and display the tables:
+
+```bash
 $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 54
@@ -143,61 +145,63 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ```
 
-Anschliessend können Sie mit
-```
+Then you can use the following command to display all tables:
+
+```mysql
 show tables;
 ```
 
-alle Tabellen anzeigen.
+
+## Task: LAB8.4: Importing a Dump Into Our Database
+
+The task is to import the [provided dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) into the MySQL database.
 
 
-## Task: LAB8.4: Dump auf MySQL DB einspielen
+**Hint:** Use `oc rsync` to copy local files into a pod.
 
-Die Task ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) einzuspielen.
+**Attention:** Note that the rsync command of the operating system is used. On most UNIX systems rsync can be installed via package manager, on Windows use e.g. [cwRsync](https://www.itefix.net/cwrsync). If an installation of rsync is not possible, you can still log into the pod and download the dump via `curl -O <URL>`.
 
+**Hint:** Use the mysql tool to import the dump.
 
-**Hint:** Mit `oc rsync` können Sie lokale Dateien in einen Pod kopieren.
-
-**Achtung:** Beachten Sie, dass dabei der rsync-Befehl des Betriebssystems verwendet wird. Auf UNIX-Systemen kann rsync mit dem Paketmanager, auf Windows kann bspw. [cwRsync](https://www.itefix.net/cwrsync) installiert werden. Ist eine Installation von rsync nicht möglich, kann stattdessen bspw. in den Pod eingeloggt und via `curl -O <URL>` der Dump heruntergeladen werden.
-
-**Hint:** Verwenden Sie das Tool mysql um den Dump einzuspielen.
-
-**Hint:** Die bestehende Datenbank muss vorgängig leer sein. Sie kann auch gelöscht und neu angelegt werden.
-
+**Hint:** The existing database must be empty beforehand. It can also be deleted and re-created.
 
 ---
 
-## Lösung: LAB8.4
+## Solution: LAB8.4
 
-Ein ganzes Verzeichnis (dump) syncen. Darin enthalten ist das File `dump.sql`. Beachten Sie zum rsync-Befehl auch obenstehenden Hint sowie den fehlenden trailing slash.
-```
+Sync an entire directory (dump). This includes the file `dump.sql`. Note for the rsync-command the hint above aswell the missing trailing slash.
+
+```bash
 oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/
 ```
-In den MySQL Pod einloggen:
 
-```
-$ oc rsh mysql-1-diccy
+Log in to the MySQL pod:
+
+```bash
+oc rsh mysql-1-diccy
 ```
 
-Bestehende Datenbank löschen:
-```
+Delete the existing database:
+
+```bash
 $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
 ...
 mysql> drop database appuio;
 mysql> create database appuio;
 mysql> exit
 ```
-Dump einspielen:
-```
-$ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/08_dump/dump.sql
+
+Insert dump:
+
+```bash
+mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/08_dump/dump.sql
 ```
 
-**Note:** Den Dump kann man wie folgt erstellen:
+**Note:** The dump can be created as follows:
 
-```
+```bash
 mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HOST appuio > /tmp/dump.sql
 ```
-
 
 ---
 

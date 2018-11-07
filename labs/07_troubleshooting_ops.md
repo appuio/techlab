@@ -1,23 +1,23 @@
 # Lab 7: Troubleshooting whats in the pod?
 
-In diesem Lab wird aufgezeigt, wie man im Fehlerfall und Troubleshooting vorgehen kann und welche Tools einem dabei zur Verfügung stehen.
+This lab will show you how to deal with errors and troubleshooting, and which tools are available to you.
 
-## In Container einloggen
+## Log in to the container
 
-Wir verwenden dafür wieder das Projekt aus [Lab 4](04_deploy_dockerimage.md) `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
+We use the project from [Lab 4](04_deploy_dockerimage.md) `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
 
-Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht modifiziert werden. Dennoch gibt es Usecases, bei denen man sich in die Container einloggen muss. Zum Beispiel für Debugging und Analysen.
+Running containers are treated as immutable infrastructure and shouldn't be modified. However there are usecases where you should log in to a container. For example, debugging and analysis.
 
 ## Task: LAB7.1
 
-Mit OpenShift können Remote Shells in die Pods geöffnet werden ohne dass man darin vorgängig SSH installieren müsste. Dafür steht einem der Befehl `oc rsh` zur Verfügung.
+OpenShift allows us to open remote shells into pods without installing SSH.
 
-Wählen Sie mittels `oc get pods` einen Pod aus und führen Sie den folgenden Befehl aus:
+Select a pod using `oc get pods` and issue the following command:
 ```
 $ oc rsh [POD]
 ```
 
-Sie können nun über diese Shell Analysen im Container ausführen:
+You now have a shell within the container and can perfom analysis:
 
 ```
 bash-4.2$ ls -la
@@ -35,7 +35,7 @@ drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 
 ## Task: LAB7.2
 
-Einzelne Befehle innerhalb des Containers können über `oc exec` ausgeführt werden:
+A single command within the container can be executed using `oc exec`:
 
 ```
 $ oc exec [POD] env
@@ -54,45 +54,43 @@ KUBERNETES_PORT_53_TCP=tcp://172.30.0.1:53
 ...
 ```
 
-## Logfiles anschauen
+## Viewing Log Files
 
-Die Logfiles zu einem Pod können sowohl in der Web Console als auch auch im CLI angezeigt werden.
+The log files for a pod can be displayed in the web console as well as in the cli:
 
 ```
 $ oc logs [POD]
 ```
-Der Parameter `-f` bewirkt analoges Verhalten wie `tail -f`
-
-Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholtem Restarten nicht erfolgreich gestartet werden konnte. Die Logfiles können auch wenn der Pod nicht läuft mit dem folgenden Befehl angezeigt werden.
+The `-f` parameter has the same behavior as `tail -f`
+If a pod has the status **CrashLoopBackOff** this means it could not be started succesfully even after repeated restarts. The logfiles still can be displayed even if the pod is not running with the following command:
 
  ```
 $ oc logs -p [POD]
 ```
 
-Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten. Weitere Informationen und ein optionales LAB finden sie [hier](../additional-labs/logging_efk_stack.md).
-
+With OpenShift an EFK (Elasticsearch, Fluentd, Kibana) stack is delivered, which collects, rotates and aggregates all log files. Kibana allows logs to be searched, filtered and graphically edited. For more information and an optional lab see [here](../additional-labs/logging_efk_stack.md).
 
 ## Task: LAB7.3 Port Forwarding
 
-OpenShift 3 erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf einen Pod weiterzuleiten. Dies ist z.B. nützlich, um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen, die nicht gegen das Internet exponiert werden und auch sonst nicht erreichbar sind. Im Gegensatz zu OpenShift 2 werden die Portweiterleitungen über dieselbe HTTPS-Verbindung getunnelt, die der OpenShift Client (oc) auch sonst benutzt. Dies erlaubt es auch dann auf OpenShift 3 Platformen zuzugreifen, wenn sich restriktive Firewalls und/oder Proxies zwischen Workstation und OpenShift befinden.
+OpenShift 3 allows us to forward any port from our workstation to the pod. This is useful to use admin consoles, databases etc. which should not be exposed towards the internet. In contrast to OpenShift 2 the portforwarding is tunneled through the same HTTPS connection as the OpenShift client (`oc`) uses. This is useful if there are restrictive firewalls and/or proxies between your workstation and OpenShift.
 
-Übung: Auf die Spring Boot Metrics aus [Lab 4](04_deploy_dockerimage.md) zugreifen.
+Excercise: Access the Spring Boot Metrics from [lab 4](04_deploy_dockerimage.md).
 
 ```
 oc get po --namespace="[USER]-dockerimage"
 oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="[USER]-dockerimage"
 ```
 
-Nicht vergessen den Pod Namen an die eigene Installation anzupassen. Falls installiert kann dafür Autocompletion verwendet werden.
+Don't forget to change the pod name accordingly. If installed you can use tab completion.
 
-Die Metrics können nun unter folgendem Link abgerufen werden: [http://localhost:9000/metrics/](http://localhost:9000/metrics/) Die Metrics werden Ihnen als Json angezeigt. Mit dem selben Konzept können Sie nun beispielsweise mit Ihrem localen SQL Client auf eine Datenbank verbinden.
+Metrics can be found at [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be displayed in json. With the same concept you could connect a local SQL client with your database.
 
-Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu finden: https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html
+Further documentation on port forwarding can be found at <https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html>.
 
 ---
 
-**Ende Lab 7**
+**End Lab 7**
 
-<p width="100px" align="right"><a href="08_database.md">Datenbank deployen und anbinden →</a></p>
+<p width="100px" align="right"><a href="08_database.md">Deploy and Attach a Database →</a></p>
 
 [← back to overview](../README.md)

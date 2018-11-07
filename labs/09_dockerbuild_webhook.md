@@ -1,53 +1,56 @@
-# Lab 9: Code Changes durch Webhook triggern Rebuild auf OpenShift
+# Lab 9: Integrating Code Changes Via Webhook
 
-In diesem Lab zeigen wir den Docker Build Workflow anhand eines Beispiels auf und Sie lernen, wie Sie mit einem Push in das Git Repository einen Build und ein Deployment der Applikation auf OpenShift starten.
+In this lab we'll show you the Docker build workflow and how to push a build and deploy the application to OpenShift with a push into a Git repository.
 
-## Task: LAB9.1: Vorbereitung Github Account und Fork
+## Task: LAB9.1: Preparation of Github Account and Fork
 
 ### Github Account
 
-Damit Sie Änderungen am Source Code unserer Beispielapplikation vornehmen können, benötigen Sie einen eigenen GitHub Account. Richten Sie sich einen Account unter https://github.com/ ein, falls Sie nicht bereits über einen verfügen.
+In order to make changes to the source code of our example application, you need a separate GitHub account. If you do not already have one, set up an account at https://github.com/.
 
-### Beispiel-Projekt forken
+### Fork Example-Project
 
-**Beispiel-Projekt:** https://github.com/appuio/example-php-docker-helloworld
+**Example-Project:** https://github.com/appuio/example-php-docker-helloworld
 
-Gehen Sie auf die [GitHub Projekt-Seite](https://github.com/appuio/example-php-docker-helloworld) und [forken](https://help.github.com/articles/fork-a-repo/) Sie das Projekt.
+Go to [GitHub Projekt-Seite](https://github.com/appuio/example-php-docker-helloworld) and [fork](https://help.github.com/articles/fork-a-repo/) the project.
 
 ![Fork](../images/lab_9_fork_example.png)
 
+You now have
 
-Sie haben nun unter
-```
+```txt
 https://github.com/[YourGitHubUser]/example-php-docker-helloworld
 ```
 
-einen Fork des Example Projektes, den Sie so erweitern können wie Sie wollen.
+a fork of the Example project that you can expand as you want.
 
-## Deployen des eigenen Forks
+## Deployen your own fork
 
-Erstellen Sie ein neues Projekt:
-```
-$ oc new-project [USER]-example4
-```
+Create a new project:
 
-Erstellen Sie für Ihren Fork eine neue App. **Note:** Ersetzen Sie `[YourGithubUser]` mit dem Namen Ihres GitHub Accounts:
-
-```
-$ oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
-```
-Mittels Parameter `--strategy=docker` sagen wir dem `oc new-app` Befehl nun explizit, er soll im angegebenen Git Repository nach einem Dockerfile suchen und dieses für den Build verwenden.
-
-Nun exponieren Sie den Service mit:
-```
-$ oc expose service appuio-php-docker-ex
+```bash
+oc new-project [USER]-example4
 ```
 
-## Task: LAB9.2: Webhook auf GitHub einrichten
+Create a new app for your fork.  **Note:** Replace `[YourGithubUser]` with the name of your GitHub account:
 
-Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert. Diese können Sie über den folgenden Befehl anzeigen:
-
+```bash
+oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
 ```
+
+By means of the parameter  `--strategy=docker` we explicitly tell the `oc new-app` command to look for a Dockerfile in the specified Git repository and use it for the build.
+
+Now expose the service with:
+
+```bash
+oc expose service appuio-php-docker-ex
+```
+
+## Task: LAB9.2: Set up web hook on GitHub
+
+When creating the app, BuildConfig (bc) directly defined webhooks. You can do this by using the following command:
+
+```bash
 $ oc describe bc appuio-php-docker-ex
 
 Name:		appuio-php-docker-ex
@@ -70,42 +73,46 @@ appuio-php-docker-ex-1 	running 	running for 56s 	2016-06-17 16:56:34 +0200 CEST
 
 ```
 
-Den GitHub Webhook können Sie auch von der Web Console kopieren. Gehen Sie dafür via Builds → Builds auf den entsprechenden Build und wählen Sie das Tab Configuration aus:
+You can also copy the GitHub WebHook from the Web Console. To do this, go to the appropriate build using Builds → Builds and select the Configuration tab:
 
 ![Webhook](../images/lab_9_webhook_ose3.png)
 
-Kopieren Sie die GitHub [Webhook](https://developer.github.com/webhooks/) URL und fügen Sie sie auf GitHub entsprechend ein.
+Copy the GitHub [Webhook](https://developer.github.com/webhooks/) URL and paste it into GitHub.
 
-Klicken Sie in Ihrem Projekt auf Settings:
+In your project, click Settings:
 ![Github Webhook](../images/lab_09_webhook_github1.png)
 
-Klicken Sie auf Webhooks & services:
+Click Webhooks & services:
 ![Github Webhook](../images/lab_09_webhook_github2.png)
 
-Fügen Sie einen Webhook hinzu:
+Add a WebHook:
 ![Github Webhook](../images/lab_09_webhook_github3.png)
 
-Fügen Sie die entsprechende GitHub Webhook URL aus Ihrem OpenShift Projekt ein und "disablen" Sie die SSL verification. Auf der Lab Plattform verfügen wir nur über self-signed Zertifikate.
+Insert the appropriate GitHub WebHook URL from your OpenShift project and "disable" the SSL verification. On the Lab platform we have only self-signed certificates.
 ![Github Webhook](../images/lab_09_webhook_github4.png)
 
-Ab jetzt triggern alle Pushes auf Ihrem GitHub Repository einen Build und deployen anschliessend die Code-Änderungen direkt auf die OpenShift-Plattform.
+From now, all pushes on your GitHub repository triggers a build and then deploy the code changes directly to the OpenShift platform.
 
-## Task: LAB9.3: Code anpassen
+## Task: LAB9.3: Adjust the code
 
-Klonen Sie Ihr Git Repository und wechseln Sie in das Code Verzeichnis:
-```
+
+Now clone your git-repository and change into the code directory:
+
+```bash
 $ git clone https://github.com/[YourGithubUser]/example-php-docker-helloworld.git
+[...]
 $ cd example-php-docker-helloworld
 ```
 
-Passen Sie das File bspw. auf Zeile 56 ./app/index.php an:
-```
-$ vim app/index.php
+Edit the following file, for example on line 56 ./app/index.php:
+
+```bash
+vim app/index.php
 ```
 
 ![Github Webhook](../images/lab_9_codechange1.png)
 
-```
+```html
     <div class="container">
 
       <div class="starter-template">
@@ -116,32 +123,35 @@ $ vim app/index.php
     </div>
 ```
 
-Pushen Sie Ihren Change:
-```
+Now push your changes:
+
+```bash
 $ git add .
 $ git commit -m "updated Hello"
 $ git push
+[...]
 ```
 
-Als Alternative können Sie das File auch direkt auf GitHub editieren:
+As an alternative you can edit the file directly on GitHub:
 ![Github Webhook](../images/lab_9_edit_on_github.png)
 
-Sobald Sie die Änderungen gepushed haben, startet OpenShift einen Build des neuen Source Code
-```
-$ oc get builds
+As soon as you pushed your changes, OpenShift will start a new build of the source code:
+
+```bash
+oc get builds
 ```
 
-und deployed anschliessend die Änderung.
+and deployes it afterwards.
 
 ## Task: LAB9.4: Rollback
 
-Mit OpenShift lassen sich unterschiedliche Software-Stände aktivieren und deaktivieren, indem einfach eine andere Version des Images gestartet wird.
+With OpenShift, different software versions can be activated and deactivated by simply starting another version of the image.
 
-Dafür werden die Befehle `oc rollback` und `oc rollout` verwendet.
+The command `oc rollback` and `oc rollout` are used for this purpose.
 
-Um ein Rollback auszuführen, brauchen Sie den Namen der DeploymentConfig:
+To run a rollback, you need the name of the DeploymentConfig:
 
-```
+```bash
 $ oc get dc
 
 NAME                   REVISION   DESIRED   CURRENT   TRIGGERED BY
@@ -149,28 +159,27 @@ appuio-php-docker-ex   4          1         1         config,image(appuio-php-do
 
 ```
 
-Mit dem folgenden Befehl können Sie nun ein Rollback auf die Vorgänger-Version ausführen:
+Use the following command to roll back to the previous version:
 
-```
+```bash
 $ oc rollback appuio-php-docker-ex
 #3 rolled back to appuio-php-docker-ex-1
 Warning: the following images triggers were disabled: appuio-php-docker-ex:latest
   You can re-enable them with: oc set triggers dc/appuio-php-docker-ex --auto
 ```
 
-Sobald das Deployment der alten Version erfolgt ist, können Sie über Ihren Browser überprüfen, ob wieder die ursprüngliche Überschrift **Hello APPUiO** angezeigt wird.
+As soon as the deployment of the old version is done, you can check in your Browser if the original Titel **Hello APPUiO** is back.
 
-**Hint:** Die automatischen Deployments neuer Versionen ist nun für diese Applikation ausgeschaltet um ungewollte Änderungen nach dem Rollback zu verhindern. Um das automatische Deployment wieder einzuschalten führen Sie den folgenden Befehl aus:
+**Hint:** The automatic deployments of new versions are now switched off for this application to prevent unintentional changes after the rollback. To turn automatic deployment back on, run the following command:
 
-
-```
-$ oc set triggers dc/appuio-php-docker-ex --auto
+```bash
+oc set triggers dc/appuio-php-docker-ex --auto
 ```
 
 ---
 
 **Ende Lab 9**
 
-<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
+<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage and use for database →</a></p>
 
 [← back to overview](../README.md)
