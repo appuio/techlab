@@ -8,7 +8,7 @@ We're going to use our Springboot app from [lab 4](04_deploy_dockerimage.md), `[
 
 In this lab we're going to use an OpenShift template which will create a MySQL database with ephemeral storage, meaning the database's data will not (yet) be persistent. This setup is therefore only recommended for test environments since all the data is lost if the MySQL pod is restarted. We are going to attach persistent storage to our database in a later lab.
 
-The MySQL Service can be created in the Web Console as well as the CLI
+The MySQL service can be created in the Web Console as well as with the CLI.
 
 To get the same result one simply has to set the database name, username, password and DatabaseServiceName regardless of the method:
 
