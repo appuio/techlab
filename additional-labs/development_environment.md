@@ -46,7 +46,7 @@ Afterwards you can retry by using `oc cluster up`.
 
 #### Documentation
 
-You'll find the complete documentation under: https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md.
+You can find the complete documentation at <https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md>.
 
 #### Ubuntu 16.04
 
