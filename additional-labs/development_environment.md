@@ -53,7 +53,7 @@ You can find the complete documentation at <https://github.com/openshift/origin/
 The setup for Ubuntu 16.04 is a little bit different as it is for Fedora, CentOS or RHEL, since the registry access has to be configured differently.
 
 1. Install Docker
-2. Configure Docker daemon for an insecure Docker registry.
+2. Add OpenShift's registry as an insecure registry by editing `/etc/docker/daemon.json` as follows:
    - therefore edit `/etc/docker/daemon.json` and add following content:
      ```txt
      {
