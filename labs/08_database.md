@@ -151,7 +151,6 @@ Then you can use the following command to display all tables:
 show tables;
 ```
 
-Display all tables.
 
 ## Task: LAB8.4: Import dump to MySQL DB
 
