@@ -62,7 +62,7 @@ SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true
 **Note:** `mysql` resolves the cluster IP of the MySQL service within its project via DNS query. The MySQL database is only available within the project. The service is also available by the following name:
 
 ```
-Projectname = techlab-dockerimage
+Project name = techlab-dockerimage
 
 mysql.techlab-dockerimage.svc.cluster.local
 ```
