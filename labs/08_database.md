@@ -145,7 +145,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ```
 
-Then you can use
+Then you can use the following command to display all tables:
 
 ```mysql
 show tables;
