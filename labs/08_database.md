@@ -2,7 +2,7 @@
 
 There's mostly two different kinds of state when talking about stateful applications. The easier method is state that can be preserved in e.g. some kind of database, as a file or in an object store. In this lab we are going to add a MySQL service to our project and attach it so that multiple application pods can access the same database.
 
-As an Example we use our Springboot App from [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
+We're going to use our Springboot app from [lab 4](04_deploy_dockerimage.md), `[USER]-dockerimage`. **Hint:** `oc project [USER]-dockerimage`
 
 ## Task: LAB8.1: Create a MySQL service
 
