@@ -83,7 +83,7 @@ oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="[USER]-docker
 
 Don't forget to change the pod name accordingly. If installed you can use tab completion.
 
-The Metrics can be found under [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be shown in json. With the same concept you could connect a local SQL client with your database.
+Metrics can be found at [http://localhost:9000/metrics/](http://localhost:9000/metrics/). They will be displayed in json. With the same concept you could connect a local SQL client with your database.
 
 Further Documentation to port forwarding can be found under: https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html
 
