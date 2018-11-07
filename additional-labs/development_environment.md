@@ -8,7 +8,7 @@ Minishift allows you to operate a local, virtualized OpenShift installation on y
 
 ### Installation and Documentation
 
-For the installation please follow the official Documentation: https://docs.openshift.org/latest/minishift/getting-started/installing.html
+For the installation please follow [the official documentation](https://docs.openshift.org/latest/minishift/getting-started/installing.html).
 
 ### Troubleshooting
 
