@@ -6,7 +6,7 @@ We're going to use our Springboot app from [lab 4](04_deploy_dockerimage.md), `[
 
 ## Task: LAB8.1: Create a MySQL service
 
-For our Example in this Lab we use an OpenShift Template which will create a MySQL Database with an EmptyDir Data Storage. This Setup is only recommended for test environements since all the Data is lost if the MySQL Pod is restarted. In a later Lab we will show you how to create a persistent volume for the Databank, so that the data doesn't get lost if the pod restarts.
+In this lab we're going to use an OpenShift template which will create a MySQL database with ephemeral storage, meaning the database's data will not (yet) be persistent. This setup is therefore only recommended for test environments since all the data is lost if the MySQL pod is restarted. We are going to attach persistent storage to our database in a later lab.
 
 The MySQL Service can be created in the Web Console as well as the CLI
 
