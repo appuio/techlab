@@ -12,7 +12,7 @@ Running containers are treated as immutable infrastructure and shouldn't be modi
 
 OpenShift allows us to open remote shells into pods without installing SSH.
 
-Select a Pod using `oc get pods` and issue the following command:
+Select a pod using `oc get pods` and issue the following command:
 ```
 $ oc rsh [POD]
 ```
