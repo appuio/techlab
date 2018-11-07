@@ -175,7 +175,7 @@ Sync an entire directory (dump). This includes the file `dump.sql`. Note for the
 oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/
 ```
 
-Log in to the MySQL Pod:
+Log in to the MySQL pod:
 
 ```bash
 oc rsh mysql-1-diccy
