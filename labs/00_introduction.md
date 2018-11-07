@@ -1,6 +1,6 @@
 # OpenShift V3 Techlab Introduction
 
-Whith a Platform as a Service (PaaS) the wy we develope Software changes. Puzzle presents OpenShift V3 - the *Container Platform* by Red Hat - in this Tech Lab. Developers learn hands-on the most important steps to deploy an application in the Cloud.
+With a Platform-as-a-Service (PaaS) solution the way we develop software changes. In this tech lab we'd like to show you OpenShift - a container platform by Red Hat. Developers learn the most important steps to deploy an application in the cloud hands-on on our tech lab platform.
 
 **Goal of this Techlabs**
 
