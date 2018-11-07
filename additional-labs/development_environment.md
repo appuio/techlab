@@ -67,7 +67,7 @@ The setup for Ubuntu 16.04 is a little bit different as it is for Fedora, CentOS
 
 3. Install `oc`
 
-   follow the instructions in Lab [OpenShift CLI installieren](labs/02_cli.md).
+   Follow the instructions in [lab 2 "Installing the OpenShift CLI](labs/02_cli.md)
 
 4. Open the terminal and issue the command with a user, which is authorized to use Docker:
    ```bash
