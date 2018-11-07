@@ -44,7 +44,7 @@ By default a H2 memory database is used for our example-spring-boot application.
 
 As the MySQL service's address we can either use its cluster IP (`oc get service`) or its DNS name (`<service>`). All services and pods within a project can be resolved via DNS.
 
-For example, the value for the variable SPRING_DATASOURCE_URL is:
+E.g. the value for the variable SPRING_DATASOURCE_URL is:
 ```
 Name of the Services: mysql
 
