@@ -65,7 +65,7 @@ The setup for Ubuntu 16.04 is a little bit different as it is for Fedora, CentOS
      sudo systemctl restart docker
      ```
 
-3. install oc
+3. Install `oc`
 
    follow the instructions in Lab [OpenShift CLI installieren](labs/02_cli.md).
 
