@@ -1,6 +1,6 @@
 # Lab 9: Integrating Code Changes Via Webhook
 
-In this lab, we'll show you the Docker Build Workflow by example, and you'll learn how to push a build and deploy the application to OpenShift with a push into the Git repository.
+In this lab we'll show you the Docker build workflow and how to push a build and deploy the application to OpenShift with a push into a Git repository.
 
 ## Task: LAB9.1: Preparation of Github Account and Fork
 
