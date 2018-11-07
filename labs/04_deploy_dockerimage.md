@@ -24,7 +24,7 @@ $ oc get project
 ```
 to show all projects the current user is authorized to see.
 
-Once you crated the new project you can deploy the Docker Image in OpenShift using:
+Once you have created the new project you can deploy the Docker Image using:
 
 ```bash
 $ oc new-app appuio/example-spring-boot
