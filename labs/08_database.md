@@ -120,7 +120,7 @@ mysql-1-diccy                  1/1       Running            0          50m
 
 ```
 
-Then log into the MySQL Pod:
+Then log into the MySQL pod:
 
 ```bash
 oc rsh mysql-1-diccy
