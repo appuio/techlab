@@ -1,5 +1,7 @@
 # APPUiO - OpenShift 3 Techlab Dokumentation
 
+There's also an [english version of this tech lab](https://github.com/appuio/techlab/tree/lab-3.5-eng).
+
 Dieses Techlab basiert auf OpenShift 3.5.
 
 **Tipp** Die Techlabs zu früheren Versionen sind in deren eigenen Branches zu finden:
