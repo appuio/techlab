@@ -67,6 +67,9 @@ $ oc project [projectname]
 ```
 
 **Tipp:** Mit den folgenden Befehlen kann das obere Beispiel aus der Kommandozeile erstellt werden:
+
+**Note:** Der `oc new-app`-Befehl benötigt `git`. Falls `git` nicht installiert ist, insb. auf Windows, kann das Tool [hier heruntergeladen](https://git-scm.com/download/win) und installiert werden.
+
 ```
 $ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=appuio-php-sti-example
 $ oc expose svc appuio-php-sti-example
