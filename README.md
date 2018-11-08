@@ -31,6 +31,7 @@ Dieses Techlab basiert auf OpenShift 3.9.
 
 - [OpenShift Container Platform 3.9 docs](https://docs.openshift.com/container-platform/3.9/welcome/index.html)
 - [APPUiO docs](http://docs.appuio.ch)
+- [OpenShift Image Creation Guidelines](https://docs.openshift.com/container-platform/3.9/creating_images/guidelines.html)
 
 
 ### APPUiO Examples
