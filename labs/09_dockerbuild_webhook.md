@@ -45,32 +45,7 @@ $ oc expose service appuio-php-docker-ex
 
 ## Aufgabe: LAB9.2: Webhook auf GitHub einrichten
 
-Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert. Diese können Sie über den folgenden Befehl anzeigen:
-
-```
-$ oc describe bc appuio-php-docker-ex
-
-Name:		appuio-php-docker-ex
-Created:	57 seconds ago
-Labels:		app=appuio-php-docker-ex
-Annotations:	openshift.io/generated-by=OpenShiftNewApp
-Latest Version:	1
-
-Strategy:		Docker
-URL:			https://github.com/appuio/example-php-docker-helloworld.git
-From Image:		ImageStreamTag php-56-centos7:latest
-Output to:		ImageStreamTag appuio-php-docker-ex:latest
-Triggered by:		Config, ImageChange
-Webhook Generic:	https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example4/buildconfigs/appuio-php-docker-ex/webhooks/EqEq18JtxaY3vG2zvPSU/generic
-Webhook GitHub:		https://master.appuio-beta.ch:443/oapi/v1/namespaces/techlab-example4/buildconfigs/appuio-php-docker-ex/webhooks/hqQ3h1CzUGIXvWqjiV-G/github
-
-Build			Status		Duration		Creation Time
-appuio-php-docker-ex-1 	running 	running for 56s 	2016-06-17 16:56:34 +0200 CEST
-
-
-```
-
-Den GitHub Webhook können Sie auch von der Web Console kopieren. Gehen Sie dafür via Builds → Builds auf den entsprechenden Build und wählen Sie das Tab Configuration aus:
+Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert. Diese Webhooks können Sie von der Web Console kopieren. Gehen Sie dafür via Builds → Builds auf den entsprechenden Build und wählen Sie das Tab Configuration aus:
 
 ![Webhook](../images/lab_9_webhook_ose3.png)
 
