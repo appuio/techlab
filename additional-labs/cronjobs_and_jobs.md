@@ -1,6 +1,6 @@
-# Cronjobs in OpenShift
+# Cron Jobs in OpenShift
 
-Kubernetes bringt das Konzept von Jobs und Cronjobs mit. Dies ermöglicht es gewisse Tasks einmalig (Job) oder eben jeweils zu einer bestimmten Zeit (Cronjob) auszuführen.
+Kubernetes bringt das Konzept von Jobs und Cron Jobs mit. Dies ermöglicht es gewisse Tasks einmalig (Job) oder eben jeweils zu einer bestimmten Zeit (Cron Job) auszuführen.
 
 Eine mögliche Auswahl von Anwendungsfällen:
 

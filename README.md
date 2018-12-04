@@ -23,7 +23,7 @@ Dieses Techlab basiert auf OpenShift 3.9.
 
 ### Zusätzliche Labs
 
-- [Cronjobs in OpenShift](additional-labs/cronjobs_and_jobs.md)
+- [Cron Jobs in OpenShift](additional-labs/cronjobs_and_jobs.md)
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 - [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
