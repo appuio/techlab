@@ -21,7 +21,10 @@ spec:
           echo "Backup successful"; du -h /tmp/$FILENAME;
         env:
         - name: MYSQL_DATABASE
-          value: appuio
+          valueFrom:
+            secretKeyRef:
+              key: database-name
+              name: mysql
         - name: MYSQL_USER
           value: appuio
         - name: MYSQL_HOST
