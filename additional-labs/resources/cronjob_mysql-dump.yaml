@@ -1,0 +1,47 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: mysql-backup
+spec:
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: mysql-backup
+            image: mysql:5.6
+            command:
+            - 'bash'
+            - '-eo'
+            - 'pipefail'
+            - '-c'
+            - >
+              trap "echo Backup failed; exit 0" ERR;
+              FILENAME=backup-${MYSQL_DATABASE}-`date +%Y-%m-%d_%H%M%S`.sql.gz;
+              mysqldump --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --host=${MYSQL_HOST} --port=${MYSQL_PORT} --skip-lock-tables --quick --add-drop-database --routines ${MYSQL_DATABASE} | gzip > /tmp/$FILENAME;
+              echo "";
+              echo "Backup successful"; du -h /tmp/$FILENAME;
+            env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  key: database-name
+                  name: mysql
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  key: database-user
+                  name: mysql
+            - name: MYSQL_HOST
+              value: mysql
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database-password
+                  name: mysql
+          restartPolicy: OnFailure
+          backoffLimit: 3
+  schedule: 12 23 * * *
