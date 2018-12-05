@@ -29,7 +29,10 @@ spec:
                   key: database-name
                   name: mysql
             - name: MYSQL_USER
-              value: appuio
+              valueFrom:
+                secretKeyRef:
+                  key: database-user
+                  name: mysql
             - name: MYSQL_HOST
               value: mysql
             - name: MYSQL_PORT
