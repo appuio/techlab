@@ -35,6 +35,9 @@ spec:
         - name: MYSQL_PORT
           value: "3306"
         - name: MYSQL_PASSWORD
-          value: appuio
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: mysql
       restartPolicy: OnFailure
       backoffLimit: 3
