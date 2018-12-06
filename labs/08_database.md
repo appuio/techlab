@@ -34,6 +34,91 @@ In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hi
 
 ![MySQLService](../images/lab_8_mysql.png)
 
+### Passwort und Username als plaintext?
+
+Beim Deployen der Datebank sowohl via CLI aber auch via Web Console, haben wir mittels Parameter oder direkt im Eingabefeld Werte für User, Passwort und Datenbank angegeben. In diesem Kapitel wollen wir uns nun anschauen, wo diese sensitiven Daten nun effektiv gelandet sind.
+
+Schauen wir uns als erstes die DeploymentConfig der Datenbank an:
+
+```bash
+$ oc get dc mysql -o yaml
+```
+
+Konkret geht es um die Konfiguration der Container mittels env (MYSQL_USER, MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD, MYSQL_DATABASE) in der DeploymentConfig unter `spec.templates.spec.containers`:
+
+```yaml
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: mysql
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: mysql
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-root-password
+              name: mysql
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database-name
+              name: mysql
+```
+
+Die Werte für die einzelnen Umgebungsvariablen kommen also aus einem sogenannten Secret, in unserem Fall hier aus dem Secret mit dem Namen `mysql`. In diesem Secret sind die vier Werte entsprechend unter den passenden Keys (`database-user`, `database-password`, `database-root-password`, `database-name`) abgelegt und können ebenso darauf zu gegriffen werden.
+
+Schauen wir uns nun die neue Resource Secret mit dem Namen `mysql` an:
+
+```bash
+$ oc get secret mysql -o yaml
+```
+
+Die entsprechenden Key-Value Pairs sind unter Data ersichtlich:
+
+```yaml
+apiVersion: v1
+data:
+  database-name: 
+  database-password: YXBwdWlv
+  database-root-password: dDB3ZDFLRFhsVjhKMGFHQw==
+  database-user: YXBwdWlv
+kind: Secret
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+    template.openshift.io/expose-database_name: '{.data[''database-name'']}'
+    template.openshift.io/expose-password: '{.data[''database-password'']}'
+    template.openshift.io/expose-root_password: '{.data[''database-root-password'']}'
+    template.openshift.io/expose-username: '{.data[''database-user'']}'
+  creationTimestamp: 2018-12-04T10:33:43Z
+  labels:
+    app: mysql-ephemeral
+    template: mysql-ephemeral-template
+  name: mysql
+  ...
+type: Opaque
+```
+
+Die konkreten Werte sind mittels base64 enkodiert. Unter Linux oder in der Gitbash kann man sich den entsprechenden Wert einfach mittels:
+
+```bash
+$ echo "YXBwdWlv" | base64 -d
+appuio
+```
+anzeigen lassen. In userem Fall wird `YXBwdWlv` in `appuio` dekodiert.
+
+Mit Secrets können wir also sensitive Informationen(Credetials, Zertifikate, Schlüssel, dockercfg ...) abspeichern und entsprechend von den Pods entkoppeln. Gleichzeitig, haben wir damit die Möglichkeit, die selben Secrets in mehreren Container zu verwenden und so Redundanzen zu vermeiden.
+
+Secrets können entweder wie oben bei der mysql Datenbank in Umgebungsvaribablen gemappt oder direkt als Files via volumes in einen Container gemounted werden.
+
+Weitere Informationen zu Secrets können hier gefunden werden: https://docs.openshift.com/container-platform/3.9/dev_guide/secrets.html
 
 ## Aufgabe: LAB8.2: Applikation an die Datenbank anbinden
 
@@ -73,7 +158,8 @@ Befehl für das Setzen der Umgebungsvariablen:
 ```
  $ oc env dc example-spring-boot \
       -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
-      -e SPRING_DATASOURCE_USERNAME=appuio -e SPRING_DATASOURCE_PASSWORD=appuio \
+      -e SPRING_DATASOURCE_USERNAME=appuio \ 
+	  -e SPRING_DATASOURCE_PASSWORD=appuio \
       -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
 
@@ -109,6 +195,50 @@ Befehl für das Setzen der Umgebungsvariablen:
 Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
 
 (Applications → Deployments → example-spring-boot, Actions, Edit YAML)
+
+## Aufgabe: LAB8.2.1: Setzen der Werte für Usernamen und Passwort aus dem Secret mysql
+
+Weiter oben haben wir gesehen, wie OpenShift mittels Secrets senisitive Informationen von der eigentlichen Konfiguration enkoppelt und uns dabei hilft Redundanzen zu vermeiden. Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert, allerings aber die Werte redundant und plaintext in der DeploymentConfig abgelegt.
+
+Passen wir nun die DeploymentConfig example-spring-boot so an, dass die Werte aus den Secrets verwendet werden. Zu beachten gibt es die Konfiguration der Container unter `spec.template.spec.containers`
+
+Mittels `oc edit dc example-spring-boot -o json` kann die DeploymentConfig als Json wie folgt bearbeitet werden.
+```
+...
+"env": [
+			{
+				"name": "SPRING_DATASOURCE_USERNAME",
+				"valueFrom": {
+					"secretKeyRef": {
+						"key": "database-user",
+						"name": "mysql"
+					}
+				}
+			},
+			{
+				"name": "SPRING_DATASOURCE_PASSWORD",
+				"valueFrom": {
+					"secretKeyRef": {
+						"key": "database-password",
+						"name": "mysql"
+					}
+				}
+			},
+			{
+	            "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME",
+	            "value": "com.mysql.jdbc.Driver"
+	        },
+	        {
+	            "name": "SPRING_DATASOURCE_URL",
+	            "value": "jdbc:mysql://mysql/appuio"
+	        }
+		],
+
+...
+```
+
+Nun werden die Werte für Usernamen und Passwort sowohl beim mysql Pod wie auch beim Springboot Pod aus dem selben Secret gelesen.
+
 
 ## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
 
