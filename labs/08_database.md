@@ -36,7 +36,7 @@ In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hi
 
 ### Passwort und Username als Plaintext?
 
-Beim Deployen der Datebank sowohl via CLI aber auch via Web Console, haben wir mittels Parameter oder direkt im Eingabefeld Werte für User, Passwort und Datenbank angegeben. In diesem Kapitel wollen wir uns nun anschauen, wo diese sensitiven Daten nun effektiv gelandet sind.
+Beim Deployen der Datebank via CLI wie auch via Web Console haben wir mittels Parameter Werte für User, Passwort und Datenbank angegeben. In diesem Kapitel wollen wir uns nun anschauen, wo diese sensitiven Daten effektiv gelandet sind.
 
 Schauen wir uns als erstes die DeploymentConfig der Datenbank an:
 
