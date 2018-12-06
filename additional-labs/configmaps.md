@@ -126,7 +126,7 @@ spec:
 
 ```
 
-anschliessend kann im Container im file /etc/config/properties.properties auf die Werte zugegriffen werden.
+Anschliessend kann im Container im File `/etc/config/properties.properties` auf die Werte zugegriffen werden.
 
 ```bash
 $ oc exec [POD] cat /etc/config/properties.properties
