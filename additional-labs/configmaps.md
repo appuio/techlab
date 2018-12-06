@@ -134,7 +134,7 @@ key=appuio
 key2=openshift
 ```
 
-Diese Property File kann nun so von der Java Applikation im Conainer gelesen und verwendet werden. Das Image bleibt dabei umgebungsneutral.
+Diese Property File kann nun so von der Java Applikation im Container gelesen und verwendet werden. Das Image bleibt dabei umgebungsneutral.
 
 ## Aufgabe: LAB10.4.1 ConfigMap Data Sources
 
