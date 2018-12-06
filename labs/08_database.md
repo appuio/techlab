@@ -198,7 +198,7 @@ Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
 
 ## Aufgabe: LAB8.2.1: Secret referenzieren
 
-Weiter oben haben wir gesehen, wie OpenShift mittels Secrets senisitive Informationen von der eigentlichen Konfiguration enkoppelt und uns dabei hilft Redundanzen zu vermeiden. Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert, allerings aber die Werte redundant und plaintext in der DeploymentConfig abgelegt.
+Weiter oben haben wir gesehen, wie OpenShift mittels Secrets sensitive Informationen von der eigentlichen Konfiguration enkoppelt und uns dabei hilft, Redundanzen zu vermeiden. Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert, allerings aber die Werte redundant und Plaintext in der DeploymentConfig abgelegt.
 
 Passen wir nun die DeploymentConfig example-spring-boot so an, dass die Werte aus den Secrets verwendet werden. Zu beachten gibt es die Konfiguration der Container unter `spec.template.spec.containers`
 
