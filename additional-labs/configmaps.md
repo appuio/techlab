@@ -2,7 +2,7 @@
 
 ConfigMaps werden dazu verwendet, die Konfiguration für eine Applikation vom Image zu trennen und bei Laufzeit dem Pod zur Verfügung zu stellen, ähnlich dem Setzen von Umgebungsvariablen. Dies erlaubt es, Applikationen innerhalb von Containern möglichst portabel zu halten.
 
-In diesem Lab lernen Sie wie man ConfigMaps erstellt und entsprechend verwendet.
+In diesem Lab lernen Sie, wie man ConfigMaps erstellt und entsprechend verwendet.
 
 # ConfigMap in OpenShift Projekt anlegen:
 
