@@ -80,7 +80,7 @@ Schauen wir uns nun die neue Ressource Secret mit dem Namen `mysql` an:
 $ oc get secret mysql -o yaml
 ```
 
-Die entsprechenden Key-Value Pairs sind unter Data ersichtlich:
+Die entsprechenden Key-Value Pairs sind unter `data` ersichtlich:
 
 ```yaml
 apiVersion: v1
