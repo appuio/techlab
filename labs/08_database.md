@@ -34,7 +34,7 @@ In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hi
 
 ![MySQLService](../images/lab_8_mysql.png)
 
-### Passwort und Username als plaintext?
+### Passwort und Username als Plaintext?
 
 Beim Deployen der Datebank sowohl via CLI aber auch via Web Console, haben wir mittels Parameter oder direkt im Eingabefeld Werte für User, Passwort und Datenbank angegeben. In diesem Kapitel wollen wir uns nun anschauen, wo diese sensitiven Daten nun effektiv gelandet sind.
 
