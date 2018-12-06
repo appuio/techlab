@@ -114,7 +114,7 @@ appuio
 ```
 anzeigen lassen. In userem Fall wird `YXBwdWlv` in `appuio` dekodiert.
 
-Mit Secrets können wir also sensitive Informationen(Credetials, Zertifikate, Schlüssel, dockercfg ...) abspeichern und entsprechend von den Pods entkoppeln. Gleichzeitig, haben wir damit die Möglichkeit, die selben Secrets in mehreren Container zu verwenden und so Redundanzen zu vermeiden.
+Mit Secrets können wir also sensitive Informationen (Credetials, Zertifikate, Schlüssel, dockercfg, ...) abspeichern und entsprechend von den Pods entkoppeln. Gleichzeitig haben wir damit die Möglichkeit, dieselben Secrets in mehreren Containern zu verwenden und so Redundanzen zu vermeiden.
 
 Secrets können entweder wie oben bei der mysql Datenbank in Umgebungsvaribablen gemappt oder direkt als Files via volumes in einen Container gemounted werden.
 
