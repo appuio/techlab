@@ -72,7 +72,7 @@ Konkret geht es um die Konfiguration der Container mittels env (MYSQL_USER, MYSQ
               name: mysql
 ```
 
-Die Werte für die einzelnen Umgebungsvariablen kommen also aus einem sogenannten Secret, in unserem Fall hier aus dem Secret mit dem Namen `mysql`. In diesem Secret sind die vier Werte entsprechend unter den passenden Keys (`database-user`, `database-password`, `database-root-password`, `database-name`) abgelegt und können ebenso darauf zu gegriffen werden.
+Die Werte für die einzelnen Umgebungsvariablen kommen also aus einem sogenannten Secret, in unserem Fall hier aus dem Secret mit Namen `mysql`. In diesem Secret sind die vier Werte entsprechend unter den passenden Keys (`database-user`, `database-password`, `database-root-password`, `database-name`) abgelegt und können so referenziert werden.
 
 Schauen wir uns nun die neue Resource Secret mit dem Namen `mysql` an:
 
