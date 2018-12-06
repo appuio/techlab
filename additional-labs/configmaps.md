@@ -138,7 +138,7 @@ Diese Property File kann nun so von der Java Applikation im Container gelesen un
 
 ## Aufgabe: LAB10.4.1 ConfigMap Data Sources
 
-Erstellen Sie jeweils eine ConfigMap und verwenden Sie dafür die verschiedenen Arten von Data Sources https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html#consuming-configmap-in-pods
+Erstellen Sie jeweils eine ConfigMap und verwenden Sie dafür die verschiedenen Arten von [Data Sources](https://docs.openshift.com/container-platform/3.9/dev_guide/configmaps.html#consuming-configmap-in-pods).
 
 Machen Sie die Werte innerhalb von Pods auf die unterschiedlichen Arten verfügbar.
 
