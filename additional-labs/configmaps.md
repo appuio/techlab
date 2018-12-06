@@ -39,7 +39,7 @@ Oder mittels `$ oc get configmaps javaconfiguration -o json` kann der Inhalt ang
 
 ## Configmap in Pod zur Verfügung stellen
 
-Als nächstest wollen wir die ConfigMap im Pod verfügbar machen.
+Als nächstes wollen wir die ConfigMap im Pod verfügbar machen.
 
 Grundsätzlich gibt es dafür die folgenden Möglichkeiten: https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html#consuming-configmap-in-pods
 
