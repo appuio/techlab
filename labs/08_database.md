@@ -116,7 +116,7 @@ anzeigen lassen. In userem Fall wird `YXBwdWlv` in `appuio` dekodiert.
 
 Mit Secrets können wir also sensitive Informationen (Credetials, Zertifikate, Schlüssel, dockercfg, ...) abspeichern und entsprechend von den Pods entkoppeln. Gleichzeitig haben wir damit die Möglichkeit, dieselben Secrets in mehreren Containern zu verwenden und so Redundanzen zu vermeiden.
 
-Secrets können entweder wie oben bei der mysql Datenbank in Umgebungsvaribablen gemappt oder direkt als Files via volumes in einen Container gemounted werden.
+Secrets können entweder, wie oben bei der MySQL-Datenbank, in Umgebungsvariablen gemappt oder direkt als Files via Volumes in einen Container gemountet werden.
 
 Weitere Informationen zu Secrets können hier gefunden werden: https://docs.openshift.com/container-platform/3.9/dev_guide/secrets.html
 
