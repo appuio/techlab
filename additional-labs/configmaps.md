@@ -19,7 +19,7 @@ Ein klassisches Beispiel für ConfigMaps sind Property Files bei Java Applikatio
 
 Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [LAB 4](../labs/04_deploy_dockerimage.md), `[USER]-dockerimage`. **Tipp:** `oc project [USER]-dockerimage`
 
-Mit dem folgenden Befehl legen wir nun die erste ConfigMap auf Basis eines localen Files an:
+Mit dem folgenden Befehl legen wir nun die erste ConfigMap auf Basis eines lokalen Files an:
 
 ```
 $ oc create configmap javaconfiguration --from-file=additional-labs/resources/properties.properties 
