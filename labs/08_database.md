@@ -196,7 +196,7 @@ Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
 
 (Applications → Deployments → example-spring-boot, Actions, Edit YAML)
 
-## Aufgabe: LAB8.2.1: Setzen der Werte für Usernamen und Passwort aus dem Secret mysql
+## Aufgabe: LAB8.2.1: Secret referenzieren
 
 Weiter oben haben wir gesehen, wie OpenShift mittels Secrets senisitive Informationen von der eigentlichen Konfiguration enkoppelt und uns dabei hilft Redundanzen zu vermeiden. Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert, allerings aber die Werte redundant und plaintext in der DeploymentConfig abgelegt.
 
