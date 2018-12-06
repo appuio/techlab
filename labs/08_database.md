@@ -106,7 +106,7 @@ metadata:
 type: Opaque
 ```
 
-Die konkreten Werte sind mittels base64 enkodiert. Unter Linux oder in der Gitbash kann man sich den entsprechenden Wert einfach mittels:
+Die konkreten Werte sind base64-kodiert. Unter Linux oder in der Gitbash kann man sich den entsprechenden Wert einfach mittels:
 
 ```bash
 $ echo "YXBwdWlv" | base64 -d
