@@ -50,7 +50,7 @@ Grundsätzlich gibt es dafür die folgenden Möglichkeiten, welche in der [offiz
 
 Im Beispiel hier wollen wir, dass das File als File auf einem Volume liegt.
 
-dafür müssen wir entweder den Pod oder in unserem Fall das Deployment `oc edit dc example-spring-boot` bearbeiten.
+Hierfür müssen wir entweder den Pod oder in unserem Fall das Deployment mit `oc edit dc example-spring-boot` bearbeiten.
 
 Zu beachten gilt es den volumeMounts (`spec.template.spec.containers.volumeMounts`wie wird das Volume in den Container gemountet) und volumes (`spec.template.spec.volumes` welches Volume in unserem Fall die Configmap wird in den Container gemountet) Teil
 
