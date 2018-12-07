@@ -1,4 +1,4 @@
-# Lab 10.4: ConfigMap
+# ConfigMap
 
 ConfigMaps werden dazu verwendet, die Konfiguration für eine Applikation vom Image zu trennen und bei Laufzeit dem Pod zur Verfügung zu stellen, ähnlich dem Setzen von Umgebungsvariablen. Dies erlaubt es, Applikationen innerhalb von Containern möglichst portabel zu halten.
 
