@@ -121,8 +121,8 @@ Zusäztliche Informationen finden Sie hier: https://docs.openshift.com/container
 Mit dem OpenShift Jenkins Client Plugin kann so auf einfach Art direkt mit dem OpenShift Cluster kommuniziert werden und entsprechend als Jenkinsfile komplexe Ci/CD Pipelines implementieren:
 
 ```
-openshift.withCluster( 'https://10.13.137.207:8443', 'CO8wPaLV2M2yC_jrm00hCmaz5Jgw...' ) {
-    openshift.withProject( 'myproject' ) {
+openshift.withCluster() {
+    openshift.withProject() {
         echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
     }
 }
