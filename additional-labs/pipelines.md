@@ -210,11 +210,11 @@ node ('maven') {
         echo "Deploy to Dev"
         openshift.withCluster() {
             openshift.withProject() {
-                # Tag the latest image to be used in dev stage
+                // Tag the latest image to be used in dev stage
                 openshift.tag("$project/application:latest", "$project/application:dev")
             }
             openshift.withProject($dev_project) {
-                # trigger Deployment in dev project
+                // trigger Deployment in dev project
                 def dc = openshift.selector('dc', "application")
                 dc.rollout().status()
             }
@@ -224,11 +224,11 @@ node ('maven') {
         echo "Deploy to Test"
         openshift.withCluster() {
             openshift.withProject() {
-                # Tag the dev image to be used in test stage
+                // Tag the dev image to be used in test stage
                 openshift.tag("$project/application:dev", "$project/application:test")
             }
             openshift.withProject($test_project) {
-                # trigger Deployment in test project
+                // trigger Deployment in test project
                 def dc = openshift.selector('dc', "application")
                 dc.rollout().status()
             }
@@ -238,11 +238,11 @@ node ('maven') {
         echo "Deploy to Prod"
         openshift.withCluster() {
             openshift.withProject() {
-                # Tag the test image to be used in prod stage
+                // Tag the test image to be used in prod stage
                 openshift.tag("$project/application:test", "$project/application:prod")
             }
             openshift.withProject($prod_project) {
-                # trigger Deployment in prod project
+                // trigger Deployment in prod project
                 def dc = openshift.selector('dc', "application")
                 dc.rollout().status()
             }
