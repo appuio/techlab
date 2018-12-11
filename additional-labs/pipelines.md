@@ -140,7 +140,45 @@ Custom Jenkins Slaves können einfach in den Build integriert werden, dafür mü
 
 #### LAB: Custom Jenkins Slave als Build Slave verwenden
 
-TODO
+Um Custom Images als Jenkins Slaves zu verwenden muss man entsprechend auf dem ImageStream ein Label definieren `role=jenkins-slave`
+
+Auf Grund des Labels synchronisiert das Jenkins Sync Plugin dann entsprechend die Konfiguration für das Kubernetes Plugin als Pod Templates. Beim Starten des Jenkins werden entsprechend so gelabelte Images Streams gesynched und im Jenkins als Kubernetes Pod Templates angelegt. 
+
+Erstellen wir nun in unserem Projekt ein Custom Jenkins Slave, zur Veranschaulichung verwenden wir dazu ein Image von Docker Hub, das als Maven Jenkins Slave fungiert.
+
+```bash
+$ oc import-image custom-jenkins-slave --from=docker.io/openshift/jenkins-slave-maven-centos7 --confirm
+```
+
+Anschliessend definieren wir mittels dem label `role` noch, dass es sich um einen Jenkins Slave handelt.
+
+```bash
+$ oc label is custom-jenkins-slave role=jenkins-slave
+```
+
+Um den Custom Slave im Jenkins auch verfügbar zu haben, müssen wir nun den Jenkins Master restarten.
+
+```bash
+$ oc rollout latest jenkins
+```
+Schauen wir uns die Konfiguration num nach dem Restart im Jenkins Konfigurations Menu an: https://[jenkins-route]/configure ist unser mycustomslave unter den Kubernetes Pod Templates ersichtlich.
+
+![CustomSlave Pipeline Jenkins](../images/pipeline-jenkins-custom-podtemplate.png)
+
+Und kann mittels folgender Ergänzung im JenkinsFile entsprechend in der Pipeline verwendet werden
+
+```groovy
+node ('custom-jenkins-slave') {
+    stage('custom stage') {
+        echo "Running on the custom jenkins slave"
+    }
+}
+```
+
+Über diesen Mechanismus, lassen sich beliebige, auch selbst gebuildete Jenkins Slaves aufsetzen und verwenden. Es stehen out of the Box ein `maven und gradle` und ein `nodeJs` Slave zur Verfügung.
+
+Will man selber Jenkins Slaves builden, sollte man auf dem `openshift/jenkins-slave-base-centos7` basieren.
+
 
 ## LAB: Multi Stage Deployment
 
@@ -213,7 +251,7 @@ node ('maven') {
                 // Tag the latest image to be used in dev stage
                 openshift.tag("$project/application:latest", "$project/application:dev")
             }
-            openshift.withProject($dev_project) {
+            openshift.withProject(dev_project) {
                 // trigger Deployment in dev project
                 def dc = openshift.selector('dc', "application")
                 dc.rollout().status()
@@ -227,7 +265,7 @@ node ('maven') {
                 // Tag the dev image to be used in test stage
                 openshift.tag("$project/application:dev", "$project/application:test")
             }
-            openshift.withProject($test_project) {
+            openshift.withProject(test_project) {
                 // trigger Deployment in test project
                 def dc = openshift.selector('dc', "application")
                 dc.rollout().status()
@@ -241,7 +279,7 @@ node ('maven') {
                 // Tag the test image to be used in prod stage
                 openshift.tag("$project/application:test", "$project/application:prod")
             }
-            openshift.withProject($prod_project) {
+            openshift.withProject(prod_project) {
                 // trigger Deployment in prod project
                 def dc = openshift.selector('dc', "application")
                 dc.rollout().status()
