@@ -203,13 +203,25 @@ oc policy add-role-to-group system:image-puller system:serviceaccounts:[USER]-pi
 oc policy add-role-to-group system:image-puller system:serviceaccounts:[USER]-pipeline-prod -n [USER]-buildpipeline
 ```
 
-TODO: Berechtigungen um aus dem Builder Projekt deployments zu triggern.
+Des Weiteren müssen wir nun dem jenkins Service Account aus dem `[USER]-buildpipeline` entsprechend Rechte geben, dass er in den Projekten der Stages Resourcen anlegen kann.
 
-Als nächstes erstellen wir in den entsprechenden Stage Projekten die Applikationen, dafür definieren wir einen Tag im Imagestream, welcher deployt werden soll.
+```bash
+oc policy add-role-to-user edit system:serviceaccount:[USER]-buildpipeline:jenkins -n [USER]-pipeline-dev
+oc policy add-role-to-user edit system:serviceaccount:[USER]-buildpipeline:jenkins -n [USER]-pipeline-test
+oc policy add-role-to-user edit system:serviceaccount:[USER]-buildpipeline:jenkins -n [USER]-pipeline-prod
+```
+
+Als nächstes erstellen wir in den entsprechenden Stage Projekten die Applikationen, dafür definieren wir einen Tag im Imagestream, welcher deployt werden soll. Dafür müssen wir aber zuerst die entsprechenden Tags erstellen die deployt werden sollen.
+
+```bash
+oc tag [USER]-buildpipeline/application:latest [USER]-buildpipeline/application:dev
+oc tag [USER]-buildpipeline/application:dev [USER]-buildpipeline/application:test
+oc tag [USER]-buildpipeline/application:test [USER]-buildpipeline/application:prod
+```
 
 * dev `oc new-app [USER]-buildpipeline/application:dev -n [USER]-pipeline-dev`
-* test `oc new-app [USER]-buildpipeline/application:test -n [USER]-pipeline-test` 
-* prod `oc new-app [USER]-buildpipeline/application:prod -n [USER]-pipeline-prod` 
+* test `oc new-app [USER]-buildpipeline/application:test -n [USER]-pipeline-test`
+* prod `oc new-app [USER]-buildpipeline/application:prod -n [USER]-pipeline-prod`
 
 In der Pipeline können wir nun mittels setzen des entsprechenden Tags auf dem Imagestream der gebuildeten Applikatoin bspw. `application:dev` das entsprechende Image in die passende Stage promoten und mittels Deployment die entsprechende Version deployen.
 
@@ -293,4 +305,10 @@ Führen Sie die Pipeline erneut aus und schauen Sie sich an, wie nun die gebuild
 
 ## Jenkins Pipeline Sprache
 
-Unter https://github.com/puzzle/jenkins-techlab finden Sie ein entsprechendes Hands-on Lab zur Jenkins Pipeline Sprache. Die Syntax ist [hier](https://jenkins.io/doc/book/pipeline/syntax/) beschrieben
+Unter https://github.com/puzzle/jenkins-techlab finden Sie ein entsprechendes Hands-on Lab zur Jenkins Pipeline Sprache. Die Syntax ist [hier](https://jenkins.io/doc/book/pipeline/syntax/) beschrieben.
+
+## Deployment von Resourcen und Konfiguration
+
+Bisher haben wir nur die Applikation mittels unserer Deployment Pipeline deployt, wie können wir nun unsere Pipeline auch dazu verwenden um Resourcen (DeploymentConfigs, Routen, Cronjobs...) zu deployen?
+
+TODO: tp
