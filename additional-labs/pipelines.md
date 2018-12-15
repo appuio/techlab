@@ -121,6 +121,9 @@ openshift.withCluster() {
     }
 }
 ```
+
+Das Plugin funktioniert als Wrapper zum `oc client`. Mit dem Plugin stehen einem also sämtliche Funktionalität des clients zur Verfügung.
+
 weitere Informationen dazu sind unter https://github.com/openshift/jenkins-client-plugin/blob/master/README.md zu finden.
 
 Zusätzlich zum Client Plugin existiert das vorgänger Plugin (Jenkins Pipeline Plugin), welches weniger Funktionalität bietet, allerdings gemäss https://docs.openshift.com/container-platform/3.9/using_images/other_images/jenkins.html#pipeline-plug-in supportet bleibt.
@@ -312,5 +315,23 @@ Unter https://github.com/puzzle/jenkins-techlab finden Sie ein entsprechendes Ha
 ## Deployment von Resourcen und Konfiguration
 
 Bisher haben wir nur die Applikation mittels unserer Deployment Pipeline deployt, wie können wir nun unsere Pipeline auch dazu verwenden um Resourcen (DeploymentConfigs, Routen, Cronjobs...) zu deployen?
+
+Ebenso haben wir weiter oben mit dem Befehl `oc new-app [USER]-buildpipeline/application:stage -n [USER]-pipeline-stage` entsprechend im Hintergrund die nötigen Ressourcen angelegt. In unserem Fall `Service` und `DeploymentConfig`.
+
+Diese Resourcen sind Konfiguration die sich analog der eigentlichen Applikation weiterentwickeln kann und ebenso mittles CI/CD Pipeline deployt werden sollten.
+
+Ein gutes Beispiel zur Verantschaulichung der Notwendigkeit sind die Konfigurationswerte der Umgebungsvariablen zur Konfiguration der eigentlichen Applikation. So als Beispiel die Verbindung zu einem Mail Server der aus der Applikation dafür verwendet wird Mails zu versenden. 
+
+Ändern Parameter in dieser Konfiguration auf einer Umgebung, bspw. Username oder Passwort sollen diese Werte mittels Pipeline deployt werden.
+
+Als Grundprinzip kann man sich das so vorstellen:
+* Resourcen werden als Files (`yaml` oder `json`) im Git verwaltet
+* Im Rahmen der Deploymentpipeline werden diese Ressourcen entsprechend auf dem Kubernetes Cluster angewendet.
+
+Es kann sogar so weit gehen, dass man Ressourcen, welche noch nicht existieren, via Pipeline erstellt. Somit die ganze Umgebung also per Knopfdruck aufgesetzt werden kann.
+
+In der Jenkins Pipeline erfolgt dies dann über den `openshift.apply(r)` Befehl, wobei die Variable `r` der entsprechenden Ressource entspricht.
+
+## LAB: Deployen des Services innerhalb der Pipeline
 
 TODO: tp
