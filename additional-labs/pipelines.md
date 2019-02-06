@@ -331,7 +331,3 @@ Als Grundprinzip kann man sich das so vorstellen:
 Es kann sogar so weit gehen, dass man Ressourcen, welche noch nicht existieren, via Pipeline erstellt. Somit die ganze Umgebung also per Knopfdruck aufgesetzt werden kann.
 
 In der Jenkins Pipeline erfolgt dies dann über den `openshift.apply(r)` Befehl, wobei die Variable `r` der entsprechenden Ressource entspricht.
-
-## LAB: Deployen des Services innerhalb der Pipeline
-
-TODO: tp
