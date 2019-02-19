@@ -156,10 +156,10 @@ mysql.techlab-dockerimage.svc.cluster.local
 
 Befehl für das Setzen der Umgebungsvariablen:
 ```
- $ oc env dc example-spring-boot \
+$ oc set env dc example-spring-boot \
       -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
       -e SPRING_DATASOURCE_USERNAME=appuio \ 
-	  -e SPRING_DATASOURCE_PASSWORD=appuio \
+      -e SPRING_DATASOURCE_PASSWORD=appuio \
       -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
 
