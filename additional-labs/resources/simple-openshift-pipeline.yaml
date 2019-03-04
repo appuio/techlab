@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: application
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: application
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: application:latest
+    source:
+      git:
+        uri: https://github.com/appuio/example-php-sti-helloworld.git
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: php:7.0
+          namespace: openshift
+      type: Source
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: appuio-sample-pipeline
+  spec:
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfile: |-
+          def project=""
+          node {
+              stage('Init') {
+                project = env.PROJECT_NAME
+              }
+              stage('Build') {
+                echo "Build"
+                openshift.withCluster() {
+                  openshift.withProject() {
+                    def builds = openshift.startBuild("application")
+                    builds.logs('-f')
+                    timeout(5) {
+                      builds.untilEach(1) {
+                        return (it.object().status.phase == "Complete")
+                      }
+                    }
+                  }
+                }
+              }
+              stage('Test') {
+                echo "Test"
+                sleep 2
+              }
+          }
+          node ('maven') {    
+              stage('DeployDev') {
+                echo "Deploy to Dev"
+                sleep 5
+              }
+              stage('PromoteTest') {
+                echo "Deploy to Test"
+                sleep 5
+              }
+              stage('PromoteProd') {
+                echo "Deploy to Prod"
+                sleep 5
+              }
+          }
