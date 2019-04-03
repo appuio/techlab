@@ -2,7 +2,7 @@
 
 Mit OpenShift Pipelines hat man die Möglichkeit, komplexe CI/CD Prozesse voll integriert abzubilden. In diesem Lab zeigen wir, wie man mit OpenShift Pipelines arbeitet und so Applikationen buildet, testet und entsprechend kontrolliert in die verschiedenen Stages deployt.
 
-Die offizielle Dokumentation ist unter <https://docs.openshift.com/container-platform/3.9/dev_guide/dev_tutorials/openshift_pipeline.html> zu finden.
+Die offizielle Dokumentation ist unter <https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/openshift_pipeline.html> zu finden.
 
 
 ## Grundprinzip
@@ -49,7 +49,7 @@ node {
         echo "Build"
         openshift.withCluster() {
             openshift.withProject() {
-                def builds = openshift.startBuild("application"); 
+                def builds = openshift.startBuild("application");
                 builds.logs('-f')
                 timeout(5) {
                     builds.untilEach(1) {
@@ -64,7 +64,7 @@ node {
         sleep 2
     }
 }
-node ('maven') {    
+node ('maven') {
     stage('DeployDev') {
         echo "Deploy to Dev"
         sleep 5
@@ -82,9 +82,9 @@ node ('maven') {
 
 Die Testpipeline besteht aus sechs Pipeline-Stages, welche auf zwei Jenkins Slaves ausgeführt werden. Die `Build` Pipeline-Stage, ist aktuell die einzig ausprogrammierte Stage. Sie startet nämlich im aktuellen OpenShift Projekt den Docker Build für unsere Applikation und wartet entsprechend bis dieser erfolgreich abgeschlossen ist.
 
-Die letzten drei Steps werden bedingt durch den Node Selector `node ('maven') { ... }` auf einem Jenkins Slave mit dem Namen `maven` ausgeführt. Dabei startet OpenShift mittels Kubernetes Plugin dynamisch einen Jenkins Slave Pod und führt entsprechend diese Build-Stages auf diesem Slave aus. 
+Die letzten drei Steps werden bedingt durch den Node Selector `node ('maven') { ... }` auf einem Jenkins Slave mit dem Namen `maven` ausgeführt. Dabei startet OpenShift mittels Kubernetes Plugin dynamisch einen Jenkins Slave Pod und führt entsprechend diese Build-Stages auf diesem Slave aus.
 
-Der `maven` Slave ist im Kubernetes Plugin vorkonfiguriert und die Pipeline-Stages werden via Image `registry.access.redhat.com/openshift3/jenkins-slave-maven-rhel7:v3.9` ausgeführt. Weiter unten im Kapitel zu Custom Slaves werden Sie lernen, wie man individuelle Slaves dazu verwendet um Pipelines darauf auszuführen.
+Der `maven` Slave ist im Kubernetes Plugin vorkonfiguriert und die Pipeline-Stages werden via Image `registry.access.redhat.com/openshift3/jenkins-slave-maven-rhel7:v3.11` ausgeführt. Weiter unten im Kapitel zu Custom Slaves werden Sie lernen, wie man individuelle Slaves dazu verwendet um Pipelines darauf auszuführen.
 
 
 ## BuildConfig Optionen
@@ -110,7 +110,7 @@ spec:
 
 Der durch OpenShift dynamisch deployte Jenkins ist durch eine Reihe von OpenShift Jenkins Plugins vollständig mit OpenShift gekoppelt. Einerseits kann so direkt auf Ressourcen innerhalb des Projekts zugegriffen werden, andererseits können durch entsprechendes Labelling dynamische Slaves aufgesetzt werden. Des Weiteren wird auch ein entsprechender Serviceaccount (`jenkins`) erstellt. Die Rechtevergabe kann entsprechend über diesen Serviceacount erfolgen.
 
-Zusätzliche Informationen finden Sie hier: https://docs.openshift.com/container-platform/3.9/install_config/configuring_pipeline_execution.html#openshift-jenkins-client-plugin
+Zusätzliche Informationen finden Sie hier: https://docs.openshift.com/container-platform/3.11/install_config/configuring_pipeline_execution.html#openshift-jenkins-client-plugin
 
 
 ### OpenShift Jenkins Pipeline
@@ -129,7 +129,7 @@ Das Plugin funktioniert als Wrapper zum `oc client`. Mit dem Plugin stehen einem
 
 Weitere Informationen dazu sind unter <https://github.com/openshift/jenkins-client-plugin/blob/master/README.md> zu finden.
 
-Zusätzlich zum Client Plugin existiert das Vorgänger-Plugin (Jenkins Pipeline Plugin), welches weniger Funktionalität bietet, allerdings gemäss <https://docs.openshift.com/container-platform/3.9/using_images/other_images/jenkins.html#pipeline-plug-in> supportet bleibt.
+Zusätzlich zum Client Plugin existiert das Vorgänger-Plugin (Jenkins Pipeline Plugin), welches weniger Funktionalität bietet, allerdings gemäss <https://docs.openshift.com/container-platform/3.11/using_images/other_images/jenkins.html#pipeline-plug-in> supportet bleibt.
 
 
 ### OpenShift Jenkins Sync Plugin
@@ -151,7 +151,7 @@ Custom Jenkins Slaves können einfach in den Build integriert werden, dafür mü
 
 Um Custom Images als Jenkins Slaves zu verwenden muss man auf dem ImageStream ein Label `role=jenkins-slave` definieren.
 
-Aufgrund des Labels synchronisiert das Jenkins Sync Plugin dann die Konfiguration für das Kubernetes Plugin als Pod Templates. Beim Starten des Jenkins werden so gelabelte ImagesStreams gesynched und im Jenkins als Kubernetes Pod Templates angelegt. 
+Aufgrund des Labels synchronisiert das Jenkins Sync Plugin dann die Konfiguration für das Kubernetes Plugin als Pod Templates. Beim Starten des Jenkins werden so gelabelte ImagesStreams gesynched und im Jenkins als Kubernetes Pod Templates angelegt.
 
 Erstellen wir nun in unserem Projekt einen Custom Jenkins Slave. Zur Veranschaulichung verwenden wir dazu ein Image von Docker Hub, das als Maven Jenkins Slave fungiert:
 
@@ -171,7 +171,7 @@ Um den Custom Slave im Jenkins auch verfügbar zu haben, müssen wir nun den Jen
 $ oc rollout latest jenkins
 ```
 
-Schauen wir uns die Konfiguration nun nach dem Restart im Jenkins Konfigurations-Menu an: https://[jenkins-route]/configure 
+Schauen wir uns die Konfiguration nun nach dem Restart im Jenkins Konfigurations-Menu an: https://[jenkins-route]/configure
 Unser `custom-jenkins-slave` ist unter den Kubernetes Pod Templates ersichtlich:
 
 ![CustomSlave Pipeline Jenkins](../images/pipeline-jenkins-custom-podtemplate.png)

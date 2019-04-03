@@ -1,6 +1,6 @@
 # APPUiO - OpenShift 3 Techlab Dokumentation
 
-Dieses Techlab basiert auf OpenShift 3.9.
+Dieses Techlab basiert auf OpenShift 3.11.
 
 
 ## Inhalte
@@ -32,9 +32,9 @@ Dieses Techlab basiert auf OpenShift 3.9.
 
 ## Weiterführende Dokumentation
 
-- [OpenShift Container Platform 3.9 docs](https://docs.openshift.com/container-platform/3.9/welcome/index.html)
+- [OpenShift Container Platform 3.11 docs](https://docs.openshift.com/container-platform/3.11/welcome/index.html)
 - [APPUiO docs](http://docs.appuio.ch)
-- [OpenShift Image Creation Guidelines](https://docs.openshift.com/container-platform/3.9/creating_images/guidelines.html)
+- [OpenShift Image Creation Guidelines](https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html)
 
 
 ### APPUiO Examples
@@ -46,7 +46,7 @@ Dieses Techlab basiert auf OpenShift 3.9.
 
 ### OpenShift Examples
 
-- [OpenShift Creating New Applications Docs](https://docs.openshift.com/container-platform/3.9/dev_guide/application_lifecycle/new_app.html)
+- [OpenShift Creating New Applications Docs](https://docs.openshift.com/container-platform/3.11/dev_guide/application_lifecycle/new_app.html)
 
 
 ## Ältere Inhalte

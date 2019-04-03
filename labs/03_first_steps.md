@@ -44,11 +44,11 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 1. Fügen Sie Ihre erste Applikation Ihrem Projekt hinzu. Als Beispielprojekt verwenden wir ein APPUiO Example:
 
    1. Wechseln Sie zuerst in die Catalog-Ansicht, indem Sie entweder den Button *Add to Project* oben rechts oder direkt *Browse Catalog* in der Projektübersicht wählen
- 
+
    1. Wählen Sie den Reiter *Languages* und anschliessend *PHP* aus
- 
+
    1. Wählen Sie dazu als Version *7.1* aus
- 
+
    1. Geben Sie Ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL:
    ```
    https://github.com/appuio/example-php-sti-helloworld.git
@@ -59,7 +59,7 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 
 1. Über den Link *Continue to the project overview* kann der Aufbau (bestehend aus Build und anschliessendem Deployment) beobachtet werden
 
-Sie haben nun Ihre erste Applikation mittels sog. **[Source to Image](https://docs.openshift.com/container-platform/3.9/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
+Sie haben nun Ihre erste Applikation mittels sog. **[Source to Image](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
 
 **Tipp:** Mit dem folgenden Command können Sie in ein anderes Projekt wechseln:
 ```

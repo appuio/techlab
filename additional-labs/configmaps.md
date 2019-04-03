@@ -22,10 +22,10 @@ Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [LAB 4](../labs/
 Mit dem folgenden Befehl legen wir nun die erste ConfigMap auf Basis eines lokalen Files an:
 
 ```
-$ oc create configmap javaconfiguration --from-file=additional-labs/resources/properties.properties 
+$ oc create configmap javaconfiguration --from-file=additional-labs/resources/properties.properties
 ```
 
-Mit 
+Mit
 
 ```
 $ oc get configmaps
@@ -34,17 +34,17 @@ javaconfiguration   1      7s
 ```
 kann nun verifiziert werden ob die ConfigMap erfolgreich angelegt wurde.
 
-Oder mittels `$ oc get configmaps javaconfiguration -o json` kann der Inhalt angezeigt werden. 
+Oder mittels `$ oc get configmaps javaconfiguration -o json` kann der Inhalt angezeigt werden.
 
 
 ## Configmap in Pod zur Verfügung stellen
 
 Als nächstes wollen wir die ConfigMap im Pod verfügbar machen.
 
-Grundsätzlich gibt es dafür die folgenden Möglichkeiten, welche in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/3.9/dev_guide/configmaps.html#consuming-configmap-in-pods) genauer beschrieben werden:
+Grundsätzlich gibt es dafür die folgenden Möglichkeiten, welche in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html#consuming-configmap-in-pods) genauer beschrieben werden:
 
 
-* ConfigMap Properties als Umgebungsvariablen im Deployment 
+* ConfigMap Properties als Umgebungsvariablen im Deployment
 * Commandline Arguments via Umgebungsvariablen
 * als Volumes in den Container gemountet
 
@@ -138,7 +138,7 @@ Diese Property File kann nun so von der Java Applikation im Container gelesen un
 
 ## Aufgabe: LAB10.4.1 ConfigMap Data Sources
 
-Erstellen Sie jeweils eine ConfigMap und verwenden Sie dafür die verschiedenen Arten von [Data Sources](https://docs.openshift.com/container-platform/3.9/dev_guide/configmaps.html#consuming-configmap-in-pods).
+Erstellen Sie jeweils eine ConfigMap und verwenden Sie dafür die verschiedenen Arten von [Data Sources](https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html#consuming-configmap-in-pods).
 
 Machen Sie die Werte innerhalb von Pods auf die unterschiedlichen Arten verfügbar.
 

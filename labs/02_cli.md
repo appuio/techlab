@@ -85,8 +85,9 @@ $ oc version
 ```
 Der folgende Output sollte angezeigt werden:
 ```
-oc v3.9.40
-kubernetes v1.9.1+a0ce1bc657
+oc v3.11.88
+kubernetes v1.11.0+d4cacc0
+features: Basic-Auth GSSAPI Kerberos SPNEGO
 [...]
 ```
 

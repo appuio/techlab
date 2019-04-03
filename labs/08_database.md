@@ -85,7 +85,7 @@ Die entsprechenden Key-Value Pairs sind unter `data` ersichtlich:
 ```yaml
 apiVersion: v1
 data:
-  database-name: 
+  database-name:
   database-password: YXBwdWlv
   database-root-password: dDB3ZDFLRFhsVjhKMGFHQw==
   database-user: YXBwdWlv
@@ -118,7 +118,7 @@ Mit Secrets können wir also sensitive Informationen (Credetials, Zertifikate, S
 
 Secrets können entweder, wie oben bei der MySQL-Datenbank, in Umgebungsvariablen gemappt oder direkt als Files via Volumes in einen Container gemountet werden.
 
-Weitere Informationen zu Secrets können in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/3.9/dev_guide/secrets.html) gefunden werden.
+Weitere Informationen zu Secrets können in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/3.11/dev_guide/secrets.html) gefunden werden.
 
 ## Aufgabe: LAB8.2: Applikation an die Datenbank anbinden
 
@@ -158,7 +158,7 @@ Befehl für das Setzen der Umgebungsvariablen:
 ```
 $ oc set env dc example-spring-boot \
       -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
-      -e SPRING_DATASOURCE_USERNAME=appuio \ 
+      -e SPRING_DATASOURCE_USERNAME=appuio \
       -e SPRING_DATASOURCE_PASSWORD=appuio \
       -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
