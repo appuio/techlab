@@ -25,24 +25,25 @@ Auf dem nun zu sehenden Webinterface oben rechts auf das Fragezeichen und anschl
 ![cli](../images/lab_2_cli.png)
 
 Nun erscheinen Links für den Download des Clients für die verschiedenen Betriebssysteme.
+Alternativ den Client von GitHub herunterladen. Downloads sind zuunterst auf der [Release Seite](https://github.com/openshift/origin/releases/tag/v3.11.0) (Assets).
 
 Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
 
 **Linux**
 
-```
+```bash
 ~/bin
 ```
 
 **Mac OS X**
 
-```
+```bash
 ~/bin
 ```
 
 **Windows**
 
-```
+```bash
 C:\OpenShift\
 ```
 
@@ -50,7 +51,7 @@ C:\OpenShift\
 
 Der oc Client muss ausgeführt werden können.
 
-```
+```bash
 cd ~/bin
 chmod +x oc
 ```
@@ -60,8 +61,9 @@ chmod +x oc
 Unter **Linux** und **Mac OS X** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
 
 Falls der oc Client in einem anderen Verzeichnis abgelegt wurde, kann der PATH wie folgt gesetzt werden:
-```
-$ export PATH=$PATH:[path to oc client]
+
+```bash
+export PATH=$PATH:[path to oc client]
 ```
 
 ### Windows
@@ -80,11 +82,14 @@ Legen sie den oc Client direkt im Verzeichnis *C:\Windows* ab.
 ## Installation verifizieren
 
 Der oc Client sollte jetzt korrekt installiert sein. Am besten überprüfen wir das, indem wir den folgenden Command ausführen:
-```
+
+```bash
 $ oc version
 ```
+
 Der folgende Output sollte angezeigt werden:
-```
+
+```bash
 oc v3.11.88
 kubernetes v1.11.0+d4cacc0
 features: Basic-Auth GSSAPI Kerberos SPNEGO
@@ -99,12 +104,13 @@ Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt ges
 
 Mit Linux und Mac kann die bash completion mit folgendem Befehl temporär eingerichtet werden:
 
-```
+```bash
 source <(oc completion bash)
 ```
 
 Oder für zsh:
-```
+
+```zsh
 source <(oc completion zsh)
 ```
 
@@ -112,7 +118,7 @@ Damit die bash completion funktioniert, muss vorher das Paket `bash-completion` 
 
 Ubuntu:
 
-```
+```bash
 sudo apt install bash-completion
 ```
 
