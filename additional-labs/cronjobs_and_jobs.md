@@ -14,9 +14,9 @@ Eine mögliche Auswahl von Anwendungsfällen:
 Jobs im Unterschied zu einem Deployment, welches mittels Replication Controller getrackt wird, führt einen Pod einmalig aus bis der Befehl abgeschlossen ist.
 Ein Job erstellt dafür einen Pod und führt die definierte Operation bzw. Befehl aus. Es muss sich dabei nicht zwingend um nur einen Pod handeln, sondern kann auch mehrere beinhalten. Wird ein Job gelöscht, werden auch die vom Job gestarteten (und wieder beendeten) Pods gelöscht.
 
-Ein Job eignet sich also bspw. dafür, sicherzustellen, dass ein Pod verlässlich bis zu dessen Vervollständigung ausgeführt wird. Schlägt ein Pod fehl, zum Beispiel wegen eines Node-Fehlers, startet der Job einen neuen Pod. 
+Ein Job eignet sich also bspw. dafür, sicherzustellen, dass ein Pod verlässlich bis zu dessen Vervollständigung ausgeführt wird. Schlägt ein Pod fehl, zum Beispiel wegen eines Node-Fehlers, startet der Job einen neuen Pod.
 
-Weitere Informationen zu Jobs sind in der [OpenShift Dokumentation](https://docs.openshift.com/container-platform/3.9/dev_guide/jobs.html#dev-guide-jobs) zu finden.
+Weitere Informationen zu Jobs sind in der [OpenShift Dokumentation](https://docs.openshift.com/container-platform/3.11/dev_guide/jobs.html#dev-guide-jobs) zu finden.
 
 ## Cron Jobs
 
