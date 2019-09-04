@@ -85,7 +85,7 @@ Die entsprechenden Key-Value Pairs sind unter `data` ersichtlich:
 ```yaml
 apiVersion: v1
 data:
-  database-name:
+  database-name: YXBwdWlv
   database-password: YXBwdWlv
   database-root-password: dDB3ZDFLRFhsVjhKMGFHQw==
   database-user: YXBwdWlv
