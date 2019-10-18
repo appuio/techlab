@@ -1,6 +1,7 @@
 # Lab 5: Unseren Service mittels Route online verfügbar machen
 
-In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) über **http** vom Internet her erreichbar machen.
+In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) über das HTTP-Protokoll vom Internet her erreichbar machen.
+
 
 ## Routen
 
@@ -9,9 +10,10 @@ Der `oc new-app` Befehl aus dem vorherigen [Lab](04_deploy_dockerimage.md) erste
 Aktuell werden folgende Protokolle unterstützt:
 
 - HTTP
-- HTTPS ([SNI](https://en.wikipedia.org/wiki/Server_Name_Indication))
+- HTTPS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
 - WebSockets
 - TLS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
+
 
 ## Aufgabe: LAB5.1
 
@@ -33,15 +35,15 @@ NAME                  CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 example-spring-boot   172.30.124.20   <none>        8080/TCP   11m
 ```
 
-Und nun wollen wir diesen Service veröffentlichen / exposen:
+Und nun wollen wir diesen Service veröffentlichen bzw exponieren:
 
 ```
 $ oc expose service example-spring-boot
 ```
 
-Per default wird eine http Route erstellt.
+Per default wird eine unverschlüsselte Route erstellt.
 
-Mittels `oc get routes` können wir überprüfen, ob die Route angelegt wurde.
+Mittels `oc get routes` können wir überprüfen, ob die Route angelegt wurde:
 
 ```
 $ oc get routes
@@ -49,11 +51,11 @@ NAME                  HOST/PORT                                   PATH      SERV
 example-spring-boot   example-spring-boot-techlab.app.appuio.ch             example-spring-boot:8080-tcp                 app=example-spring-boot
 ```
 
-Die Applikation ist nun vom Internet her über den angegebenen Hostnamen erreichbar, Sie können also nun auf die Applikation zugreifen.
+Die Applikation ist nun vom Internet her über den angegebenen Hostname erreichbar, Sie können also nun darüber auf die Applikation zugreifen.
 
-**Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: *servicename-project.osecluster*
+**Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: *[servicename]-[project].default-subdomain*
 
-In der Overview der Web Console ist diese Route mit dem Hostnamen jetzt auch sichtbar.
+In der Overview der Web Console ist diese Route mit dem Hostname jetzt auch sichtbar.
 
 
 ---

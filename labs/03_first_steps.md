@@ -15,7 +15,7 @@ Den Befehl nun in einem Terminal-Fenster einfügen.
 
 ## Projekt erstellen
 
-Ein Projekt in OpenShift ist das Top Level Konzept um Ihre Applikationen, Deployments, Builds, Container etc. zu organisieren. Siehe [Lab1](01_quicktour.md).
+Ein Projekt in OpenShift ist das Top-Level Konzept um Ihre Applikationen, Deployments, Builds, Container etc. zu organisieren. Siehe auch [Lab 1](01_quicktour.md).
 
 
 ## Aufgabe: LAB3.1
@@ -75,7 +75,7 @@ $ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=app
 $ oc expose svc appuio-php-sti-example
 ```
 
-**Tipp:** Eine ganze App kann mit dem folgenden Befehl gelöscht werden:
+**Tipp:** Eine ganze App kann mit dem folgendem Befehl gelöscht werden:
 ```
 $ oc delete all --selector app=appname
 ```
@@ -95,6 +95,6 @@ $ oc new-project [USER]-example1
 
 **Ende Lab 3**
 
-<p width="100px" align="right"><a href="04_deploy_dockerimage.md">Ein Docker Image deployen →</a></p>
+<p width="100px" align="right"><a href="04_deploy_dockerimage.md">Ein Container Image deployen →</a></p>
 
 [← zurück zur Übersicht](../README.md)

@@ -10,7 +10,7 @@ Dieses Techlab basiert auf OpenShift 3.11.
 1. [Quicktour durch OpenShift 3](labs/01_quicktour.md)
 2. [OpenShift CLI installieren](labs/02_cli.md)
 3. [Erste Schritte auf der Lab Plattform](labs/03_first_steps.md)
-4. [Ein Docker Image deployen](labs/04_deploy_dockerimage.md)
+4. [Ein Container Image deployen](labs/04_deploy_dockerimage.md)
 5. [Routen erstellen](labs/05_create_route.md)
 6. [Skalieren](labs/06_scale.md)
 7. [Troubleshooting, was ist im Pod?](labs/07_troubleshooting_ops.md)
