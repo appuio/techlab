@@ -104,7 +104,7 @@ Ersetzen Sie `[HOSTNAME]` mit dem Hostname Ihrer definierten Route:
 **Tipp:** `oc get route -o custom-columns=NAME:.metadata.name,HOSTNAME:.spec.host`
 
 ```
-while true; do sleep 1; ( { curl -fs http://appuio-php-docker-baffolter-scale.techlab-apps.openshift.ch/health/; date "+ TIME: %H:%M:%S,%3N" ;} & ) 2>/dev/null; done
+while true; do sleep 1; ( { curl -fs http://[HOSTNAME]/health/; date "+ TIME: %H:%M:%S,%3N" ;} & ) 2>/dev/null; done
 ```
 
 oder in PowerShell (**Achtung**: erst ab PowerShell-Version 3.0!):
