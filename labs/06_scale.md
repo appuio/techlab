@@ -191,7 +191,7 @@ Diese beiden Checks können als HTTP Check, Container Execution Check (Befehl od
 In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt unter dem Pfad `/health` einen Status Code 200 zurück, sobald die Applikation bereit ist.
 
 
-## Aufgabe: LAB6.3
+## Aufgabe: LAB6.4
 
 Fügen Sie die Readiness Probe mit folgendem Befehl in der DeploymentConfig (dc) hinzu:
 
