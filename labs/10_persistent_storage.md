@@ -13,13 +13,13 @@ Der PersistentVolumeClaim stellt allerdings erst den Request dar, nicht aber die
 
 ### Volume in Pod einbinden
 
-Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In [LAB 6](06_scale.md) bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu [LAB 6](06_scale.md) können wir aber mit `oc volume` die Deployment Config automatisch erweitern.
+Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden. In [LAB 6](06_scale.md) bearbeiteten wir die Deployment Config, um die Readiness Probe einzufügen. Dasselbe tun wir nun für das Persistent Volume. Im Unterschied zu [LAB 6](06_scale.md) können wir aber mit `oc set volume` die Deployment Config automatisch erweitern.
 
 Wir verwenden dafür wieder das Projekt aus [LAB 8](08_database.md) [USER]-dockerimage. **Tipp:** `oc project [USER]-dockerimage`
 
 Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 ```
-$ oc volume dc/mysql --add --name=mysql-data --type persistentVolumeClaim \
+$ oc set volume dc/mysql --add --name=mysql-data --type persistentVolumeClaim \
      --claim-name=mysqlpvc --claim-size=256Mi --overwrite
 ```
 **Note:** Durch die veränderte Deployment Config deployt OpenShift automatisch einen neuen Pod. D.h. leider auch, dass das vorher erstellte DB-Schema und bereits eingefügte Daten verloren gegangen sind.
@@ -42,7 +42,7 @@ Die beiden Attribute Status und Volume zeigen uns an, dass unser Claim mit dem P
 
 Mit dem folgenden Befehl können wir auch noch überprüfen, ob das Einbinden des Volumes in die Deployment Config geklappt hat:
 ```
-$ oc volume dc/mysql
+$ oc set volume dc/mysql --list
 deploymentconfigs/mysql
   pvc/mysqlpvc (allocated 256MiB) as mysql-data
 ```
