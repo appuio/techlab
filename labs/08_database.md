@@ -22,7 +22,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 ### CLI
 
-Über das CLI kann der MySQL Service wie folgt angelegt werden:
+Über das CLI kann der MySQL Service wie folgt angelegt werden (Multiline command delimeter for cmd is the caret: `^`, for Powershell it is the backtick: `` ` ``.):
 
 ```
 $ oc new-app mysql-ephemeral \
@@ -157,7 +157,7 @@ Projektname = techlab-dockerimage
 mysql.techlab-dockerimage.svc.cluster.local
 ```
 
-Befehl für das Setzen der Umgebungsvariablen:
+Befehl für das Setzen der Umgebungsvariablen (Multiline command delimeter for cmd is the caret: `^`, for Powershell it is the backtick: `` ` ``.):
 ```
 $ oc set env dc example-spring-boot \
       -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
