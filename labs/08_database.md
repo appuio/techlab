@@ -22,7 +22,9 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 ### CLI
 
-Über das CLI kann der MySQL Service wie folgt angelegt werden (Multiline command delimeter for cmd is the caret: `^`, for Powershell it is the backtick: `` ` ``.):
+Über das CLI kann der MySQL Service wie folgt angelegt werden.
+
+**Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden. **Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
 
 ```
 $ oc new-app mysql-ephemeral \
