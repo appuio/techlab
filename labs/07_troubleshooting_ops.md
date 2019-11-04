@@ -36,6 +36,8 @@ drwxr-xr-x. 3 root    root   20 May 16 13:34 gradle
 drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 ```
 
+Mit `exit` bzw. `ctrl`+`d` kann wieder aus dem Pod bzw. der Shell ausgeloggt werden.
+
 
 ## Aufgabe: LAB7.2
 
