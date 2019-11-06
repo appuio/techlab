@@ -159,7 +159,9 @@ Projektname = techlab-dockerimage
 mysql.techlab-dockerimage.svc.cluster.local
 ```
 
-Befehl für das Setzen der Umgebungsvariablen (Multiline command delimeter for cmd is the caret: `^`, for Powershell it is the backtick: `` ` ``.):
+Über das CLI kann der MySQL Service wie folgt angelegt werden.
+
+**Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden. **Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
 ```
 $ oc set env dc example-spring-boot \
       -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
