@@ -297,6 +297,10 @@ node ('maven') {
             }
         }
     }
+    stage('ApproveProd') {
+        input message: 'Deploy to production?',
+        id: 'approval'
+    }
     stage('PromoteProd') {
         echo "Deploy to Prod"
         openshift.withCluster() {
