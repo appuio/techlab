@@ -1,13 +1,22 @@
-# APPUiO - OpenShift 3 Techlab Dokumentation
+# APPUiO - OpenShift 4 Techlab Dokumentation
 
-Dieses Techlab basiert auf OpenShift 3.11.
+Dieses Techlab basiert auf OpenShift 4.2.
 
 
-## Inhalte
+## Einführung
 
-- [Einführung](labs/00_introduction.md)
+Mit Platform-as-a-Service (PaaS) ändert sich die Art, wie wir Software entwickeln. Puzzle stellt OpenShift – die *Container Platform* von Red Hat – in einem Techlab vor. Entwickler lernen dabei hands-on die wichtigsten Schritte, wie eine Applikation auf OpenShift gebracht wird.
 
-1. [Quicktour durch OpenShift 3](labs/01_quicktour.md)
+**Ziele dieses Techlabs**:
+
+- Gemeinsam den Einstieg in eine neue moderne Technologie erreichen
+- Grundkonzepte verstehen
+- Erste Applikation auf OpenShift deployed
+
+
+## Labs
+
+1. [Quicktour durch OpenShift 4](labs/01_quicktour.md)
 2. [OpenShift CLI installieren](labs/02_cli.md)
 3. [Erste Schritte auf der Lab Plattform](labs/03_first_steps.md)
 4. [Ein Container Image deployen](labs/04_deploy_dockerimage.md)
@@ -32,9 +41,8 @@ Dieses Techlab basiert auf OpenShift 3.11.
 
 ## Weiterführende Dokumentation
 
-- [OpenShift Container Platform 3.11 docs](https://docs.openshift.com/container-platform/3.11/welcome/index.html)
-- [APPUiO docs](http://docs.appuio.ch)
-- [OpenShift Image Creation Guidelines](https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html)
+- [OpenShift Container Platform 4.2 Dokumentation](https://docs.openshift.com/container-platform/4.2/welcome/index.html)
+- [APPUiO Dokumentation](http://docs.appuio.ch)
 
 
 ### APPUiO Examples
@@ -44,15 +52,11 @@ Dieses Techlab basiert auf OpenShift 3.11.
 - [APPUiO Cron Job Example](https://github.com/appuio/example-cron-traditional)
 
 
-### OpenShift Examples
-
-- [OpenShift Creating New Applications Docs](https://docs.openshift.com/container-platform/3.11/dev_guide/application_lifecycle/new_app.html)
-
-
 ## Ältere Inhalte
 
 Die Techlabs zu früheren Versionen sind in deren eigenen Branches zu finden:
 
+- [Branch lab-3.11](https://github.com/appuio/techlab/tree/lab-3.11)
 - [Branch lab-3.9](https://github.com/appuio/techlab/tree/lab-3.9)
 - [Branch lab-3.5](https://github.com/appuio/techlab/tree/lab-3.5)
 - [Branch lab-3.4](https://github.com/appuio/techlab/tree/lab-3.4)
