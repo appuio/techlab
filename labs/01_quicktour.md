@@ -1,23 +1,22 @@
-# Lab 1: Quicktour durch OpenShift
+
 
 In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren zeigen wir auf, wie man sich in der Web Console einloggt und stellen die einzelnen Bereiche kurz vor.
-
-Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziellen OpenShift Dokumentation, weiterführende Informationen zu OpenShift können hier entnommen werden:
-
-> https://docs.openshift.com/container-platform/3.11/architecture/index.html
 
 
 ## Grundkonzepte
 
-OpenShift basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift kann als Container Platform oder Platform as a Service (PaaS) bezeichnet werden.
+OpenShift basiert auf modernen Konzepten wie CRI-O oder Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebaut, deployt und betrieben werden kann.
 
-### Docker
 
-[Docker](https://www.docker.com/) ist die offene Plattform für Entwickler und Sysadmins und ihre Applikationen. Wählen Sie das für Ihre Technologie passende Basis-Docker-Images aus, OpenShift baut für Sie nach jedem Build automatisch einen aktualisierten Container und deployt ihn auf Wunsch auch gleich.
+### Container Engine
+
+[cri-o](https://cri-o.io/) ist eine leichtgewichtige Container Engine, welche Container Images in einen laufenden Prozess umwandelt, also in einen Container. Dies geschieht anhand der [Container Runtime Specification](https://github.com/opencontainers/runtime-spec) der [Open Container Initiative](https://www.opencontainers.org/), welche auch die [Image Specification](https://github.com/opencontainers/image-spec) festgelegt hat. Sämtliche OCI-konformen Images können so mit OCI-konformen Engines ausgeführt werden.
+
 
 ### Kubernetes
 
-Container orchestrieren und managen mit [Kubernetes](http://kubernetes.io/) von Google. Sie definieren, wie viele Instanzen Ihrer Applikation parallel laufen sollen und Kubernetes kümmert sich um die Skalierung, das Loadbalancing und die Stabilität.
+[Kubernetes](http://kubernetes.io/) ist ein Container Orchestration Tool, welches das Verwalten von Containern wesentlich vereinfacht.
+
 
 ## Übersicht
 
