@@ -1,6 +1,8 @@
-
+# Lab 1: Quicktour durch OpenShift
 
 In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren zeigen wir auf, wie man sich in der Web Console einloggt und stellen die einzelnen Bereiche kurz vor.
+
+Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug [dieses Red Hat Blogposts](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/), dem auch weiterführende Informationen zu Begriffen rund um Container entnommen werden können.
 
 
 ## Grundkonzepte
@@ -15,28 +17,29 @@ OpenShift basiert auf modernen Konzepten wie CRI-O oder Kubernetes und bietet da
 
 ### Kubernetes
 
-[Kubernetes](http://kubernetes.io/) ist ein Container Orchestration Tool, welches das Verwalten von Containern wesentlich vereinfacht.
+[Kubernetes](http://kubernetes.io/) ist ein Container Orchestration Tool, welches das Verwalten von Containern wesentlich vereinfacht. Der Orchestrator terminiert dynamisch den Container Workload innerhalb eines Clusters.
 
-
-## Übersicht
-
-![Overview](../images/ose3-overview.png)
 
 ### Container und Container Images
 
-Die Basiselemente von OpenShift Applikationen sind Container. Mit Containern können Prozesse auf einem Linuxsystem so isoliert werden, dass sie nur mit eingeschränkten Ressourcen und definierten Prozessen interagieren können. So können viele unterschiedliche Container auf dem gleichen System laufen, ohne dass sie einander "sehen" (Files, Prozesse, Netzwerk). Typischerweise beinhaltet ein Container einen einzelnen Service (Webserver, Datenbank, Mailservice, Cache). Innerhalb eines Containers können beliebige Prozesse ausgeführt werden.
+Die Basiselemente von OpenShift Applikationen sind Container. Ein Container ist ein isolierter Prozess auf einem Linuxsystem mit eingeschränkten Ressourcen, der nur mit definierten Prozessen interagieren kann.
 
-Container basieren auf Container Images. Ein Container Image ist eine binary Datei, die alle nötigen Komponenten beinhaltet, damit ein einzelner Container ausgeführt werden kann.
+Container basieren auf Container Images. Ein Container wird gestartet, indem die Container Engine die Dateien und Metadaten des Container Images entpackt und dem Linux Kernel übergibt.
 
-Container Images werden bspw. anhand von Docker Files (textueller Beschrieb wie das Container Image Schritt für Schritt aufgebaut ist) gebaut. Grundsätzlich sind Container Images hierarchisch angewendete Filesystem Snapshots.
+Container Images werden bspw. anhand von Dockerfiles (textueller Beschrieb, wie das Container Image Schritt für Schritt aufgebaut ist) gebaut. Grundsätzlich sind Container Images hierarchisch angewendete Filesystem Snapshots.
 
 **Beispiel Tomcat**
-- Basis Image (CentOs 7)
-- + Install Java
-- + Install Tomcat
-- + Install App
 
-Die gebauten Container Images werden in der OpenShift internen Image Registry versioniert abgelegt und stehen der Plattform nach dem Build zum Deployment zur Verfügung.
+- Base Image (z.B. [UBI](https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image))
+- + Java
+- + Tomcat
+- + App
+
+Gebaute Container Images werden in einer Image Registry (analog einem Repository für bspw. RPM-Pakete) versioniert abgelegt und können von da bezogen werden, um sie auf einer Container Plattform zu deployen.
+Container Images können auch auf OpenShift selbst gebaut werden, von wo aus sie in die OpenShift-interne Registry gepusht und für das Deployment wieder gepullt werden.
+
+
+## OpenShift-Konzepte
 
 ### Projekte
 
@@ -44,36 +47,40 @@ In OpenShift werden Ressourcen (Container und Container Images, Pods, Services, 
 
 Innerhalb eines Projekts können berechtigte User ihre Ressourcen selber verwalten und organisieren.
 
-Die Ressourcen innerhalb eines Projektes sind über ein transparentes [SDN](https://de.wikipedia.org/wiki/Software-defined_networking) verbunden. So können die einzelnen Komponenten eines Projektes in einem Multi-Node Setup auf verschiedene Nodes deployed werden. Dabei sind sie über das SDN untereinander sicht- und zugreifbar.
+Die Ressourcen innerhalb eines Projektes sind über ein transparentes [SDN](https://de.wikipedia.org/wiki/Software-defined_networking) bzw. Overlay-Netzwerk verbunden. So können die einzelnen Komponenten eines Projektes in einem Multi-Node Setup auf verschiedene Nodes deployed werden. Dabei sind sie über das SDN untereinander sicht- und zugreifbar.
+
 
 ### Pods
 
 OpenShift übernimmt das Konzept der Pods von Kubernetes.
 
-Ein Pod ist ein oder mehrere Container, die zusammen auf den gleichen Host deployed werden. Ein Pod ist die kleinste zu deployende Einheit auf OpenShift.
+Ein Pod ist ein oder mehrere Container, die zusammen auf den gleichen Host deployed werden. Ein Pod ist die kleinste verwaltbare Einheit in OpenShift.
 
-Ein Pod ist innerhalb eines OpenShift Projektes über den entsprechenden Service verfügbar.
+Ein Pod ist innerhalb eines OpenShift Projekts u.a. über den entsprechenden Service verfügbar.
+
 
 ### Services
 
 Ein Service repräsentiert einen internen Loadbalancer auf die dahinterliegenden Pods (Replicas vom gleichen Typ). Der Service dient als Proxy zu den Pods und leitet Anfragen an diese weiter. So können Pods willkürlich einem Service hinzugefügt und entfernt werden, während der Service verfügbar bleibt.
 
-Einem Service ist innerhalb eines Projektes eine IP und ein Port zugewiesen und verteilt Requests entsprechend auf die Pod Replicas.
+Einem Service ist innerhalb eines Projektes eine IP und ein Port zugewiesen.
 
-### Routen
+
+### Routes
 
 Mit einer Route definiert man in OpenShift, wie ein Service von ausserhalb von OpenShift von externen Clients erreicht werden kann.
 
-Diese Routen werden im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname-Mapping die Requests an den entsprechenden Service weiterzuleiten.
+Diese Routes werden im integrierten Routing Layer eingetragen und erlauben dann der Plattform über ein Hostname-Mapping die Requests an den entsprechenden Service weiterzuleiten.
 
-Sind mehr als ein Pod für einen Service deployt, verteilt der Routing Layer die Requests auf die deployten Pods
+Sind mehr als ein Pod für einen Service deployt, verteilt der Routing Layer die Requests auf die deployten Pods.
 
 Aktuell werden folgende Protokolle unterstützt:
 
 - HTTP
 - HTTPS ([SNI](https://en.wikipedia.org/wiki/Server_Name_Indication))
 - WebSockets
-- TLS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
+- TLS-verschlüsselte Protokolle mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
+
 
 ### Templates
 
@@ -81,9 +88,9 @@ Ein Template beschreibt textuell eine Liste von Ressourcen, die auf OpenShift au
 
 So hat man die Möglichkeit ganze Infrastrukturen zu beschreiben:
 
-- Java Applikation Service (3 Replicas, rolling Upgrade)
+- Java Application Service (3 Replicas, Rolling Upgrade)
 - Datenbank Service
-- bspw. über Route java.app.appuio-beta.ch im Internet verfügbar
+- Im Internet über Route java.app.appuio-beta.ch erreichbar
 - ...
 
 ---
