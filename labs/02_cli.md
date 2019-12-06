@@ -1,135 +1,33 @@
 # Lab 2: OpenShift CLI installieren
 
-In diesem Lab werden wir gemeinsam den oc Client installieren und konfigurieren, damit wir danach die ersten Schritte auf der OpenShift Techlab Plattform durchführen können.
+In diesem Lab werden wir gemeinsam das CLI-Tool `odo` installieren und konfigurieren, damit wir danach die ersten Schritte auf der OpenShift Techlab Plattform durchführen können.
 
-## Command Line Interface
+
+## `odo`
+
+Via `odo` kommunizieren wir mit OpenShift. Es wurde mit OpenShift 4 neu ins Leben gerufen und fokussiert sich auf die Entwickler-relevanten Aufgaben.
 
 Der **oc client** stellt ein Interface zu OpenShift bereit.
 
-Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgenden Betriebsysteme daher:
-
-- Microsoft Windows
-- Mac OS X
-- Linux
+`odo` ist in [Go](https://github.com/openshift/odo) programmiert und kommt als einzelnes Binary für die gängigsten Betriebsysteme daher.
 
 
-## Auf Webinterface einloggen
+## Installation
 
-Als erstes loggen wir auf der OpenShift Techlab Plattform ein. Die dazu benötigten Angaben werden vom Instruktor verteilt.
+Folgen Sie für die Installation der [offiziellen Installationsdokumentation](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_developer_cli/installing-odo.html).
 
+Es sollte nun möglich sein, auf der Kommandozeile den Befehl `odo version` auszuführen und einen ähnlichen Output wie der folgende zu erhalten (die Versionsnummer kann unterschiedlich sein):
 
-## oc Client herunterladen und installieren
-
-Auf dem nun zu sehenden Webinterface oben rechts auf das Fragezeichen und anschliessend auf "Command Line Tools" klicken:
-
-![cli](../images/lab_2_cli.png)
-
-Nun erscheinen Links für den Download des Clients für die verschiedenen Betriebssysteme.
-Alternativ den Client von GitHub herunterladen. Downloads sind zuunterst auf der [Release Seite](https://github.com/openshift/origin/releases/tag/v3.11.0) (Assets).
-
-Sobald der Client heruntergeladen wurde, muss er auf dem System in einem Verzeichnis, das über den **PATH** erreichbar ist, abgelegt werden.
-
-**Linux**
-
-```bash
-~/bin
+```
+odo v1.0.2 (HEAD)
 ```
 
-**Mac OS X**
 
-```bash
-~/bin
-```
+## bash/zsh Command Completion (optional)
 
-**Windows**
+Dieser Schritt ist optional und funktioniert nicht auf Windows. Damit Command Completion auf macOS funktioniert, muss bspw. via `brew` das Paket `bash-completion` installiert werden.
 
-```bash
-C:\OpenShift\
-```
-
-## Korrekte Berechtigung auf Linux und macOS erteilen
-
-Der oc Client muss ausgeführt werden können.
-
-```bash
-cd ~/bin
-chmod +x oc
-```
-
-## den oc Client im PATH registrieren
-
-Unter **Linux** und **Mac OS X** ist das Verzeichnis ~/bin bereits im PATH, daher muss hier nichts gemacht werden.
-
-Falls der oc Client in einem anderen Verzeichnis abgelegt wurde, kann der PATH wie folgt gesetzt werden:
-
-```bash
-export PATH=$PATH:[path to oc client]
-```
-
-### Windows
-
-Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert werden. Dies ist abhängig von der entsprechenden Windows Version:
-
-- [Windows 7](http://geekswithblogs.net/renso/archive/2009/10/21/how-to-set-the-windows-path-in-windows-7.aspx)
-- [Windows 8](http://www.itechtics.com/customize-windows-environment-variables/)
-- [Windows 10](http://techmixx.de/windows-10-umgebungsvariablen-bearbeiten/)
-
-**Windows Quick Hack**
-
-Legen sie den oc Client direkt im Verzeichnis *C:\Windows* ab.
-
-
-## Installation verifizieren
-
-Der oc Client sollte jetzt korrekt installiert sein. Am besten überprüfen wir das, indem wir den folgenden Command ausführen:
-
-```bash
-$ oc version
-```
-
-Der folgende Output sollte angezeigt werden:
-
-```bash
-oc v3.11.88
-kubernetes v1.11.0+d4cacc0
-features: Basic-Auth GSSAPI Kerberos SPNEGO
-[...]
-```
-
-Ist dies nicht der Fall, ist möglicherweise die PATH Variable nicht korrekt gesetzt.
-
----
-
-## bash/zsh completion (optional)
-
-Mit Linux und Mac kann die bash completion mit folgendem Befehl temporär eingerichtet werden:
-
-```bash
-source <(oc completion bash)
-```
-
-Oder für zsh:
-
-```zsh
-source <(oc completion zsh)
-```
-
-Damit die bash completion funktioniert, muss vorher das Paket `bash-completion` installiert werden.
-
-Ubuntu:
-
-```bash
-sudo apt install bash-completion
-```
-
-Mac:
-
-```bash
-brew install bash-completion
-source $(brew --prefix)/etc/bash_completion
-```
-
-Um die bash/zsh completion nicht nur temporär einzurichten kann man die oben erwähnte Zeile in die `.bash_profile` oder `.zshrc` einfügen.
+`odo` bietet auch eine Command Completion, die gem. [Dokumentation](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_developer_cli/configuring-the-odo-cli.html#using-command-completion_configuring-the-odo-cli) eingerichtet werden kann.
 
 ---
 
