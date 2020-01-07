@@ -51,7 +51,7 @@ Openshift kann mehrere Benutzer (auch mit unterschiedlichen Rollen) in einem Pro
 
 Benutzer oder Gruppen können unterschiedliche Rollen innerhalb des gesamten Clusters oder lokal innerhalb eines Projekts haben.
 
-Weitere Informationen zu Rollen finden Sie [hier] (https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#roles) und zu deren Verwaltung (https://docs.openshift.com/container-platform/3.11/admin_guide/manage_rbac.html).
+Weitere Informationen zu Rollen finden Sie [hier](https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#roles) und zu deren Verwaltung: [manage rbac](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_rbac.html).
 
 Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie Folgendes eingeben:
 

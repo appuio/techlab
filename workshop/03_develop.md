@@ -6,27 +6,27 @@ In diesen Labs werden wir Applikationen Entwickeln.
 
 ### Container Image deployen
 
-Folgen Sie den Anweisungen im [Lab 4: Ein Container Image deployen](labs/04_deploy_dockerimage.md).
+Folgen Sie den Anweisungen im [Lab 4: Ein Container Image deployen](../labs/04_deploy_dockerimage.md).
 
 ### Service mittels Route online verfügbar machen
 
 In dieser Aufgabe werden wir die Applikation von vorher über **https** vom Internet her erreichbar machen.
 
-Folgen Sie den Anweisungen im [Lab 5: Unseren Service mittels Route online verfügbar machen](labs/05_create_route.md).
+Folgen Sie den Anweisungen im [Lab 5: Unseren Service mittels Route online verfügbar machen](../labs/05_create_route.md).
 
 ### Pod Scaling, Readiness Probe und Self Healing
 
-Folgen Sie den Anweisungen im [Lab 6: Pod Scaling, Readiness Probe und Self Healing](labs/06_scale.md).
+Folgen Sie den Anweisungen im [Lab 6: Pod Scaling, Readiness Probe und Self Healing](../labs/06_scale.md).
 
 ### Datenbank anbinden
 
-Folgen Sie den Anweisungen im [Lab 8: Datenbank anbinden](labs/08_database.md).
+Folgen Sie den Anweisungen im [Lab 8: Datenbank anbinden](../labs/08_database.md).
 
 ## Zusatzübung für Schnelle
 
 Ziel ist es eine Java Spring Boot Applikation lokal zu Bauen und mittels Binary Build auf die Plattform zu bringen.
 
-* Siehe dazu das Binary Build Beispiel des Labs [workshop/02-builds.md](workshop/02-builds.md) an.
+* Siehe dazu das Binary Build Beispiel des Labs [workshop/02_builds.md](./02_builds.md) an.
 * GitHub Repository mit dem Sourcecode: <https://github.com/appuio/example-spring-boot-helloworld>
 * Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk8-jdk/>
 

@@ -4,7 +4,7 @@ In diesen Labs werden wir Applikationen Troubleshooten.
 
 ## Aufgabe 1
 
-Folgen Sie den Anweisungen im [Lab 7: Troubleshooting, was ist im Pod?](labs/07_troubleshooting_ops.md).
+Folgen Sie den Anweisungen im [Lab 7: Troubleshooting, was ist im Pod?](../labs/07_troubleshooting_ops.md).
 
 ## Aufgabe 2: Readyness check
 
