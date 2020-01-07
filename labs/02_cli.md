@@ -12,11 +12,9 @@ Der Client ist in Go programmiert und kommt als einzelnes Binary für die folgen
 - Mac OS X
 - Linux
 
-
 ## Auf Webinterface einloggen
 
 Als erstes loggen wir auf der OpenShift Techlab Plattform ein. Die dazu benötigten Angaben werden vom Instruktor verteilt.
-
 
 ## oc Client herunterladen und installieren
 
@@ -74,17 +72,16 @@ Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert 
 - [Windows 8](http://www.itechtics.com/customize-windows-environment-variables/)
 - [Windows 10](http://techmixx.de/windows-10-umgebungsvariablen-bearbeiten/)
 
-**Windows Quick Hack**
+#### Windows Quick Hack
 
 Legen sie den oc Client direkt im Verzeichnis *C:\Windows* ab.
-
 
 ## Installation verifizieren
 
 Der oc Client sollte jetzt korrekt installiert sein. Am besten überprüfen wir das, indem wir den folgenden Command ausführen:
 
 ```bash
-$ oc version
+oc version
 ```
 
 Der folgende Output sollte angezeigt werden:
