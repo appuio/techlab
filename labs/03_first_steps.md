@@ -12,11 +12,9 @@ Der Befehl für das Login mit `oc` kann komfortabel via Webinterface kopiert wer
 
 Den Befehl nun in einem Terminal-Fenster einfügen.
 
-
 ## Projekt erstellen
 
 Ein Projekt in OpenShift ist das Top-Level Konzept um Ihre Applikationen, Deployments, Builds, Container etc. zu organisieren. Siehe auch [Lab 1](01_quicktour.md).
-
 
 ## Aufgabe: LAB3.1
 
@@ -27,15 +25,14 @@ Erstellen Sie auf der Lab Plattform ein neues Projekt.
 > Wie kann ein neues Projekt erstellt werden?
 
 **Tipp** :information_source:
-```
-$ oc help
-```
 
+```bash
+oc help
+```
 
 ## Web Console
 
 Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Browser vorzunehmen.
-
 
 ## Aufgabe: LAB3.2
 
@@ -62,35 +59,40 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 Sie haben nun Ihre erste Applikation mittels sog. **[Source to Image](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
 
 **Tipp:** Mit dem folgenden Command können Sie in ein anderes Projekt wechseln:
-```
-$ oc project [projectname]
+
+```bash
+oc project [projectname]
 ```
 
 **Tipp:** Mit den folgenden Befehlen kann das obere Beispiel aus der Kommandozeile erstellt werden:
 
 **Note:** Der `oc new-app`-Befehl benötigt `git`. Falls `git` nicht installiert ist, insb. auf Windows, kann das Tool [hier heruntergeladen](https://git-scm.com/download/win) und installiert werden.
 
-```
+```bash
 $ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=appuio-php-sti-example
 $ oc expose svc appuio-php-sti-example
 ```
 
 **Tipp:** Eine ganze App kann mit dem folgendem Befehl gelöscht werden:
+
+```bash
+oc delete all --selector app=appname
 ```
-$ oc delete all --selector app=appname
-```
+
 bspw.
-```
-$ oc delete all --selector app=appuio-php-sti-example
+
+```bash
+oc delete all --selector app=appuio-php-sti-example
 ```
 
 ---
 
 ## Lösung: LAB3.1
 
+```bash
+oc new-project [USER]-example1
 ```
-$ oc new-project [USER]-example1
-```
+
 ---
 
 **Ende Lab 3**

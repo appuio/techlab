@@ -10,19 +10,19 @@ Wir verwenden dafür wieder das Projekt aus [Lab 4](04_deploy_dockerimage.md) `[
 
 Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht modifiziert werden. Dennoch gibt es Usecases, bei denen man sich in die Container einloggen muss. Zum Beispiel für Debugging und Analysen.
 
-
 ## Aufgabe: LAB7.1
 
 Mit OpenShift können Remote Shells in die Pods geöffnet werden ohne dass darin bspw. SSH installiert sein muss. Dafür steht der Befehl `oc rsh` zur Verfügung.
 
 Wählen Sie mittels `oc get pods` einen Pod aus und führen Sie den folgenden Befehl aus:
-```
-$ oc rsh [POD]
+
+```bash
+oc rsh [POD]
 ```
 
 Sie können nun über diese Shell Analysen im Container ausführen:
 
-```
+```bash
 bash-4.2$ ls -la
 total 16
 drwxr-xr-x. 7 default root   99 May 16 13:35 .
@@ -38,18 +38,17 @@ drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 
 Mit `exit` bzw. `ctrl`+`d` kann wieder aus dem Pod bzw. der Shell ausgeloggt werden.
 
-
 ## Aufgabe: LAB7.2
 
 Einzelne Befehle innerhalb des Containers können über `oc exec` ausgeführt werden:
 
-```
-$ oc exec [POD] env
+```bash
+oc exec [POD] env
 ```
 
 Zum Beispiel:
 
-```
+```bash
 $ oc exec example-spring-boot-4-8mbwe env
 PATH=/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=example-spring-boot-4-8mbwe
@@ -65,21 +64,21 @@ KUBERNETES_PORT_53_TCP=tcp://172.30.0.1:53
 
 Die Logfiles zu einem Pod können sowohl in der Web Console als auch auch im CLI angezeigt werden.
 
+```bash
+oc logs [POD]
 ```
-$ oc logs [POD]
-```
+
 Der Parameter `-f` bewirkt analoges Verhalten wie `tail -f`
 
 Befindet sich ein Pod im Status **CrashLoopBackOff** bedeutet dies, dass er auch nach wiederholtem Neustarten nicht erfolgreich gestartet werden konnte. Die Logfiles können auch wenn der Pod nicht läuft mit dem folgenden Befehl angezeigt werden:
 
- ```
-$ oc logs -p [POD]
+```bash
+oc logs -p [POD]
 ```
 
 Der Parameter `-p` steht dabei für "previous", bezieht sich also auf einen Pod, der zuvor noch lief, nun aber nicht mehr. Entsprechend funktioniert dieser Befehl nur, wenn es tatsächlich einen Pod zuvor gab.
 
 Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten. Weitere Informationen und ein optionales LAB finden sie [hier](../additional-labs/logging_efk_stack.md).
-
 
 ## Aufgabe: LAB7.3 Port Forwarding
 
@@ -87,7 +86,7 @@ OpenShift 3 erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf ein
 
 Übung: Auf die Spring Boot Metrics aus [Lab 4](04_deploy_dockerimage.md) zugreifen.
 
-```
+```bash
 oc get pod --namespace="[USER]-dockerimage"
 oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="[USER]-dockerimage"
 ```
