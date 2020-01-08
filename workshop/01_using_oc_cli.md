@@ -4,7 +4,7 @@ Melden Sie sich bei der Webkonsole an und machen Sie sich mit der Benutzeroberfl
 
 Erstellen Sie über die Webkonsole ein neues Projekt mit dem Namen:
 
-    userXY-webui
+    [USER]-webui
 
 ## Loggen Sie mit der CLI ein
 
@@ -27,13 +27,13 @@ oc cli bietet eine Hilfeausgabe sowie eine ausführlichere Hilfe für jeden Befe
 
 ## Erstellen Sie ein neues Projekt mit dem CLI
 
-Erstellen Sie ein Projekt mit dem Namen "userXY-cli"
+Erstellen Sie ein Projekt mit dem Namen "[USER]-cli"
 
 Damit erhalten Sie Hilfe zur Projekt Ersellung
 
     oc new-project -h
 
-<details><summary>Lösung</summary>oc new-project userXY-cli</details><br/>
+<details><summary>Lösung</summary>oc new-project [USER]-cli</details><br/>
 
 Wir wechseln automatisch zu unserem Projekt:
 
@@ -41,9 +41,9 @@ Wir wechseln automatisch zu unserem Projekt:
 
 Wir können unser Projekt überprüfen, indem wir es entweder beschreiben oder eine yaml (oder json) formatierte Ausgabe unseres erstellten Projekts erhalten.
 
-    oc describe project userXY-cli
-    oc get project userXY-webui -o yaml
-    oc get project userXY-webui -o json
+    oc describe project [USER]-cli
+    oc get project [USER]-webui -o yaml
+    oc get project [USER]-webui -o json
 
 ## Hinzufügen von Benutzern zu einem Projekt
 
@@ -59,7 +59,7 @@ Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie Folgen
 
 Für Ihr webui Projekt:
 
-    oc describe rolebinding.rbac -n userXY-webui
+    oc describe rolebinding.rbac -n [USER]-webui
 
 Wir können Rollen verwalten, indem wir Befehle für `oc adm policy` absetzen:
 
@@ -74,7 +74,7 @@ Fügen wir diese Gruppe mit der Administrator Rolle zu unserem aktuellen Projekt
 
 Zu viele Rechte? Zumindest für unser webui Projekt, also lasst uns die Benutzer nur als Viewer hinzufügen:
 
-    oc adm policy add-role-to-group view techlab -n userXY-webui
+    oc adm policy add-role-to-group view techlab -n [USER]-webui
 
 Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die aktuelle Liste der Projekte an:
 
@@ -109,7 +109,7 @@ Sie können sie auch bearbeiten:
     oc edit resrourceXY resourceName
 
 Lassen Sie uns zum Beispiel unser webui Projekt bearbeiten.
-<details><summary>Befehl</summary>oc edit project userXY-webui</details><br/>
+<details><summary>Befehl</summary>oc edit project [USER]-webui</details><br/>
 
 Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingeben: *ESC* and *:* and *q*
 
@@ -117,7 +117,7 @@ Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingebe
 
 Sie sind nicht glücklich darüber, wie Ihre aktuellen Projekte verlaufen sind, und möchten von vorne beginnen?
 
-    oc delete project userXY-webui
+    oc delete project [USER]-webui
 
 Dadurch werden alle von diesem Projekt gebündelten Ressourcen gelöscht. Projekte sind eine einfache Möglichkeit, Dinge auszuprobieren, und wenn Sie fertig sind, können Sie sie problemlos bereinigen.
 

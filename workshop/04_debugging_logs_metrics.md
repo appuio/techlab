@@ -15,8 +15,8 @@ Dieser Endpoint war über die Route nicht erreichbar. Wie kann der endpoint nun 
 
 In diesem Beispiel werden wir eine Applikation automatisierte hoch und runter skalieren, je nach dem unter wieviel Last die Applikation steht. Dazu verwenden wir eine Ruby example webapp.
 
-Erstellen Sie daher ein neues Projekt mit dem Namen `userXY-autoscale`:
-<details><summary>Tipp</summary>oc new-project userXY-autoscale</details><br/>
+Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-autoscale`:
+<details><summary>Tipp</summary>oc new-project [USER]-autoscale</details><br/>
 
 Auf dem Branch load gibt es einen CPU intensiven Endpunkt, welchen wir für unsere Tests verwenden werden. Dafür starten wir die App auf diesem Branch:
 

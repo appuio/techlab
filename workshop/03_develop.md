@@ -32,8 +32,8 @@ Ziel ist es eine Java Spring Boot Applikation lokal zu Bauen und mittels Binary 
 
 ### Projekt erstellen
 
-Neues Projekt mit dem Namen `userXY-spring-boot` erstellen.
-<details><summary>Tipp</summary>oc new-project userXY-spring-boot</details><br/>
+Neues Projekt mit dem Namen `[USER]-spring-boot` erstellen.
+<details><summary>Tipp</summary>oc new-project [USER]-spring-boot</details><br/>
 
 ### Applikation Bauen
 
