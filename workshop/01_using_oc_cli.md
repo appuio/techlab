@@ -8,7 +8,9 @@ Erstellen Sie über die Webkonsole ein neues Projekt mit dem Namen:
 
 ## Loggen Sie mit der CLI ein
 
-Kopieren Sie den Login-Befehl von der Webkonsole (haben Sie diese Option gefunden? -> im Menü auf der rechten Seite).
+Kopieren Sie den Login-Befehl von der Webkonsole
+
+(haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
 
     oc login https://techlab.puzzle.ch:443 --token=XYZ
     oc whoami
@@ -84,7 +86,7 @@ Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die 
 
 ## Überprüfen und Bearbeiten anderer Ressourcen
 
-Alles in Openshift (Kubernetes) wird als Ressource representiert, die wir anzeigen und abhängig von unseren Berechtigungen bearbeiten können.
+Alles in Openshift (Kubernetes) wird als Ressource repräsentiert, die wir anzeigen und abhängig von unseren Berechtigungen bearbeiten können.
 
 Sie können alle Ressourcen Ihres aktuellen Projekts abrufen, indem Sie Folgendes eingeben:
 
@@ -102,16 +104,16 @@ Klicken Sie auf Befehl, wenn Sie keine Lösung gefunden haben, wie Sie den Names
 Wenn Sie eine interessante Ressource gefunden haben, die Sie untersuchen möchten, können Sie jede einzelne mit den Befehlen `describe/get` anschauen:
 
 <details><summary>allgemeiner Befehl</summary>oc describe resrourceXY resourceName -n openshift-web-console</details>
-<details><summary>Befehl zum Überprüfen eines Dienstes</summary>oc describe service webconsole -n openshift-web-console</details><br/>
+<details><summary>Befehl zum Überprüfen eines Service</summary>oc describe service webconsole -n openshift-web-console</details><br/>
 
-Sie können sie auch bearbeiten:
+Sie können die Ressourcen auch bearbeiten:
 
     oc edit resrourceXY resourceName
 
 Lassen Sie uns zum Beispiel unser webui Projekt bearbeiten.
 <details><summary>Befehl</summary>oc edit project [USER]-webui</details><br/>
 
-Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingeben: *ESC* and *:* and *q*
+Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingeben: *ESC* und *:* und *q*
 
 ## Ressourcen löschen
 
