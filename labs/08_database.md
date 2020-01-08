@@ -309,7 +309,7 @@ Danach in den MySQL Pod einloggen:
 oc rsh mysql-1-diccy
 ```
 
-Einfacher ist es den Pod über die DeploymentConfiguration zu Referenzieren.
+Einfacher ist es den Pod über die DeploymentConfig zu referenzieren.
 
 ```bash
 oc rsh dc/mysql

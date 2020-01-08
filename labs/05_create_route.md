@@ -58,11 +58,11 @@ example-spring-boot          example-spring-boot-techlab.mycluster.com          
 example-spring-boot-secure   example-spring-boot-secure-techlab.mycluster.com            example-spring-boot   8080-tcp   edge          None
 ```
 
-Die Applikation ist nun vom Internet her über den angegebenen Hostnamen erreichbar, Sie können also nun auf die Applikation zugreifen.
+Die Applikation ist nun vom Internet her über den angegebenen Hostname erreichbar, Sie können also nun auf die Applikation zugreifen.
 
 **Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: *servicename-project.osecluster*
 
-In der Overview der Web Console ist diese Route mit dem Hostnamen jetzt auch sichtbar.
+In der Overview der Web Console ist diese Route mit dem Hostname jetzt auch sichtbar.
 
 Öffnen Sie die Applikation im Browser und fügen ein paar "Say Hello" Einträge ein.
 

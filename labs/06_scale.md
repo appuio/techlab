@@ -16,7 +16,7 @@ oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker
 Und stellen den Service `appuio-php-docker` zur Verfügung (expose).
 <details><summary>Tipp</summary>oc expose service appuio-php-docker</details><br/>
 
-Wenn wir unsere Beispiel-Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Images am Laufen haben wollen.
+Wenn wir unsere Beispiel-Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Image am Laufen haben wollen.
 
 Schauen wir uns mal den ReplicationController (rc) etwas genauer an:
 
@@ -174,7 +174,7 @@ Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/co
 Grundsätzlich gibt es zwei Arten von Health Checks, die implementiert werden können:
 
 * Liveness Probe: Sagt aus, ob ein laufender Container immer noch sauber läuft
-* Readiness Probe: Gibt Feedback darüber, ob eine Applikation bereit ist, Requests zu empfangen. Ist v.a. im Rolling Update relevant.
+* Readiness Probe: Gibt Feedback darüber, ob eine Applikation bereit ist, Requests zu empfangen
 
 Diese beiden Checks können als HTTP Check, Container Execution Check (Befehl oder z.B. Shell Script im Container) oder als TCP Socket Check implementiert werden.
 
@@ -236,7 +236,7 @@ oc delete pods -l deploymentconfig=appuio-php-docker
 
 OpenShift sorgt dafür, dass wieder **n** Replicas des genannten Pods laufen.
 
-In der Web Console ist gut zu Beobachten, wie der Pod zuerst hellblau ist, bis die Applikation auf der Readiness Probe mit 0K antwortet.
+In der Web Console ist gut zu beobachten, wie der Pod zuerst hellblau ist, bis die Readiness Probe meldet, dass die Applikation nun bereit ist.
 
 ---
 
