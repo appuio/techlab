@@ -16,7 +16,7 @@ Aktuell werden folgende Protokolle unterstützt:
 ## Aufgabe: LAB5.1
 
 Vergewissern Sie sich, dass Sie sich im Projekt `[USER]-dockerimage` befinden.
-<details><summary>Tipp</summary>[USER]-dockerimage</details><br/>
+<details><summary>Tipp</summary>oc project [USER]-dockerimage</details><br/>
 
 Erstellen Sie für den Service `example-spring-boot` eine Route und machen Sie ihn darüber öffentlich verfügbar.
 
@@ -31,8 +31,8 @@ Aktuell gibt es noch keine Route. Jetzt brauchen wir den Servicenamen:
 
 ```bash
 $ oc get services
-NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
-example-spring-boot   ClusterIP   172.30.141.7   <none>        8080/TCP,8778/TCP,9779/TCP   14m
+NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                               AGE
+example-spring-boot   ClusterIP   172.30.9.146   <none>        8080/TCP,8778/TCP,9000/TCP,9779/TCP   16m
 ```
 
 Und nun wollen wir diesen Service veröffentlichen bzw exponieren:

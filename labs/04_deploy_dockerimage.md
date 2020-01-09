@@ -31,7 +31,7 @@ Befehl mit Output:
 
 ```bash
 $ oc new-app appuio/example-spring-boot
---> Found Docker image 4af1141 (3 months old) from Docker Hub for "appuio/example-spring-boot"
+--> Found Docker image dc47fe9 (4 minutes old) from Docker Hub for "appuio/example-spring-boot"
 
     APPUiO Spring Boot App
     ----------------------
@@ -64,8 +64,9 @@ OpenShift legt die nötigen Ressourcen an, lädt das Container Image, in diesem 
 **Tipp:** Verwenden Sie `oc status` um sich einen Überblick über das Projekt zu verschaffen.
 
 Oder verwenden Sie den `oc get` Befehl mit dem `-w` Parameter, um fortlaufend Änderungen an den Ressourcen des Typs Pod anzuzeigen (abbrechen mit ctrl+c):
-```
-$ oc get pods -w
+
+```bash
+oc get pods -w
 ```
 
 Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShift Node bereits heruntergeladen wurde, kann das eine Weile dauern. In der Zwischenzeit können Sie sich in der Web Console den aktuellen Status des Deployments anschauen:
@@ -75,18 +76,15 @@ Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShif
 3. Klicken Sie auf Applications
 4. Wählen Sie Pods aus
 
-
 **Tipp** Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
-
 
 ## Betrachten der erstellten Ressourcen
 
 Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt. Diese werden dafür benötigt, das Container Image zu deployen:
 
-- [Service](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#services)
-- [ImageStream](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#image-streams)
-- [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html)
-
+* [Service](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#services)
+* [ImageStream](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#image-streams)
+* [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html)
 
 ### Service
 
@@ -121,18 +119,18 @@ $ oc get service example-spring-boot -o json
         "annotations": {
             "openshift.io/generated-by": "OpenShiftNewApp"
         },
-        "creationTimestamp": "2019-05-06T06:50:22Z",
+        "creationTimestamp": "2020-01-09T08:21:13Z",
         "labels": {
             "app": "example-spring-boot"
         },
         "name": "example-spring-boot",
         "namespace": "techlab",
-        "resourceVersion": "7674822",
+        "resourceVersion": "39162349",
         "selfLink": "/api/v1/namespaces/techlab/services/example-spring-boot",
-        "uid": "3852f428-6fcb-11e9-959e-fa163e5236a5"
+        "uid": "ff9bc391-32b8-11ea-b825-fa163e286250"
     },
     "spec": {
-        "clusterIP": "172.30.141.7",
+        "clusterIP": "172.30.9.146",
         "ports": [
             {
                 "name": "8080-tcp",
@@ -145,6 +143,12 @@ $ oc get service example-spring-boot -o json
                 "port": 8778,
                 "protocol": "TCP",
                 "targetPort": 8778
+            },
+            {
+                "name": "9000-tcp",
+                "port": 9000,
+                "protocol": "TCP",
+                "targetPort": 9000
             },
             {
                 "name": "9779-tcp",
@@ -212,16 +216,19 @@ Labels:            app=example-spring-boot
 Annotations:       openshift.io/generated-by=OpenShiftNewApp
 Selector:          app=example-spring-boot,deploymentconfig=example-spring-boot
 Type:              ClusterIP
-IP:                172.30.141.7
+IP:                172.30.9.146
 Port:              8080-tcp  8080/TCP
 TargetPort:        8080/TCP
-Endpoints:         10.131.0.37:8080
+Endpoints:         10.128.2.203:8080
 Port:              8778-tcp  8778/TCP
 TargetPort:        8778/TCP
-Endpoints:         10.131.0.37:8778
+Endpoints:         10.128.2.203:8778
+Port:              9000-tcp  9000/TCP
+TargetPort:        9000/TCP
+Endpoints:         10.128.2.203:9000
 Port:              9779-tcp  9779/TCP
 TargetPort:        9779/TCP
-Endpoints:         10.131.0.37:9779
+Endpoints:         10.128.2.203:9779
 Session Affinity:  None
 Events:            <none>
 ```
@@ -244,18 +251,18 @@ oc get imagestream example-spring-boot -o json
 
 In der [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html) werden folgende Punkte definiert:
 
-- Update Strategy: wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
-- Triggers: Welche Triggers führen zu einem Deployment? In unserem Beispiel ImageChange
-- Container
-  - Welches Image soll deployed werden?
-  - Environment Configuration für die Pods
-  - ImagePullPolicy
-- Replicas, Anzahl der Pods, die deployt werden sollen
-
+* Update Strategy: wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
+* Triggers: Welche Triggers führen zu einem Deployment? In unserem Beispiel ImageChange
+* Container
+  * Welches Image soll deployed werden?
+  * Environment Configuration für die Pods
+  * ImagePullPolicy
+* Replicas, Anzahl der Pods, die deployt werden sollen
 
 Mit dem folgenden Befehl können zusätzliche Informationen zur DeploymentConfig ausgelesen werden:
-```
-$ oc get deploymentConfig example-spring-boot -o json
+
+```bash
+oc get deploymentConfig example-spring-boot -o json
 ```
 
 Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Applikation deployt werden soll, definiert man mit dem ReplicationController, wie die Applikation während der Laufzeit aussehen soll (bspw. dass immer 3 Replicas laufen sollen).

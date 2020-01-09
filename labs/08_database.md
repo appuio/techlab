@@ -24,7 +24,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 **Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden. **Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
 
-```
+```bash
 $ oc new-app mysql-ephemeral \
      -pMYSQL_USER=appuio \
      -pMYSQL_PASSWORD=appuio \
@@ -123,6 +123,7 @@ Die konkreten Werte sind base64-kodiert. Unter Linux oder in der Gitbash kann ma
 $ echo "YXBwdWlv" | base64 -d
 appuio
 ```
+
 anzeigen lassen. In userem Fall wird `YXBwdWlv` in `appuio` dekodiert.
 
 Mit Secrets können wir also sensitive Informationen (Credetials, Zertifikate, Schlüssel, dockercfg, ...) abspeichern und entsprechend von den Pods entkoppeln. Gleichzeitig haben wir damit die Möglichkeit, dieselben Secrets in mehreren Containern zu verwenden und so Redundanzen zu vermeiden.
@@ -168,12 +169,13 @@ mysql.techlab-dockerimage.svc.cluster.local
 Über das CLI kann der MySQL Service wie folgt angelegt werden.
 
 **Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden. **Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
-```
-$ oc set env dc example-spring-boot \
-      -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
-      -e SPRING_DATASOURCE_USERNAME=appuio \
-      -e SPRING_DATASOURCE_PASSWORD=appuio \
-      -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+
+```bash
+oc set env dc example-spring-boot \
+    -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
+    -e SPRING_DATASOURCE_USERNAME=appuio \
+    -e SPRING_DATASOURCE_PASSWORD=appuio \
+    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
 
 Durch die Änderung des Environments wird ein Deployment der example-spring-boot Applikation getriggert. Dabei wir der Pod / Container mit der neuen Umgebung gestartet.
@@ -186,24 +188,24 @@ oc get dc example-spring-boot -o json
 
 ```json
 ...
- "env": [
-	        {
-	            "name": "SPRING_DATASOURCE_USERNAME",
-	            "value": "appuio"
-	        },
-	        {
-	            "name": "SPRING_DATASOURCE_PASSWORD",
-	            "value": "appuio"
-	        },
-	        {
-	            "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME",
-	            "value": "com.mysql.jdbc.Driver"
-	        },
-	        {
-	            "name": "SPRING_DATASOURCE_URL",
-	            "value": "jdbc:mysql://mysql/appuio?autoReconnect=true"
-	        }
-	    ],
+"env": [
+    {
+        "name": "SPRING_DATASOURCE_URL",
+        "value": "jdbc:mysql://mysql/appuio?autoReconnect=true"
+    },
+    {
+        "name": "SPRING_DATASOURCE_USERNAME",
+        "value": "appuio"
+    },
+    {
+        "name": "SPRING_DATASOURCE_PASSWORD",
+        "value": "appuio"
+    },
+    {
+        "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME",
+        "value": "com.mysql.jdbc.Driver"
+    }
+],
 ...
 ```
 
@@ -233,34 +235,33 @@ Mittels `oc edit dc example-spring-boot -o json` kann die DeploymentConfig als J
 ```json
 ...
 "env": [
-			{
-				"name": "SPRING_DATASOURCE_USERNAME",
-				"valueFrom": {
-					"secretKeyRef": {
-						"key": "database-user",
-						"name": "mysql"
-					}
-				}
-			},
-			{
-				"name": "SPRING_DATASOURCE_PASSWORD",
-				"valueFrom": {
-					"secretKeyRef": {
-						"key": "database-password",
-						"name": "mysql"
-					}
-				}
-			},
-			{
-	            "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME",
-	            "value": "com.mysql.jdbc.Driver"
-	        },
-	        {
-	            "name": "SPRING_DATASOURCE_URL",
-	            "value": "jdbc:mysql://mysql/appuio?autoReconnect=true"
-	        }
-		],
-
+    {
+        "name": "SPRING_DATASOURCE_USERNAME",
+        "valueFrom": {
+            "secretKeyRef": {
+                "key": "database-user",
+                "name": "mysql"
+            }
+        }
+    },
+    {
+        "name": "SPRING_DATASOURCE_PASSWORD",
+        "valueFrom": {
+            "secretKeyRef": {
+                "key": "database-password",
+                "name": "mysql"
+            }
+        }
+    },
+    {
+        "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME",
+        "value": "com.mysql.jdbc.Driver"
+    },
+    {
+        "name": "SPRING_DATASOURCE_URL",
+        "value": "jdbc:mysql://mysql/appuio?autoReconnect=true"
+    }
+],
 ...
 ```
 
@@ -280,7 +281,8 @@ Fügen Sie ein paar neue "Say Hello" Einträge ein.
 ## Aufgabe: LAB8.3: In MySQL Service Pod einloggen und manuell auf DB verbinden
 
 Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingeloggt werden:
-```
+
+```bash
 $ oc get pods
 NAME                           READY     STATUS             RESTARTS   AGE
 example-spring-boot-8-wkros    1/1       Running            0          10m
@@ -303,11 +305,12 @@ Nun können Sie mittels mysql Tool auf die Datenbank verbinden und die Tabellen 
 
 ```bash
 $ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
+mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 54
-Server version: 5.6.26 MySQL Community Server (GPL)
+Your MySQL connection id is 160
+Server version: 5.7.24 MySQL Community Server (GPL)
 
-Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
@@ -383,7 +386,7 @@ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/08_dum
 ```
 
 Was enthält die hello Tabelle jetzt?
-<details><summary>Tipp</summary>mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST techlab<br/>mysql> select * from hello;</details><br/>
+<details><summary>Tipp</summary>mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio<br/>mysql> select * from hello;</details><br/>
 
 **Note:** Den Dump kann man wie folgt erstellen:
 

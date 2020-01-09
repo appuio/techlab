@@ -31,7 +31,6 @@ Für mehr Details json oder yaml Output ausgeben lassen:
 
 Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt sind (status).
 
-
 ## Aufgabe: LAB6.2 Skalieren unserer Beispiel Applikation
 
 Nun skalieren wir unsere Beispiel-Applikation auf 3 Replicas. Der soeben betrachtete ReplicationController wird über die DeploymentConfig (dc) gesteuert, weshalb wir diese skalieren müssen, damit die gewünschte Anzahl Repclias vom rc übernommen wird:
@@ -59,29 +58,33 @@ appuio-php-docker-1-tolpx   1/1       Running   0          2m
 ```
 
 Zum Schluss schauen wir uns den Service an. Der sollte jetzt alle drei Endpoints referenzieren:
-```
+
+```bash
 $ oc describe svc appuio-php-docker
-Name:			appuio-php-docker
+Name:              appuio-php-docker
 Namespace:		techlab-scale
-Labels:			app=appuio-php-docker
-Selector:		app=appuio-php-docker,deploymentconfig=appuio-php-docker
-Type:			ClusterIP
-IP:				172.30.166.88
-Port:			8080-tcp	8080/TCP
-Endpoints:		10.1.3.23:8080,10.1.4.13:8080,10.1.5.15:8080
-Session Affinity:	None
-No events.
+Labels:            app=appuio-php-docker
+Annotations:       openshift.io/generated-by=OpenShiftNewApp
+Selector:          app=appuio-php-docker,deploymentconfig=appuio-php-docker
+Type:              ClusterIP
+IP:                172.30.152.213
+Port:              8080-tcp  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.128.2.204:8080,10.129.1.56:8080,10.131.0.141:8080
+Port:              8443-tcp  8443/TCP
+TargetPort:        8443/TCP
+Endpoints:         10.128.2.204:8443,10.129.1.56:8443,10.131.0.141:8443
+Session Affinity:  None
+Events:            <none>
 ```
 
 Skalieren von Pods innerhalb eines Services ist sehr schnell, da OpenShift einfach eine neue Instanz des Container Images als Container startet.
 
 **Tipp:** OpenShift unterstützt auch Autoscaling, die Dokumentation dazu ist unter dem folgenden Link zu finden: <https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html>
 
-
 ## Aufgabe: LAB6.3 Skalierte App in der Web Console
 
 Schauen Sie sich die skalierte Applikation auch in der Web Console an. Wie können Sie die Anzahl Replicas via Web Console steuern?
-
 
 ## Unterbruchsfreies Skalieren überprüfen
 
@@ -97,7 +100,7 @@ while true; do sleep 1; ( { curl -fs http://[HOSTNAME]/health/; date "+ TIME: %H
 
 oder in PowerShell (**Achtung**: erst ab PowerShell-Version 3.0!):
 
-```
+```bash
 while(1) {
 	Start-Sleep -s 1
 	Invoke-RestMethod http://[HOSTNAME]/pod/
@@ -107,7 +110,7 @@ while(1) {
 
 Der Output zeigt jeweils den Pod an, der den Request beantwortet hatte:
 
-```
+```bash
 POD: appuio-php-docker-6-9w9t4 TIME: 16:40:04,991
 POD: appuio-php-docker-6-9w9t4 TIME: 16:40:06,053
 POD: appuio-php-docker-6-6xg2b TIME: 16:40:07,091
@@ -130,13 +133,13 @@ Die Requests werden an die unterschiedlichen Pods aufgeteilt. Sobald die Pods he
 
 Was passiert nun, wenn wir während der noch immer laufenden While-Schleife ein neues Deployment starten? Testen wir es:
 
-```
-$ oc rollout latest appuio-php-docker
+```bash
+oc rollout latest appuio-php-docker
 ```
 
 Wie der Timestamp am Ende der Ausgabe zeigt, gibt während einer kurzen Zeit die öffentliche Route keine Antwort:
 
-```
+```bash
 POD: appuio-php-docker-6-6xg2b TIME: 16:42:17,743
 POD: appuio-php-docker-6-6xg2b TIME: 16:42:18,776
 POD: appuio-php-docker-6-6xg2b TIME: 16:42:19,813
@@ -185,13 +188,13 @@ http://[route]/health/
 
 Fügen Sie die Readiness Probe mit folgendem Befehl in der DeploymentConfig (dc) hinzu:
 
-```
-$ oc set probe dc/appuio-php-docker --readiness --get-url=http://:8080/health --initial-delay-seconds=10
+```bash
+oc set probe dc/appuio-php-docker --readiness --get-url=http://:8080/health --initial-delay-seconds=10
 ```
 
 Ein Blick in die DeploymentConfig zeigt, dass nun folgender Eintrag unter `.spec.template.spec.containers` eingefügt wurde:
 
-```
+```yaml
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -199,12 +202,14 @@ Ein Blick in die DeploymentConfig zeigt, dass nun folgender Eintrag unter `.spec
             port: 8080
             scheme: HTTP
           initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
           timeoutSeconds: 1
 ```
 
 Verifizieren Sie während eines Deployments der Applikation, dass nun auch ein Update der Applikation unterbruchsfrei verläuft, indem Sie die bereits verwendete While-Schlaufe während des folgenden Update-Befehls beobachten:
 
-```
+```bash
 $ oc rollout latest appuio-php-docker
 deploymentconfig.apps.openshift.io/appuio-php-docker rolled out
 ```

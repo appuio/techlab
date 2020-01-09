@@ -194,7 +194,7 @@ Untersuchen Sie "workshop/data/02_httpd" auf einen Hinweis.
     ...<br/>
     COPY ./easter-egg.txt /var/www/html/<br/>
     ...<br/>
-    start a new build
+    Starten Sie einen neuen Build.
 </details>
 
 Hat es funktioniert? -> <https://web-[USER]-docker-build.techlab-apps.openshift.ch/easter-egg.txt>
