@@ -81,10 +81,10 @@ Befehl mit Ausgabe:
 
 ```bash
 $ oc new-build --docker-image=openshift/wildfly-160-centos7 --binary=true --name=hello-world -l app=hello-world
---> Found Docker image 7ff222e (2 months old) from Docker Hub for "openshift/wildfly-160-centos7"
+--> Found Docker image 7ff222e (7 months old) from Docker Hub for "openshift/wildfly-160-centos7"
 
-    WildFly 16.0.0.Final 
-    -------------------- 
+    WildFly 16.0.0.Final
+    --------------------
     Platform for building and running JEE applications on WildFly 16.0.0.Final
 
     Tags: builder, wildfly, wildfly16
