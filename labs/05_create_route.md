@@ -4,8 +4,7 @@ In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) �
 
 ## Routen
 
-Der `oc new-app` Befehl aus dem vorherigen [Lab](04_deploy_dockerimage.md) erstellt keine Route. Somit ist unser Service von *aussen* her gar nicht erreichbar.
-Will man einen Service verf체gbar machen, muss daf체r eine Route eingerichtet werden. Der OpenShift Router erkennt aufgrund des Host Headers auf welchen Service ein Request geleitet werden muss.
+Der `oc new-app` Befehl aus dem vorherigen [Lab](04_deploy_dockerimage.md) erstellt keine Route. Somit ist unser Service von *aussen* her gar nicht erreichbar. Will man einen Service verf체gbar machen, muss daf체r eine Route eingerichtet werden. Der OpenShift Router erkennt aufgrund des Host Headers auf welchen Service ein Request geleitet werden muss.
 
 Aktuell werden folgende Protokolle unterst체tzt:
 

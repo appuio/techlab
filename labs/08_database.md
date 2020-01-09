@@ -1,18 +1,13 @@
 # Lab 8: Datenbank anbinden
 
-Die meisten Applikationen sind in irgend einer Art stateful (sie haben also einen eigenen Zustand) und speichern Daten persistent ab.
-Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore.
-In diesem Lab werden wir in unserem Projekt einen MySQL Service anlegen und an unsere Applikation anbinden, sodass mehrere Applikationspods auf die gleiche Datenbank zugreifen können.
+Die meisten Applikationen sind in irgend einer Art stateful (sie haben also einen eigenen Zustand) und speichern Daten persistent ab. Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore. In diesem Lab werden wir in unserem Projekt einen MySQL Service anlegen und an unsere Applikation anbinden, sodass mehrere Applikationspods auf die gleiche Datenbank zugreifen können.
 
 Für dieses Beispiel verwenden wir das Spring Boot-Beispiel aus [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`.
 <details><summary>Tipp</summary>oc project [USER]-dockerimage</details><br/>
 
 ## Aufgabe: LAB8.1: MySQL Service anlegen
 
-Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt.
-Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pods alle Daten verloren gehen.
-In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen.
-Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
+Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MySQL Datenbank mit EmptyDir Data Storage anlegt. Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MySQL Pods alle Daten verloren gehen. In einem späteren Lab werden wir aufzeigen, wie wir ein Persistent Volume (mysql-persistent) an die MySQL Datenbank anhängen. Damit bleiben die Daten auch bei Restarts bestehen und ist so für den produktiven Betrieb geeignet.
 
 Den MySQL Service können wir sowohl über die Web Console als auch über das CLI anlegen.
 
@@ -27,8 +22,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 
 Über das CLI kann der MySQL Service wie folgt angelegt werden.
 
-**Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden.
-**Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
+**Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden. **Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
 
 ```
 $ oc new-app mysql-ephemeral \
@@ -47,15 +41,13 @@ deploymentconfig.apps.openshift.io/mysql created
 
 ### Web Console
 
-In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hinzugefügt werden.
-Dazu oben rechts auf *Add to Project*, *Browse Catalog* klicken und anschliessend unter dem Reiter *Databases* *MySQL* und *MySQL (Ephemeral)* auswählen:
+In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hinzugefügt werden. Dazu oben rechts auf *Add to Project*, *Browse Catalog* klicken und anschliessend unter dem Reiter *Databases* *MySQL* und *MySQL (Ephemeral)* auswählen:
 
 ![MySQLService](../images/lab_8_mysql.png)
 
 ### Passwort und Username als Plaintext?
 
-Beim Deployen der Datenbank via CLI wie auch via Web Console haben wir mittels Parameter Werte für User, Passwort und Datenbank angegeben.
-In diesem Kapitel wollen wir uns nun anschauen, wo diese sensitiven Daten effektiv gelandet sind.
+Beim Deployen der Datenbank via CLI wie auch via Web Console haben wir mittels Parameter Werte für User, Passwort und Datenbank angegeben. In diesem Kapitel wollen wir uns nun anschauen, wo diese sensitiven Daten effektiv gelandet sind.
 
 Schauen wir uns als erstes die DeploymentConfig der Datenbank an:
 
@@ -158,12 +150,9 @@ Name des Services: mysql
 jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
 
-Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen.
-Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed.
-Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
+Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-boot setzen. Nach dem **ConfigChange** (ConfigChange ist in der DeploymentConfig als Trigger registriert) wird die Applikation automatisch neu deployed. Aufgrund der neuen Umgebungsvariablen verbindet die Applikation an die MySQL DB und [Liquibase](http://www.liquibase.org/) kreiert das Schema und importiert die Testdaten.
 
-**Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden.
-Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
+**Note:** Liquibase ist Open Source. Es ist eine Datenbank unabhängige Library um Datenbank Änderungen zu verwalten und auf der Datenbank anzuwenden. Liquibase erkennt beim Startup der Applikation, ob DB Changes auf der Datenbank angewendet werden müssen oder nicht. Siehe Logs.
 
 ```bash
 SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true
@@ -178,8 +167,7 @@ mysql.techlab-dockerimage.svc.cluster.local
 
 Über das CLI kann der MySQL Service wie folgt angelegt werden.
 
-**Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden.
-**Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
+**Note**: Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden. **Auf Windows** ist der sog. Multiline Delimiter aber nicht der Backslash, sondern in cmd das Caret (`^`) und in PowerShell der Backtick (`` ` ``).
 ```
 $ oc set env dc example-spring-boot \
       -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql/appuio?autoReconnect=true" \
@@ -188,8 +176,7 @@ $ oc set env dc example-spring-boot \
       -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
 ```
 
-Durch die Änderung des Environments wird ein Deployment der example-spring-boot Applikation getriggert.
-Dabei wir der Pod / Container mit der neuen Umgebung gestartet.
+Durch die Änderung des Environments wird ein Deployment der example-spring-boot Applikation getriggert. Dabei wir der Pod / Container mit der neuen Umgebung gestartet.
 
 Über den folgenden Befehl können Sie sich die DeploymentConfig als JSON anschauen. Neu enthält die Config auch die gesetzten Umgebungsvariablen:
 
@@ -237,12 +224,9 @@ Fügen Sie ein paar neue "Say Hello" Einträge ein.
 
 ## Aufgabe: LAB8.2.1: Secret referenzieren
 
-Weiter oben haben wir gesehen, wie OpenShift mittels Secrets sensitive Informationen von der eigentlichen Konfiguration entkoppelt und uns dabei hilft,
-Redundanzen zu vermeiden. Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert,
-allerings aber die Werte redundant und Plaintext in der DeploymentConfig abgelegt.
+Weiter oben haben wir gesehen, wie OpenShift mittels Secrets sensitive Informationen von der eigentlichen Konfiguration entkoppelt und uns dabei hilft, Redundanzen zu vermeiden. Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert, allerings aber die Werte redundant und Plaintext in der DeploymentConfig abgelegt.
 
-Passen wir nun die DeploymentConfig example-spring-boot so an, dass die Werte aus den Secrets verwendet werden.
-Zu beachten gibt es die Konfiguration der Container unter `spec.template.spec.containers`
+Passen wir nun die DeploymentConfig example-spring-boot so an, dass die Werte aus den Secrets verwendet werden. Zu beachten gibt es die Konfiguration der Container unter `spec.template.spec.containers`
 
 Mittels `oc edit dc example-spring-boot -o json` kann die DeploymentConfig als Json wie folgt bearbeitet werden.
 
@@ -370,8 +354,7 @@ Sind die "Say Hello" Einträge von früher noch da?
 
 ## Lösung: LAB8.4
 
-Ein ganzes Verzeichnis (dump) synchen. Darin enthalten ist das File `dump.sql`.
-Beachten Sie zum rsync-Befehl auch obenstehenden Tipp sowie den fehlenden trailing slash.
+Ein ganzes Verzeichnis (dump) synchen. Darin enthalten ist das File `dump.sql`. Beachten Sie zum rsync-Befehl auch obenstehenden Tipp sowie den fehlenden trailing slash.
 
 ```bash
 oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/

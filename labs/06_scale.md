@@ -34,8 +34,7 @@ Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt 
 
 ## Aufgabe: LAB6.2 Skalieren unserer Beispiel Applikation
 
-Nun skalieren wir unsere Beispiel-Applikation auf 3 Replicas. Der soeben betrachtete ReplicationController wird über die DeploymentConfig (dc) gesteuert,
-weshalb wir diese skalieren müssen, damit die gewünschte Anzahl Repclias vom rc übernommen wird:
+Nun skalieren wir unsere Beispiel-Applikation auf 3 Replicas. Der soeben betrachtete ReplicationController wird über die DeploymentConfig (dc) gesteuert, weshalb wir diese skalieren müssen, damit die gewünschte Anzahl Repclias vom rc übernommen wird:
 
 ```bash
 oc scale --replicas=3 dc appuio-php-docker
@@ -86,15 +85,14 @@ Schauen Sie sich die skalierte Applikation auch in der Web Console an. Wie könn
 
 ## Unterbruchsfreies Skalieren überprüfen
 
-Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, während Sie hoch- und herunterskalieren.
-Führen Sie folgenden Befehl in einem Terminal-Fenster aus und lassen ihn laufen, während Sie später skalieren.
+Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, während Sie hoch- und herunterskalieren. Führen Sie folgenden Befehl in einem Terminal-Fenster aus und lassen ihn laufen, während Sie später skalieren.
 
 Ersetzen Sie `[HOSTNAME]` mit dem Hostname Ihrer definierten Route:
 
 **Tipp:** `oc get route -o custom-columns=NAME:.metadata.name,HOSTNAME:.spec.host`
 
 ```bash
-while true; do sleep 1; ( { curl --insecure -fs http://[HOSTNAME]/health/; date "+ TIME: %H:%M:%S,%3N" ;} & ) 2>/dev/null; done
+while true; do sleep 1; ( { curl -fs http://[HOSTNAME]/health/; date "+ TIME: %H:%M:%S,%3N" ;} & ) 2>/dev/null; done
 ```
 
 oder in PowerShell (**Achtung**: erst ab PowerShell-Version 3.0!):
@@ -166,8 +164,7 @@ Im folgenden Kapitel wird beschrieben, wie Sie Ihre Services konfigurieren könn
 
 ## Unterbruchsfreies Deployment dank Health Checks und Rolling Update
 
-Die Update Strategy "[Rolling](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/deployment_strategies.html#rolling-strategy)" ermöglicht unterbruchsfreie Deployments.
-Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
+Die Update Strategy "[Rolling](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/deployment_strategies.html#rolling-strategy)" ermöglicht unterbruchsfreie Deployments. Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Request auf den neuen Pod geleitet und die alte Version undeployed.
 
 Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/container-platform/3.11/dev_guide/application_health.html) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden übermitteln.
 
@@ -178,8 +175,7 @@ Grundsätzlich gibt es zwei Arten von Health Checks, die implementiert werden k�
 
 Diese beiden Checks können als HTTP Check, Container Execution Check (Befehl oder z.B. Shell Script im Container) oder als TCP Socket Check implementiert werden.
 
-In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe.
-Unsere Beispielapplikation gibt unter dem Pfad `/health` einen Status Code 200 zurück, sobald die Applikation bereit ist.
+In unserem Beispiel soll die Applikation der Plattform sagen, ob sie bereit für Requests ist. Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt unter dem Pfad `/health` einen Status Code 200 zurück, sobald die Applikation bereit ist.
 
 ```bash
 http://[route]/health/
@@ -206,8 +202,7 @@ Ein Blick in die DeploymentConfig zeigt, dass nun folgender Eintrag unter `.spec
           timeoutSeconds: 1
 ```
 
-Verifizieren Sie während eines Deployments der Applikation, dass nun auch ein Update der Applikation unterbruchsfrei verläuft,
-indem Sie die bereits verwendete While-Schlaufe während des folgenden Update-Befehls beobachten:
+Verifizieren Sie während eines Deployments der Applikation, dass nun auch ein Update der Applikation unterbruchsfrei verläuft, indem Sie die bereits verwendete While-Schlaufe während des folgenden Update-Befehls beobachten:
 
 ```
 $ oc rollout latest appuio-php-docker

@@ -15,9 +15,7 @@ Um zu verstehen, wie OpenShift Pipelines funktionieren, wollen wir als ersten Sc
 Erstellen wir dafür ein neues Projekt mit dem Namen `[USER]-buildpipeline`.
 <details><summary>Tipp</summary>oc new-project [USER]-buildpipeline</details><br/>
 
-Wir legen mit folgendem Befehl die entsprechende BuildConfig an, welche das JenkinsFile, also die Pipeline, direkt beinhaltet.
-Ebenso wird eine zweite BuildConfig erstellt. Diese enthält die Docker BuildConfig für die eigentliche Applikation, die wir im Rahmen dieser Pipeline deployen wollen.
-Im vorliegenden Beispiel eine simple PHP Applikation:
+Wir legen mit folgendem Befehl die entsprechende BuildConfig an, welche das JenkinsFile, also die Pipeline, direkt beinhaltet. Ebenso wird eine zweite BuildConfig erstellt. Diese enthält die Docker BuildConfig für die eigentliche Applikation, die wir im Rahmen dieser Pipeline deployen wollen. Im vorliegenden Beispiel eine simple PHP Applikation:
 
 ```bash
 oc create -f ./additional-labs/resources/simple-openshift-pipeline.yaml
@@ -25,10 +23,7 @@ oc create -f ./additional-labs/resources/simple-openshift-pipeline.yaml
 
 Während OpenShift arbeitet, schauen wir uns noch die verwendete Konfigutationsdatei an: [additional-labs/resources/simple-openshift-pipeline.yaml](additional-labs/resources/simple-openshift-pipeline.yaml)
 
-Aufgrund der BuildConfig deployt OpenShift automatisch eine integrierte Jenkins Instanz. Schauen wir uns dies in der Web Console an.
-Im Projekt befindet sich nach erfolgreichem Deployment eine laufende Jenkins Instanz, welche über eine Route exposed ist.
-Der Zugriff auf Jenkins über die Route ist mittels OpenShift OAuth gesichert. Loggen Sie sich dort ein und erteilen Sie der OAuth entsprechende Rechte.
-Ebenso wurde die vorher angelegte Build Pipeline synchronisiert und automatisch angelegt.
+Aufgrund der BuildConfig deployt OpenShift automatisch eine integrierte Jenkins Instanz. Schauen wir uns dies in der Web Console an. Im Projekt befindet sich nach erfolgreichem Deployment eine laufende Jenkins Instanz, welche über eine Route exposed ist. Der Zugriff auf Jenkins über die Route ist mittels OpenShift OAuth gesichert. Loggen Sie sich dort ein und erteilen Sie der OAuth entsprechende Rechte. Ebenso wurde die vorher angelegte Build Pipeline synchronisiert und automatisch angelegt.
 
 ![Jenkins Overview](../images/pipeline-jenkins-overview.png)
 
@@ -232,8 +227,7 @@ oc policy add-role-to-user edit system:serviceaccount:[USER]-buildpipeline:jenki
 oc policy add-role-to-user edit system:serviceaccount:[USER]-buildpipeline:jenkins -n [USER]-pipeline-prod
 ```
 
-Als nächstes erstellen wir in den Stage-Projekten die Applikationen. Dafür definieren wir einen Tag im ImageStream, welcher deployt werden soll.
-Zuvor müssen wir aber die entsprechenden Tags erstellen, die deployt werden sollen:
+Als nächstes erstellen wir in den Stage-Projekten die Applikationen. Dafür definieren wir einen Tag im ImageStream, welcher deployt werden soll. Zuvor müssen wir aber die entsprechenden Tags erstellen, die deployt werden sollen:
 
 ```bash
 oc tag [USER]-buildpipeline/application:latest [USER]-buildpipeline/application:dev
@@ -349,8 +343,7 @@ Führen Sie die Pipeline erneut aus und schauen Sie sich an, wie nun die gebuild
 
 ## Jenkins Pipeline Sprache
 
-Unter <https://github.com/puzzle/jenkins-techlab> finden Sie ein entsprechendes Hands-on Lab zur Jenkins Pipeline Sprache.
-Die Syntax ist [hier](https://jenkins.io/doc/book/pipeline/syntax/) beschrieben.
+Unter <https://github.com/puzzle/jenkins-techlab> finden Sie ein entsprechendes Hands-on Lab zur Jenkins Pipeline Sprache. Die Syntax ist [hier](https://jenkins.io/doc/book/pipeline/syntax/) beschrieben.
 
 ## Deployment von Resourcen und Konfiguration
 
