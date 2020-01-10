@@ -1,14 +1,14 @@
 # OC CLI Verwendung
 
-Melden Sie sich bei der Webkonsole an und machen Sie sich mit der Benutzeroberfläche vertraut.
+Melden Sie sich bei der Web Console an und machen Sie sich mit der Benutzeroberfläche vertraut.
 
-Erstellen Sie über die Webkonsole ein neues Projekt mit dem Namen:
+Erstellen Sie über die Web Console ein neues Projekt mit dem Namen:
 
     [USER]-webui
 
 ## Loggen Sie mit der CLI ein
 
-Kopieren Sie den Login-Befehl von der Webkonsole
+Kopieren Sie den Login-Befehl von der Web Console
 
 (haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
 
@@ -82,7 +82,7 @@ Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die 
 
     oc projects
 
-Überprüfen Sie die Änderungen in der Webkonsole. Gehen Sie zu Ihren beiden Projekten und finden Sie die techlab Gruppe unter *Resources -> Membership*
+Überprüfen Sie die Änderungen in der Web Console. Gehen Sie zu Ihren beiden Projekten und finden Sie die techlab Gruppe unter *Resources -> Membership*
 
 ## Überprüfen und Bearbeiten anderer Ressourcen
 

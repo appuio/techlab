@@ -103,7 +103,7 @@ $ oc new-build --docker-image=openshift/wildfly-160-centos7 --binary=true --name
 
 Siehe die Befehlsausgabe für die erstellten Ressourcen.
 
-Überprüfen Sie die erstellten Ressourcen mit dem oc-Tool und in der Webkonsole. Finden Sie den erstellten Build in der Webkonsole?
+Überprüfen Sie die erstellten Ressourcen mit dem oc-Tool und in der Web Console. Finden Sie den erstellten Build in der Web Console?
 
 ## Build starten
 
@@ -130,7 +130,7 @@ oc new-app hello-world -l app=hello-world
 
 Siehe die Befehlsausgabe für die erstellten Ressourcen.
 
-Überprüfen Sie die erstellten Ressourcen mit dem oc-Tool und in der Webkonsole.
+Überprüfen Sie die erstellten Ressourcen mit dem oc-Tool und in der Web Console.
 Versuchen Sie herauszufinden, ob Wildfly gestartet ist.
 
 ### Applikations-Service als Route zur Verfügung stellen
@@ -139,7 +139,7 @@ Versuchen Sie herauszufinden, ob Wildfly gestartet ist.
 oc create route edge --service=hello-world
 ```
 
-Klicken Sie in der Webkonsole auf die Route, um die Ausgabe der `hello-world`-Anwendung anzuzeigen.
+Klicken Sie in der Web Console auf die Route, um die Ausgabe der `hello-world`-Anwendung anzuzeigen.
 
 ## Container Build
 
@@ -183,7 +183,7 @@ oc new-app web -l app=web
 oc create route edge --service=web
 ```
 
-Klicken Sie in der Webkonsole auf die Route, um die Website Ihrer Anwendung anzuzeigen.
+Klicken Sie in der Web Console auf die Route, um die Website Ihrer Anwendung anzuzeigen.
 
 Versuchen Sie, ein Easter-Egg unter der URL `/easter-egg.txt` hinzuzufügen. Nach der Anpassung muss ein neuer Build gestartet werden.
 Untersuchen Sie "dev-labs/data/02_httpd" auf einen Hinweis.
