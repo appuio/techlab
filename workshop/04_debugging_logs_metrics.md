@@ -2,14 +2,9 @@
 
 In diesen Labs werden wir Applikationen Troubleshooten.
 
-## Aufgabe 1
+## Troubleshooting
 
 Folgen Sie den Anweisungen im [Lab 7: Troubleshooting, was ist im Pod?](../labs/07_troubleshooting_ops.md).
-
-## Aufgabe 2: Readyness check
-
-In einer früheren Aufgabe haben wir für die Rolling update Strategie einen Readyness check auf einen /health eingerichtet.
-Dieser Endpoint war über die Route nicht erreichbar. Wie kann der endpoint nun erreicht werden?
 
 ## Autoscaling
 
@@ -54,6 +49,8 @@ Befehl mit Bestätigung:
 $ oc autoscale dc ruby-ex --min 1 --max 3 --cpu-percent=25
 horizontalpodautoscaler.autoscaling/ruby-ex autoscaled
 ```
+
+In der Web Console ist ersichtlich, dass das manuelle Skalieren der Pods nicht mehr möglich ist. Dafür sind dort die Werte des Autoscaler ersichtlich.
 
 Nun können wir auf dem Service Last erzeugen.
 
