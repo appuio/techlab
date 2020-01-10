@@ -76,16 +76,16 @@ Der Parameter `-p` steht dabei für "previous", bezieht sich also auf einen Pod,
 
 Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten.
 
-Kibana ist über den Link "View Archive" in der Webconsole bei den Logs des Pods erreichbar. Melde dich im Kibana an, schaue dich um und versuche eine Suche für bestimmte Logs zu definieren.
+Kibana ist über den Link "View Archive" in der Web Console bei den Logs des Pods erreichbar. Melde dich im Kibana an, schaue dich um und versuche eine Suche für bestimmte Logs zu definieren.
 <details><summary>Beispiel: mysql Container Logs ohne error Meldung</summary>kubernetes.container_name:"mysql" AND -message:"error"</details><br/>
 
-Weitere Informationen und ein optionales LAB finden sie [hier](../additional-labs/logging_efk_stack.md).
+Weitere Informationen und ein optionales LAB finden Sie [hier](../additional-labs/logging_efk_stack.md).
 
 ## Metriken
 
-Die OpenShift Platform integriert auch ein Grundset an Metriken, welche einerseits im WebUI integriert werden und anderseits auch dazu genutzt werden, um Pods automatisch horizontal zu skalieren.
+Die OpenShift Platform integriert auch ein Grundset an Metriken, welche einerseits im Web Console integriert werden und anderseits auch dazu genutzt werden, um Pods automatisch horizontal zu skalieren.
 
-Sie können mit Hilfe eines direkten Logins auf einen Pod nun den Ressourcenverbrauch dieses Pods beeinflussen und die Auswirkungen dazu im WebUI beobachten.
+Sie können mit Hilfe eines direkten Logins auf einen Pod nun den Ressourcenverbrauch dieses Pods beeinflussen und die Auswirkungen dazu im Web Console beobachten.
 
 ## Aufgabe: LAB7.3 Port Forwarding
 
