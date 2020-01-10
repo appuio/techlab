@@ -26,7 +26,7 @@ Folgen Sie den Anweisungen im [Lab 8: Datenbank anbinden](../labs/08_database.md
 
 Ziel ist es eine Java Spring Boot Applikation lokal zu bauen und mittels Binary Build auf die Plattform zu bringen.
 
-* Siehe dazu das Binary Build Beispiel des Labs [workshop/02_builds.md](./02_builds.md).
+* Siehe dazu das Binary Build Beispiel des Labs [dev-labs/02_builds.md](./02_builds.md).
 * GitHub Repository mit dem Sourcecode: <https://github.com/appuio/example-spring-boot-helloworld>
 * Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk8-jdk/>
 

@@ -67,7 +67,7 @@ Wir können Rollen verwalten, indem wir Befehle für `oc adm policy` absetzen:
 
     oc adm policy -h
 
-Für dieses Lab gibt es eine Gruppe namens "techlab", in der alle Workshop-Benutzer enthalten sind.
+Für dieses Lab gibt es eine Gruppe namens "techlab", in der alle Techlab-Benutzer enthalten sind.
 
 Fügen wir diese Gruppe mit der Administrator Rolle zu unserem aktuellen Projekt hinzu, damit wir die Sachen in diesen Projekten gemeinsam entwickeln können.
 

@@ -1,4 +1,4 @@
-# Workshop - HandsOn
+# OpenShift Developer Techlab
 
 ## Agenda
 
@@ -12,7 +12,7 @@
 
 * [Debugging / Logging / Metrics](04_debugging_logs_metrics.md)
 
-### Anforderungen an die Workshop Labs
+### Anforderungen an die Dev-Labs
 
 #### Lab 01
 

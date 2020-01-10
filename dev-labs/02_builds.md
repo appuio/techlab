@@ -160,18 +160,18 @@ Klonen Sie das techlab Git-Repository, falls Sie es noch nicht getan haben.
 git clone https://github.com/appuio/techlab.git
 ```
 
-Wechseln Sie zum `workshop-3.11` Git Branch
+Wechseln Sie zum `lab-3.11` Git Branch
 
 ```bash
-git checkout workshop-3.11
+git checkout lab-3.11
 ```
 
 Navigieren Sie zum Stammverzeichnis des Git-Repositorys (`cd techlab`).
 
-Starten Sie den Build mit den Daten aus `workshop/data/02_httpd`:
+Starten Sie den Build mit den Daten aus `dev-labs/data/02_httpd`:
 
 ```bash
-oc start-build web --from-dir=workshop/data/02_httpd --follow
+oc start-build web --from-dir=dev-labs/data/02_httpd --follow
 ```
 
 Verfolgen Sie, wie der Build abläuft und ob das Image in Ihrer Registry vorhanden sein wird.
@@ -186,7 +186,7 @@ oc create route edge --service=web
 Klicken Sie in der Webkonsole auf die Route, um die Website Ihrer Anwendung anzuzeigen.
 
 Versuchen Sie, ein Easter-Egg unter der URL `/easter-egg.txt` hinzuzufügen. Nach der Anpassung muss ein neuer Build gestartet werden.
-Untersuchen Sie "workshop/data/02_httpd" auf einen Hinweis.
+Untersuchen Sie "dev-labs/data/02_httpd" auf einen Hinweis.
 
 <details>
     <summary>Lösung</summary>

@@ -27,9 +27,9 @@ Dieses Techlab basiert auf OpenShift 3.11.
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 - [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
-### Workshop
+### OpenShift Developer Techlab
 
-Unterlagen für einen 2-tägigen Workshop sind im Ordner [workshop](workshop/) abgelegt.
+Unterlagen für eine 2-tägiges Developer Techlab sind im Ordner [dev-labs](dev-labs/) abgelegt.
 
 ## Weiterführende Dokumentation
 
