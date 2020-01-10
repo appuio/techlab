@@ -31,7 +31,7 @@ oc cli bietet eine Hilfeausgabe sowie eine ausführlichere Hilfe für jeden Befe
 
 Erstellen Sie ein Projekt mit dem Namen "[USER]-cli"
 
-Damit erhalten Sie Hilfe zur Projekt Ersellung
+Damit erhalten Sie Hilfe zur Projekt Erstellung
 
     oc new-project -h
 
@@ -49,13 +49,13 @@ Wir können unser Projekt überprüfen, indem wir es entweder beschreiben oder e
 
 ## Hinzufügen von Benutzern zu einem Projekt
 
-Openshift kann mehrere Benutzer (auch mit unterschiedlichen Rollen) in einem Projekt haben. Dazu können wir dem Projekt einzelne Benutzer hinzufügen oder einem Projekt auch eine Gruppe von Benutzern hinzufügen.
+OpenShift kann mehrere Benutzer (auch mit unterschiedlichen Rollen) in einem Projekt haben. Dazu können wir dem Projekt einzelne Benutzer oder auch eine Gruppe von Benutzern hinzufügen.
 
 Benutzer oder Gruppen können unterschiedliche Rollen innerhalb des gesamten Clusters oder lokal innerhalb eines Projekts haben.
 
-Weitere Informationen zu Rollen finden Sie [hier](https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#roles) und zu deren Verwaltung: [manage rbac](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_rbac.html).
+Weitere Informationen zu Rollen finden Sie [hier](https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#roles) und zu deren Verwaltung [hier](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_rbac.html).
 
-Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie Folgendes eingeben:
+Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie folgendes eingeben:
 
     oc describe rolebinding.rbac
 
@@ -86,9 +86,9 @@ Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die 
 
 ## Überprüfen und Bearbeiten anderer Ressourcen
 
-Alles in Openshift (Kubernetes) wird als Ressource repräsentiert, die wir anzeigen und abhängig von unseren Berechtigungen bearbeiten können.
+Alles in OpenShift (Kubernetes) wird als Ressource repräsentiert, die wir anzeigen und abhängig von unseren Berechtigungen bearbeiten können.
 
-Sie können alle Ressourcen Ihres aktuellen Projekts abrufen, indem Sie Folgendes eingeben:
+Sie können alle Ressourcen Ihres aktuellen Projekts abrufen, indem Sie folgendes eingeben:
 
     oc get all
 
@@ -96,7 +96,7 @@ Sie können auch alle Ressourcen aller Namespaces (Projekte) abrufen, auf die Si
 
     oc get all --all-namespaces
 
-Nehmen Sie das Projekt openshift-web-console, das einige Ressourcen zum Untersuchen enthält.
+Nehmen Sie das Projekt openshift-web-console, das einige Ressourcen zum untersuchen enthält.
 Klicken Sie auf Befehl, wenn Sie keine Lösung gefunden haben, wie Sie den Namespace zum Befehl hinzufügen können.
 
 <details><summary>Befehl</summary>oc get all -n openshift-web-console</details><br/>
@@ -117,7 +117,7 @@ Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingebe
 
 ## Ressourcen löschen
 
-Sie sind nicht glücklich darüber, wie Ihre aktuellen Projekte verlaufen sind, und möchten von vorne beginnen?
+Sie sind nicht glücklich darüber, wie Ihre aktuellen Projekte verlaufen sind und möchten von vorne beginnen?
 
     oc delete project [USER]-webui
 
@@ -125,7 +125,7 @@ Dadurch werden alle von diesem Projekt gebündelten Ressourcen gelöscht. Projek
 
 ## Wie geht es meinen Ressourcen?
 
-Sie können sich jederzeit einen Überblick über Ihre aktuellen Ressourcen verschaffen, indem Sie Folgendes eingeben:
+Sie können sich jederzeit einen Überblick über Ihre aktuellen Ressourcen verschaffen, indem Sie folgendes eingeben:
 
     oc status
 

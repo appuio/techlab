@@ -47,9 +47,9 @@ Das Beispiel ist vom APPUiO-Blog inspiriert: <http://docs.appuio.ch/de/latest/ap
 Erstellen Sie ein Projekt mit dem Namen "[USER]-binary-build"
 <details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-binary-build</details><br/>
 
-### Erstellen Sie die Deployment Ordnerstruktur
+### Erstellen Sie die Deployment Verzeichnisstruktur
 
-Bereiten Sie einen temporären Ordner vor und erstellen Sie die darin die Deployment Ordnerstruktur.
+Bereiten Sie einen temporären Ordner vor und erstellen Sie darin die Deployment Verzeichnisstruktur.
 
 Mindestens ein War-File kann im Deployment Ordner abgelegt werden. In diesem Beispiel wird eine vorhandene War-Datei aus einem Git-Repository heruntergeladen:
 
@@ -60,16 +60,16 @@ mkdir deployments
 wget -O deployments/ROOT.war 'https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true'
 ```
 
-### Erstellen Sie einen neuen Build mit dem Wildfly Docker Image
+### Erstellen Sie einen neuen Build mit dem Wildfly Container Image
 
 Erstellen Sie eine Build-Konfiguration für einen binary-Build mit folgenden Attributen:
 
-* basis Docker Image: `openshift/wildfly-160-centos7`
+* Basis Container Image: `openshift/wildfly-160-centos7`
 * Name: `hello-world`
 * Label: `app=hello-world`.
 * Typ: `binary`
 
-Das Flag *binary=true* zeigt an, dass dieser Build seine Daten als Input erhält anstatt dass er ihn über eine URL (Git Repo) holt.
+Das Flag *binary=true* zeigt an, dass dieser Build seine Daten direkt als Input erhält, anstatt via URL (Git Repo).
 
 Befehl:
 
@@ -105,7 +105,7 @@ Siehe die Befehlsausgabe für die erstellten Ressourcen.
 
 Überprüfen Sie die erstellten Ressourcen mit dem oc-Tool und in der Webkonsole. Finden Sie den erstellten Build in der Webkonsole?
 
-## Build Starten
+## Build starten
 
 Um einen Build auszulösen, geben Sie den folgenden Befehl ein. In einem kontinuierlichen Deployment-Prozess kann dieser Befehl wiederholt werden, wenn eine neue Binärdatei oder eine neue Konfiguration verfügbar ist.
 
@@ -120,7 +120,7 @@ Der Parameter _--from-dir=._ teilt dem oc-Tool mit, welches Verzeichnis hochgela
 
 Das _--follow_-Flag zeigt das Build-Protokoll auf der Konsole an und wartet, bis der Build abgeschlossen ist.
 
-### Eine neue Applikation Erstellen
+### Eine neue Applikation erstellen
 
 Erstellen Sie eine neue App basierend auf dem Docker-Image, das mit dem Binary-Build erstellt wurde.
 
@@ -174,7 +174,7 @@ Starten Sie den Build mit den Daten aus `workshop/data/02_httpd`:
 oc start-build web --from-dir=workshop/data/02_httpd --follow
 ```
 
-Verfolgen Sie, wie der Build abläuft und ob das Image in Ihrer Registrierung vorhanden sein wird.
+Verfolgen Sie, wie der Build abläuft und ob das Image in Ihrer Registry vorhanden sein wird.
 
 Erstellen Sie eine Applikation mit diesem Image und machen Sie es verfügbar:
 
@@ -190,7 +190,7 @@ Untersuchen Sie "workshop/data/02_httpd" auf einen Hinweis.
 
 <details>
     <summary>Lösung</summary>
-    Fügen Sie im Dockerfile einen COPY-befehl hinzu, um die Datei easter-egg.txt nach /var/www/html/ zu kopieren :<br/>
+    Fügen Sie im Dockerfile einen COPY-Befehl hinzu, um die Datei easter-egg.txt nach /var/www/html/ zu kopieren :<br/>
     ...<br/>
     COPY ./easter-egg.txt /var/www/html/<br/>
     ...<br/>

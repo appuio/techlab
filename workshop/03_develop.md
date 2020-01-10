@@ -1,6 +1,6 @@
-# Applikation Entwickeln
+# Applikation entwickeln
 
-In diesen Labs werden wir Applikationen Entwickeln.
+In diesen Labs werden wir Applikationen entwickeln.
 
 ## Aufgaben
 
@@ -24,9 +24,9 @@ Folgen Sie den Anweisungen im [Lab 8: Datenbank anbinden](../labs/08_database.md
 
 ## Zusatzübung für Schnelle
 
-Ziel ist es eine Java Spring Boot Applikation lokal zu Bauen und mittels Binary Build auf die Plattform zu bringen.
+Ziel ist es eine Java Spring Boot Applikation lokal zu bauen und mittels Binary Build auf die Plattform zu bringen.
 
-* Siehe dazu das Binary Build Beispiel des Labs [workshop/02_builds.md](./02_builds.md) an.
+* Siehe dazu das Binary Build Beispiel des Labs [workshop/02_builds.md](./02_builds.md).
 * GitHub Repository mit dem Sourcecode: <https://github.com/appuio/example-spring-boot-helloworld>
 * Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk8-jdk/>
 
@@ -35,21 +35,21 @@ Ziel ist es eine Java Spring Boot Applikation lokal zu Bauen und mittels Binary 
 Neues Projekt mit dem Namen `[USER]-spring-boot` erstellen.
 <details><summary>Tipp</summary>oc new-project [USER]-spring-boot</details><br/>
 
-### Applikation Bauen
+### Applikation bauen
 
 Zuerst das GitHub Repository klonen und danach das Spring Boot Jar bauen.
-<details><summary>Git Klone Befehl</summary>git clone https://github.com/appuio/example-spring-boot-helloworld.git</details><br/>
+<details><summary>Git Clone Befehl</summary>git clone https://github.com/appuio/example-spring-boot-helloworld.git</details><br/>
 
 Danach die Applikation bauen, es wird nur das JDK 1.8 benötigt.
 <details>
-    <summary>Applikation Bauen</summary>
+    <summary>Applikation bauen</summary>
     cd example-spring-boot-helloworld/<br/>
     ./gradlew build<br/>
 </details><br/>
 
-### Deployment Ordner Struktur
+### Deployment Verzeichnisstruktur
 
-Für den Binary Build eine Ordner Struktur vorbreiten mit dem Jar vom Java Build.
+Für den Binary Build eine Verzeichnisstruktur vorbereiten mit dem Jar vom Java Build.
 
 ```bash
 mkdir tmp-jar
@@ -105,6 +105,6 @@ Den Service der Applikation als Route exposen.
 
 Wieso müssen wir hier den Port angeben?
 
-### Applikation Testen
+### Applikation testen
 
 Im Browser oder mit curl das Funktionieren der Applikation überprüfen.
