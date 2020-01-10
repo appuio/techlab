@@ -15,7 +15,7 @@ $ oc new-app openshift/wildfly-100-centos7~https://github.com/appuio/ose3-java-l
 $ oc expose svc ose3-java-logging
 ```
 
-Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeinträge zu generieren und anschliessend in der Webconsole unter Browse > Pods das neu erstellte Pod und anschliessend das Log Tab auswählen. Hier ist nun direkt der Standardoutput eines Pods der Applikation sichtbar.
+Danach mit dem Browser die Applikation mehrmals aufrufen um einige Logeinträge zu generieren und anschliessend in der Web Console unter Browse > Pods das neu erstellte Pod und anschliessend das Log Tab auswählen. Hier ist nun direkt der Standardoutput eines Pods der Applikation sichtbar.
 
 Über den "View Archive" Knopf kann direkt zu den aggregierten Logs der Applikation im EFK Stack gewechselt werden. Hier sind nun die Logs aller Pods der ausgewählten Applikation zeitlich sortiert, und sofern im JSON format, nach den einzelnen Feldern geparsed zu sehen:
 

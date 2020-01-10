@@ -4,23 +4,24 @@ Mit OpenShift Pipelines hat man die Möglichkeit, komplexe CI/CD Prozesse voll i
 
 Die offizielle Dokumentation ist unter <https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/openshift_pipeline.html> zu finden.
 
-
 ## Grundprinzip
 
 OpenShift Pipelines basieren auf Jenkins Pipelines, welche voll integriert mit OpenShift fungieren. So hat man BuildConfigs vom Typ `jenkinsPipelineStrategy` anzulegen, welche wieder eine Jenkins Pipeline referenzieren.
-
 
 ## LAB: Eine einfache OpenShift Pipeline anlegen und ausführen
 
 Um zu verstehen, wie OpenShift Pipelines funktionieren, wollen wir als ersten Schritt direkt eine Pipeline anlegen.
 
-Erstellen wir dafür ein neues Projekt `oc new-project [USER]-buildpipeline`.
+Erstellen wir dafür ein neues Projekt mit dem Namen `[USER]-buildpipeline`.
+<details><summary>Tipp</summary>oc new-project [USER]-buildpipeline</details><br/>
 
 Wir legen mit folgendem Befehl die entsprechende BuildConfig an, welche das JenkinsFile, also die Pipeline, direkt beinhaltet. Ebenso wird eine zweite BuildConfig erstellt. Diese enthält die Docker BuildConfig für die eigentliche Applikation, die wir im Rahmen dieser Pipeline deployen wollen. Im vorliegenden Beispiel eine simple PHP Applikation:
 
 ```bash
-$ oc create -f ./additional-labs/resources/simple-openshift-pipeline.yaml
+oc create -f ./additional-labs/resources/simple-openshift-pipeline.yaml
 ```
+
+Während OpenShift arbeitet, schauen wir uns noch die verwendete Konfigutationsdatei an: [additional-labs/resources/simple-openshift-pipeline.yaml](additional-labs/resources/simple-openshift-pipeline.yaml)
 
 Aufgrund der BuildConfig deployt OpenShift automatisch eine integrierte Jenkins Instanz. Schauen wir uns dies in der Web Console an. Im Projekt befindet sich nach erfolgreichem Deployment eine laufende Jenkins Instanz, welche über eine Route exposed ist. Der Zugriff auf Jenkins über die Route ist mittels OpenShift OAuth gesichert. Loggen Sie sich dort ein und erteilen Sie der OAuth entsprechende Rechte. Ebenso wurde die vorher angelegte Build Pipeline synchronisiert und automatisch angelegt.
 
@@ -86,7 +87,6 @@ Die letzten drei Steps werden bedingt durch den Node Selector `node ('maven') { 
 
 Der `maven` Slave ist im Kubernetes Plugin vorkonfiguriert und die Pipeline-Stages werden via Image `registry.access.redhat.com/openshift3/jenkins-slave-maven-rhel7:v3.11` ausgeführt. Weiter unten im Kapitel zu Custom Slaves werden Sie lernen, wie man individuelle Slaves dazu verwendet um Pipelines darauf auszuführen.
 
-
 ## BuildConfig Optionen
 
 Im vorherigen Lab haben wir in der BuildConfig vom Typ `jenkinsPipelineStrategy` das JenkinsFile direkt angegeben. Als Alternative dazu kann das Jenkins Pipeline File auch via GitRepository in der BuildConfig hinterlegt werden.
@@ -117,7 +117,7 @@ Zusätzliche Informationen finden Sie hier: https://docs.openshift.com/container
 
 Mit dem OpenShift Jenkins Client Plugin kann so auf einfache Art direkt mit dem OpenShift Cluster kommuniziert werden und als Jenkinsfile komplexe CI/CD Pipelines implementieren:
 
-```
+```Groovy
 openshift.withCluster() {
     openshift.withProject() {
         echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
@@ -131,21 +131,17 @@ Weitere Informationen dazu sind unter <https://github.com/openshift/jenkins-clie
 
 Zusätzlich zum Client Plugin existiert das Vorgänger-Plugin (Jenkins Pipeline Plugin), welches weniger Funktionalität bietet, allerdings gemäss <https://docs.openshift.com/container-platform/3.11/using_images/other_images/jenkins.html#pipeline-plug-in> supportet bleibt.
 
-
 ### OpenShift Jenkins Sync Plugin
 
 Das OpenShift Jenkins Sync Plugin hält BuildConfig und Jenkins Jobs synchron. Des Weiteren erlaubt es das dynamische Erstellen und Definieren von Jenkins Slaves via ImageStream; mehr dazu weiter unten.
-
 
 ### Kubernetes Plugin
 
 Das Kubernetes Plugin wird verwendet, um die Jenkins Slaves dynamisch im OpenShift Projekt zu starten.
 
-
 ### Custom Slaves
 
 Custom Jenkins Slaves können einfach in den Build integriert werden, dafür müssen die entsprechenden Slaves als ImageStreams angelegt und mit dem Label `role=jenkins-slave` versehen werden. Diese werden dann automatisch als Pod Templates im Jenkins für das Kubernetes Plugin registriert. So können Pipelines nun über `node ('customslave'){ ... }` Teile ihrer Builds auf den entsprechenden Custom Slaves laufen lassen.
-
 
 #### LAB: Custom Jenkins Slave als Build Slave verwenden
 
@@ -156,19 +152,22 @@ Aufgrund des Labels synchronisiert das Jenkins Sync Plugin dann die Konfiguratio
 Erstellen wir nun in unserem Projekt einen Custom Jenkins Slave. Zur Veranschaulichung verwenden wir dazu ein Image von Docker Hub, das als Maven Jenkins Slave fungiert:
 
 ```bash
-$ oc import-image custom-jenkins-slave --from=docker.io/openshift/jenkins-slave-maven-centos7 --confirm
+oc import-image custom-jenkins-slave --from=docker.io/openshift/jenkins-slave-maven-centos7 --confirm
 ```
+
+Mit diesem Befehl haben wir einen ImageStream zu diesem Image angelegt. Wir inspizieren ihn über die Web Console oder mit dem oc Tool.
+<details><summary>Tipp</summary>Web Console: Builds -> Images -> custom-jenkins-slave<br/>oc Tool: oc describe is/custom-jenkins-slave</details><br/>
 
 Anschliessend definieren wir mittels dem label `role` noch, dass es sich um einen Jenkins Slave handelt:
 
 ```bash
-$ oc label is custom-jenkins-slave role=jenkins-slave
+oc label is custom-jenkins-slave role=jenkins-slave
 ```
 
 Um den Custom Slave im Jenkins auch verfügbar zu haben, müssen wir nun den Jenkins Master restarten:
 
 ```bash
-$ oc rollout latest jenkins
+oc rollout latest jenkins
 ```
 
 Schauen wir uns die Konfiguration nun nach dem Restart im Jenkins Konfigurations-Menu an: https://[jenkins-route]/configure
@@ -190,7 +189,6 @@ node ('custom-jenkins-slave') {
 
 Will man selber Jenkins Slaves builden, sollte man auf dem `openshift/jenkins-slave-base-centos7` Image basieren.
 
-
 ## LAB: Multi-Stage Deployment
 
 Als nächstes wollen wir nun unsere Pipeline weiter ausbauen und das Deployment der Applikation auf den unterschiedlichen Stages (dev, test, prod) angehen.
@@ -202,9 +200,16 @@ Für ein Multi-Stage Deployment auf OpenShift hat sich das folgende Setup als Be
 
 Das Build Projekt haben wir oben bereits eingerichtet (`[USER]-buildpipeline`). Als nächsten Schritt erstellen wir nun die Projekte für die unterschiedlichen Stages:
 
-* `oc new-project [USER]-pipeline-dev`
-* `oc new-project [USER]-pipeline-test`
-* `oc new-project [USER]-pipeline-prod`
+* [USER]-pipeline-dev
+* [USER]-pipeline-test
+* [USER]-pipeline-prod
+
+<details>
+    <summary>Tipp</summary>
+    oc new-project [USER]-pipeline-dev<br/>
+    oc new-project [USER]-pipeline-test<br/>
+    oc new-project [USER]-pipeline-prod
+</details><br/>
 
 Nun müssen wir den `puller` Serviceaccount aus den entsprechenden Projekten pro Stage die nötigen Rechte geben, damit die gebuildeten Images gepullt werden können.
 
@@ -230,11 +235,27 @@ oc tag [USER]-buildpipeline/application:dev [USER]-buildpipeline/application:tes
 oc tag [USER]-buildpipeline/application:test [USER]-buildpipeline/application:prod
 ```
 
-Erstellen der Applikationen:
+Erstellen der Applikationen.
 
-* dev: `oc new-app [USER]-buildpipeline/application:dev -n [USER]-pipeline-dev`
-* test: `oc new-app [USER]-buildpipeline/application:test -n [USER]-pipeline-test`
-* prod: `oc new-app [USER]-buildpipeline/application:prod -n [USER]-pipeline-prod`
+In jeder Stage erstellen wir die Applikation anhand des vorher angelegten ImageStreams.
+
+Achtung, die Applikationen müssen im richtigen Projekt erstellt werden.
+
+<details>
+    <summary>Tipp</summary>
+    dev: oc new-app [USER]-buildpipeline/application:dev -n [USER]-pipeline-dev<br/>
+    test: oc new-app [USER]-buildpipeline/application:test -n [USER]-pipeline-test<br/>
+    prod: oc new-app [USER]-buildpipeline/application:prod -n [USER]-pipeline-prod
+</details><br/>
+
+Danach können wir noch die Applikation exposen.
+
+<details>
+    <summary>Tipp</summary>
+    dev: oc create route edge --service=application -n [USER]-pipeline-dev<br/>
+    test: oc create route edge --service=application -n [USER]-pipeline-test<br/>
+    prod: oc create route edge --service=application -n [USER]-pipeline-prod
+</details><br/>
 
 In der Pipeline können wir nun mittels Setzen eines bestimmten Tags auf dem Imagestream der gebuildeten Applikatione bspw. `application:dev`, das entsprechende Image in die passende Stage promoten und deployen.
 
@@ -320,11 +341,9 @@ node ('maven') {
 
 Führen Sie die Pipeline erneut aus und schauen Sie sich an, wie nun die gebuildete Applikation von Stage zu Stage deployt wird.
 
-
 ## Jenkins Pipeline Sprache
 
 Unter <https://github.com/puzzle/jenkins-techlab> finden Sie ein entsprechendes Hands-on Lab zur Jenkins Pipeline Sprache. Die Syntax ist [hier](https://jenkins.io/doc/book/pipeline/syntax/) beschrieben.
-
 
 ## Deployment von Resourcen und Konfiguration
 
@@ -339,6 +358,7 @@ Die Konfigurationswerte der Umgebungsvariablen zur Konfiguration der eigentliche
 Ändern die Parameter in dieser Konfiguration auf einer Umgebung, bspw. Benutzername oder Passwort, sollen diese Werte mittels Pipeline deployt werden.
 
 Als Grundprinzip kann man sich das so vorstellen:
+
 * Resourcen werden als Files (`yaml` oder `json`) im Git verwaltet
 * Im Rahmen der Deployment Pipeline werden diese Ressourcen entsprechend auf dem Kubernetes Cluster angewandt
 

@@ -25,7 +25,7 @@ $ oc describe <RESOURCE_TYPE> <RESOURCE_NAME>
 ```
 
 ## Generierung
-Über "oc new-app" oder "Add to project" in der Web Konsole werden die Ressourcen automatisch angelegt. In der Web Konsole kann die Erstellung einfach konfiguriert werden.
+Über "oc new-app" oder "Add to project" in der Web Console werden die Ressourcen automatisch angelegt. In der Web Console kann die Erstellung einfach konfiguriert werden.
 
 Für den produktiven Einsatz reicht das meistens nicht aus. Da braucht es mehr Kontrolle über die Konfiguration. Eigene Templates sind hierfür die Lösung. Sie müssen jedoch nicht von Hand geschrieben sondern können als Vorlage generiert werden.
 
