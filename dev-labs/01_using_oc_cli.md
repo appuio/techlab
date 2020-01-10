@@ -93,7 +93,7 @@ Sie können alle Ressourcen Ihres aktuellen Projekts abrufen, indem Sie folgende
     oc get all
 
 Sie können auch alle Ressourcen der Namespaces (Projekte) abrufen, auf die Sie Zugriff haben.
-Nehmen Sie das Projekt openshift-web-console, das einige Ressourcen zum untersuchen enthält.
+Nehmen Sie das Projekt `openshift-web-console`, das einige Ressourcen zum untersuchen enthält.
 Klicken Sie auf Befehl, wenn Sie keine Lösung gefunden haben, wie Sie den Namespace zum Befehl hinzufügen können.
 
 <details><summary>Befehl</summary>oc get all -n openshift-web-console</details><br/>

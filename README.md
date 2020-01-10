@@ -29,7 +29,7 @@ Dieses Techlab basiert auf OpenShift 3.11.
 
 ### OpenShift Developer Techlab
 
-Unterlagen für eine 2-tägiges Developer Techlab sind im Ordner [dev-labs](dev-labs/) abgelegt.
+Unterlagen für ein zweitägiges Developer Techlab sind im Verzeichnis [dev-labs](dev-labs/) abgelegt.
 
 ## Weiterführende Dokumentation
 
