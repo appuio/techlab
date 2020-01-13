@@ -2,7 +2,6 @@
 
 In diesem Lab werden wir gemeinsam das CLI-Tool `odo` installieren und konfigurieren, damit wir danach die ersten Schritte auf der OpenShift Techlab Plattform durchführen können.
 
-
 ## `odo`
 
 Via `odo` kommunizieren wir mit OpenShift. Es wurde mit OpenShift 4 neu ins Leben gerufen und fokussiert sich auf die Entwickler-relevanten Aufgaben.
@@ -10,7 +9,6 @@ Via `odo` kommunizieren wir mit OpenShift. Es wurde mit OpenShift 4 neu ins Lebe
 Der __oc client__ stellt ein Interface zu OpenShift bereit.
 
 `odo` ist in [Go](https://github.com/openshift/odo) programmiert und kommt als einzelnes Binary für die gängigsten Betriebsysteme daher.
-
 
 ## Installation
 
@@ -21,7 +19,6 @@ Es sollte nun möglich sein, auf der Kommandozeile den Befehl `odo version` ausz
 ```
 odo v1.0.2 (HEAD)
 ```
-
 
 ## bash/zsh Command Completion (optional)
 

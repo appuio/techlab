@@ -1,13 +1,12 @@
-# APPUiO - OpenShift 4 Techlab Dokumentation
+# APPUiO - OpenShift 4 Techlab
 
 Dieses Techlab basiert auf OpenShift 4.2.
 
-
 ## Einführung
 
-Mit Platform-as-a-Service (PaaS) ändert sich die Art, wie wir Software entwickeln. Puzzle stellt OpenShift – die *Container Platform* von Red Hat – in einem Techlab vor. Entwickler lernen dabei hands-on die wichtigsten Schritte, wie eine Applikation auf OpenShift gebracht wird.
+Mit Platform-as-a-Service (PaaS) ändert sich die Art, wie wir Software entwickeln. Puzzle stellt OpenShift – die _Container Platform_ von Red Hat – in einem Techlab vor. Entwickler lernen dabei hands-on die wichtigsten Schritte, wie eine Applikation auf OpenShift gebracht wird.
 
-**Ziele dieses Techlabs**:
+__Ziele dieses Techlabs__:
 
 - Gemeinsam den Einstieg in eine neue moderne Technologie erreichen
 - Grundkonzepte verstehen
@@ -29,7 +28,6 @@ Mit Platform-as-a-Service (PaaS) ändert sich die Art, wie wir Software entwicke
 11. [Applikationstemplates](labs/11_template.md)
 12. [Eigene Templates erstellen](labs/12_template_creation.md)
 
-
 ### Zusätzliche Labs
 
 - [Cron Jobs in OpenShift](additional-labs/cronjobs_and_jobs.md)
@@ -38,19 +36,20 @@ Mit Platform-as-a-Service (PaaS) ändert sich die Art, wie wir Software entwicke
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 - [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
+### OpenShift Developer Techlab
+
+Unterlagen für ein zweitägiges Developer Techlab sind im Verzeichnis [dev-labs](dev-labs/) abgelegt.
 
 ## Weiterführende Dokumentation
 
 - [OpenShift Container Platform 4.2 Dokumentation](https://docs.openshift.com/container-platform/4.2/welcome/index.html)
 - [APPUiO Dokumentation](http://docs.appuio.ch)
 
-
 ### APPUiO Examples
 
 - [APPUiO PHP Source to image hello World Example](https://github.com/appuio/example-php-sti-helloworld)
 - [APPUiO PHP Dockerbuild hello World Example](https://github.com/appuio/example-php-docker-helloworld)
 - [APPUiO Cron Job Example](https://github.com/appuio/example-cron-traditional)
-
 
 ## Ältere Inhalte
 
@@ -63,4 +62,3 @@ Die Techlabs zu früheren Versionen sind in deren eigenen Branches zu finden:
 - [Branch lab-3.3](https://github.com/appuio/techlab/tree/lab-3.3)
 - [Branch lab-3.2](https://github.com/appuio/techlab/tree/lab-3.2)
 - [Branch lab-3.1](https://github.com/appuio/techlab/tree/lab-3.1)
-

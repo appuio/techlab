@@ -4,21 +4,17 @@ In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren z
 
 Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug [dieses Red Hat Blogposts](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/), dem auch weiterführende Informationen zu Begriffen rund um Container entnommen werden können.
 
-
 ## Grundkonzepte
 
 OpenShift basiert auf modernen Konzepten wie CRI-O oder Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebaut, deployt und betrieben werden kann.
-
 
 ### Container Engine
 
 [cri-o](https://cri-o.io/) ist eine leichtgewichtige Container Engine, welche Container Images in einen laufenden Prozess umwandelt, also in einen Container. Dies geschieht anhand der [Container Runtime Specification](https://github.com/opencontainers/runtime-spec) der [Open Container Initiative](https://www.opencontainers.org/), welche auch die [Image Specification](https://github.com/opencontainers/image-spec) festgelegt hat. Sämtliche OCI-konformen Images können so mit OCI-konformen Engines ausgeführt werden.
 
-
 ### Kubernetes
 
 [Kubernetes](http://kubernetes.io/) ist ein Container Orchestration Tool, welches das Verwalten von Containern wesentlich vereinfacht. Der Orchestrator terminiert dynamisch den Container Workload innerhalb eines Clusters.
-
 
 ### Container und Container Images
 
@@ -28,12 +24,12 @@ Container basieren auf Container Images. Ein Container wird gestartet, indem die
 
 Container Images werden bspw. anhand von Dockerfiles (textueller Beschrieb, wie das Container Image Schritt für Schritt aufgebaut ist) gebaut. Grundsätzlich sind Container Images hierarchisch angewendete Filesystem Snapshots.
 
-**Beispiel Tomcat**
+Beispiel Tomcat:
 
 - Base Image (z.B. [UBI](https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image))
-- + Java
-- + Tomcat
-- + App
+- \+ Java
+- \+ Tomcat
+- \+ App
 
 Gebaute Container Images werden in einer Image Registry (analog einem Repository für bspw. RPM-Pakete) versioniert abgelegt und können von da bezogen werden, um sie auf einer Container Plattform zu deployen.
 Container Images können auch auf OpenShift selbst gebaut werden, von wo aus sie in die OpenShift-interne Registry gepusht und für das Deployment wieder gepullt werden.
@@ -95,7 +91,7 @@ So hat man die Möglichkeit ganze Infrastrukturen zu beschreiben:
 
 ---
 
-**Ende Lab 1**
+__Ende Lab 1__
 
 <p width="100px" align="right"><a href="02_cli.md">OpenShift CLI installieren →</a></p>
 

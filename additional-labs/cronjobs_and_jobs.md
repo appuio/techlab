@@ -4,10 +4,10 @@ Kubernetes bringt das Konzept von Jobs und Cron Jobs mit. Dies ermöglicht es ge
 
 Eine mögliche Auswahl von Anwendungsfällen:
 
-* Jeweils um 23:12 ein Datenbank Backup erstellen und auf ein gemountetes PVC speichern
-* Einmaliges generieren von Reports
-* Cleanup-Job welcher alte Daten aufräumt
-* Asynchrones Senden von Emails
+- Jeweils um 23:12 ein Datenbank Backup erstellen und auf ein gemountetes PVC speichern
+- Einmaliges generieren von Reports
+- Cleanup-Job welcher alte Daten aufräumt
+- Asynchrones Senden von Emails
 
 ## Job
 
@@ -77,10 +77,9 @@ $ oc get cronjob mysql-backup -o yaml
 
 **Wichtig:** beachten Sie, dass insbesondere Backups überwacht und durch Restore Tests überprüft werden müssen, diese Logik kann beispielsweise in den auszuführenden Befehl integriert, oder aber durch ein Monitoring Tool übernommen werden. Im Test Cron Job wird der Dump ins `/tmp` Verzeichnis geschrieben. Für den produktiven Einsatz sollte dies ein gemountetes Volume sein.
 
-* Wann wurde der Cron Job das letzte mal ausgeführt?
-* War das Backup erfolgreich?
-* Konnten die Daten erfolgreich restored werden?
-
+- Wann wurde der Cron Job das letzte mal ausgeführt?
+- War das Backup erfolgreich?
+- Konnten die Daten erfolgreich restored werden?
 
 **Ende**
 

@@ -12,7 +12,6 @@ Um eine ConfigMap in einem Projekt anzulegen kann folgender Befehl verwendet wer
 $ oc create configmap [Name der ConfigMap] [Options]
 ```
 
-
 ## Java properties Files als ConfigMap
 
 Ein klassisches Beispiel für ConfigMaps sind Property Files bei Java Applikationen, welche in erster Linie nicht via Umgebungsvariablen konfiguriert werden können.
@@ -32,10 +31,10 @@ $ oc get configmaps
 NAME                DATA   AGE
 javaconfiguration   1      7s
 ```
+
 kann nun verifiziert werden ob die ConfigMap erfolgreich angelegt wurde.
 
 Oder mittels `$ oc get configmaps javaconfiguration -o json` kann der Inhalt angezeigt werden.
-
 
 ## Configmap in Pod zur Verfügung stellen
 
@@ -43,10 +42,9 @@ Als nächstes wollen wir die ConfigMap im Pod verfügbar machen.
 
 Grundsätzlich gibt es dafür die folgenden Möglichkeiten, welche in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html#consuming-configmap-in-pods) genauer beschrieben werden:
 
-
-* ConfigMap Properties als Umgebungsvariablen im Deployment
-* Commandline Arguments via Umgebungsvariablen
-* als Volumes in den Container gemountet
+- ConfigMap Properties als Umgebungsvariablen im Deployment
+- Commandline Arguments via Umgebungsvariablen
+- als Volumes in den Container gemountet
 
 Im Beispiel hier wollen wir, dass das File als File auf einem Volume liegt.
 
@@ -142,9 +140,7 @@ Erstellen Sie jeweils eine ConfigMap und verwenden Sie dafür die verschiedenen 
 
 Machen Sie die Werte innerhalb von Pods auf die unterschiedlichen Arten verfügbar.
 
-
 ---
-
 
 **Ende**
 
