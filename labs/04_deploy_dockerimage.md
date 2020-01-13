@@ -6,18 +6,16 @@ In diesem Lab werden wir gemeinsam das erste "pre-built" Container Image deploye
 
 Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployment eines pre-built Container Image von Docker Hub (oder einer anderen Image Registry) zu.
 
-Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen (Container und Container Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres). Für das Projekt berechtigte User können diese Ressourcen verwalten. Innerhalb eines OpenShift Clusters muss der Name eines Projektes eindeutig sein.
+Erstellen Sie hierfür wieder ein neues Projekt mit dem Namen `[USERNAME]-dockerimage`.
 
-Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-dockerimage`:
+<details><summary><b>Tipp</b></summary>oc new-project [USERNAME]-dockerimage</details><br/>
 
-<details><summary>Tipp</summary>oc new-project [USER]-dockerimage</details><br/>
-
-`oc new-project` wechselt automatisch in das eben neu angelegte Projekt. Mit dem `oc get` Command können Ressourcen von einem bestimmten Typ angezeigt werden.
+`oc new-project` wechselt automatisch in das neu angelegte Projekt. Mit dem `oc project` Befehl kann das Projekt gewechselt werden.
 
 Verwenden Sie
 
 ```bash
-oc get project
+oc get projects
 ```
 
 um alle Projekte anzuzeigen, auf die Sie berechtigt sind.
@@ -28,41 +26,14 @@ Sobald das neue Projekt erstellt wurde, können wir in OpenShift mit dem folgend
 oc new-app appuio/example-spring-boot
 ```
 
-Befehl mit Output:
-
-```bash
-$ oc new-app appuio/example-spring-boot
---> Found Docker image dc47fe9 (4 minutes old) from Docker Hub for "appuio/example-spring-boot"
-
-    APPUiO Spring Boot App
-    ----------------------
-    Example Spring Boot App
-
-    Tags: builder, springboot
-
-    * An image stream tag will be created as "example-spring-boot:latest" that will track this image
-    * This image will be deployed in deployment config "example-spring-boot"
-    * Ports 8080/tcp, 8778/tcp, 9000/tcp, 9779/tcp will be load balanced by service "example-spring-boot"
-      * Other containers can access this service through the hostname "example-spring-boot"
-
---> Creating resources ...
-    imagestream.image.openshift.io "example-spring-boot" created
-    deploymentconfig.apps.openshift.io "example-spring-boot" created
-    service "example-spring-boot" created
---> Success
-    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
-     'oc expose svc/example-spring-boot'
-    Run 'oc status' to view your app.
-```
-
 Für unser Lab verwenden wir ein APPUiO-Beispiel (Java Spring Boot Applikation):
 
-- Docker Hub: <https://hub.docker.com/r/appuio/example-spring-boot/>
 - GitHub (Source): <https://github.com/appuio/example-spring-boot-helloworld>
+- Docker Hub: <https://hub.docker.com/r/appuio/example-spring-boot/>
 
-OpenShift legt die nötigen Ressourcen an, lädt das Container Image, in diesem Fall von Docker Hub, herunter und deployt anschliessend den Pod.
+Beim Ausführen obigen Befehls legt OpenShift die nötigen Ressourcen an, lädt das Container Image (in diesem Fall von Docker Hub) herunter und deployt anschliessend den Pod.
 
-**Tipp:** Verwenden Sie `oc status` um sich einen Überblick über das Projekt zu verschaffen.
+__Tipp__: Verwenden Sie `oc status` um sich einen Überblick über das Projekt zu verschaffen.
 
 Oder verwenden Sie den `oc get` Befehl mit dem `-w` Parameter, um fortlaufend Änderungen an den Ressourcen des Typs Pod anzuzeigen (abbrechen mit ctrl+c):
 
@@ -70,49 +41,59 @@ Oder verwenden Sie den `oc get` Befehl mit dem `-w` Parameter, um fortlaufend Ä
 oc get pods -w
 ```
 
-Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShift Node bereits heruntergeladen wurde, kann das eine Weile dauern. In der Zwischenzeit können Sie sich in der Web Console den aktuellen Status des Deployments anschauen:
+Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShift Node bereits heruntergeladen wurde, kann das eine Weile dauern.
+In der Zwischenzeit können Sie sich in der Web Console den aktuellen Status des Deployments anschauen:
 
 1. Loggen Sie sich in der Web Console ein
-2. Wählen Sie Ihr Projekt `[USER]-dockerimage` aus
-3. Klicken Sie auf Applications
-4. Wählen Sie Pods aus
+1. Wechseln Sie von der Administrator- in die Developer-Ansicht (oben links)
+1. Wählen Sie Ihr Projekt `[USERNAME]-dockerimage` aus
+1. Klicken Sie auf Topology
 
-**Tipp** Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
+__Tipp__:
+Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen:
+https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
 
 ## Betrachten der erstellten Ressourcen
 
-Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt. Diese werden dafür benötigt, das Container Image zu deployen:
+Als wir vorhin `oc new-app appuio/example-spring-boot` ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt.
+Diese werden dafür benötigt, das Container Image zu deployen:
 
-- [Service](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#services)
-- [ImageStream](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#image-streams)
-- [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html)
+- Service
+- [ImageStream](https://docs.openshift.com/container-platform/4.2/openshift_images/images-understand.html)
+- [DeploymentConfig](https://docs.openshift.com/container-platform/4.2/applications/deployments/what-deployments-are.html)
 
 ### Service
 
-[Services](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#services) dienen innerhalb OpenShift als Abstraktionslayer, Einstiegspunkt und Proxy/Loadbalancer auf die dahinterliegenden Pods. Der Service ermöglicht es, innerhalb OpenShift eine Gruppe von Pods des gleichen Typs zu finden und anzusprechen.
+Services dienen innerhalb OpenShift als Abstraktionslayer, Einstiegspunkt und Proxy/Loadbalancer auf die dahinterliegenden Pods.
+Der Service ermöglicht es, innerhalb OpenShift eine Gruppe von Pods des gleichen Typs zu finden und anzusprechen.
 
-Als Beispiel: Wenn eine Applikationsinstanz unseres Beispiels die Last nicht mehr alleine verarbeiten kann, können wir die Applikation bspw. auf drei Pods hochskalieren. OpenShift mapt diese als Endpoints automatisch zum Service. Sobald die Pods bereit sind, werden Requests automatisch auf alle drei Pods verteilt.
+Als Beispiel: Wenn eine Applikationsinstanz unseres Beispiels die Last nicht mehr alleine verarbeiten kann, können wir die Applikation bspw. auf drei Pods hochskalieren.
+OpenShift mapt diese als Endpoints automatisch zum Service.
+Sobald die Pods bereit sind, werden Requests automatisch auf alle drei Pods verteilt.
 
-**Note:** Die Applikation kann aktuell von aussen noch nicht erreicht werden, der Service ist ein OpenShift-internes Konzept. Im folgenden Lab werden wir die Applikation öffentlich verfügbar machen.
+__Note__: Die Applikation kann aktuell von aussen noch nicht erreicht werden, der Service ist ein OpenShift-internes Konzept.
+Im folgenden Lab werden wir die Applikation öffentlich verfügbar machen.
 
 Nun schauen wir uns unseren Service mal etwas genauer an:
 
 ```bash
-$ oc get services
+oc get services
 NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
 example-spring-boot   ClusterIP   172.30.141.7   <none>        8080/TCP,8778/TCP,9779/TCP   3m
 ```
 
-Wie Sie am Output sehen, ist unser Service (example-spring-boot) über eine IP und mehrere Ports erreichbar (z.B. 172.30.141.7:8080)
+Wie Sie am Output sehen, ist unser Service `example-spring-boot` über eine IP-Adresse und mehrere Ports erreichbar (z.B. 172.30.141.7:8080).
 
-**Note:** Ihre IP wird mit grosser Wahrscheinlichkeit von der hier gezeigten abweichen.
+__Note__:
+Ihre IP-Adresse wird mit grosser Wahrscheinlichkeit von der hier gezeigten abweichen.
+Diese IP-Adresse ist ausserdem OpenShift-intern und kann von ausserhalb nicht erreicht werden.
 
-**Note:** Service IPs bleiben während ihrer Lebensdauer immer gleich.
+__Note__: Service IPs bleiben während ihrer Lebensdauer immer gleich.
 
 Mit dem folgenden Befehl können Sie zusätzliche Informationen über den Service auslesen:
 
 ```bash
-$ oc get service example-spring-boot -o json
+oc get service example-spring-boot -o json
 {
     "apiVersion": "v1",
     "kind": "Service",
@@ -171,17 +152,20 @@ $ oc get service example-spring-boot -o json
 }
 ```
 
-**Tipp:** Der `-o` Parameter akzeptiert auch `yaml` als Angabe.
+__Tipp__:
+Der `-o` Parameter akzeptiert auch `yaml` als Angabe.
 
-Mit dem entsprechenden Befehl können Sie auch die Details zu einem Pod anzeigen:
+Mit dem folgenden Befehl können Sie auch die Details zu einem Pod anzeigen:
 
 ```bash
 oc get pod example-spring-boot-3-nwzku -o json
 ```
 
-**Note:** Zuerst den Pod Namen aus Ihrem Projekt abfragen (`oc get pods`) und im oberen Befehl ersetzen.
+__Note__:
+Fragen Sie zuerst den Pod Namen aus Ihrem Projekt mit `oc get pods` ab und ersetzen ihn dann im obigen Befehl.
 
-Über den `selector` Bereich im Service wird definiert, welche Pods (`labels`) als Endpoints dienen. Dazu können die entsprechenden Konfigurationen von Service und Pod zusammen betrachtet werden.
+Über den `selector` im Service wird definiert, welche Pods (`labels`) als Endpoints dienen.
+Dazu können die entsprechenden Konfigurationen von Service und Pod zusammen betrachtet werden.
 
 Service (`oc get service <Service Name>`):
 
@@ -238,11 +222,12 @@ Unter Endpoints finden Sie nun den aktuell laufenden Pod.
 
 ### ImageStream
 
-[ImageStreams](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#image-streams) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Images oder des Basisimages verfügbar ist.
+[ImageStreams](https://docs.openshift.com/container-platform/4.2/applications/deployments/what-deployments-are.html) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Image verfügbar ist.
 
-Builds und Deployments können Image Streams beobachten und auf Änderungen entsprechend reagieren. In unserem Beispiel wird der Image Stream dafür verwendet, ein Deployment zu triggern, sobald etwas am Image geändert hat.
+Builds und Deployments können ImageStreams beobachten und auf Änderungen reagieren.
+In unserem Beispiel wird der Image Stream dafür verwendet, ein Deployment zu triggern, sobald etwas am Image geändert hat.
 
-Mit dem folgenden Befehl können Sie zusätzliche Informationen über den Image Stream auslesen:
+Mit dem folgenden Befehl können Sie zusätzliche Informationen über den ImageStream auslesen:
 
 ```bash
 oc get imagestream example-spring-boot -o json
@@ -250,15 +235,15 @@ oc get imagestream example-spring-boot -o json
 
 ### DeploymentConfig
 
-In der [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html) werden folgende Punkte definiert:
+In der [DeploymentConfig](https://docs.openshift.com/container-platform/4.2/applications/deployments/what-deployments-are.html) werden folgende Punkte definiert:
 
-- Update Strategy: wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
-- Triggers: Welche Triggers führen zu einem Deployment? In unserem Beispiel ImageChange
-- Container
-  - Welches Image soll deployed werden?
-  - Environment Configuration für die Pods
+- Update Strategy: Wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
+- Triggers: Welche Ereignisse führen zu einem automatischen Deployment?
+- Container:
+  - Welches Image soll verwendet werden?
+  - Environment Configuration
   - ImagePullPolicy
-- Replicas, Anzahl der Pods, die deployt werden sollen
+- Replicas: Anzahl der Pods, die deployt werden sollen
 
 Mit dem folgenden Befehl können zusätzliche Informationen zur DeploymentConfig ausgelesen werden:
 
@@ -268,17 +253,12 @@ oc get deploymentConfig example-spring-boot -o json
 
 Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Applikation deployt werden soll, definiert man mit dem ReplicationController, wie die Applikation während der Laufzeit aussehen soll (bspw. dass immer 3 Replicas laufen sollen).
 
-**Tipp:** für jeden Resource Type gibt es auch eine Kurzform. So können Sie bspw. `oc get deploymentconfig` auch einfach als `oc get dc` schreiben.
+__Tipp__:
+Für viele der Resource Types gibt es auch eine Kurzform. So können Sie bspw. anstelle von `oc get deploymentconfig` auch einfach `oc get dc` schreiben, oder `svc` anstelle von `service`.
 
 ---
 
-## Zusatzaufgabe für Schnelle ;-)
-
-Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an.
-
----
-
-**Ende Lab 4**
+__Ende Lab 4__
 
 <p width="100px" align="right"><a href="05_create_route.md">Routen erstellen →</a></p>
 
