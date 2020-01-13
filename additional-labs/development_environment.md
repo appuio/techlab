@@ -10,7 +10,6 @@ Minishift erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigen
 
 Für die Installation bitte der offiziellen Anleitung unter https://docs.openshift.org/latest/minishift/getting-started/installing.html folgen.
 
-
 ### Troubleshooting
 
 #### DNS-Probleme
@@ -19,16 +18,17 @@ Minishift setzt bei der DNS-Auflösung auf nip.io (http://nip.io/). Wenn der auf
 
 Infos Quad 9 DNS: https://www.quad9.net
 
-
 ## oc cluster up
 
 Seit Version 1.3 des OpenShift Clients "oc" existiert die Möglichkeit, ein OpenShift lokal auf dem eigenen Laptop zu starten. Hierfür wird ein Docker Container heruntergeladen, der eine OpenShift-Installation beinhaltet, und anschliessend gestartet.
 
 Voraussetzungen:
-* oc 1.3+
-* Docker 1.10
+
+- oc 1.3+
+- Docker 1.10
 
 Sind die Voraussetzung erfüllt und Docker gestartet, kann mit folgendem Befehl die OpenShift-Umgebung gestartet werden:
+
 ```
 $ oc cluster up
 ```
@@ -36,10 +36,13 @@ $ oc cluster up
 ### Dokumentation und Troubleshooting
 
 #### iptables
+
 Eine häufige Fehlerquelle ist die lokale Firewall. Docker verwendet iptables, um den Containern den Zugriff ins Internet zu gewährleisten. Es kann dabei vorkommen, dass sich bestimmte Rules in die Quere kommen. Häufig hilft ein Flushen der iptables Rulechains, nachdem die OpenShift-Instanz mit einem `oc cluster down` heruntergefahren wurde:
+
 ```
 $ iptables -F
 ```
+
 Anschliessend kann nochmals ein `oc cluster up` versucht werden.
 
 #### Dokumentation
@@ -52,7 +55,9 @@ Der Setup für Ubuntu 16.04 gestaltet sich ein wenig anders, als dies auf Fedora
 
 1. Docker installieren.
 2. Docker Daemon für eine unsichere Docker Registry konfigurieren.
+
    - Dazu die Datei `/etc/docker/daemon.json` mit folgendem Inhalt erstellen:
+
      ```
      {
        "insecure-registries": ["172.30.0.0/16"]
@@ -74,6 +79,7 @@ Der Setup für Ubuntu 16.04 gestaltet sich ein wenig anders, als dies auf Fedora
    ```
 
 Cluster stoppen:
+
 ```
 $ oc cluster down
 ```

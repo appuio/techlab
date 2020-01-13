@@ -15,6 +15,7 @@ Einfachster Einstieg von einer Codebasis (z. B. Ruby, Python, PHP) in eine ausge
 Es erstellt alle erforderlichen Build- und Deployment-Konfigurationen.
 
 Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-s2i"
+
 <details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-s2i</details><br/>
 
 Unser Beispiel basiert auf einer sehr einfachen PHP-Anwendung, welche auf APPUiO GitHub gehostet wird.
@@ -29,6 +30,7 @@ Hinweis zur Befehlshilfe:
 Die `new-app` Funkionalität erkennt das Git Repo als PHP Projekt und erstellt eine s2i Applikation.
 
 Überprüfen Sie den Status Ihres Projekts.
+
 <details><summary>Projektstatusbefehl</summary>oc status</details><br/>
 
 Erkunden Sie die verschiedenen Ressourcen, die mit dem `new-app` Befehl erstellt wurden.
@@ -45,6 +47,7 @@ Das Beispiel ist vom APPUiO-Blog inspiriert: <http://docs.appuio.ch/de/latest/ap
 ### Erstellen Sie ein neues Projekt
 
 Erstellen Sie ein Projekt mit dem Namen "[USER]-binary-build"
+
 <details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-binary-build</details><br/>
 
 ### Erstellen Sie die Deployment Verzeichnisstruktur
@@ -64,12 +67,12 @@ wget -O deployments/ROOT.war 'https://github.com/appuio/hello-world-war/blob/mas
 
 Erstellen Sie eine Build-Konfiguration für einen binary-Build mit folgenden Attributen:
 
-* Basis Container Image: `openshift/wildfly-160-centos7`
-* Name: `hello-world`
-* Label: `app=hello-world`.
-* Typ: `binary`
+- Basis Container Image: `openshift/wildfly-160-centos7`
+- Name: `hello-world`
+- Label: `app=hello-world`.
+- Typ: `binary`
 
-Das Flag *binary=true* zeigt an, dass dieser Build seine Daten direkt als Input erhält, anstatt via URL (Git Repo).
+Das Flag _binary=true_ zeigt an, dass dieser Build seine Daten direkt als Input erhält, anstatt via URL (Git Repo).
 
 Befehl:
 
@@ -146,6 +149,7 @@ Klicken Sie in der Web Console auf die Route, um die Ausgabe der `hello-world`-A
 Wir können auch beliebige Container basierend auf Dockerfiles erstellen.
 
 Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-docker-build"
+
 <details><summary>Projektbefehl erstellen</summary>oc new-project [USER]-docker-build</details><br/>
 
 Befehl zum Erstellen eines Docker-Builds:
