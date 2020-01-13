@@ -11,6 +11,7 @@ Folgen Sie den Anweisungen im [Lab 7: Troubleshooting, was ist im Pod?](../labs/
 In diesem Beispiel werden wir eine Applikation automatisiert hoch- und runterskalieren, je nachdem unter wieviel Last die Applikation steht. Dazu verwenden wir eine Ruby Example Webapp.
 
 Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-autoscale`:
+
 <details><summary>Tipp</summary>oc new-project [USER]-autoscale</details><br/>
 
 Auf dem Branch load gibt es einen CPU intensiven Endpunkt, welchen wir für unsere Tests verwenden werden. Dafür starten wir die App auf diesem Branch:
@@ -26,15 +27,16 @@ Bis die ersten Metriken auftauchen dauert es eine Weile, erst dann wird der Auto
 
 Nun definieren wir ein Set an Limiten für unsere Applikation, die für einen einzelnen Pod Gültigkeit hat.
 Dazu editieren wir die `ruby-ex` DeploymentConfig:
+
 <details><summary>Tipp</summary>oc edit dc ruby-ex</details><br/>
 
 Folgende Resource Limits fügen wir dem Container hinzu:
 
 ```yaml
-        resources:
-          limits:
-            cpu: "0.2"
-            memory: "256Mi"
+resources:
+  limits:
+    cpu: "0.2"
+    memory: "256Mi"
 ```
 
 Die Ressourcen sind ursprünglich leer: `resources: {}`. Achtung die `resources` müssen auf dem Container und nicht dem Deployment definiert werden.
@@ -55,6 +57,7 @@ In der Web Console ist ersichtlich, dass das manuelle Skalieren der Pods nicht m
 Nun können wir auf dem Service Last erzeugen.
 
 Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
+
 <details><summary>Tipp</summary>oc get route</details><br/>
 
 ```bash

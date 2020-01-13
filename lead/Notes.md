@@ -1,10 +1,10 @@
 # Instruktionen für den Lead des Techlabs
 
 ## Vorbereitung
+
 - [x] Lab Umgebung aufsetzen
 - [x] Acconts einrichten
 - [x] inkl. PVs
-
 
 ## Ablauf
 
@@ -13,8 +13,8 @@
 - Lab 1: Selbststudium
 - Lab 2: Gemeinsam Step by Step durch gehen, alle Teilnehmer mitziehen
 - Lab 3: Teilnehmer Lab 3 durchgehen lassen und unterstützen
-   - Am Schluss die einzelnen Komponenten des Example Projektes erklären:
-      - Overview, JavaScript Graph, Route, Service, Pods, Configuration
+  - Am Schluss die einzelnen Komponenten des Example Projektes erklären:
+    - Overview, JavaScript Graph, Route, Service, Pods, Configuration
 - Lab 4: Gemeinsam Step by Step durchgehen
 - Lab 5: Gemeinsam Step by Step durchgehen
 - Lab 6: nicht zu hoch (max 3) skalieren
@@ -23,7 +23,6 @@
 - Lab 9: Gemeinsam Step by Step durchgehen
 - Lab 10: Gemeinsam Step by Step durchgehen
 - Lab 11: Gemeinsam Step by Step durchgehen
-
 
 ## Offene Punkte
 

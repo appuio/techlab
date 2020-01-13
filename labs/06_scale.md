@@ -5,6 +5,7 @@ In diesem Lab zeigen wir auf, wie man Applikationen in OpenShift skaliert. Des W
 ## Aufgabe: LAB6.1 Beispiel-Applikation hochskalieren
 
 Dafür erstellen wir ein neues Projekt mit dem Namen `[USER]-scale`.
+
 <details><summary>Tipp</summary>oc new-project [USER]-scale</details><br/>
 
 Fügen dem Projekt eine Applikation hinzu:
@@ -14,6 +15,7 @@ oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker
 ```
 
 Und stellen den Service `appuio-php-docker` zur Verfügung (expose).
+
 <details><summary>Tipp</summary>oc expose service appuio-php-docker</details><br/>
 
 Wenn wir unsere Beispiel-Applikation skalieren wollen, müssen wir unserem ReplicationController (rc) mitteilen, dass wir bspw. stets 3 Replicas des Image am Laufen haben wollen.
@@ -27,6 +29,7 @@ appuio-php-docker-1   1         1         33s
 ```
 
 Für mehr Details json oder yaml Output ausgeben lassen:
+
 <details><summary>Tipp</summary>oc get rc appuio-php-docker-1 -o json<br/>oc get rc appuio-php-docker-1 -o yaml</details><br/>
 
 Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt sind (status).
@@ -62,7 +65,7 @@ Zum Schluss schauen wir uns den Service an. Der sollte jetzt alle drei Endpoints
 ```bash
 $ oc describe svc appuio-php-docker
 Name:              appuio-php-docker
-Namespace:		techlab-scale
+Namespace:         techlab-scale
 Labels:            app=appuio-php-docker
 Annotations:       openshift.io/generated-by=OpenShiftNewApp
 Selector:          app=appuio-php-docker,deploymentconfig=appuio-php-docker
@@ -102,9 +105,9 @@ oder in PowerShell (**Achtung**: erst ab PowerShell-Version 3.0!):
 
 ```bash
 while(1) {
-	Start-Sleep -s 1
-	Invoke-RestMethod http://[HOSTNAME]/pod/
-	Get-Date -Uformat "+ TIME: %H:%M:%S,%3N"
+        Start-Sleep -s 1
+        Invoke-RestMethod http://[HOSTNAME]/pod/
+        Get-Date -Uformat "+ TIME: %H:%M:%S,%3N"
 }
 ```
 
@@ -173,8 +176,8 @@ Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/co
 
 Grundsätzlich gibt es zwei Arten von Health Checks, die implementiert werden können:
 
-* Liveness Probe: Sagt aus, ob ein laufender Container immer noch sauber läuft
-* Readiness Probe: Gibt Feedback darüber, ob eine Applikation bereit ist, Requests zu empfangen
+- Liveness Probe: Sagt aus, ob ein laufender Container immer noch sauber läuft
+- Readiness Probe: Gibt Feedback darüber, ob eine Applikation bereit ist, Requests zu empfangen
 
 Diese beiden Checks können als HTTP Check, Container Execution Check (Befehl oder z.B. Shell Script im Container) oder als TCP Socket Check implementiert werden.
 
@@ -195,16 +198,16 @@ oc set probe dc/appuio-php-docker --readiness --get-url=http://:8080/health --in
 Ein Blick in die DeploymentConfig zeigt, dass nun folgender Eintrag unter `.spec.template.spec.containers` eingefügt wurde:
 
 ```yaml
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /health
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+readinessProbe:
+  failureThreshold: 3
+  httpGet:
+    path: /health
+    port: 8080
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
 ```
 
 Verifizieren Sie während eines Deployments der Applikation, dass nun auch ein Update der Applikation unterbruchsfrei verläuft, indem Sie die bereits verwendete While-Schlaufe während des folgenden Update-Befehls beobachten:
@@ -220,7 +223,7 @@ Jetzt sollten die Antworten ohne Unterbruch vom neuen Pod kommen.
 
 Über den Replication Controller haben wir nun der Plattform mitgeteilt, dass jeweils **n** Replicas laufen sollen. Was passiert nun, wenn wir einen Pod löschen?
 
-Suchen Sie mittels `oc get pods` einen Pod im Status "running" aus, den Sie *killen* können.
+Suchen Sie mittels `oc get pods` einen Pod im Status "running" aus, den Sie _killen_ können.
 
 Starten sie in einem eigenen Terminal den folgenden Befehl (anzeige der Änderungen an Pods)
 

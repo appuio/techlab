@@ -26,21 +26,24 @@ Folgen Sie den Anweisungen im [Lab 8: Datenbank anbinden](../labs/08_database.md
 
 Ziel ist es eine Java Spring Boot Applikation lokal zu bauen und mittels Binary Build auf die Plattform zu bringen.
 
-* Siehe dazu das Binary Build Beispiel des Labs [dev-labs/02_builds.md](./02_builds.md).
-* GitHub Repository mit dem Sourcecode: <https://github.com/appuio/example-spring-boot-helloworld>
-* Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk8-jdk/>
+- Siehe dazu das Binary Build Beispiel des Labs [dev-labs/02_builds.md](./02_builds.md).
+- GitHub Repository mit dem Sourcecode: <https://github.com/appuio/example-spring-boot-helloworld>
+- Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk8-jdk/>
 
 ### Projekt erstellen
 
 Neues Projekt mit dem Namen `[USER]-spring-boot` erstellen.
+
 <details><summary>Tipp</summary>oc new-project [USER]-spring-boot</details><br/>
 
 ### Applikation bauen
 
 Zuerst das GitHub Repository klonen und danach das Spring Boot Jar bauen.
+
 <details><summary>Git Clone Befehl</summary>git clone https://github.com/appuio/example-spring-boot-helloworld.git</details><br/>
 
 Danach die Applikation bauen, es wird nur das JDK 1.8 benötigt.
+
 <details>
     <summary>Applikation bauen</summary>
     cd example-spring-boot-helloworld/<br/>
@@ -90,11 +93,13 @@ oc new-build -D $'FROM fabric8/java-centos-openjdk8-jdk\nCOPY deployments/*.jar 
 Wie ist der Name des ImageSteam, in welchen das gebaute Image gepushed wird?
 
 Binary Build starten mit dem Inhalt aus diesem Ordner.
+
 <details><summary>Tipp</summary>oc start-build spring-boot --from-dir=. --follow</details><br/>
 
 ### Applikation erstellen
 
 Applikation anhand des Image Stream erstellen mit dem Label `app=spring-boot`.
+
 <details><summary>Tipp</summary>oc new-app spring-boot -l app=spring-boot</details><br/>
 
 ### Route erstellen

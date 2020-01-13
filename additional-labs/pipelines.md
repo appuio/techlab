@@ -13,6 +13,7 @@ OpenShift Pipelines basieren auf Jenkins Pipelines, welche voll integriert mit O
 Um zu verstehen, wie OpenShift Pipelines funktionieren, wollen wir als ersten Schritt direkt eine Pipeline anlegen.
 
 Erstellen wir dafür ein neues Projekt mit dem Namen `[USER]-buildpipeline`.
+
 <details><summary>Tipp</summary>oc new-project [USER]-buildpipeline</details><br/>
 
 Wir legen mit folgendem Befehl die entsprechende BuildConfig an, welche das JenkinsFile, also die Pipeline, direkt beinhaltet. Ebenso wird eine zweite BuildConfig erstellt. Diese enthält die Docker BuildConfig für die eigentliche Applikation, die wir im Rahmen dieser Pipeline deployen wollen. Im vorliegenden Beispiel eine simple PHP Applikation:
@@ -103,7 +104,6 @@ spec:
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: Jenkinsfile
-
 ```
 
 ## Jenkins OpenShift Plugins
@@ -111,7 +111,6 @@ spec:
 Der durch OpenShift dynamisch deployte Jenkins ist durch eine Reihe von OpenShift Jenkins Plugins vollständig mit OpenShift gekoppelt. Einerseits kann so direkt auf Ressourcen innerhalb des Projekts zugegriffen werden, andererseits können durch entsprechendes Labelling dynamische Slaves aufgesetzt werden. Des Weiteren wird auch ein entsprechender Serviceaccount (`jenkins`) erstellt. Die Rechtevergabe kann entsprechend über diesen Serviceacount erfolgen.
 
 Zusätzliche Informationen finden Sie hier: https://docs.openshift.com/container-platform/3.11/install_config/configuring_pipeline_execution.html#openshift-jenkins-client-plugin
-
 
 ### OpenShift Jenkins Pipeline
 
@@ -156,6 +155,7 @@ oc import-image custom-jenkins-slave --from=docker.io/openshift/jenkins-slave-ma
 ```
 
 Mit diesem Befehl haben wir einen ImageStream zu diesem Image angelegt. Wir inspizieren ihn über die Web Console oder mit dem oc Tool.
+
 <details><summary>Tipp</summary>Web Console: Builds -> Images -> custom-jenkins-slave<br/>oc Tool: oc describe is/custom-jenkins-slave</details><br/>
 
 Anschliessend definieren wir mittels dem label `role` noch, dass es sich um einen Jenkins Slave handelt:
@@ -195,14 +195,14 @@ Als nächstes wollen wir nun unsere Pipeline weiter ausbauen und das Deployment 
 
 Für ein Multi-Stage Deployment auf OpenShift hat sich das folgende Setup als Best Practice erwiesen:
 
-* Ein Build Projekt, CI/CD Umgebung Jenkins, Docker Builds, S2I Builds, ...
-* Pro Stage (dev, test, ..., prod) ein Projekt, welches die laufenden Pods und Services enthält, was uns erlaubt, sämtliche Umgebungen möglichst identisch zu halten
+- Ein Build Projekt, CI/CD Umgebung Jenkins, Docker Builds, S2I Builds, ...
+- Pro Stage (dev, test, ..., prod) ein Projekt, welches die laufenden Pods und Services enthält, was uns erlaubt, sämtliche Umgebungen möglichst identisch zu halten
 
 Das Build Projekt haben wir oben bereits eingerichtet (`[USER]-buildpipeline`). Als nächsten Schritt erstellen wir nun die Projekte für die unterschiedlichen Stages:
 
-* [USER]-pipeline-dev
-* [USER]-pipeline-test
-* [USER]-pipeline-prod
+- [USER]-pipeline-dev
+- [USER]-pipeline-test
+- [USER]-pipeline-prod
 
 <details>
     <summary>Tipp</summary>
@@ -359,8 +359,8 @@ Die Konfigurationswerte der Umgebungsvariablen zur Konfiguration der eigentliche
 
 Als Grundprinzip kann man sich das so vorstellen:
 
-* Resourcen werden als Files (`yaml` oder `json`) im Git verwaltet
-* Im Rahmen der Deployment Pipeline werden diese Ressourcen entsprechend auf dem Kubernetes Cluster angewandt
+- Resourcen werden als Files (`yaml` oder `json`) im Git verwaltet
+- Im Rahmen der Deployment Pipeline werden diese Ressourcen entsprechend auf dem Kubernetes Cluster angewandt
 
 Es kann sogar so weit gehen, dass man Ressourcen, welche noch nicht existieren, via Pipeline erstellt, somit also die ganze Umgebung per Knopfdruck aufsetzt.
 

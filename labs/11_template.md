@@ -13,6 +13,7 @@ OpenShift bietet dafür das Konzept von Templates, in welchen man eine Liste von
 **Note:** der Clusteradmin kann globale Templates erstellen, welche allen Usern zur Verfügung stehen.
 
 Alle vorhandenen Templates anzeigen
+
 ```
 $ oc get template -n openshift
 ```
@@ -61,25 +62,28 @@ $ oc new-app example-spring-boot
 ```
 
 Mittels:
+
 ```
-oc import-image example-spring-boot 
+oc import-image example-spring-boot
 ```
 
 wird das image importiert und das deployment gestartet.
 
 Mittels:
+
 ```
 oc rollout latest mysql
 ```
+
 wird ebenso die Datenbank deployed
 
 **Tipp:** Sie könnten Templates auch direkt verarbeiten in dem Sie ein Template direkt `$ oc new-app -f template.json -p Param = value` aufrufen
 
 Als Abschluss dieses Labs können Sie sich noch das Template anschauen
+
 ```
 https://github.com/appuio/example-spring-boot-helloworld/blob/master/example-spring-boot-template.json
 ```
-
 
 **Note:** Bestehende Ressourcen können als Template exportiert werden, verwenden Sie dafür den `oc export [ResourceType] --as-myapptemplate` Command.
 Bspw.

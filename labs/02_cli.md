@@ -74,7 +74,7 @@ Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert 
 
 #### Windows Quick Hack
 
-Legen sie den oc Client direkt im Verzeichnis *C:\Windows* ab.
+Legen sie den oc Client direkt im Verzeichnis _C:\Windows_ ab.
 
 ## Installation verifizieren
 

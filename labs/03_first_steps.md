@@ -6,7 +6,7 @@ In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagie
 
 **Note:** Vergewissern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben, d.h. erfolgreich auf dem Webinterface einloggen sowie den `oc` Client installieren konnten.
 
-Der Befehl für das Login mit `oc` kann komfortabel via Webinterface kopiert werden. Dazu oben rechts auf das Account-Symbol und anschliessend auf *Copy Login Command* klicken:
+Der Befehl für das Login mit `oc` kann komfortabel via Webinterface kopiert werden. Dazu oben rechts auf das Account-Symbol und anschliessend auf _Copy Login Command_ klicken:
 
 ![oc-login](../images/lab_3_login.png)
 
@@ -40,21 +40,23 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 
 1. Fügen Sie Ihre erste Applikation Ihrem Projekt hinzu. Als Beispielprojekt verwenden wir ein APPUiO Example:
 
-   1. Wechseln Sie zuerst in die Catalog-Ansicht, indem Sie entweder den Button *Add to Project* oben rechts oder direkt *Browse Catalog* in der Projektübersicht wählen
+   1. Wechseln Sie zuerst in die Catalog-Ansicht, indem Sie entweder den Button _Add to Project_ oben rechts oder direkt _Browse Catalog_ in der Projektübersicht wählen
 
-   1. Wählen Sie den Reiter *Languages* und anschliessend *PHP* aus
+   1. Wählen Sie den Reiter _Languages_ und anschliessend _PHP_ aus
 
-   1. Wählen Sie dazu als Version *7.1* aus
+   1. Wählen Sie dazu als Version _7.1_ aus
 
    1. Geben Sie Ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL:
+
    ```
    https://github.com/appuio/example-php-sti-helloworld.git
    ```
+
    ![php](../images/lab_3_php.png)
 
-1. Mit Klick auf *Create* wird die Applikation erstellt
+1. Mit Klick auf _Create_ wird die Applikation erstellt
 
-1. Über den Link *Continue to the project overview* kann der Aufbau (bestehend aus Build und anschliessendem Deployment) beobachtet werden
+1. Über den Link _Continue to the project overview_ kann der Aufbau (bestehend aus Build und anschliessendem Deployment) beobachtet werden
 
 Sie haben nun Ihre erste Applikation mittels sog. **[Source to Image](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
 

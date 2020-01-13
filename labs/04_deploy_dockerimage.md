@@ -9,6 +9,7 @@ Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet
 Als ersten Schritt erstellen wir dafür ein neues Projekt. Ein Projekt ist eine Gruppierung von Ressourcen (Container und Container Images, Pods, Services, Routen, Konfiguration, Quotas, Limiten und weiteres). Für das Projekt berechtigte User können diese Ressourcen verwalten. Innerhalb eines OpenShift Clusters muss der Name eines Projektes eindeutig sein.
 
 Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-dockerimage`:
+
 <details><summary>Tipp</summary>oc new-project [USER]-dockerimage</details><br/>
 
 `oc new-project` wechselt automatisch in das eben neu angelegte Projekt. Mit dem `oc get` Command können Ressourcen von einem bestimmten Typ angezeigt werden.
@@ -56,8 +57,8 @@ $ oc new-app appuio/example-spring-boot
 
 Für unser Lab verwenden wir ein APPUiO-Beispiel (Java Spring Boot Applikation):
 
-* Docker Hub: <https://hub.docker.com/r/appuio/example-spring-boot/>
-* GitHub (Source): <https://github.com/appuio/example-spring-boot-helloworld>
+- Docker Hub: <https://hub.docker.com/r/appuio/example-spring-boot/>
+- GitHub (Source): <https://github.com/appuio/example-spring-boot-helloworld>
 
 OpenShift legt die nötigen Ressourcen an, lädt das Container Image, in diesem Fall von Docker Hub, herunter und deployt anschliessend den Pod.
 
@@ -82,9 +83,9 @@ Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShif
 
 Als wir `oc new-app appuio/example-spring-boot` vorhin ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt. Diese werden dafür benötigt, das Container Image zu deployen:
 
-* [Service](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#services)
-* [ImageStream](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#image-streams)
-* [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html)
+- [Service](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#services)
+- [ImageStream](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#image-streams)
+- [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html)
 
 ### Service
 
@@ -251,13 +252,13 @@ oc get imagestream example-spring-boot -o json
 
 In der [DeploymentConfig](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/how_deployments_work.html) werden folgende Punkte definiert:
 
-* Update Strategy: wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
-* Triggers: Welche Triggers führen zu einem Deployment? In unserem Beispiel ImageChange
-* Container
-  * Welches Image soll deployed werden?
-  * Environment Configuration für die Pods
-  * ImagePullPolicy
-* Replicas, Anzahl der Pods, die deployt werden sollen
+- Update Strategy: wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
+- Triggers: Welche Triggers führen zu einem Deployment? In unserem Beispiel ImageChange
+- Container
+  - Welches Image soll deployed werden?
+  - Environment Configuration für die Pods
+  - ImagePullPolicy
+- Replicas, Anzahl der Pods, die deployt werden sollen
 
 Mit dem folgenden Befehl können zusätzliche Informationen zur DeploymentConfig ausgelesen werden:
 

@@ -3,6 +3,7 @@
 Die meisten Applikationen sind in irgend einer Art stateful (sie haben also einen eigenen Zustand) und speichern Daten persistent ab. Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore. In diesem Lab werden wir in unserem Projekt einen MySQL Service anlegen und an unsere Applikation anbinden, sodass mehrere Applikationspods auf die gleiche Datenbank zugreifen können.
 
 Für dieses Beispiel verwenden wir das Spring Boot-Beispiel aus [LAB 4](04_deploy_dockerimage.md), `[USER]-dockerimage`.
+
 <details><summary>Tipp</summary>oc project [USER]-dockerimage</details><br/>
 
 ## Aufgabe: LAB8.1: MySQL Service anlegen
@@ -41,7 +42,7 @@ deploymentconfig.apps.openshift.io/mysql created
 
 ### Web Console
 
-In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hinzugefügt werden. Dazu oben rechts auf *Add to Project*, *Browse Catalog* klicken und anschliessend unter dem Reiter *Databases* *MySQL* und *MySQL (Ephemeral)* auswählen:
+In der Web Console kann der MySQL (Ephemeral) Service via Catalog dem Projekt hinzugefügt werden. Dazu oben rechts auf _Add to Project_, _Browse Catalog_ klicken und anschliessend unter dem Reiter _Databases_ _MySQL_ und _MySQL (Ephemeral)_ auswählen:
 
 ![MySQLService](../images/lab_8_mysql.png)
 
@@ -58,9 +59,9 @@ oc get dc mysql -o yaml
 Konkret geht es um die Konfiguration der Container mittels env (MYSQL_USER, MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD, MYSQL_DATABASE) in der DeploymentConfig unter `spec.templates.spec.containers`:
 
 ```yaml
-    spec:
-      containers:
-      - env:
+spec:
+  containers:
+    - env:
         - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
@@ -158,6 +159,7 @@ Diese Umgebungsvariablen können wir nun in der DeploymentConfig example-spring-
 ```bash
 SPRING_DATASOURCE_URL=jdbc:mysql://mysql/appuio?autoReconnect=true
 ```
+
 **Note:** mysql löst innerhalb Ihres Projektes via DNS Abfrage auf die Cluster IP des MySQL Service auf. Die MySQL Datenbank ist nur innerhalb des Projektes erreichbar. Der Service ist ebenfalls über den folgenden Namen erreichbar:
 
 ```
@@ -330,6 +332,7 @@ show tables;
 alle Tabellen anzeigen.
 
 Was enthält die hello Tabelle?
+
 <details><summary>Tipp</summary>select * from hello;</details><br/>
 
 ## Aufgabe: LAB8.4: Dump auf MySQL DB einspielen
@@ -350,8 +353,8 @@ Die Aufgabe ist es, in den MySQL Pod den [Dump](https://raw.githubusercontent.co
 
 Sind die "Say Hello" Einträge von früher noch da?
 
-* Wenn ja, wieso?
-* Wenn nein, wieso?
+- Wenn ja, wieso?
+- Wenn nein, wieso?
 
 ---
 
@@ -386,6 +389,7 @@ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/08_dum
 ```
 
 Was enthält die hello Tabelle jetzt?
+
 <details><summary>Tipp</summary>mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio<br/>mysql> select * from hello;</details><br/>
 
 **Note:** Den Dump kann man wie folgt erstellen:

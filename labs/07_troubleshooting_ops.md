@@ -5,6 +5,7 @@ In diesem Lab wird aufgezeigt, wie man im Fehlerfall und Troubleshooting vorgehe
 ## In Container einloggen
 
 Wir verwenden dafür wieder das Projekt aus [Lab 4](04_deploy_dockerimage.md) `[USER]-dockerimage`.
+
 <details><summary>Tipp</summary>oc project [USER]-dockerimage</details><br/>
 
 Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen generell nicht modifiziert werden. Dennoch gibt es Usecases, bei denen man sich in die Container einloggen muss. Zum Beispiel für Debugging und Analysen.
@@ -14,6 +15,7 @@ Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen
 Mit OpenShift können Remote Shells in die Pods geöffnet werden ohne dass man darin vorgängig SSH installieren müsste. Dafür steht einem der Befehl `oc rsh` zur Verfügung.
 
 Wählen Sie einen Pod aus und öffnen Sie die Remote Shell.
+
 <details><summary>Tipp</summary>oc get pods<br/>oc rsh [POD]</details><br/>
 
 Sie können nun über diese Shell Analysen im Container ausführen:
@@ -77,6 +79,7 @@ Der Parameter `-p` steht dabei für "previous", bezieht sich also auf einen Pod,
 Mit OpenShift wird ein EFK (Elasticsearch, Fluentd, Kibana) Stack mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert. Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten.
 
 Kibana ist über den Link "View Archive" in der Web Console bei den Logs des Pods erreichbar. Melde dich im Kibana an, schaue dich um und versuche eine Suche für bestimmte Logs zu definieren.
+
 <details><summary>Beispiel: mysql Container Logs ohne error Meldung</summary>kubernetes.container_name:"mysql" AND -message:"error"</details><br/>
 
 Weitere Informationen und ein optionales LAB finden Sie [hier](../additional-labs/logging_efk_stack.md).

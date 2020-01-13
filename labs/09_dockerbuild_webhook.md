@@ -16,8 +16,8 @@ Gehen Sie auf die [GitHub Projekt-Seite](https://github.com/appuio/example-php-d
 
 ![Fork](../images/lab_9_fork_example.png)
 
-
 Sie haben nun unter
+
 ```
 https://github.com/[YourGitHubUser]/example-php-docker-helloworld
 ```
@@ -27,6 +27,7 @@ einen Fork des Example Projektes, den Sie so erweitern können wie Sie wollen.
 ## Deployen des eigenen Forks
 
 Erstellen Sie ein neues Projekt:
+
 ```
 $ oc new-project [USER]-example4
 ```
@@ -36,9 +37,11 @@ Erstellen Sie für Ihren Fork eine neue App. **Note:** Ersetzen Sie `[YourGithub
 ```
 $ oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
 ```
+
 Mittels Parameter `--strategy=docker` sagen wir dem `oc new-app` Befehl nun explizit, er soll im angegebenen Git Repository nach einem Dockerfile suchen und dieses für den Build verwenden.
 
 Nun exponieren Sie den Service mit:
+
 ```
 $ oc expose service appuio-php-docker-ex
 ```
@@ -68,12 +71,14 @@ Ab jetzt triggern alle Pushes auf Ihrem GitHub Repository einen Build und deploy
 ## Aufgabe: LAB9.3: Code anpassen
 
 Klonen Sie Ihr Git Repository und wechseln Sie in das Code Verzeichnis:
+
 ```
 $ git clone https://github.com/[YourGithubUser]/example-php-docker-helloworld.git
 $ cd example-php-docker-helloworld
 ```
 
 Passen Sie das File bspw. auf Zeile 56 ./app/index.php an:
+
 ```
 $ vim app/index.php
 ```
@@ -92,6 +97,7 @@ $ vim app/index.php
 ```
 
 Pushen Sie Ihren Change:
+
 ```
 $ git add .
 $ git commit -m "updated Hello"
@@ -102,6 +108,7 @@ Als Alternative können Sie das File auch direkt auf GitHub editieren:
 ![Github Webhook](../images/lab_9_edit_on_github.png)
 
 Sobald Sie die Änderungen gepushed haben, startet OpenShift einen Build des neuen Source Code
+
 ```
 $ oc get builds
 ```
@@ -136,7 +143,6 @@ Warning: the following images triggers were disabled: appuio-php-docker-ex:lates
 Sobald das Deployment der alten Version erfolgt ist, können Sie über Ihren Browser überprüfen, ob wieder die ursprüngliche Überschrift **Hello APPUiO** angezeigt wird.
 
 **Tipp:** Die automatischen Deployments neuer Versionen ist nun für diese Applikation ausgeschaltet um ungewollte Änderungen nach dem Rollback zu verhindern. Um das automatische Deployment wieder einzuschalten führen Sie den folgenden Befehl aus:
-
 
 ```
 $ oc set triggers dc/appuio-php-docker-ex --auto

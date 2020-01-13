@@ -4,18 +4,19 @@ In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) �
 
 ## Routen
 
-Der `oc new-app` Befehl aus dem vorherigen [Lab](04_deploy_dockerimage.md) erstellt keine Route. Somit ist unser Service von *aussen* her gar nicht erreichbar. Will man einen Service verfügbar machen, muss dafür eine Route eingerichtet werden. Der OpenShift Router erkennt aufgrund des Host Headers auf welchen Service ein Request geleitet werden muss.
+Der `oc new-app` Befehl aus dem vorherigen [Lab](04_deploy_dockerimage.md) erstellt keine Route. Somit ist unser Service von _aussen_ her gar nicht erreichbar. Will man einen Service verfügbar machen, muss dafür eine Route eingerichtet werden. Der OpenShift Router erkennt aufgrund des Host Headers auf welchen Service ein Request geleitet werden muss.
 
 Aktuell werden folgende Protokolle unterstützt:
 
-* HTTP
-* HTTPS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
-* WebSockets
-* TLS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
+- HTTP
+- HTTPS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
+- WebSockets
+- TLS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
 
 ## Aufgabe: LAB5.1
 
 Vergewissern Sie sich, dass Sie sich im Projekt `[USER]-dockerimage` befinden.
+
 <details><summary>Tipp</summary>oc project [USER]-dockerimage</details><br/>
 
 Erstellen Sie für den Service `example-spring-boot` eine Route und machen Sie ihn darüber öffentlich verfügbar.
@@ -59,7 +60,7 @@ example-spring-boot-secure   example-spring-boot-secure-techlab.mycluster.com   
 
 Die Applikation ist nun vom Internet her über den angegebenen Hostname erreichbar, Sie können also nun auf die Applikation zugreifen.
 
-**Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: *servicename-project.osecluster*
+**Tipp:** Wird kein Hostname angegeben wird der Standardname verwendet: _servicename-project.osecluster_
 
 In der Overview der Web Console ist diese Route mit dem Hostname jetzt auch sichtbar.
 

@@ -6,7 +6,6 @@ Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug aus der offiziell
 
 > https://docs.openshift.com/container-platform/3.11/architecture/index.html
 
-
 ## Grundkonzepte
 
 OpenShift basiert auf modernen Open Source Konzepten wie Docker und Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebuildet, deployt und betrieben werden kann. OpenShift kann als Container Platform oder Platform as a Service (PaaS) bezeichnet werden.
@@ -32,10 +31,11 @@ Container basieren auf Container Images. Ein Container Image ist eine binary Dat
 Container Images werden bspw. anhand von Docker Files (textueller Beschrieb wie das Container Image Schritt für Schritt aufgebaut ist) gebaut. Grundsätzlich sind Container Images hierarchisch angewendete Filesystem Snapshots.
 
 **Beispiel Tomcat**
+
 - Basis Image (CentOs 7)
-- + Install Java
-- + Install Tomcat
-- + Install App
+- - Install Java
+- - Install Tomcat
+- - Install App
 
 Die gebauten Container Images werden in der OpenShift internen Image Registry versioniert abgelegt und stehen der Plattform nach dem Build zum Deployment zur Verfügung.
 

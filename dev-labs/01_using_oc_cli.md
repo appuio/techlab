@@ -12,7 +12,7 @@ Kopieren Sie den Login-Befehl von der Web Console
 
 (haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
 
-    oc login https://techlab.puzzle.ch:443 --token=XYZ
+    oc login https://techlab.openshift.ch:443 --token=XYZ
     oc whoami
 
 Mit dem Token haben Sie eine angemeldete Sitzung und können sich über die CLI (auf der API) anmelden, ohne dort die Authentifizierung vorzunehmen.
@@ -82,7 +82,7 @@ Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die 
 
     oc projects
 
-Überprüfen Sie die Änderungen in der Web Console. Gehen Sie zu Ihren beiden Projekten und finden Sie die techlab Gruppe unter *Resources -> Membership*
+Überprüfen Sie die Änderungen in der Web Console. Gehen Sie zu Ihren beiden Projekten und finden Sie die techlab Gruppe unter _Resources -> Membership_
 
 ## Überprüfen und Bearbeiten anderer Ressourcen
 
@@ -108,9 +108,10 @@ Sie können die Ressourcen auch bearbeiten:
     oc edit resrourceXY resourceName
 
 Lassen Sie uns zum Beispiel unser webui Projekt bearbeiten.
+
 <details><summary>Befehl</summary>oc edit project [USER]-webui</details><br/>
 
-Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingeben: *ESC* und *:* und *q*
+Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingeben: _ESC_ und _:_ und _q_
 
 ## Ressourcen löschen
 
