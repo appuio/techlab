@@ -50,6 +50,12 @@ Danach die Applikation bauen, es wird nur das JDK 1.8 benötigt.
     ./gradlew build<br/>
 </details><br/>
 
+<details>
+    <summary>Applikation bauen (auf Windows)</summary>
+    ins Verzeichnis <i>example-spring-boot-helloworld</i> wechseln<br/>
+    gradlew.bat build<br/>
+</details><br/>
+
 ### Deployment Verzeichnisstruktur
 
 Für den Binary Build eine Verzeichnisstruktur vorbereiten mit dem Jar vom Java Build.
