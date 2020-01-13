@@ -12,7 +12,7 @@ Kopieren Sie den Login-Befehl von der Web Console
 
 (haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
 
-    oc login https://techlab.puzzle.ch:443 --token=XYZ
+    oc login https://techlab.openshift.ch:443 --token=XYZ
     oc whoami
 
 Mit dem Token haben Sie eine angemeldete Sitzung und können sich über die CLI (auf der API) anmelden, ohne dort die Authentifizierung vorzunehmen.
