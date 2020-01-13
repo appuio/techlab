@@ -70,8 +70,8 @@ Sie haben soeben Ihre erste Applikation mittels sog. __[Source to Image](https:/
 :information_source: __Tipp:__ Mit den folgenden Befehlen kann das obere Beispiel auf der Kommandozeile erstellt werden:
 
 ```bash
-$ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=appuio-php-sti-example
-$ oc expose svc appuio-php-sti-example
+oc new-app https://github.com/appuio/example-php-sti-helloworld.git
+oc expose svc example-php-sti-helloworld
 ```
 
 __Note:__ Der `oc new-app`-Befehl benötigt `git`. Falls `git` nicht installiert ist, insb. auf Windows, kann das Tool [hier heruntergeladen](https://git-scm.com/download/win) und installiert werden.
