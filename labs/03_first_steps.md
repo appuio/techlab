@@ -37,7 +37,7 @@ Um herauszufinden, wie Sie ein neues Projekt mit `oc` erstellen, können Sie fol
 oc help
 ```
 
-<details><summary>:information_source: Tipp</summary>`oc new-project [USERNAME]-example1`</details><br/>
+<details><summary>:information_source: Tipp</summary>oc new-project [USERNAME]-example1</details><br/>
 
 ## Web Console
 
