@@ -2,6 +2,10 @@
 
 In diesem Lab werden wir gemeinsam das CLI-Tool `odo` installieren und konfigurieren, damit wir danach die ersten Schritte auf der OpenShift Techlab Plattform durchführen können.
 
+## `oc`
+
+FIXME: Anleitung für Installation von `oc` zur Verfügung stellen, `odo` entfernen.
+
 ## `odo`
 
 Via `odo` kommunizieren wir mit OpenShift. Es wurde mit OpenShift 4 neu ins Leben gerufen und fokussiert sich auf die Entwickler-relevanten Aufgaben.

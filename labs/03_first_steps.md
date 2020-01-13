@@ -1,16 +1,27 @@
 # Lab 3: Erste Schritte auf der Lab Plattform
 
-In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagieren, dies sowohl über den oc Client wie auch über die Web Console
+In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagieren, dies sowohl über den `oc` Client wie auch über die Web Console.
 
 ## Login
 
-**Note:** Vergewissern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben, d.h. erfolgreich auf dem Webinterface einloggen sowie den `oc` Client installieren konnten.
+__Note:__ Vergewissern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben, d.h. erfolgreich auf der Web Console einloggen sowie den `oc` Client installieren konnten.
 
-Der Befehl für das Login mit `oc` kann komfortabel via Webinterface kopiert werden. Dazu oben rechts auf das Account-Symbol und anschliessend auf _Copy Login Command_ klicken:
 
-![oc-login](../images/lab_3_login.png)
+### Befehl kopieren via Web Console
 
-Den Befehl nun in einem Terminal-Fenster einfügen.
+Der Befehl für das Login mit `oc` kann komfortabel via Web Console geholt werden. Dazu oben rechts auf den eigenen Username und anschliessend auf _Copy Login Command_ klicken:
+
+![oc-login](../images/lab_03_login.png)
+
+Nun kann der Befehl wie er unter "Log in with this token" dargestellt wird kopiert und in einem Terminal-Fenster eingefügt werden.
+
+### Login direkt mit `oc`
+
+Als Alternative zum Kopieren des Befehls kann direkt mit `oc` eingeloggt werden:
+
+```bash
+oc login FIXME: URL
+```
 
 ## Projekt erstellen
 
@@ -18,17 +29,15 @@ Ein Projekt in OpenShift ist das Top-Level Konzept um Ihre Applikationen, Deploy
 
 ## Aufgabe: LAB3.1
 
-Erstellen Sie auf der Lab Plattform ein neues Projekt.
+Erstellen Sie auf der Lab Plattform ein neues Projekt mit Namen `[USERNAME]-example1`.
 
-**Note**: Verwenden Sie für Ihren Projektnamen am besten Ihren Techlab-Benutzernamen oder sonstigen Identifier, bspw. `[USER]-example1`
-
-> Wie kann ein neues Projekt erstellt werden?
-
-**Tipp** :information_source:
+Um herauszufinden, wie Sie ein neues Projekt mit `oc` erstellen, können Sie folgenden Befehl verwenden:
 
 ```bash
 oc help
 ```
+
+<details><summary>:information_source: Tipp</summary>`oc new-project [USERNAME]-example1`</details><br/>
 
 ## Web Console
 
@@ -40,64 +49,48 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 
 1. Fügen Sie Ihre erste Applikation Ihrem Projekt hinzu. Als Beispielprojekt verwenden wir ein APPUiO Example:
 
-   1. Wechseln Sie zuerst in die Catalog-Ansicht, indem Sie entweder den Button _Add to Project_ oben rechts oder direkt _Browse Catalog_ in der Projektübersicht wählen
+   1. Wechseln Sie zuerst von der Administrator- in die Developer-Ansicht oben links
 
-   1. Wählen Sie den Reiter _Languages_ und anschliessend _PHP_ aus
+   1. Wählen Sie nun das Feld "From Catalog"
 
-   1. Wählen Sie dazu als Version _7.1_ aus
+   1. Schränken Sie die Auswahl über einen Klick auf _Languages_ und anschliessend _PHP_ ein
 
-   1. Geben Sie Ihrem Beispiel einen sprechenden Namen und folgende URL als Repo URL:
+   1. Wählen Sie nun das Feld "PHP" aus und klicken auf "Create Application"
+
+   1. Füllen Sie das Feld "Git Repo URL" mit folgender URL
 
    ```
    https://github.com/appuio/example-php-sti-helloworld.git
    ```
 
-   ![php](../images/lab_3_php.png)
+1. Belassen Sie die restlichen Felder leer oder auf deren Standardwert und klicken auf _Create_
 
-1. Mit Klick auf _Create_ wird die Applikation erstellt
+Sie haben soeben Ihre erste Applikation mittels sog. __[Source to Image](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#source-build)__ Build auf OpenShift deployed.
 
-1. Über den Link _Continue to the project overview_ kann der Aufbau (bestehend aus Build und anschliessendem Deployment) beobachtet werden
-
-Sie haben nun Ihre erste Applikation mittels sog. **[Source to Image](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#source-build)** Build auf OpenShift deployed.
-
-**Tipp:** Mit dem folgenden Command können Sie in ein anderes Projekt wechseln:
-
-```bash
-oc project [projectname]
-```
-
-**Tipp:** Mit den folgenden Befehlen kann das obere Beispiel aus der Kommandozeile erstellt werden:
-
-**Note:** Der `oc new-app`-Befehl benötigt `git`. Falls `git` nicht installiert ist, insb. auf Windows, kann das Tool [hier heruntergeladen](https://git-scm.com/download/win) und installiert werden.
+:information_source: __Tipp:__ Mit den folgenden Befehlen kann das obere Beispiel auf der Kommandozeile erstellt werden:
 
 ```bash
 $ oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=appuio-php-sti-example
 $ oc expose svc appuio-php-sti-example
 ```
 
-**Tipp:** Eine ganze App kann mit dem folgendem Befehl gelöscht werden:
+__Note:__ Der `oc new-app`-Befehl benötigt `git`. Falls `git` nicht installiert ist, insb. auf Windows, kann das Tool [hier heruntergeladen](https://git-scm.com/download/win) und installiert werden.
+
+:information_source: __Tipp:__ Eine so erstellte Applikation mitsamt den zusätzlich angelegten Ressourcen kann mithilfe von Labels auf einen Schlag gelöscht werden, bspw. mit folgendem Befehl:
 
 ```bash
-oc delete all --selector app=appname
+oc delete all --selector app.kubernetes.io/component=example-php-sti-helloworld-git
 ```
 
-bspw.
+Um die Labels der verschiedenen Ressourcen anzuzeigen kann folgender Befehl verwendet werden:
 
 ```bash
-oc delete all --selector app=appuio-php-sti-example
-```
-
----
-
-## Lösung: LAB3.1
-
-```bash
-oc new-project [USER]-example1
+oc get all --show-labels
 ```
 
 ---
 
-**Ende Lab 3**
+__Ende Lab 3__
 
 <p width="100px" align="right"><a href="04_deploy_dockerimage.md">Ein Container Image deployen →</a></p>
 
