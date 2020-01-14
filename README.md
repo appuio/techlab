@@ -36,10 +36,6 @@ __Ziele dieses Techlabs__:
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 - [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
-### OpenShift Developer Techlab
-
-Unterlagen für ein zweitägiges Developer Techlab sind im Verzeichnis [dev-labs](dev-labs/) abgelegt.
-
 ## Weiterführende Dokumentation
 
 - [OpenShift Container Platform 4.2 Dokumentation](https://docs.openshift.com/container-platform/4.2/welcome/index.html)
