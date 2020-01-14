@@ -20,7 +20,7 @@ Aktuell werden folgende Protokolle unterstützt:
 
 Vergewissern Sie sich, dass Sie sich im Projekt `[USERNAME]-dockerimage` befinden.
 
-<details><summary><b>Tipp</b></summary>oc project [USER]-dockerimage</details><br/>
+<details><summary><b>Tipp</b></summary>oc project [USERNAME]-dockerimage</details><br/>
 
 Erstellen Sie für den Service `example-spring-boot` eine Route und machen Sie ihn darüber öffentlich verfügbar.
 
