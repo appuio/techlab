@@ -257,7 +257,7 @@ Danach können wir noch die Applikation exposen.
     prod: oc create route edge --service=application -n [USER]-pipeline-prod
 </details><br/>
 
-In der Pipeline können wir nun mittels Setzen eines bestimmten Tags auf dem Imagestream der gebuildeten Applikatione bspw. `application:dev`, das entsprechende Image in die passende Stage promoten und deployen.
+In der Pipeline können wir nun mittels Setzen eines bestimmten Tags auf dem Imagestream der gebuildeten Applikation bspw. `application:dev`, das entsprechende Image in die passende Stage promoten und deployen.
 
 Passen Sie ihre Pipeline entweder in der Web Console oder in der BuildConfig wie folgt an (die Werte für die Variablen `dev_project`, `test_project`, `prod_project` entsprechend setzen):
 
