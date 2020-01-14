@@ -22,7 +22,7 @@ Wir legen mit folgendem Befehl die entsprechende BuildConfig an, welche das Jenk
 oc create -f ./additional-labs/resources/simple-openshift-pipeline.yaml
 ```
 
-Während OpenShift arbeitet, schauen wir uns noch die verwendete Konfigutationsdatei an: [additional-labs/resources/simple-openshift-pipeline.yaml](additional-labs/resources/simple-openshift-pipeline.yaml)
+Während OpenShift arbeitet, schauen wir uns noch die verwendete Konfigutationsdatei an: [additional-labs/resources/simple-openshift-pipeline.yaml](resources/simple-openshift-pipeline.yaml)
 
 Aufgrund der BuildConfig deployt OpenShift automatisch eine integrierte Jenkins Instanz. Schauen wir uns dies in der Web Console an. Im Projekt befindet sich nach erfolgreichem Deployment eine laufende Jenkins Instanz, welche über eine Route exposed ist. Der Zugriff auf Jenkins über die Route ist mittels OpenShift OAuth gesichert. Loggen Sie sich dort ein und erteilen Sie der OAuth entsprechende Rechte. Ebenso wurde die vorher angelegte Build Pipeline synchronisiert und automatisch angelegt.
 
@@ -257,7 +257,7 @@ Danach können wir noch die Applikation exposen.
     prod: oc create route edge --service=application -n [USER]-pipeline-prod
 </details><br/>
 
-In der Pipeline können wir nun mittels Setzen eines bestimmten Tags auf dem Imagestream der gebuildeten Applikatione bspw. `application:dev`, das entsprechende Image in die passende Stage promoten und deployen.
+In der Pipeline können wir nun mittels Setzen eines bestimmten Tags auf dem Imagestream der gebuildeten Applikation bspw. `application:dev`, das entsprechende Image in die passende Stage promoten und deployen.
 
 Passen Sie ihre Pipeline entweder in der Web Console oder in der BuildConfig wie folgt an (die Werte für die Variablen `dev_project`, `test_project`, `prod_project` entsprechend setzen):
 
