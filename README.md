@@ -34,7 +34,6 @@ __Ziele dieses Techlabs__:
 - [ConfigMaps](additional-labs/configmaps.md)
 - [Pipelines](additional-labs/pipelines.md)
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
-- [Logging EFK Stack](additional-labs/logging_efk_stack.md)
 
 ## Weiterführende Dokumentation
 
