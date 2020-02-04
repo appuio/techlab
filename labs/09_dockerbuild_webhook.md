@@ -26,25 +26,28 @@ einen Fork des Example Projektes, den Sie so erweitern können wie Sie wollen.
 
 ## Deployen des eigenen Forks
 
-Erstellen Sie ein neues Projekt:
+Erstellen Sie ein neues Projekt mit dem Namen "[USER]-example4"
 
-```
-$ oc new-project [USER]-example4
-```
+<details><summary>Projekt Erstellen Befehl</summary>oc new-project [USER]-example4</details><br/>
 
-Erstellen Sie für Ihren Fork eine neue App. **Note:** Ersetzen Sie `[YourGithubUser]` mit dem Namen Ihres GitHub Accounts:
+Erstellen Sie für Ihren Fork eine neue App mit folgender Konfiguration:
 
-```
-$ oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
-```
+* Name: `appuio-php-docker-ex`
+* Build Strategie: `docker`
+* Git Repository: `https://github.com/[YourGithubUser]/example-php-docker-helloworld.git`
+
+**Note:** Ersetzen Sie `[YourGithubUser]` mit dem Namen Ihres GitHub Accounts:
+
+<details>
+  <summary>Applikation Erstellen Befehl</summary>
+  oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
+</details><br/>
 
 Mittels Parameter `--strategy=docker` sagen wir dem `oc new-app` Befehl nun explizit, er soll im angegebenen Git Repository nach einem Dockerfile suchen und dieses für den Build verwenden.
 
-Nun exponieren Sie den Service mit:
+Nun exponieren Sie den Service der Applikation.
 
-```
-$ oc expose service appuio-php-docker-ex
-```
+<details><summary>Route Erstellen Befehl</summary>oc create route edge --service=appuio-php-docker-ex</details><br/>
 
 ## Aufgabe: LAB9.2: Webhook auf GitHub einrichten
 
@@ -57,7 +60,7 @@ Kopieren Sie die GitHub [Webhook](https://developer.github.com/webhooks/) URL un
 Klicken Sie in Ihrem Projekt auf Settings:
 ![Github Webhook](../images/lab_09_webhook_github1.png)
 
-Klicken Sie auf Webhooks & services:
+Klicken Sie auf Webhooks:
 ![Github Webhook](../images/lab_09_webhook_github2.png)
 
 Fügen Sie einen Webhook hinzu:

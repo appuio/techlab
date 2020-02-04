@@ -14,6 +14,20 @@
 
 ### Anforderungen an die Dev-Labs
 
+#### Zugriff auf Plattform
+
+Zugriff auf die Techlab OpenShift Plattform testen. Wenn folgende Tests erfolgreich sind, sollte die Durchführung des Techlabs möglich sein.
+
+1. Zugriff mit Browser
+  * URL: https://techlab.openshift.ch/
+  * Log in with... "APPUiO Techlab Generic Login"
+  * "+ Create Project" Button rechts oben
+2. Zugriff mit OC Tool
+  * Download Binary (Unten bei Assets): https://github.com/openshift/origin/releases/tag/v3.11.0
+  * oc login https://techlab.openshift.ch/
+  * Projekt anlegen: oc new-project user30-test
+  * Applikation erstellen: oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=s2i
+
 #### Lab 01
 
 - techlab Benutzergruppe
@@ -41,3 +55,4 @@
 - OpenShift ImageStream: : "openshift/ruby:2.5"
 - OpenShift metrics server: <https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html>
   - Test: `oc get project | grep openshift-metrics-server`
+- optional: Docker
