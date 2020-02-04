@@ -119,3 +119,7 @@ Wieso müssen wir hier den Port angeben?
 ### Applikation testen
 
 Im Browser oder mit curl das Funktionieren der Applikation überprüfen.
+
+## Zusatzübung für ganz Schnelle
+
+Folgen Sie den Anweisungen im [Lab 9: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/09_dockerbuild_webhook.md).
