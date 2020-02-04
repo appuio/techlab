@@ -25,22 +25,25 @@ Erstellen Sie ein neues Projekt mit Namen `[USERNAME]-example4`.
 
 <details><summary><b>Tipp</b></summary>oc new-project [USERNAME]-example4</details><br/>
 
-Erstellen Sie für Ihren Fork eine neue App.
+Erstellen Sie für Ihren Fork eine neue App mit folgender Konfiguration:
+
+* Name: `appuio-php-docker-ex`
+* Build Strategie: `docker`
+* Git Repository: `https://github.com/[YourGithubUser]/example-php-docker-helloworld.git`
 
 __Note__:
 Ersetzen Sie `[YourGithubUser]` mit dem Namen Ihres GitHub Accounts.
 
-```bash
-oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
-```
+<details>
+  <summary>Applikation Erstellen Befehl</summary>
+  oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
+</details><br/>
 
 Mittels Parameter `--strategy=docker` sagen wir dem `oc new-app` Befehl nun explizit, er soll im angegebenen Git Repository nach einem Dockerfile suchen und dieses für den Build verwenden.
 
-Nun exponieren wir den Service mit:
+Nun exponieren Sie den Service der Applikation.
 
-```bash
-oc expose service appuio-php-docker-ex
-```
+<details><summary>Route Erstellen Befehl</summary>oc create route edge --service=appuio-php-docker-ex</details><br/>
 
 ## Aufgabe: LAB9.2: Webhook auf GitHub einrichten
 
@@ -56,7 +59,7 @@ Kopieren Sie die [GitHub Webhook URL](https://developer.github.com/webhooks/) mi
 Klicken Sie in Ihrem GitHub-Projekt auf Settings:
 ![Github Webhook](../images/lab_09_webhook_github1.png)
 
-Anschliessend auf Webhooks & services:
+Klicken Sie auf Webhooks:
 ![Github Webhook](../images/lab_09_webhook_github2.png)
 
 Fügen Sie einen Webhook hinzu:
