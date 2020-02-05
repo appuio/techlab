@@ -56,6 +56,11 @@ Bereiten Sie einen temporären Ordner vor und erstellen Sie darin die Deployment
 
 Mindestens ein War-File kann im Deployment Ordner abgelegt werden. In diesem Beispiel wird eine vorhandene War-Datei aus einem Git-Repository heruntergeladen:
 
+* Verzeichnis: `tmp-bin/deployments`
+* Datei: [hello-world-war-1.0.0.war](https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true)
+
+Befehle für Shell und PowerShell:
+
 ```bash
 mkdir tmp-bin
 cd tmp-bin
@@ -158,19 +163,13 @@ Befehl zum Erstellen eines Docker-Builds:
 oc new-build --strategy=docker --binary=true --name=web -l app=web centos/httpd-24-centos7
 ```
 
-Klonen Sie das techlab Git-Repository, falls Sie es noch nicht getan haben.
+Klonen Sie das techlab Git-Repository, falls Sie es noch nicht getan haben. Alternativ kann das Repository als Zip-Datei [hier](https://github.com/appuio/techlab/archive/lab-3.11.zip) geholt und entpackt werden.
 
 ```bash
-git clone https://github.com/appuio/techlab.git
+git clone https://github.com/appuio/techlab.git --branch=lab-3.11
 ```
 
-Wechseln Sie zum `lab-3.11` Git Branch
-
-```bash
-git checkout lab-3.11
-```
-
-Navigieren Sie zum Stammverzeichnis des Git-Repositorys (`cd techlab`).
+Navigieren Sie zum Stammverzeichnis des Git-Repositorys (`cd techlab`). Stellen Sie sicher, dass Sie sich auf dem `lab-3.11` Git Branch befinden.
 
 Starten Sie den Build mit den Daten aus `dev-labs/data/02_httpd`:
 
