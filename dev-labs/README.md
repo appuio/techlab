@@ -32,12 +32,13 @@ Zugriff auf die Techlab OpenShift Plattform testen. Wenn folgende Tests erfolgre
 
 - techlab Benutzergruppe
 - openshift-web-console Projekt: view-Rechte für die techlab-Benutzergruppe
+- oc Tool
 
 #### Lab 02
 
-- Repo: dieses techlab Repo
+- Repo: dieses techlab Repo ([Zip](https://github.com/appuio/techlab/archive/lab-3.11.zip))
 - Repo: <https://github.com/appuio/example-php-sti-helloworld>
-- War-File: <https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0 .war? raw = true>
+- War-File: <https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true>
 - OpenShift ImageStream: openshift/php:7.1
 - Docker Hub Image: "openshift/wildfly-160-centos7"
 - Docker Hub Image: "centos/httpd-24-centos7"
