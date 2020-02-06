@@ -51,7 +51,7 @@ In der Zwischenzeit können Sie sich in der Web Console den aktuellen Status des
 
 __Tipp__:
 Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen:
-https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
+<https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html>
 
 ## Betrachten der erstellten Ressourcen
 
@@ -255,6 +255,12 @@ Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Appl
 
 __Tipp__:
 Für viele der Resource Types gibt es auch eine Kurzform. So können Sie bspw. anstelle von `oc get deploymentconfig` auch einfach `oc get dc` schreiben, oder `svc` anstelle von `service`.
+
+---
+
+## Zusatzaufgabe für Schnelle ;-)
+
+Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an. Alternativ kann das Projekt `openshift-web-console` verwendet werden.
 
 ---
 

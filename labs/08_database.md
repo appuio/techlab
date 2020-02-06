@@ -144,7 +144,7 @@ appuio
 ```
 
 anzeigen lassen.
-In userem Fall wird `YXBwdWlv` in `appuio` dekodiert.
+In unserem Fall wird `YXBwdWlv` in `appuio` dekodiert.
 
 Alternativ kann mit dem Befehl `oc extract secret/mariadb` der Inhalt jedes einzelnen Keys in ein eigenes File geschrieben werden.
 Mit dem Parameter `--to=[DIRECTORY]` kann das Verzeichnis definiert werden, in welches die Werte geschrieben werden soll.
