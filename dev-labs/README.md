@@ -22,11 +22,11 @@ Zugriff auf die Techlab OpenShift Plattform testen. Wenn folgende Tests erfolgre
   * URL: https://techlab.openshift.ch/
   * Log in with... "APPUiO Techlab Generic Login"
   * "+ Create Project" Button rechts oben
-2. Zugriff mit OC Tool
-  * Download Binary (Unten bei Assets): https://github.com/openshift/origin/releases/tag/v3.11.0
-  * oc login https://techlab.openshift.ch/
-  * Projekt anlegen: oc new-project user30-test
-  * Applikation erstellen: oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=s2i
+2. Zugriff mit dem `oc` CLI-Tool
+  * Download Binary (unten bei Assets): https://github.com/openshift/origin/releases/tag/v3.11.0
+  * Authentisieren: `oc login https://techlab.openshift.ch/`
+  * Projekt anlegen: `oc new-project user30-test`
+  * Applikation erstellen: `oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=s2i`
 
 #### Lab 01
 
