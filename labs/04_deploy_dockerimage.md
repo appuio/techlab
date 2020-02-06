@@ -263,6 +263,12 @@ Für viele der Resource Types gibt es auch eine Kurzform. So können Sie bspw. a
 
 ---
 
+## Zusatzaufgabe für Schnelle ;-)
+
+Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an. Alternativ kann das Projekt `openshift-web-console` verwendet werden.
+
+---
+
 __Ende Lab 4__
 
 <p width="100px" align="right"><a href="05_create_route.md">Routen erstellen →</a></p>

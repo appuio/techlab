@@ -45,9 +45,16 @@ Zugriff auf die Techlab OpenShift Plattform testen. Wenn folgende Tests erfolgre
 
 #### Lab 03
 
-- Repo: dieses techlab Repo
+- Repo: dieses techlab Repo ([Zip](https://github.com/appuio/techlab/archive/lab-3.11.zip))
 - Docker Hub Image: "appuio/example-spring-boot"
 - OpenShift Template: openshift/mysql-persistent
+
+Zusatzübung:
+
+- Repo: <https://github.com/appuio/example-spring-boot-helloworld.git> / ([Zip](https://github.com/appuio/example-spring-boot-helloworld/archive/master.zip))
+- JDK 1.8
+- Docker (optional)
+
 
 #### Lab 04
 
