@@ -77,7 +77,7 @@ Je nach Internetverbindung oder abhängig davon, ob das Image auf Ihrem OpenShif
 3. Klicken Sie auf Applications
 4. Wählen Sie Pods aus
 
-**Tipp** Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
+**Tipp** Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen: <https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html>
 
 ## Betrachten der erstellten Ressourcen
 
@@ -274,7 +274,7 @@ Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Appl
 
 ## Zusatzaufgabe für Schnelle ;-)
 
-Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an.
+Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an. Alternativ kann das Projekt `openshift-web-console` verwendet werden.
 
 ---
 
