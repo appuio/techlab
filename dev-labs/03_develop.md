@@ -38,7 +38,7 @@ Neues Projekt mit dem Namen `[USER]-spring-boot` erstellen.
 
 ### Applikation bauen
 
-Zuerst das GitHub Repository klonen und danach das Spring Boot Jar bauen.
+Zuerst das GitHub Repository klonen oder als [Zip-Datei](https://github.com/appuio/example-spring-boot-helloworld/archive/master.zip) laden und danach das Spring Boot Jar bauen.
 
 <details><summary>Git Clone Befehl</summary>git clone https://github.com/appuio/example-spring-boot-helloworld.git</details><br/>
 
@@ -59,6 +59,11 @@ Danach die Applikation bauen, es wird nur das JDK 1.8 benötigt.
 ### Deployment Verzeichnisstruktur
 
 Für den Binary Build eine Verzeichnisstruktur vorbereiten mit dem Jar vom Java Build.
+
+* Verzeichnis: `tmp-jar/deployments`
+* Datei: build/libs/springboots2idemo-0.0.1-SNAPSHOT.jar
+
+Befehle für Shell und PowerShell:
 
 ```bash
 mkdir tmp-jar
@@ -119,3 +124,7 @@ Wieso müssen wir hier den Port angeben?
 ### Applikation testen
 
 Im Browser oder mit curl das Funktionieren der Applikation überprüfen.
+
+## Zusatzübung für ganz Schnelle
+
+Folgen Sie den Anweisungen im [Lab 9: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/09_dockerbuild_webhook.md).

@@ -125,9 +125,9 @@ $ echo "YXBwdWlv" | base64 -d
 appuio
 ```
 
-anzeigen lassen. In userem Fall wird `YXBwdWlv` in `appuio` dekodiert.
+anzeigen lassen. In unserem Fall wird `YXBwdWlv` in `appuio` dekodiert.
 
-Mit Secrets können wir also sensitive Informationen (Credetials, Zertifikate, Schlüssel, dockercfg, ...) abspeichern und entsprechend von den Pods entkoppeln. Gleichzeitig haben wir damit die Möglichkeit, dieselben Secrets in mehreren Containern zu verwenden und so Redundanzen zu vermeiden.
+Mit Secrets können wir also sensitive Informationen (Credentials, Zertifikate, Schlüssel, dockercfg, ...) abspeichern und entsprechend von den Pods entkoppeln. Gleichzeitig haben wir damit die Möglichkeit, dieselben Secrets in mehreren Containern zu verwenden und so Redundanzen zu vermeiden.
 
 Secrets können entweder, wie oben bei der MySQL-Datenbank, in Umgebungsvariablen gemappt oder direkt als Files via Volumes in einen Container gemountet werden.
 
