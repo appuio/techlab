@@ -72,6 +72,13 @@ Unter Windows kann der PATH in den erweiterten Systemeinstellungen konfiguriert 
 - [Windows 8](http://www.itechtics.com/customize-windows-environment-variables/)
 - [Windows 10](http://techmixx.de/windows-10-umgebungsvariablen-bearbeiten/)
 
+Pfad direckt in der PowerShell setzen (für die aktuelle Session):
+
+```Powershell
+$env:Path+=";C:\OpenShift\"
+echo $env:PATH
+```
+
 #### Windows Quick Hack
 
 Legen sie den oc Client direkt im Verzeichnis _C:\Windows_ ab.

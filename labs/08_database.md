@@ -303,6 +303,8 @@ Einfacher ist es den Pod über die DeploymentConfig zu referenzieren.
 oc rsh dc/mysql
 ```
 
+**Tipp:** Falls `oc rsh` nicht funktioniert, öffnen Sie in der Web Console ein Terminal (Applications -> Pods -> mysql-1-diccy -> Terminal).
+
 Nun können Sie mittels mysql Tool auf die Datenbank verbinden und die Tabellen anzeigen:
 
 ```bash
