@@ -77,3 +77,151 @@ oc get pods -w
 ```
 
 Sobald wir die Last beenden wird die Anzahl Pods nach einer gewissen Zeit automatisch wieder verkleinert. Die Kapazität wird jedoch eine Weile vorenthalten.
+
+## Zusatzübung für Schnelle
+
+Zum Troubleshooting von Container ohne installierter Debugging Tools wurde die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) entwickelt.
+
+Zuerst versuchen wir das Debugging mit dem oc Tool.
+
+### Projekt erstellen
+
+Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-debugbox"
+
+<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-debugbox</details><br/>
+
+### Test Applikation deployen
+
+Zum Testen eignet sich ein minimales Container Image, wie z.B. eine Go Applikation in einem leeren Dateisystem (From scratch): [s3manager](https://hub.docker.com/r/mastertinner/s3manager)
+
+Von diesem Image eine neue Applikation erstellen:
+
+* Image: mastertinner/s3manager
+* Environment:
+  * ACCESS_KEY_ID=irgendoeppis
+  * SECRET_ACCESS_KEY=x
+
+<details><summary>Befehl zum Erstellen der Applikation</summary>oc new-app -e ACCESS_KEY_ID=irgendoeppis -e SECRET_ACCESS_KEY=x mastertinner/s3manager</details><br/>
+
+### Debugging mit oc Tool
+
+Versuchen Sie eine Remote-Shell im Container zu öffnen:
+
+```bash
+oc rsh s3manager-1-jw4sl
+```
+
+Fehlermeldung:
+
+```bash
+rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:235: starting container process caused "exec: \"/bin/sh\": stat /bin/sh: no such file or directory"
+
+command terminated with exit code 126
+```
+
+Das hat nicht funktioniert, weil im Container keine Shell vorhanden ist.
+
+Können wir wenigstens das Environment ausgeben?
+
+```bash
+oc exec s3manager-1-jw4sl env
+```
+
+Fehlermeldung:
+
+```bash
+rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:235: starting container process caused "exec: \"env\": executable file not found in $PATH"
+
+command terminated with exit code 126
+```
+
+Aus das geht nicht, der env Befehl steht nicht zur Verfügung.
+
+Auch wenn wir versuchen das Terminal in der Web Console zu öffnen, bekommen wir einen Fehler.
+
+Mit den Boardmitteln von OpenShift können wir diesen Container nicht Debuggen. Dafür gibt es die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox).
+
+### Debugbox installieren
+
+Installieren Sie die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) anhand der Anleitung: <https://github.com/puzzle/k8s-debugbox>
+
+### Debugbox anwenden
+
+Über den Hilfeparameter die Möglichkeiten anzeigen lassen.
+
+Befehl mit Ausgabe:
+
+```bash
+k8s-debugbox -h
+Debug pods based on minimal images.
+
+Examples:
+  # Open debugging shell for the first container of the specified pod,
+  # install debugging tools into the container if they aren't installed yet.
+  k8s-debugbox pod hello-42-dmj88
+
+...
+
+Options:
+  -n, --namespace='': Namespace which contains the pod to debug, defaults to the namespace of the current kubectl context
+  -c, --container='': Container name to open shell for, defaults to first container in pod
+  -i, --image='puzzle/k8s-debugbox': Docker image for installation of debugging via controller. Must be built from 'puzzle/k8s-debugbox' repository.
+  -h, --help: Show this help message
+      --add: Install debugging tools into specified resource
+      --remove: Remove debugging tools from specified resource
+
+Usage:
+  k8s-debugbox TYPE NAME [options]
+```
+
+Wir wenden die Debugbox an dem s3manager Pod an:
+
+<details><summary>Tipp für Pod Suche</summary>oc get pods</details><br/>
+
+```bash
+k8s-debugbox pod s3manager-1-jw4sl
+```
+
+```bash
+Uploading debugging tools into pod s3manager-1-jw4sl
+rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:235: starting container process caused "exec: \"tar\": executable file not found in $PATH"
+
+error: Internal error occurred: error executing command in container: read unix @->/var/run/docker.sock: read: connection reset by peer
+
+Couldn't upload debugging tools!
+Instead you can patch the controller (deployment, deploymentconfig, daemonset, ...) to use an init container with debugging tools, this requires a new deployment though!
+```
+
+Auch dieser Versuch schlägt fehl, da die Tools ohne tar nicht in den Container kopiert werden können. Wir haben jedoch von der Debugbox die Information herhalten, dass wir die Installation über das Deployment machen sollen. Dabei wird die DeploymentConfiguration mit einem Init-Container erweitert. Der Init-Container kopiert die Tools in ein Volume, welches danach vom s3manager Container verwendet werden kann.
+
+Patching der DeploymentConfiguration:
+
+```bash
+k8s-debugbox dc s3manager
+```
+
+Hier der Init-Container Auszug aus der gepatchten DeploymentConfiguration:
+
+```yaml
+spec:
+  template:
+    spec:
+      initContainers:
+      - image: puzzle/k8s-debugbox
+        name: k8s-debugbox
+        volumeMounts:
+        - mountPath: /tmp/box
+          name: k8s-debugbox
+```
+
+Nach einem erneuten Deployment des Pods befinden wir uns in einer Shell im Container. Darin stehen uns eine vielzahl von Tools zur Verfügung. Jetzt können wir das Debugging durchführen.
+
+Wo befinden sich die Debugging Tools?
+
+<details><summary>Lösung</summary>/tmp/box/bin/</details><br/>
+
+**Tipp** Mit der Eingabe von `exit` beenden wir die Debugbox.
+
+Wie können wir die Änderungen an der DeploymentConfiguration rückgängig machen?
+
+<details><summary>Lösung</summary>k8s-debugbox dc s3manager --remove</details><br/>
