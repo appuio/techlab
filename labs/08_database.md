@@ -368,6 +368,8 @@ Ein ganzes Verzeichnis (dump) synchen. Darin enthalten ist das File `dump.sql`. 
 oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/
 ```
 
+**Tipp:** Falls `oc rsync` nicht funktioniert, `oc cp ./labs/data/08_dump mysql-1-diccy:/tmp/` verwenden.
+
 In den MySQL Pod einloggen:
 
 ```bash
