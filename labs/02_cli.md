@@ -4,17 +4,39 @@ In diesem Lab werden wir gemeinsam das CLI-Tool `odo` installieren und konfiguri
 
 ## `oc`
 
-FIXME: Anleitung für Installation von `oc` zur Verfügung stellen, `odo` entfernen.
+Der __oc client__ stellt ein Interface zu OpenShift bereit.
+
+### Installation
+
+Analog der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands) kann der __oc client__ von der __Infrastructure Provider__ Seite heruntergeladen werden.
+
+__Tipp__:
+Alternativ kann die Binary auch direkt mittels folgenden Befehlen im Terminal installiert werden:
+
+```
+curl -fsSL https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.2/linux/oc.tar.gz | sudo tar xfz - -C /usr/bin
+```
+
+### bash Command Completion (optional)
+
+Dieser Schritt ist optional und funktioniert nicht auf Windows. Damit Command Completion auf macOS funktioniert, muss bspw. via `brew` das Paket `bash-completion` installiert werden.
+
+`oc` bietet eine Command Completion, die gem. [Dokumention](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/configuring-cli.html#cli-enabling-tab-completion_cli-configuring-cli) eingerichtet werden kann.
+
+__Tipp__:
+Alternativ kann die Bash Command Completion auch mittels folgenden Befehlen im Terminal installiert werden:
+
+```
+sudo oc completion bash > /etc/bash_completion.d/oc_bash_completion
+```
 
 ## `odo`
 
 Via `odo` kommunizieren wir mit OpenShift. Es wurde mit OpenShift 4 neu ins Leben gerufen und fokussiert sich auf die Entwickler-relevanten Aufgaben.
 
-Der __oc client__ stellt ein Interface zu OpenShift bereit.
-
 `odo` ist in [Go](https://github.com/openshift/odo) programmiert und kommt als einzelnes Binary für die gängigsten Betriebsysteme daher.
 
-## Installation
+### Installation
 
 Folgen Sie für die Installation der [offiziellen Installationsdokumentation](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_developer_cli/installing-odo.html).
 
@@ -24,7 +46,7 @@ Es sollte nun möglich sein, auf der Kommandozeile den Befehl `odo version` ausz
 odo v1.0.2 (HEAD)
 ```
 
-## bash/zsh Command Completion (optional)
+### bash/zsh Command Completion (optional)
 
 Dieser Schritt ist optional und funktioniert nicht auf Windows. Damit Command Completion auf macOS funktioniert, muss bspw. via `brew` das Paket `bash-completion` installiert werden.
 
