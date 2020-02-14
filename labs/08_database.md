@@ -350,7 +350,7 @@ oc rsh dc/mariadb
 Nun können Sie mittels mysql-Tool auf die Datenbank verbinden:
 
 ```bash
-mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
+mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABASE
 ```
 
 Und mit:
@@ -415,7 +415,7 @@ oc rsh dc/mariadb
 Bestehende Datenbank löschen:
 
 ```bash
-$ mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio
+mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABASE
 ...
 mysql> drop database appuio;
 mysql> create database appuio;
@@ -425,18 +425,18 @@ mysql> exit
 Dump einspielen:
 
 ```bash
-mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio < /tmp/08_dump/dump.sql
+mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABASE < /tmp/08_dump/dump.sql
 ```
 
 Was enthält die hello Tabelle jetzt?
 
-<details><summary><b>Tipp</b></summary>mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_SERVICE_HOST appuio<br/>mysql> select * from hello;</details><br/>
+<details><summary><b>Tipp</b></summary>mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABASE<br/>mysql> select * from hello;</details><br/>
 
 __Note__:
 Den Dump kann man wie folgt erstellen:
 
 ```bash
-mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_SERVICE_HOST appuio > /tmp/dump.sql
+mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABASE > /tmp/dump.sql
 ```
 
 ---
