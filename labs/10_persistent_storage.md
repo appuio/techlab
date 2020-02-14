@@ -31,8 +31,8 @@ Wir verwenden dafür das Projekt aus [Lab 8](08_database.md) [USERNAME]-dockerim
 Der folgende Befehl führt beide beschriebenen Schritte zugleich aus, er erstellt also zuerst den Claim und bindet ihn anschliessend auch als Volume im Pod ein:
 
 ```bash
-oc set volume dc/mysql --add --name=mysql-data --type persistentVolumeClaim \
-     --claim-name=mysqlpvc --claim-size=256Mi --overwrite
+oc set volume dc/mariadb --add --name=mariadb-data --type pvc \
+  --claim-name=mariadbpvc --claim-size=256Mi --overwrite
 ```
 
 __Note__:
@@ -52,8 +52,8 @@ Mit dem Befehl `oc get persistentvolumeclaim`, oder etwas einfacher `oc get pvc`
 
 ```
 oc get pvc
-NAME       STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
-mysqlpvc   Bound     pv34      256Mi      RWO,RWX       14s
+NAME         STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
+mariadbpvc   Bound     pv34      1Gi        RWO,RWX       14s
 ```
 
 Die beiden Attribute Status und Volume zeigen uns an, dass unser Claim mit dem Persistent Volume pv34 verbunden wurde.
@@ -61,9 +61,10 @@ Die beiden Attribute Status und Volume zeigen uns an, dass unser Claim mit dem P
 Mit dem folgenden Befehl können wir auch noch überprüfen, ob das Einbinden des Volume in die DeploymentConfig geklappt hat:
 
 ```bash
-oc set volume dc/mysql --list
-deploymentconfigs/mysql
-  pvc/mysqlpvc (allocated 256MiB) as mysql-data
+oc set volume dc/mariadb --all
+deploymentconfigs/mariadb
+  pvc/mariadbpvc (allocated 1GiB) as mariadb-data
+    mounted at /var/lib/mysql/data
 ```
 
 ## Aufgabe: LAB10.2: Persistenz-Test
