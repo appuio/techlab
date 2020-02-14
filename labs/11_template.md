@@ -82,12 +82,12 @@ Als Abschluss dieses Labs können Sie sich noch das [Template](https://github.co
 
 __Note__:
 Bestehende Ressourcen können als Template exportiert werden
-Verwenden Sie dafür den Befehl `oc get --export`.
+Verwenden Sie dafür den Befehl `oc get -o json` bzw `oc get -o yaml`.
 
 Bspw.:
 
 ```
-oc get is,bc,dc,route,service --export -o json > example-spring-boot-template.json
+oc get is,bc,dc,route,service -o json > example-spring-boot-template.json
 ```
 
 Wichtig ist, dass die ImageStreams zuoberst im Template File definiert sind.

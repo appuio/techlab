@@ -69,10 +69,10 @@ oc new-app . --image-stream=wildfly:latest -o json | \
 
 ### Generierung nach Erstellung
 
-Bestehende Ressourcen werden mit `oc get --export` exportiert.
+Bestehende Ressourcen werden mit `oc get -o json` bzw `oc get -o yaml` exportiert.
 
 ```bash
-oc get --export route my-route
+oc get route my-route -o json
 ```
 
 Welche Ressourcen braucht es?
@@ -89,7 +89,7 @@ Für ein vollständiges Template sind folgende Ressourcen notwendig:
 Beispiel-Befehl um einen Export der wichtigsten Ressourcen als Template zu generieren:
 
 ```bash
-oc get --export is,bc,pvc,dc,route,service -o json > my-template.json
+oc get is,bc,pvc,dc,route,service -o json > my-template.json
 ```
 
 Attribute mit Wert `null` sowie die Annotation `openshift.io/generated-by` dürfen aus dem Template entfernt werden.
@@ -108,7 +108,7 @@ oc get templates -n openshift
 So erhalten wir eine Kopie vom eap70-mysql-persistent-s2i Template:
 
 ```bash
-oc get --export template eap70-mysql-persistent-s2i -o json -n openshift > eap70-mysql-persistent-s2i.json
+oc get template eap72-mysql-persistent-s2i -o json -n openshift > eap72-mysql-persistent-s2i.json
 ```
 
 ## Parameter
