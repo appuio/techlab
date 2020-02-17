@@ -27,32 +27,8 @@ __Tipp__:
 Alternativ kann die Bash Command Completion auch mittels folgenden Befehlen im Terminal installiert werden:
 
 ```
-sudo oc completion bash > /etc/bash_completion.d/oc_bash_completion
+oc completion bash | sudo tee /etc/bash_completion.d/oc_bash_completion
 ```
-
-## `odo`
-
-Via `odo` kommunizieren wir mit OpenShift. Es wurde mit OpenShift 4 neu ins Leben gerufen und fokussiert sich auf die Entwickler-relevanten Aufgaben.
-
-`odo` ist in [Go](https://github.com/openshift/odo) programmiert und kommt als einzelnes Binary für die gängigsten Betriebsysteme daher.
-
-### Installation
-
-Folgen Sie für die Installation der [offiziellen Installationsdokumentation](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_developer_cli/installing-odo.html).
-
-Es sollte nun möglich sein, auf der Kommandozeile den Befehl `odo version` auszuführen und einen ähnlichen Output wie der folgende zu erhalten (die Versionsnummer kann unterschiedlich sein):
-
-```
-odo v1.0.2 (HEAD)
-```
-
-### bash/zsh Command Completion (optional)
-
-Dieser Schritt ist optional und funktioniert nicht auf Windows. Damit Command Completion auf macOS funktioniert, muss bspw. via `brew` das Paket `bash-completion` installiert werden.
-
-`odo` bietet eine Command Completion, die gem. [Dokumentation](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_developer_cli/configuring-the-odo-cli.html#using-command-completion_configuring-the-odo-cli) eingerichtet werden kann.
-
----
 
 __Ende Lab 2__
 

@@ -98,13 +98,15 @@ Wie können Sie die Anzahl Replicas via Web Console steuern?
 Mit dem folgenden Befehl können Sie nun überprüfen, ob Ihr Service verfügbar ist, während Sie hoch- und herunterskalieren.
 Führen Sie folgenden Befehl in einem Terminal-Fenster aus und lassen ihn laufen, während Sie später skalieren.
 
+Ersetzen Sie `[HOSTNAME]` mit dem Hostname Ihrer definierten Route:
+
 __Tipp__:
 Um den entsprechenden Hostname anzuzeigen, kann folgender Befehl verwendet werden:
 
 `oc get route -o custom-columns=NAME:.metadata.name,HOSTNAME:.spec.host`
 
 ```bash
-export HNAME=$(oc get route -o custom-columns=:.spec.host | tail -n 1); while true; do sleep 1; ( { curl -fs http://${HNAME}/health/; date "+ TIME: %H:%M:%S,%3N" ;} & ) 2>/dev/null; done
+while true; do sleep 1; ( { curl -fs http://[HOSTNAME]/health/; date "+ TIME: %H:%M:%S,%3N" ;} & ) 2>/dev/null; done
 ```
 
 oder in PowerShell (__Achtung__: erst ab PowerShell-Version 3.0!):
