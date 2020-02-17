@@ -51,7 +51,7 @@ Sie sehen nun die Webhooks auf der Seite unten.
 
 ![Webhook](../images/lab_09_webhook_ocp4.png)
 
-Kopieren Sie die [GitHub Webhook URL(https://developer.github.com/webhooks/) mit einem Klick rechts auf "Copy URL with Secret".
+Kopieren Sie die [GitHub Webhook URL](https://developer.github.com/webhooks/) mit einem Klick rechts auf "Copy URL with Secret".
 
 Klicken Sie in Ihrem GitHub-Projekt auf Settings:
 ![Github Webhook](../images/lab_09_webhook_github1.png)

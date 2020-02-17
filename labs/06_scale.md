@@ -101,6 +101,8 @@ Führen Sie folgenden Befehl in einem Terminal-Fenster aus und lassen ihn laufen
 Ersetzen Sie `[HOSTNAME]` mit dem Hostname Ihrer definierten Route:
 
 __Tipp__:
+Um den entsprechenden Hostname anzuzeigen, kann folgender Befehl verwendet werden:
+
 `oc get route -o custom-columns=NAME:.metadata.name,HOSTNAME:.spec.host`
 
 ```bash
