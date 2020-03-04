@@ -54,10 +54,12 @@ Erstellen Sie ein Projekt mit dem Namen "[USER]-binary-build"
 
 Bereiten Sie einen temporären Ordner vor und erstellen Sie darin die Deployment Verzeichnisstruktur.
 
-Mindestens ein War-File kann im Deployment Ordner abgelegt werden. In diesem Beispiel wird eine vorhandene War-Datei aus einem Git-Repository heruntergeladen:
+Mindestens ein War-File kann im Deployment Ordner abgelegt werden. In diesem Beispiel wird eine vorhandene War-Datei aus einem Git-Repository heruntergeladen.
 
 * Verzeichnis: `tmp-bin/deployments`
 * Datei: [hello-world-war-1.0.0.war](https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true)
+
+**Note:** Das War-File muss den Namen `ROOT.war` haben, damit die Anwendung direkt auf der Route verfügbar ist. Wenn die Datei [hello-world-war-1.0.0.war](https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true) manuell heruntergeladen wurde, muss sie umbenannt werden: `tmp-bin/deployments/ROOT.war`
 
 Befehle für Shell und PowerShell:
 

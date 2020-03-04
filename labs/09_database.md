@@ -355,6 +355,9 @@ Einfacher ist, es den Pod über die DeploymentConfig zu referenzieren.
 oc rsh dc/mariadb
 ```
 
+__Tipp__:
+Falls `oc rsh` nicht funktioniert, öffnen Sie in der Web Console ein Terminal (Applications -> Pods -> mysql-1-diccy -> Terminal).
+
 Nun können Sie mittels mysql-Tool auf die Datenbank verbinden:
 
 ```bash
@@ -416,6 +419,9 @@ Beachten Sie zum rsync-Befehl auch obenstehenden Tipp sowie den fehlenden "trail
 ```bash
 oc rsync ./labs/data/08_dump mariadb-1-diccy:/tmp/
 ```
+
+__Tipp__:
+Falls `oc rsync` nicht funktioniert, `oc cp ./labs/data/08_dump mysql-1-diccy:/tmp/` verwenden.
 
 In den MariaDB-Pod einloggen:
 
