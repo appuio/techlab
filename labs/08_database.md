@@ -303,6 +303,8 @@ Einfacher ist es den Pod über die DeploymentConfig zu referenzieren.
 oc rsh dc/mysql
 ```
 
+**Tipp:** Falls `oc rsh` nicht funktioniert, öffnen Sie in der Web Console ein Terminal (Applications -> Pods -> mysql-1-diccy -> Terminal).
+
 Nun können Sie mittels mysql Tool auf die Datenbank verbinden und die Tabellen anzeigen:
 
 ```bash
@@ -365,6 +367,8 @@ Ein ganzes Verzeichnis (dump) synchen. Darin enthalten ist das File `dump.sql`. 
 ```bash
 oc rsync ./labs/data/08_dump mysql-1-diccy:/tmp/
 ```
+
+**Tipp:** Falls `oc rsync` nicht funktioniert, `oc cp ./labs/data/08_dump mysql-1-diccy:/tmp/` verwenden.
 
 In den MySQL Pod einloggen:
 

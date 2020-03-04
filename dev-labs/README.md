@@ -55,12 +55,11 @@ Zusatzübung:
 - JDK 1.8
 - Docker (optional)
 
-
 #### Lab 04
 
 - OpenShift Projekt aus Lab 03: [USER]-dockerimage
-- Repo: https://github.com/chrira/ruby-ex.git#load
-- OpenShift ImageStream: : "openshift/ruby:2.5"
+- Repo: <https://github.com/chrira/ruby-ex.git#load>
+- OpenShift ImageStream: "openshift/ruby:2.5"
 - OpenShift metrics server: <https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html>
   - Test: `oc get project | grep openshift-metrics-server`
 - optional: Docker

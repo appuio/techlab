@@ -18,6 +18,8 @@ Wählen Sie einen Pod aus und öffnen Sie die Remote Shell.
 
 <details><summary>Tipp</summary>oc get pods<br/>oc rsh [POD]</details><br/>
 
+**Tipp:** Falls `oc rsh` nicht funktioniert, öffnen Sie in der Web Console ein Terminal (Applications -> Pods -> [Pod-Name] -> Terminal).
+
 Sie können nun über diese Shell Analysen im Container ausführen:
 
 ```bash
@@ -107,7 +109,7 @@ Die Metrics können nun unter folgender URL abgerufen werden: [http://localhost:
 
 Die Metrics werden Ihnen als JSON angezeigt. Mit demselben Konzept können Sie nun bspw. mit Ihrem lokalen SQL Client auf eine Datenbank verbinden.
 
-Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu finden: https://docs.openshift.com/container-platform/3.11/dev_guide/port_forwarding.html
+Unter folgendem Link sind weiterführende Informationen zu Port Forwarding zu finden: <https://docs.openshift.com/container-platform/3.11/dev_guide/port_forwarding.html>
 
 **Note:** Der `oc port-forward`-Prozess wird solange weiterlaufen, bis er vom User abgebrochen wird. Sobald das Port-Forwarding also nicht mehr benötigt wird, kann er mit ctrl+c gestoppt werden.
 
