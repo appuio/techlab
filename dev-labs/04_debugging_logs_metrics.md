@@ -80,13 +80,13 @@ Sobald wir die Last beenden wird die Anzahl Pods nach einer gewissen Zeit automa
 
 ## Zusatzübung für Schnelle
 
-Zum Troubleshooting von Container ohne installierter Debugging Tools wurde die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) entwickelt.
+Zum Troubleshooting von Container ohne installierte Debugging Tools wurde die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) entwickelt.
 
 Zuerst versuchen wir das Debugging mit dem oc Tool.
 
 ### Projekt erstellen
 
-Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-debugbox"
+Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-debugbox".
 
 <details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-debugbox</details><br/>
 
@@ -135,15 +135,15 @@ rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:23
 command terminated with exit code 126
 ```
 
-Aus das geht nicht, der env Befehl steht nicht zur Verfügung.
+Auch das geht nicht, der env Befehl steht nicht zur Verfügung.
 
 Auch wenn wir versuchen das Terminal in der Web Console zu öffnen, bekommen wir einen Fehler.
 
-Mit den Boardmitteln von OpenShift können wir diesen Container nicht Debuggen. Dafür gibt es die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox).
+Mit den Bordmitteln von OpenShift können wir diesen Container nicht debuggen. Dafür gibt es die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox).
 
 ### Debugbox installieren
 
-Installieren Sie die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) anhand der Anleitung: <https://github.com/puzzle/k8s-debugbox>
+Installieren Sie die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) anhand der Anleitung: <https://github.com/puzzle/k8s-debugbox>.
 
 ### Debugbox anwenden
 
@@ -174,7 +174,7 @@ Usage:
   k8s-debugbox TYPE NAME [options]
 ```
 
-Wir wenden die Debugbox an dem s3manager Pod an:
+Wir wenden die Debugbox am s3manager Pod an:
 
 <details><summary>Tipp für Pod Suche</summary>oc get pods</details><br/>
 
@@ -214,7 +214,7 @@ spec:
           name: k8s-debugbox
 ```
 
-Nach einem erneuten Deployment des Pods befinden wir uns in einer Shell im Container. Darin stehen uns eine vielzahl von Tools zur Verfügung. Jetzt können wir das Debugging durchführen.
+Nach einem erneuten Deployment des Pods befinden wir uns in einer Shell im Container. Darin stehen uns eine Vielzahl von Tools zur Verfügung. Jetzt können wir das Debugging durchführen.
 
 Wo befinden sich die Debugging Tools?
 
