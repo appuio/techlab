@@ -13,7 +13,7 @@ Analog der [offiziellen Dokumentation](https://docs.openshift.com/container-plat
 __Tipp__:
 Alternativ kann die Binary auch direkt mittels folgenden Befehlen im Terminal installiert werden:
 
-```
+```bash
 curl -fsSL https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.2/linux/oc.tar.gz | sudo tar xfz - -C /usr/bin
 ```
 

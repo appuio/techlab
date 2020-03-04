@@ -21,6 +21,9 @@ Wählen Sie einen Pod aus und öffnen Sie die Remote Shell.
 
 <details><summary><b>Tipp</b></summary>oc get pods<br/>oc rsh [POD]</details><br/>
 
+__Tipp__:
+Falls `oc rsh` nicht funktioniert, öffnen Sie in der Web Console ein Terminal (Applications -> Pods -> [Pod-Name] -> Terminal).
+
 Sie können nun über diese Shell Analysen im Container ausführen:
 
 ```bash
