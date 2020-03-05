@@ -156,7 +156,7 @@ oc process -f eap70-mysql-persistent-s2i.json \
 
 ## Templates schreiben
 
-OpenShift Dokumentation: <https://docs.openshift.com/container-platform/4.2/openshift_images/using-templates.html>
+OpenShift Dokumentation: <https://docs.openshift.com/container-platform/4.3/openshift_images/using-templates.html>
 
 Applikationen sollten so gebaut werden, dass sich pro Umgebung nur ein paar Konfigurationen unterscheiden.
 Diese Werte werden im Template als Parameter definiert.

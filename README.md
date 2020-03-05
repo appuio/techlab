@@ -1,6 +1,6 @@
 # APPUiO - OpenShift 4 Techlab
 
-Dieses Techlab basiert auf OpenShift 4.2.
+Dieses Techlab basiert auf OpenShift 4.3.
 
 ## Einführung
 
@@ -36,7 +36,7 @@ __Ziele dieses Techlabs__:
 
 ## Weiterführende Dokumentation
 
-- [OpenShift Container Platform 4.2 Dokumentation](https://docs.openshift.com/container-platform/4.2/welcome/index.html)
+- [OpenShift Container Platform 4.3 Dokumentation](https://docs.openshift.com/container-platform/4.3/welcome/index.html)
 - [APPUiO Dokumentation](http://docs.appuio.ch)
 
 ### APPUiO Examples

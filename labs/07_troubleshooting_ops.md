@@ -119,7 +119,7 @@ Die Metrics können nun unter folgender URL abgerufen werden: [http://localhost:
 Die Metrics werden Ihnen als JSON angezeigt.
 Mit demselben Konzept können Sie nun bspw. mit Ihrem lokalen SQL Client auf eine Datenbank verbinden.
 
-In der [Dokumentation](https://docs.openshift.com/container-platform/4.2/nodes/containers/nodes-containers-port-forwarding.html) sind weiterführende Informationen zu Port Forwarding zu finden.
+In der [Dokumentation](https://docs.openshift.com/container-platform/4.3/nodes/containers/nodes-containers-port-forwarding.html) sind weiterführende Informationen zu Port Forwarding zu finden.
 
 __Note__:
 Der `oc port-forward`-Prozess wird solange weiterlaufen, bis er vom User abgebrochen wird.

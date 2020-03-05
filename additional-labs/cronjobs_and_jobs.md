@@ -20,13 +20,13 @@ Wird ein Job gelöscht, werden auch die vom Job gestarteten (und wieder beendete
 Ein Job eignet sich also bspw. dafür, sicherzustellen, dass ein Pod verlässlich bis zu dessen Vervollständigung ausgeführt wird.
 Schlägt ein Pod fehl, zum Beispiel wegen eines Node-Fehlers, startet der Job einen neuen Pod.
 
-Weitere Informationen zu Jobs sind in der [OpenShift Dokumentation](https://docs.openshift.com/container-platform/4.2/nodes/jobs/nodes-nodes-jobs.html) zu finden.
+Weitere Informationen zu Jobs sind in der [OpenShift Dokumentation](https://docs.openshift.com/container-platform/4.3/nodes/jobs/nodes-nodes-jobs.html) zu finden.
 
 ## Cron Jobs
 
 Ein OpenShift Cron Job ist nichts anderes als eine Ressource, welche zu definierten Zeitpunkten einen Job erstellt, welcher wiederum wie gewohnt einen Pod startet um einen Befehl auszuführen.
 
-Weitere Informationen zu Cron Jobs sind auf derselben [OpenShift Dokumentationsseite](https://docs.openshift.com/container-platform/4.2/nodes/jobs/nodes-nodes-jobs.html) zu finden wie die Jobs.
+Weitere Informationen zu Cron Jobs sind auf derselben [OpenShift Dokumentationsseite](https://docs.openshift.com/container-platform/4.3/nodes/jobs/nodes-nodes-jobs.html) zu finden wie die Jobs.
 
 ## Aufgabe: Job für MariaDB-Dump erstellen
 
