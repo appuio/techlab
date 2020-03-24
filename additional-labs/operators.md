@@ -16,7 +16,7 @@ __Optional__: Der Artikel [The Mechanics of Kubernetes](https://medium.com/@domi
 
 ### Operator
 
-Ein Operator ist ein Controller, welcher zuständig ist eine Applikation zu installieren und zu verwalten. Ein Operator hat also applikations-spezifisches Wissen. Dies ist insbesondere bei komplexeren Applikationen nützlich, welche aus verschiedenen Komponenten bestehen oder zusätzlichen Administrationsaufwand erfordern (z.B. neu gestartete Pods müssen zu einem Applikations-Cluster hinzugefügt werden, etc.).
+Ein Operator ist ein Controller, welcher dafür zuständig ist, eine Applikation zu installieren und zu verwalten. Ein Operator hat also applikations-spezifisches Wissen. Dies ist insbesondere bei komplexeren Applikationen nützlich, welche aus verschiedenen Komponenten bestehen oder zusätzlichen Administrationsaufwand erfordern (z.B. neu gestartete Pods müssen zu einem Applikations-Cluster hinzugefügt werden, etc.).
 
 Auch für den Operator muss der gewünschte Zustand durch eine Resource abgebildet werden. Dazu gibt es sogenannte Custom Resource Definitions (CRD). Mit CRDs kann man in Openshitf/Kubernetes beliebige neue Resourcen definieren. Der Operator schaut dann konstant (_watch_), ob Custom Resources verändert werden, für welche der Operator zuständig ist und führt entsprechend der Zielvorgabge in der Custom Resource Aktionen aus.
 
