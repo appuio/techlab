@@ -158,7 +158,7 @@ Danach entfernen wir die ClusterServiceVersion:
 oc delete csv etcdoperator.v0.9.4
 ```
 
-Mit `oc get pod` können wir nun verifizieren das der Operator Pod entfernt wurde.
+Mit `oc get pod` können wir nun verifizieren, dass der Operator Pod entfernt wurde.
 
 ## Links
 
