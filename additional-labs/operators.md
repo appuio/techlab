@@ -47,7 +47,7 @@ oc new-project my-etcd-cluster
 
 Wir installieren den ETCD-Operator über die OpenShift WebConsole. Unter Operators -> OperatorHub finden wir den Katalog mit den verfügbaren Operators.
 
-* Nach `etcd` suchen, ETCD-Operator auswählen und Warnung, dass es sich um einen Community Operator handelt bestätigen.
+* Nach `etcd` suchen, ETCD-Operator auswählen und Warnung, dass es sich um einen Community Operator handelt, bestätigen.
 * Install auswählen
 * Installation Mode: Für die meisten Operator lässt sich einstellen, ob er alle Projekte oder nur ein Projekt bedienen soll. Wir wählen hier `A specific namespace on the cluster` und wählen das Projekt `my-etcd-cluster`, welches wir vorher erstellt haben.
 * Update Channel: Viele Operators bieten verschiedene Channels, wie z.B. alpha, beta und stable, wo man einstellen kann, welche Version man installieren möchte. Für den ETCD-Operator gibt es hier keine grosse Auswahl und wir wählen `singlenamespace-alpha`.
