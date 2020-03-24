@@ -10,7 +10,7 @@ Um zu verstehen, was ein Operator ist und wie er funktioniert, schauen wir zunä
 
 Ein Controller besteht aus einem Loop, in welchem immer wieder der gewünschte Zustand (_desired state_) und der aktuelle Zustand (_actual state/obseved state_) des Clusters gelesen werden. Wenn der aktuelle Zustand nicht dem gewünschten Zustand entspricht, versucht der Controller den gewünschten Zustand herzustellen. Der gewünschte Zustand wird mit Ressourcen (Deployments, ReplicaSets, Pods, Services, etc.) beschrieben.
 
-Die ganze Funktionsweise von OpenShift/Kubernetes basiert auf diesem Muster. Auf dem Master (controller-manager) laufen eine vielzahl von Controllern, welche auf Grund von Resourcen (ReplicaSets, Pods, Services, etc.) den gewünschten Zustand herstellen. Erstellt man z.B. ein ReplicaSet, sieht dies der ReplicaSet-Controller und erstellt als Folge die entsprechende Anzahl von Pods.
+Die ganze Funktionsweise von OpenShift/Kubernetes basiert auf diesem Muster. Auf dem Master (controller-manager) laufen eine Vielzahl von Controllern, welche aufgrund von Ressourcen (ReplicaSets, Pods, Services, etc.) den gewünschten Zustand herstellen. Erstellt man z.B. ein ReplicaSet, sieht dies der ReplicaSet-Controller und erstellt als Folge die entsprechende Anzahl von Pods.
 
 __Optional__: Der Artikel [The Mechanics of Kubernetes](https://medium.com/@dominik.tornow/the-mechanics-of-kubernetes-ac8112eaa302) gibt einen tiefen Einblick in die Funktionsweise von Kubernetes. In der Grafik im Abschnitt _Cascading Commands_ wird schön aufgezeigt das vom Erstellen eines Deployments bis zum effektiven Starten der Pods vier verschiedene Controller involviert sind.
 
