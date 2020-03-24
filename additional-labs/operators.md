@@ -4,7 +4,7 @@ Operators sind eine Art und Weise wie man Kubernetes-native Applikationen paketi
 
 ## Einführung / Begriffe
 
-Um zu verstehen was ein Operator ist und wie er funktioniret, schauen wir zunächst das Konzept des Controllers an, da Operators auf dem Konzept der Controller basieren.
+Um zu verstehen, was ein Operator ist und wie er funktioniert, schauen wir zunächst den sogenannten Controller an, da Operators auf dessen Konzept basieren.
 
 ### Controller
 
