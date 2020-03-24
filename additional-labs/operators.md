@@ -1,6 +1,6 @@
 # Operators
 
-Operators sind eine Art und Weise wie man Kubernetes-native Applikationen paketieren, deployen und verwalten kann. Kubernetes-native Applikationen sind Applikationen, die einerseits in Kubernetes/OpenShift deployed sind und andererseits auch über das Kubernetes/OpenShift-API (kubectl/oc) verwaltet werden. Seit OpenShift 4 verwendet auch OpenShift selber eine Reihe von Operators um den OpenShift-Cluster, also sich selber zu verwalten.
+Operators sind eine Art und Weise wie man Kubernetes-native Applikationen paketieren, deployen und verwalten kann. Kubernetes-native Applikationen sind Applikationen, die einerseits in Kubernetes/OpenShift deployed sind und andererseits auch über das Kubernetes/OpenShift-API (kubectl/oc) verwaltet werden. Seit OpenShift 4 verwendet auch OpenShift selber eine Reihe von Operators um den OpenShift-Cluster, also sich selber, zu verwalten.
 
 ## Einführung / Begriffe
 
