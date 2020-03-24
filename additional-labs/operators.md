@@ -20,7 +20,7 @@ Ein Operator ist ein Controller, welcher dafür zuständig ist, eine Applikation
 
 Auch für den Operator muss der gewünschte Zustand durch eine Ressource abgebildet werden. Dazu gibt es sogenannte Custom Resource Definitions (CRD). Mit CRDs kann man in OpenShitf/Kubernetes beliebige neue Ressourcen definieren. Der Operator schaut dann konstant (_watch_), ob Custom Resources verändert werden, für welche der Operator zuständig ist und führt entsprechend der Zielvorgabge in der Custom Resource Aktionen aus.
 
-Operators erleichtern es also komplexere Applikationen zu betreiben, da das Management vom Operator übernommen wird. Allfällige komplexe Konfigurationen werden durch Custom Resources des Operators abstrahiert und Betriebsaufgaben wie Backups oder rotieren von Zertifikaten etc. könne auch vom Operator ausgeführt werden.
+Operators erleichtern es also komplexere Applikationen zu betreiben, da das Management vom Operator übernommen wird. Allfällige komplexe Konfigurationen werden durch Custom Resources abstrahiert und Betriebsaufgaben wie Backups oder das Rotieren von Zertifikaten etc. können auch vom Operator ausgeführt werden.
 
 
 ## Installation eines Operators
