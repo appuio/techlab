@@ -95,7 +95,7 @@ spec:
   version: 3.2.13
 ```
 
-Nun könne wir beobachten, dass drei Pods für den ETCD-Cluster erstellt werden/wurden:
+Nun können wir beobachten, dass drei Pods für den ETCD-Cluster erstellt werden/wurden:
 
 ```
 $ oc get pod
