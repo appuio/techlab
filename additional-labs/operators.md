@@ -25,7 +25,7 @@ Operators erleichtern es also komplexere Applikationen zu betreiben, da das Mana
 
 ## Installation eines Operators
 
-Ein Operator läuft wie eine normale Applikation als Pod im Cluster. Zur Installation eines Operators gehören in der Regel die folgenden Resourcen:
+Ein Operator läuft wie eine normale Applikation als Pod im Cluster. Zur Installation eines Operators gehören in der Regel die folgenden Ressourcen:
 
 * ***Custom Resource Definition***: Damit die neuen Custom Resources angelegt werden können, welche der Operator behandelt, müssen die entsprechenden CRDs installiert werden.
 * ***Service Account***: Ein Service Account mit welchem der Operator läuft.
