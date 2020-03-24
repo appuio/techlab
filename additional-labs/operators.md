@@ -162,7 +162,7 @@ Mit `oc get pod` können wir nun verifizieren, dass der Operator Pod entfernt wu
 
 ## Links
 
-* OpenShift Dokumentation über Operators: https://docs.openshift.com/container-platform/4.3/operators/olm-what-operators-are.html
-* Buch über Operators: https://www.redhat.com/cms/managed-files/cl-oreilly-kubernetes-operators-ebook-f21452-202001-en_2.pdf
+* [OpenShift Dokumentation zu Operators](https://docs.openshift.com/container-platform/4.3/operators/olm-what-operators-are.html)
+* [Buch von O'Reilly über Operators](https://www.redhat.com/cms/managed-files/cl-oreilly-kubernetes-operators-ebook-f21452-202001-en_2.pdf)
 
 [← zurück zur Übersicht](../README.md)
