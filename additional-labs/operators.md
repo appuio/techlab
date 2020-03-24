@@ -30,7 +30,7 @@ Ein Operator läuft wie eine normale Applikation als Pod im Cluster. Zur Install
 * ***Custom Resource Definition***: Damit die neuen Custom Resources angelegt werden können, welche der Operator behandelt, müssen die entsprechenden CRDs installiert werden.
 * ***Service Account***: Ein Service Account mit welchem der Operator läuft.
 * ***Role und RoleBinding***: Mit einer Role definiert man alle Rechte, welche der Operator braucht. Dazu gehören mindestens Rechte auf die eigene Custom Resource. Mit einem RoleBinding wird die neue Role an dem Service Account des Operators zugewiesen.
-* ***Deployment***: Ein Deployment um den eigentlichen Operator laufen zu lassen. Der Operator läuft meistens nur einmal (replicas auf Eins eingestellt), da sich sonst die verschiedenen Operator-Instanzen gegenseitig in die Quere kommen würden.
+* ***Deployment***: Ein Deployment um den eigentlichen Operator laufen zu lassen. Der Operator läuft meistens nur einmal (Replicas auf 1 eingestellt), da sich sonst die verschiedenen Operator-Instanzen gegenseitig in die Quere kommen würden.
 
 Auf OpenShift 4 ist standardmässig der Operator Lifecycle Manager (OLM) installiert. OLM vereinfacht die Installation von Operators. Der OLM erlaubt es uns, aus einem Katalog einen Operator auszuwählen (_subscriben_), welcher dann automatisch installiert und je nach Einstellung auch automatisch upgedated wird.
 
