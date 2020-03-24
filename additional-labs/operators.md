@@ -1,6 +1,6 @@
 # Operators
 
-Operators sind eine Art und Weise wie man Kubernetes-native Applikationen paketieren, deployen und verwalten kann. Kubernetes-native Applikationen sind Applikationen, die einerseits in Kubernetes/Openshift deployed sind und andererseits auch über das Kubernetes/Openshift-API (kubectl/oc) verwaltet werden. Seit Openshift 4 verwendet auch Openshift selber eine Reihe von Operators um den Openshift-Cluster, also sich selber zu verwalten.
+Operators sind eine Art und Weise wie man Kubernetes-native Applikationen paketieren, deployen und verwalten kann. Kubernetes-native Applikationen sind Applikationen, die einerseits in Kubernetes/OpenShift deployed sind und andererseits auch über das Kubernetes/OpenShift-API (kubectl/oc) verwaltet werden. Seit OpenShift 4 verwendet auch OpenShift selber eine Reihe von Operators um den OpenShift-Cluster, also sich selber zu verwalten.
 
 ## Einführung / Begriffe
 
@@ -10,7 +10,7 @@ Um zu verstehen was ein Operator ist und wie er funktioniret, schauen wir zunäc
 
 Ein Controller besteht aus einem Loop, in welchem immer wieder der gewünschte Zustand (_desired state_) und der aktuelle Zustand (_actual state/obseved state_) des Clusters gelesen werden. Wenn der aktuelle Zustand nicht dem gewünschten Zustand entspricht, versucht der Controller den gewünschten Zustand herzustellen. Der gewünschte Zustand wird mit Resourcen (Deployments, ReplicaSets, Pods, Services, etc.) beschrieben.
 
-Die ganze Funktionsweise von Openshift/Kubernetes basiert auf diesem Muster. Auf dem Master (controller-manager) laufen eine vielzahl von Controllern, welche auf Grund von Resourcen (ReplicaSets, Pods, Services, etc.) den gewünschten Zustand herstellen. Erstellt man z.B. ein ReplicaSet, sieht dies der ReplicaSet-Controller und erstellt als Folge die entsprechende Anzahl von Pods.
+Die ganze Funktionsweise von OpenShift/Kubernetes basiert auf diesem Muster. Auf dem Master (controller-manager) laufen eine vielzahl von Controllern, welche auf Grund von Resourcen (ReplicaSets, Pods, Services, etc.) den gewünschten Zustand herstellen. Erstellt man z.B. ein ReplicaSet, sieht dies der ReplicaSet-Controller und erstellt als Folge die entsprechende Anzahl von Pods.
 
 __Optional__: Der Artikel [The Mechanics of Kubernetes](https://medium.com/@dominik.tornow/the-mechanics-of-kubernetes-ac8112eaa302) gibt einen tiefen Einblick in die Funktionsweise von Kubernetes. In der Grafik im Abschnitt _Cascading Commands_ wird schön aufgezeigt das vom Erstellen eines Deployments bis zum effektiven Starten der Pods vier verschiedene Controller involviert sind.
 
@@ -32,7 +32,7 @@ Ein Operator läuft wie eine normale Applikation als Pod im Cluster. Zur Install
 * ***Role und RoleBinding***: Mit einer Role definiert man alle Rechte, welche der Operator braucht. Dazu gehören mindestens Rechte auf die eigene Custom Resource. Mit einem RoleBinding wird die neue Role an dem Service Account des Operators zugewiesen.
 * ***Deployment***: Ein Deployment um den eigentlichen Operator laufen zu lassen. Der Operator läuft meistens nur einmal (replicas auf Eins eingestellt), da sich sonst die verschiedenen Operator-Instanzen gegenseitig in die Quere kommen würden.
 
-Auf Openshift 4 ist standardmässig der Operator Lifecycle Manager (OLM) installiert. OLM vereinfacht die Installation von Operators. Der OLM erlaubt es uns, aus einem Katalog einen Operator auszuwählen (_subscriben_), welcher dann automatisch installiert und je nach Einstellung auch automatisch upgedated wird.
+Auf OpenShift 4 ist standardmässig der Operator Lifecycle Manager (OLM) installiert. OLM vereinfacht die Installation von Operators. Der OLM erlaubt es uns, aus einem Katalog einen Operator auszuwählen (_subscriben_), welcher dann automatisch installiert und je nach Einstellung auch automatisch upgedated wird.
 
 Als Beispiel installieren wir in den nächsten Schritten den ETCD-Operator. Normalerweise ist das Aufsetzen eines ETCD-Clusters ein Prozess mit einigen Schritten und man muss viele Optionen zum Starten der einzelnen Cluster-Member kennen. Der ETCD-Operator erlaubt es uns mit der EtcdCluster-Custom-Resource ganz einfach einen ETCD-Cluster aufzusetzen. Dabei brauchen wir kein detailliertes Wissen über ETCD, welches normalerweise für das Setup notwendig wäre, da dies alles vom Operator übernommen wird.
 Wie für ETCD gibt es auch für viele andere Applikationen vorgefertigte Operators, welche einem den Betrieb von diesen massiv vereinfachen.
@@ -45,7 +45,7 @@ Zunächst legen wir ein neues Projekt an:
 oc new-project my-etcd-cluster
 ```
 
-Wir installieren den ETCD-Operator über die Openshift WebConsole. Unter Operators -> OperatorHub finden wir den Katalog mit den verfügbaren Operators.
+Wir installieren den ETCD-Operator über die OpenShift WebConsole. Unter Operators -> OperatorHub finden wir den Katalog mit den verfügbaren Operators.
 
 * Nach `etcd` suchen, ETCD-Operator auswählen und Warnung, dass es sich um einen Community Operator handelt bestätigen.
 * Install auswählen
@@ -80,7 +80,7 @@ etcdrestores.etcd.database.coreos.com                       2020-03-23T17:31:52Z
 
 ### Aufgabe 2: ETCD-Cluster erstellen
 
-Wir werden nun eine EtcdCluster-Resource anlegen, um einen ETCD-Cluster zu starten. Dies können wir ebenfalls über die Openshift Webconsole machen.
+Wir werden nun eine EtcdCluster-Resource anlegen, um einen ETCD-Cluster zu starten. Dies können wir ebenfalls über die OpenShift Webconsole machen.
 Unter Operators -> Installed Operators wählen wir den ETCD-Operator an. In der _Overview_ werden uns die _Provided APIs_ angezeigt. Dies sind die neuen Custom Resources, welche durch den ETCD-Operator behandelt werden.
 Hier wählen wir unter "etcd Cluster" Create Instance, wo wir das Beispiel gleich so übernehmen können:
 
@@ -162,7 +162,7 @@ Mit `oc get pod` können wir nun verifizieren das der Operator Pod entfernt wurd
 
 ## Links
 
-* Openshift Dokumentation über Operators: https://docs.openshift.com/container-platform/4.3/operators/olm-what-operators-are.html
+* OpenShift Dokumentation über Operators: https://docs.openshift.com/container-platform/4.3/operators/olm-what-operators-are.html
 * Buch über Operators: https://www.redhat.com/cms/managed-files/cl-oreilly-kubernetes-operators-ebook-f21452-202001-en_2.pdf
 
 [← zurück zur Übersicht](../README.md)
