@@ -38,61 +38,99 @@ Als Beispiel installieren wir in den nächsten Schritten den ETCD-Operator. Norm
 Wie für ETCD gibt es auch für viele andere Applikationen vorgefertigte Operators, welche einem den Betrieb von diesen massiv vereinfachen.
 
 ### Aufgabe 1: ETCD-Operator installieren
-
 Zunächst legen wir ein neues Projekt an:
 
 ```
-oc new-project my-etcd-cluster
+oc new-project [USERNAME]-operator-test
 ```
 
-Wir installieren den ETCD-Operator über die OpenShift WebConsole. Unter Operators -> OperatorHub finden wir den Katalog mit den verfügbaren Operators.
-
-* Nach `etcd` suchen, ETCD-Operator auswählen und Warnung, dass es sich um einen Community Operator handelt, bestätigen.
-* Install auswählen
-* Installation Mode: Für die meisten Operator lässt sich einstellen, ob er alle Projekte oder nur ein Projekt bedienen soll. Wir wählen hier `A specific namespace on the cluster` und wählen das Projekt `my-etcd-cluster`, welches wir vorher erstellt haben.
-* Update Channel: Viele Operators bieten verschiedene Channels, wie z.B. alpha, beta und stable, wo man einstellen kann, welche Version man installieren möchte. Für den ETCD-Operator gibt es hier keine grosse Auswahl und wir wählen `singlenamespace-alpha`.
-* Approval Strategy: Mit der Approval Strategy lässt sich weiter einstellen, ob Updates des Operators automatisch installiert werden sollen oder ob jedes Update manuell bewilligt werden soll. Hier wählen wir `Automatic`.
-
-Nun können wir die Installation mit Subscribe starten. Damit haben wir eine Subscription für den ETCD-Operator erstellt. Dies können wir wie folgt verifizieren:
-
+Wir schauen nun als erstes, welche Operators verfügbar sind. Unter den verfügbaren Operators finden wir den Operator `etcd` im Katalog Community Operators.
 ```
-$ oc get sub
-NAME   PACKAGE   SOURCE                CHANNEL
-etcd   etcd      community-operators   singlenamespace-alpha
+oc -n openshift-marketplace get packagemanifests.packages.operators.coreos.com | grep etcd
 ```
+***Hinweis***: Als Cluster-Administrator kann man dies über die WebConsole machen (Operators -> OperatorHub).
 
-Die Subscription löst die Installation des Operators aus und wir sollten nach einiger Zeit den entsprechenden Operator Pod sehen:
-
+Den ETCD-Operator können wir nun installieren, in dem wir eine Subscription anlegen.
 ```
-$ oc get pod
-NAME                             READY   STATUS    RESTARTS   AGE
-etcd-operator-68c8484dc9-7sjfp   3/3     Running   0          1m14s
+cat <<EOF | oc create -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: etcd
+spec:
+  channel: singlenamespace-alpha
+  installPlanApproval: Automatic
+  name: etcd
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+EOF
 ```
 
-Weiter sehen wir die CRDs vom ETCD-Operator, welche durch die Installation angelegt wurden:
+Mit der Subscription teilen wir dem Operator Lifecycle Manager mit, welchen Operator (`name`) von welchem Katalog (`source` und `sourceNamespace`) wir gerne installieren möchten. Die meisten Operators bieten verschiedene Update Channels (`channel`), wie z.B. alpha, beta oder stable an. OLM installiert dann die neueste Version (ClusterServiceVersion) vom gewählten Channel. Mit der Option `installPlanApproval` kann man zudem einstellen, dass OLM automatisch (`Automatic`) den entsprechenden Operator updated, wenn eine neue Version auf dem Update Channel verfügbar ist.
 
+Im Rest der Aufgabe 1 wollen wir nun untersuchen, ob die Installation erfolgreich war und was uns der OLM auf Grund der Subscription alles erstellt hat.
+
+Für die eigntliche Installation sucht OLM die neuste ClusterServiceVersion des `singlenamespace-alpha` Channels und legt diese an:
 ```
-$ oc get crd | grep etcd
-etcdbackups.etcd.database.coreos.com                        2020-03-23T17:31:51Z
-etcdclusters.etcd.database.coreos.com                       2020-03-23T17:31:51Z
-etcdrestores.etcd.database.coreos.com                       2020-03-23T17:31:52Z
+$ oc get csv
+NAME                  DISPLAY   VERSION   REPLACES              PHASE
+etcdoperator.v0.9.4   etcd      0.9.4     etcdoperator.v0.9.2   Succeeded
 ```
+
+Die CSV löst die eigentliche Installation des Operators aus und wir sollten das Deployment des Operators im Projekt sehen:
+```
+$ oc get deployment
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+etcd-operator   1/1     1            1           5m
+```
+
+Weiter finden wir einen Service Account für das Deployment und eine Role inkl. RoleBinding:
+
+* Service Account
+```
+$ oc get serviceaccounts
+NAME            SECRETS   AGE
+...
+etcd-operator   2         5m
+```
+
+* Role
+```
+$ oc get role
+NAME                        AGE
+etcdoperator.v0.9.4-gdmm2   5m
+```
+
+* RoleBinding
+```
+$ oc get rolebinding
+NAME                                            AGE
+etcdoperator.v0.9.4-gdmm2-etcd-operator-7lhcd   5m
+...
+```
+
+Im Hintergrund wurden zudem die neuen `CustomResourceDefinition`s angelegt.
+* `etcdclusters.etcd.database.coreos.com` kind: `EtcdCluster`
+* `etcdbackups.etcd.database.coreos.com` kind: `EtcdBackup`
+* `etcdrestores.etcd.database.coreos.com` kind: `EtcdRestore`
+
+Diese ermöglichen es uns in der nächsten Aufgabe die CustomResource `EtcdCluster` anzulegen:
+
+***Hinweis***: Um CRDs zu sehen, muss man Cluster-Administrator sein. Dann würde man die neuen CRDs wie folgt finden: `oc get crd | grep etcd`
 
 ### Aufgabe 2: ETCD-Cluster erstellen
 
-Wir werden nun eine EtcdCluster-Resource anlegen, um einen ETCD-Cluster zu starten. Dies können wir ebenfalls über die OpenShift Webconsole machen.
-Unter Operators -> Installed Operators wählen wir den ETCD-Operator an. In der _Overview_ werden uns die _Provided APIs_ angezeigt. Dies sind die neuen Custom Resources, welche durch den ETCD-Operator behandelt werden.
-Hier wählen wir unter "etcd Cluster" Create Instance, wo wir das Beispiel gleich so übernehmen können:
-
+Wir werden nun eine EtcdCluster-Resource anlegen, um einen ETCD-Cluster zu starten:
 ```
+cat <<EOF | oc create -f -
 apiVersion: etcd.database.coreos.com/v1beta2
 kind: EtcdCluster
 metadata:
   name: example
-  namespace: my-etcd-cluster
 spec:
   size: 3
   version: 3.2.13
+EOF
 ```
 
 Nun können wir beobachten, dass drei Pods für den ETCD-Cluster erstellt werden/wurden:
