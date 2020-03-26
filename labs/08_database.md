@@ -52,7 +52,7 @@ deploymentconfig.apps.openshift.io/mariadb created
 In der Web Console kann der MariaDB (Ephemeral) Service via Catalog in der Developer-Ansicht dem Projekt hinzugefügt werden:
 
 - Zuerst sicherstellen, dass oben links von der Administrator- auf die Developer-Ansicht gewechselt wurde
-- Auf "\+Add" klicken
+- Auf "\+Add" klicken (links oben)
 - "From Catalog" wählen
 - Auswahl mit Klick auf "Databases", "MariaDB" einschränken
 - Das Feld "MariaDB (Ephemeral)" und anschliessend "Instantiate Template" auswählen
@@ -144,7 +144,7 @@ appuio
 ```
 
 anzeigen lassen.
-In userem Fall wird `YXBwdWlv` in `appuio` dekodiert.
+In unserem Fall wird `YXBwdWlv` in `appuio` dekodiert.
 
 Alternativ kann mit dem Befehl `oc extract secret/mariadb` der Inhalt jedes einzelnen Keys in ein eigenes File geschrieben werden.
 Mit dem Parameter `--to=[DIRECTORY]` kann das Verzeichnis definiert werden, in welches die Werte geschrieben werden soll.
@@ -203,7 +203,7 @@ Projektname = techlab-dockerimage
 mariadb.techlab-dockerimage.svc.cluster.local
 ```
 
-Über das CLI kann der MariaDB Service wie folgt angelegt werden:
+Über das CLI kann der MariaDB Service wie folgt angebunden werden:
 
 __Note__:
 Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden.
@@ -367,7 +367,7 @@ Was enthält die hello-Tabelle?
 
 ## Aufgabe: LAB8.4: Dump auf MariaDB DB einspielen
 
-Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) einzuspielen.
+Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4.2/labs/data/08_dump/dump.sql) einzuspielen.
 
 __Tipp__:
 Mit `oc rsync` oder `oc cp` können Sie lokale Dateien in einen Pod kopieren.

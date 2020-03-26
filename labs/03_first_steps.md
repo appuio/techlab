@@ -7,7 +7,6 @@ In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagie
 __Note__:
 Vergewissern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben, d.h. erfolgreich auf der Web Console einloggen sowie den `oc` Client installieren konnten.
 
-
 ### Befehl kopieren via Web Console
 
 Der Befehl für das Login mit `oc` kann komfortabel via Web Console geholt werden.
@@ -55,6 +54,8 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 1. Fügen Sie Ihre erste Applikation Ihrem Projekt hinzu. Als Beispielprojekt verwenden wir ein APPUiO Example:
 
    1. Wechseln Sie zuerst von der Administrator- in die Developer-Ansicht oben links
+
+   1. Stellen Sie sicher, dass bei "Project" Ihr neu erstelltes Projekt selektiert ist.
 
    1. Wählen Sie nun das Feld "From Catalog"
 
