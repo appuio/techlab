@@ -35,6 +35,10 @@ __Ziele dieses Techlabs__:
 - [ConfigMaps](additional-labs/configmaps.md)
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 
+### OpenShift Developer Techlab
+
+Unterlagen für ein zweitägiges Developer Techlab sind im Verzeichnis [dev-labs](dev-labs/) abgelegt.
+
 ## Weiterführende Dokumentation
 
 - [OpenShift Container Platform 4.3 Dokumentation](https://docs.openshift.com/container-platform/4.3/welcome/index.html)
