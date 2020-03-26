@@ -71,7 +71,7 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 
 1. Belassen Sie die restlichen Felder leer oder auf deren Standardwert und klicken auf _Create_
 
-Sie haben soeben Ihre erste Applikation mittels sog. __[Source to Image](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#source-build)__ Build auf OpenShift deployed.
+Sie haben soeben Ihre erste Applikation mittels sog. __[Source to Image](https://docs.openshift.com/container-platform/4.2/builds/build-strategies.html#build-strategy-s2i_build-strategies)__ Build auf OpenShift deployed.
 
 __Tipp__:
 Mit den folgenden Befehlen kann das obere Beispiel auf der Kommandozeile erstellt werden:
