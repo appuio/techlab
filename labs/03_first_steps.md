@@ -7,7 +7,6 @@ In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagie
 __Note__:
 Vergewissern Sie sich, dass Sie [Lab 2](02_cli.md) erfolgreich abgeschlossen haben, d.h. erfolgreich auf der Web Console einloggen sowie den `oc` Client installieren konnten.
 
-
 ### Befehl kopieren via Web Console
 
 Der Befehl für das Login mit `oc` kann komfortabel via Web Console geholt werden.
@@ -56,6 +55,8 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 
    1. Wechseln Sie zuerst von der Administrator- in die Developer-Ansicht oben links
 
+   1. Stellen Sie sicher, dass bei "Project" Ihr neu erstelltes Projekt selektiert ist.
+
    1. Wählen Sie nun das Feld "From Catalog"
 
    1. Schränken Sie die Auswahl über einen Klick auf _Languages_ und anschliessend _PHP_ ein
@@ -70,7 +71,7 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 
 1. Belassen Sie die restlichen Felder leer oder auf deren Standardwert und klicken auf _Create_
 
-Sie haben soeben Ihre erste Applikation mittels sog. __[Source to Image](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html#source-build)__ Build auf OpenShift deployed.
+Sie haben soeben Ihre erste Applikation mittels sog. __[Source to Image](https://docs.openshift.com/container-platform/4.3/builds/build-strategies.html#build-strategy-s2i_build-strategies)__ Build auf OpenShift deployed.
 
 __Tipp__:
 Mit den folgenden Befehlen kann das obere Beispiel auf der Kommandozeile erstellt werden:

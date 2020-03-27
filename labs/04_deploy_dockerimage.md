@@ -51,7 +51,7 @@ In der Zwischenzeit können Sie sich in der Web Console den aktuellen Status des
 
 __Tipp__:
 Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen:
-https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
+<https://docs.openshift.com/container-platform/4.3/openshift_images/create-images.html>
 
 ## Betrachten der erstellten Ressourcen
 
