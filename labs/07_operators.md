@@ -44,13 +44,13 @@ Zunächst legen wir ein neues Projekt an:
 oc new-project [USERNAME]-operator-test
 ```
 
-Wir schauen nun als erstes, welche Operators verfügbar sind. Unter den verfügbaren Operators finden wir den Operator `etcd` im Katalog Community Operators.
+Wir schauen nun als erstes, welche Operators verfügbar sind. Unter den verfügbaren Operators finden wir den Operator `etcd` im Katalog Community Operators:
 ```
 oc -n openshift-marketplace get packagemanifests.packages.operators.coreos.com | grep etcd
 ```
 ***Hinweis***: Als Cluster-Administrator kann man dies über die WebConsole machen (Operators -> OperatorHub).
 
-Den ETCD-Operator können wir nun installieren, in dem wir eine Subscription anlegen.
+Den ETCD-Operator können wir nun installieren, in dem wir eine Subscription anlegen:
 ```
 cat <<EOF | oc create -f -
 apiVersion: operators.coreos.com/v1alpha1
@@ -86,7 +86,6 @@ etcd-operator   1/1     1            1           5m
 
 Weiter finden wir einen Service Account für das Deployment und eine Role inkl. RoleBinding:
 
-* Service Account
 ```
 $ oc get serviceaccounts
 NAME            SECRETS   AGE
@@ -94,14 +93,12 @@ NAME            SECRETS   AGE
 etcd-operator   2         5m
 ```
 
-* Role
 ```
 $ oc get role
 NAME                        AGE
 etcdoperator.v0.9.4-gdmm2   5m
 ```
 
-* RoleBinding
 ```
 $ oc get rolebinding
 NAME                                            AGE
@@ -109,12 +106,12 @@ etcdoperator.v0.9.4-gdmm2-etcd-operator-7lhcd   5m
 ...
 ```
 
-Im Hintergrund wurden zudem die neuen `CustomResourceDefinition`s angelegt.
+Im Hintergrund wurden zudem die neuen `CustomResourceDefinition`s angelegt:
 * `etcdclusters.etcd.database.coreos.com` kind: `EtcdCluster`
 * `etcdbackups.etcd.database.coreos.com` kind: `EtcdBackup`
 * `etcdrestores.etcd.database.coreos.com` kind: `EtcdRestore`
 
-Diese ermöglichen es uns in der nächsten Aufgabe die CustomResource `EtcdCluster` anzulegen:
+Diese ermöglichen es uns in der nächsten Aufgabe, die CustomResource `EtcdCluster` anzulegen.
 
 ***Hinweis***: Um CRDs zu sehen, muss man Cluster-Administrator sein. Dann würde man die neuen CRDs wie folgt finden: `oc get crd | grep etcd`
 
@@ -145,7 +142,7 @@ example-g7856rl884               1/1     Running   1          8m2s
 ```
 
 Wir können nun einfach den ETCD-Cluster über die EtcdCluster-Resource verändern.
-Wir werden nun mit `oc edit` die Cluser-Size (.spec.size) auf 5 erhöhen, also den ETCD-Cluster hochskalieren.
+Wir werden mit `oc edit` die Cluser-Size (.spec.size) auf 5 erhöhen, also den ETCD-Cluster hochskalieren.
 
 ```
 oc edit etcd example
@@ -153,8 +150,8 @@ oc edit etcd example
 ```
 
 Wir können nun ebenfalls wieder mit `oc get pod` beobachten, dass der EtcdCluster korrekt hochskaliert wird.
-Hierbei startet der ETCD-Operator nicht nur die Pods, sondern er fügt diese auch dem ETCD-Cluster als neue Member hinzu und stellt so sicher, dass die Daten auf die neuen Pods repliziert werden.
-Dies können wir überprüfen, in dem wir uns in einem der ETCD-Pods die Cluster-Member auflisten lassen:
+Hierbei startet der ETCD-Operator nicht nur die Pods, sondern er fügt diese auch dem ETCD-Cluster als neue Members hinzu und stellt so sicher, dass die Daten auf die neuen Pods repliziert werden.
+Dies können wir überprüfen, in dem wir uns in einem der ETCD-Pods die Cluster-Members auflisten lassen:
 
 ```
 $ oc exec -it example-5fx5jxdh88 -- etcdctl member list
@@ -198,7 +195,7 @@ oc delete csv etcdoperator.v0.9.4
 
 Mit `oc get pod` können wir nun verifizieren, dass der Operator Pod entfernt wurde.
 
-## Links
+## Weiterführende Informationen
 
 * [OpenShift Dokumentation zu Operators](https://docs.openshift.com/container-platform/4.3/operators/olm-what-operators-are.html)
 * [Buch von O'Reilly über Operators](https://www.redhat.com/cms/managed-files/cl-oreilly-kubernetes-operators-ebook-f21452-202001-en_2.pdf)
