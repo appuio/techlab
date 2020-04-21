@@ -8,6 +8,7 @@ Für dieses Beispiel verwenden wir das Spring Boot-Beispiel aus [Lab 4](04_deplo
 
 <details><summary><b>Tipp</b></summary>oc project [USERNAME]-dockerimage</details><br/>
 
+
 ## Aufgabe 1: MariaDB Service anlegen
 
 Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MariaDB Datenbank mit EmptyDir Data Storage anlegt.
@@ -23,6 +24,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 - `MYSQL_PASSWORD: appuio`
 - `MYSQL_DATABASE: appuio`
 - `DATABASE_SERVICE_NAME: mariadb`
+
 
 ### CLI
 
@@ -47,6 +49,7 @@ service/mariadb created
 deploymentconfig.apps.openshift.io/mariadb created
 ```
 
+
 ### Web Console
 
 In der Web Console kann der MariaDB (Ephemeral) Service via Catalog in der Developer-Ansicht dem Projekt hinzugefügt werden:
@@ -60,6 +63,7 @@ In der Web Console kann der MariaDB (Ephemeral) Service via Catalog in der Devel
 - Die restlichen Formularfelder leer oder auf deren Standardwert belassen und mit "Create" erstellen lassen
 
 ![MariaDBService](../images/lab_08_mariadb.png)
+
 
 ### Passwort und Username als Plaintext?
 
@@ -257,6 +261,7 @@ Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
 - Wählen Sie die example-spring-boot DC aus, indem Sie auf das OpenShift-Symbol klicken
 - Im neu geöffneten Seitenfenster wählen Sie oben rechts unter "Actions" die Option "Edit DeploymentConfig"
 
+
 ### Spring Boot Applikation
 
 Öffnen Sie die Applikation im Browser.
@@ -267,6 +272,7 @@ Sind die "Say Hello" Einträge von früher noch da?
 - Wenn nein, wieso?
 
 Fügen Sie ein paar neue "Say Hello" Einträge ein.
+
 
 ## Aufgabe 2: Secret referenzieren
 
@@ -313,6 +319,7 @@ Mittels `oc edit dc example-spring-boot -o json` kann die DeploymentConfig im JS
 
 Nun werden die Werte für Username und Passwort sowohl beim MariaDB-Pod wie auch beim Springboot-Pod aus dem selben Secret gelesen.
 
+
 ### Spring Boot Applikation
 
 Öffnen Sie die Applikation im Browser.
@@ -323,6 +330,7 @@ Sind die "Say Hello" Einträge von früher noch da?
 - Wenn nein, wieso?
 
 Fügen Sie ein paar neue "Say Hello" Einträge ein.
+
 
 ## Aufgabe 3: Auf DB verbinden
 
@@ -365,6 +373,7 @@ Was enthält die hello-Tabelle?
 
 <details><summary><b>Tipp</b></summary>select * from hello;</details><br/>
 
+
 ## Aufgabe 4: Dump einspielen
 
 Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4.3/labs/data/08_dump/dump.sql) einzuspielen.
@@ -385,6 +394,7 @@ __Tipp__:
 Die bestehende Datenbank muss vorgängig leer sein.
 Sie kann auch gelöscht und neu angelegt werden.
 
+
 ### Spring Boot Applikation
 
 Öffnen Sie die Applikation im Browser.
@@ -395,6 +405,7 @@ Sind die "Say Hello" Einträge von früher noch da?
 - Wenn nein, wieso?
 
 ---
+
 
 ## Lösung Aufgabe 4
 

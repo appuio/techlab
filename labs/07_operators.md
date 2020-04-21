@@ -2,9 +2,11 @@
 
 Operators sind eine Art und Weise wie man Kubernetes-native Applikationen paketieren, deployen und verwalten kann. Kubernetes-native Applikationen sind Applikationen, die einerseits in Kubernetes/OpenShift deployed sind und andererseits auch über das Kubernetes/OpenShift-API (kubectl/oc) verwaltet werden. Seit OpenShift 4 verwendet auch OpenShift selber eine Reihe von Operators um den OpenShift-Cluster, also sich selber, zu verwalten.
 
+
 ## Einführung / Begriffe
 
 Um zu verstehen, was ein Operator ist und wie er funktioniert, schauen wir zunächst den sogenannten Controller an, da Operators auf dessen Konzept basieren.
+
 
 ### Controller
 
@@ -13,6 +15,7 @@ Ein Controller besteht aus einem Loop, in welchem immer wieder der gewünschte Z
 Die ganze Funktionsweise von OpenShift/Kubernetes basiert auf diesem Muster. Auf dem Master (controller-manager) laufen eine Vielzahl von Controllern, welche aufgrund von Ressourcen (ReplicaSets, Pods, Services, etc.) den gewünschten Zustand herstellen. Erstellt man z.B. ein ReplicaSet, sieht dies der ReplicaSet-Controller und erstellt als Folge die entsprechende Anzahl von Pods.
 
 __Optional__: Der Artikel [The Mechanics of Kubernetes](https://medium.com/@dominik.tornow/the-mechanics-of-kubernetes-ac8112eaa302) gibt einen tiefen Einblick in die Funktionsweise von Kubernetes. In der Grafik im Abschnitt _Cascading Commands_ wird schön aufgezeigt, dass vom Erstellen eines Deployments bis zum effektiven Starten der Pods vier verschiedene Controller involviert sind.
+
 
 ### Operator
 
@@ -37,7 +40,9 @@ Auf OpenShift 4 ist standardmässig der Operator Lifecycle Manager (OLM) install
 Als Beispiel installieren wir in den nächsten Schritten den ETCD-Operator. Normalerweise ist das Aufsetzen eines ETCD-Clusters ein Prozess mit einigen Schritten und man muss viele Optionen zum Starten der einzelnen Cluster-Member kennen. Der ETCD-Operator erlaubt es uns mit der EtcdCluster-Custom-Resource ganz einfach einen ETCD-Cluster aufzusetzen. Dabei brauchen wir kein detailliertes Wissen über ETCD, welches normalerweise für das Setup notwendig wäre, da dies alles vom Operator übernommen wird.
 Wie für ETCD gibt es auch für viele andere Applikationen vorgefertigte Operators, welche einem den Betrieb von diesen massiv vereinfachen.
 
+
 ### Aufgabe 1: ETCD-Operator installieren
+
 Zunächst legen wir ein neues Projekt an:
 
 ```
@@ -45,12 +50,15 @@ oc new-project [USERNAME]-operator-test
 ```
 
 Wir schauen nun als erstes, welche Operators verfügbar sind. Unter den verfügbaren Operators finden wir den Operator `etcd` im Katalog Community Operators:
+
 ```
 oc -n openshift-marketplace get packagemanifests.packages.operators.coreos.com | grep etcd
 ```
+
 ***Hinweis***: Als Cluster-Administrator kann man dies über die WebConsole machen (Operators -> OperatorHub).
 
 Den ETCD-Operator können wir nun installieren, in dem wir eine Subscription anlegen:
+
 ```
 cat <<EOF | oc create -f -
 apiVersion: operators.coreos.com/v1alpha1
@@ -71,6 +79,7 @@ Mit der Subscription teilen wir dem Operator Lifecycle Manager mit, welchen Oper
 Im Rest der Aufgabe 1 wollen wir nun untersuchen, ob die Installation erfolgreich war und was uns der OLM auf Grund der Subscription alles erstellt hat.
 
 Für die eigntliche Installation sucht OLM die neuste ClusterServiceVersion des `singlenamespace-alpha` Channels und legt diese an:
+
 ```
 $ oc get csv
 NAME                  DISPLAY   VERSION   REPLACES              PHASE
@@ -78,6 +87,7 @@ etcdoperator.v0.9.4   etcd      0.9.4     etcdoperator.v0.9.2   Succeeded
 ```
 
 Die CSV löst die eigentliche Installation des Operators aus und wir sollten das Deployment des Operators im Projekt sehen:
+
 ```
 $ oc get deployment
 NAME            READY   UP-TO-DATE   AVAILABLE   AGE
@@ -107,6 +117,7 @@ etcdoperator.v0.9.4-gdmm2-etcd-operator-7lhcd   5m
 ```
 
 Im Hintergrund wurden zudem die neuen `CustomResourceDefinition`s angelegt:
+
 * `etcdclusters.etcd.database.coreos.com` kind: `EtcdCluster`
 * `etcdbackups.etcd.database.coreos.com` kind: `EtcdBackup`
 * `etcdrestores.etcd.database.coreos.com` kind: `EtcdRestore`
@@ -115,9 +126,11 @@ Diese ermöglichen es uns in der nächsten Aufgabe, die CustomResource `EtcdClus
 
 ***Hinweis***: Um CRDs zu sehen, muss man Cluster-Administrator sein. Dann würde man die neuen CRDs wie folgt finden: `oc get crd | grep etcd`
 
+
 ### Aufgabe 2: ETCD-Cluster erstellen
 
 Wir werden nun eine EtcdCluster-Resource anlegen, um einen ETCD-Cluster zu starten:
+
 ```
 cat <<EOF | oc create -f -
 apiVersion: etcd.database.coreos.com/v1beta2
@@ -162,14 +175,18 @@ $ oc exec -it example-5fx5jxdh88 -- etcdctl member list
 e514d358ce1b7704: name=example-5fx5jxdh88 peerURLs=http://example-5fx5jxdh88.example.my-operator-test.svc:2380 clientURLs=http://example-5fx5jxdh88.example.my-operator-test.svc:2379 isLeader=true
 ```
 
+
 ### Aufgabe 3: ETCD-Cluster entfernen
+
 Um den ETCD-Cluster zu entfernen, müssen wir lediglich die EtcdCluster Resource entfernen:
 
 ```
 oc delete etcd example
 ```
 
+
 ### Aufgabe 4: Operator deinstallieren
+
 Um einen Operator zu deinstallieren, muss einerseits die Subscription und andererseits die sogenannte ClusterServiceVersion des Operators entfernt werden.
 
 Mit dem Löschen der Subscription stellen wir sicher, dass keine neue Version mehr installiert wird:
@@ -194,6 +211,7 @@ oc delete csv etcdoperator.v0.9.4
 ```
 
 Mit `oc get pod` können wir nun verifizieren, dass der Operator Pod entfernt wurde.
+
 
 ## Weiterführende Informationen
 

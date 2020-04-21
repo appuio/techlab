@@ -9,6 +9,7 @@ In diesem Lab zeigen wir den Docker Build Workflow anhand eines Beispiels auf un
 Damit Sie Änderungen am Source Code unserer Beispielapplikation vornehmen können, benötigen Sie einen eigenen GitHub Account.
 Richten Sie sich einen Account unter <https://github.com/> ein, falls Sie nicht bereits über einen verfügen.
 
+
 ### Beispiel-Projekt forken
 
 __Beispiel-Projekt__: <https://github.com/appuio/example-php-docker-helloworld>
@@ -18,6 +19,7 @@ Gehen Sie auf die [GitHub Projekt-Seite](https://github.com/appuio/example-php-d
 ![Fork](../images/lab_09_fork_example.png)
 
 Sie haben nun unter `https://github.com/[YourGitHubUser]/example-php-docker-helloworld` einen Fork des Example Projektes, den Sie so erweitern können wie Sie wollen.
+
 
 ## Deployen des eigenen Forks
 
@@ -41,6 +43,7 @@ Nun exponieren wir den Service mit:
 ```bash
 oc expose service appuio-php-docker-ex
 ```
+
 
 ## Aufgabe 2: Webhook auf GitHub einrichten
 
@@ -66,6 +69,7 @@ Fügen Sie nun die kopierte GitHub Webhook URL ein:
 ![Github Webhook](../images/lab_09_webhook_github4.png)
 
 Ab jetzt triggern alle Pushes auf Ihrem GitHub Repository einen Build und deployen anschliessend die Code-Änderungen direkt auf die OpenShift-Plattform.
+
 
 ## Aufgabe 3: Code anpassen
 

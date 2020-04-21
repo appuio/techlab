@@ -2,6 +2,7 @@
 
 In diesem Lab zeigen wir auf, wie Templates ganze Infrastrukturen beschreiben und entsprechend mit einem Befehl instanziert werden können.
 
+
 ## Templates
 
 Wie Sie in den vorangegangenen Labs gesehen haben, können einfach über die Eingabe unterschiedlicher Befehle Applikationen, Datenbanken, Services und deren Konfiguration erstellt und deployt werden.
@@ -23,6 +24,7 @@ oc get template -n openshift
 Über die Web Console kann dies mit dem "Developer Catalog" gemacht werden. Stellen Sie dafür sicher, dass Sie sich in der Developer-Ansicht befinden, klicken Sie auf "\+Add" und filtern Sie nach Type Template.
 
 Diese Templates können im JSON- oder YAML-Format sowohl im Git Repository neben Ihrem Source Code abgelegt werden als auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein.
+
 
 ## Aufgabe 1: Template instanzieren
 

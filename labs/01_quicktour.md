@@ -4,17 +4,21 @@ In diesem Lab werden die Grundkonzepte von OpenShift vorgestellt. Des Weiteren z
 
 Die hier aufgeführten Begriffe und Ressourcen sind ein Auszug [dieses Red Hat Blogposts](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/), dem auch weiterführende Informationen zu Begriffen rund um Container entnommen werden können.
 
+
 ## Grundkonzepte
 
 OpenShift basiert auf modernen Konzepten wie CRI-O oder Kubernetes und bietet damit eine Plattform, mit der Software in Containern gebaut, deployt und betrieben werden kann.
+
 
 ### Container Engine
 
 [cri-o](https://cri-o.io/) ist eine leichtgewichtige Container Engine, welche Container Images in einen laufenden Prozess umwandelt, also in einen Container. Dies geschieht anhand der [Container Runtime Specification](https://github.com/opencontainers/runtime-spec) der [Open Container Initiative](https://www.opencontainers.org/), welche auch die [Image Specification](https://github.com/opencontainers/image-spec) festgelegt hat. Sämtliche OCI-konformen Images können so mit OCI-konformen Engines ausgeführt werden.
 
+
 ### Kubernetes
 
 [Kubernetes](http://kubernetes.io/) ist ein Container Orchestration Tool, welches das Verwalten von Containern wesentlich vereinfacht. Der Orchestrator terminiert dynamisch den Container Workload innerhalb eines Clusters.
+
 
 ### Container und Container Images
 
@@ -36,7 +40,6 @@ Container Images können auch auf OpenShift selbst gebaut werden, von wo aus sie
 
 
 ## OpenShift-Konzepte
-
 ### Projekte
 
 In OpenShift werden Ressourcen (Container und Container Images, Pods, Services, Routen, Konfiguration, Quotas und Limiten etc.) in Projekten strukturiert. Aus technischer Sicht entspricht ein Projekt einem Kubernetes Namespace und erweitert diesen um gewisse Konzepte.

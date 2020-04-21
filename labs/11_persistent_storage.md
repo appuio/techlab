@@ -17,6 +17,7 @@ Er wird deshalb automatisch durch OpenShift mit einem zur Verfügung stehenden P
 Sind nur noch grössere Persistent Volumes vorhanden, wird eines dieser Volumes verwendet und die Grösse des Claim angepasst.
 Sind nur noch kleinere Persistent Volumes vorhanden, kann der Claim nicht erfüllt werden und bleibt solange offen, bis ein Volume der passenden Grösse (oder eben grösser) auftaucht.
 
+
 ### Volume in Pod einbinden
 
 Im zweiten Schritt wird der zuvor erstellte PVC im richtigen Pod eingebunden.

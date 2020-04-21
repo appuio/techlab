@@ -2,6 +2,7 @@
 
 In diesem Lab werden wir gemeinsam das erste Mal mit der Lab Plattform interagieren, dies sowohl über den `oc` Client wie auch über die Web Console.
 
+
 ## Login
 
 __Note__:
@@ -24,14 +25,16 @@ Als Alternative zum Kopieren des Befehls kann direkt mit `oc` eingeloggt werden:
 oc login FIXME: URL
 ```
 
-## Projekt erstellen
+
+## OpenShift Projekte
 
 Ein Projekt in OpenShift ist das Top-Level Konzept um Ihre Ressourcen wie Deployments, Builds, Container Images etc. zu organisieren.
 Für das Projekt berechtigte User können diese Ressourcen verwalten.
 Innerhalb eines OpenShift Clusters muss der Name eines Projektes eindeutig sein.
 Siehe auch [Lab 1](01_quicktour.md).
 
-## Aufgabe: LAB3.1
+
+## Aufgabe 1: Neues Projekt erstellen
 
 Erstellen Sie auf der Lab Plattform ein neues Projekt mit Namen `[USERNAME]-example1`.
 
@@ -43,11 +46,13 @@ oc help
 
 <details><summary><b>Tipp</b></summary>oc new-project [USERNAME]-example1</details><br/>
 
+
 ## Web Console
 
 Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Browser vorzunehmen.
 
-## Aufgabe: LAB3.2
+
+## Aufgabe 2: Applikation erstellen
 
 1. Gehen Sie in die Übersicht Ihres eben erstellten Projektes. Aktuell ist das Projekt noch leer.
 

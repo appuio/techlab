@@ -3,7 +3,7 @@
 In diesem Lab zeigen wir auf, wie man Applikationen in OpenShift skaliert.
 Des Weiteren zeigen wir, wie OpenShift dafür sorgt, dass jeweils die Anzahl erwarteter Pods gestartet wird und wie eine Applikation der Plattform zurückmelden kann, dass sie bereit für Requests ist.
 
-## Aufgabe: LAB6.1 Beispiel-Applikation hochskalieren
+## Aufgabe 1: Beispiel-Applikation hochskalieren
 
 Dafür erstellen wir ein neues Projekt mit dem Namen `[USERNAME]-scale`.
 
@@ -35,7 +35,8 @@ Für mehr Details json- oder yaml-Output ausgeben lassen.
 
 Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt sind (status).
 
-## Aufgabe: LAB6.2 Skalieren unserer Beispiel Applikation
+
+## Aufgabe 2: Skalieren unserer Beispiel Applikation
 
 Nun skalieren wir unsere Beispiel-Applikation auf 3 Replicas.
 Der soeben betrachtete ReplicationController wird über die DeploymentConfig (dc) gesteuert, weshalb wir diese skalieren müssen, damit die gewünschte Anzahl Repclias vom rc übernommen wird:
@@ -88,10 +89,12 @@ Skalieren von Pods innerhalb eines Service ist sehr schnell, da OpenShift einfac
 __Tipp__:
 OpenShift unterstützt auch [Autoscaling](https://docs.openshift.com/container-platform/4.3/nodes/pods/nodes-pods-autoscaling.html).
 
-## Aufgabe: LAB6.3 Skalierte App in der Web Console
+
+## Aufgabe 3: Skalierte App in der Web Console
 
 Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 Wie können Sie die Anzahl Replicas via Web Console steuern?
+
 
 ## Unterbruchsfreies Skalieren überprüfen
 
@@ -181,6 +184,7 @@ Es kann sogar passieren, dass der Service gar nicht mehr online ist und der Rout
 
 Im folgenden Kapitel wird beschrieben, wie Sie Ihre Services konfigurieren können, damit unterbruchsfreie Deployments möglich werden.
 
+
 ## Unterbruchsfreies Deployment dank Health Checks und Rolling Update
 
 Die "[Rolling Strategy](https://docs.openshift.com/container-platform/4.3/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies)" ermöglicht unterbruchsfreie Deployments.
@@ -202,7 +206,8 @@ Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt unter 
 http://[route]/health/
 ```
 
-## Aufgabe: LAB6.4
+
+## Aufgabe 4: Readiness Probe
 
 Fügen Sie die Readiness Probe mit folgendem Befehl in der DeploymentConfig (dc) hinzu:
 
@@ -232,6 +237,7 @@ oc rollout latest appuio-php-docker
 ```
 
 Jetzt sollten die Antworten ohne Unterbruch vom neuen Pod kommen.
+
 
 ## Self Healing
 

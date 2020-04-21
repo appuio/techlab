@@ -1,6 +1,7 @@
-# Lab 5: Unseren Service mittels Route online verfügbar machen
+# Lab 5: Routen erstellen
 
 In diesem Lab werden wir die Applikation aus [Lab 4](04_deploy_dockerimage.md) über das HTTP-Protokoll vom Internet her erreichbar machen.
+
 
 ## Routen
 
@@ -16,7 +17,8 @@ Aktuell werden folgende Protokolle unterstützt:
 - TLS mit [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)
 - WebSockets
 
-## Aufgabe: LAB5.1
+
+## Aufgabe 1: Route erstellen
 
 Vergewissern Sie sich, dass Sie sich im Projekt `[USERNAME]-dockerimage` befinden.
 

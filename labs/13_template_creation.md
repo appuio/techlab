@@ -2,6 +2,7 @@
 
 Im Unterschied zu [Lab 11](11_template.md) schreiben wir hier unsere eigenen Templates bevor wir damit Applikationen erstellen.
 
+
 ## Hilfreiche `oc`-Befehle
 
 Auflisten aller Befehle:
@@ -23,6 +24,7 @@ oc get <RESOURCE_TYPE> <RESOURCE_NAME>
 oc describe <RESOURCE_TYPE> <RESOURCE_NAME>
 ```
 
+
 ## Generierung
 
 Über `oc new-app` oder "\+Add" in der Web Console werden die Ressourcen automatisch angelegt.
@@ -32,6 +34,7 @@ Für den produktiven Einsatz reicht das meistens nicht aus.
 Da braucht es mehr Kontrolle über die Konfiguration.
 Eigene Templates sind hierfür die Lösung.
 Sie müssen jedoch nicht von Hand geschrieben sondern können als Vorlage generiert werden.
+
 
 ### Generierung vor Erstellung
 
@@ -67,6 +70,7 @@ oc new-app . --image-stream=wildfly:latest -o json | \
   jq '{ kind: "Template", apiVersion: .apiVersion, metadata: {name: "mytemplate" }, objects: .items }'
 ```
 
+
 ### Generierung nach Erstellung
 
 Bestehende Ressourcen werden mit `oc get -o json` bzw `oc get -o yaml` exportiert.
@@ -94,6 +98,7 @@ oc get is,bc,pvc,dc,route,service -o json > my-template.json
 
 Attribute mit Wert `null` sowie die Annotation `openshift.io/generated-by` dürfen aus dem Template entfernt werden.
 
+
 ### Vorhandene Templates exportieren
 
 Es können auch bestehende Templates der Plattform abgeholt werden um eigene Templates zu erstellen.
@@ -111,10 +116,12 @@ So erhalten wir eine Kopie vom eap70-mysql-persistent-s2i Template:
 oc get template eap72-mysql-persistent-s2i -o json -n openshift > eap72-mysql-persistent-s2i.json
 ```
 
+
 ## Parameter
 
 Damit die Applikationen für die eigenen Bedürfnisse angepasst werden können, gibt es Parameter.
 Generierte oder exportierte Templates sollten fixe Werte wie Hostnamen oder Passwörter durch Parameter ersetzen.
+
 
 ### Parameter von Templates anzeigen
 
@@ -129,6 +136,7 @@ MEMORY_LIMIT                   Maximum amount of memory the CakePHP container ca
 MEMORY_MYSQL_LIMIT             Maximum amount of memory the MySQL container can use.                                512Mi
 ...
 ```
+
 
 ### Parameter von Templates mit Werten ersetzen
 
@@ -154,6 +162,7 @@ oc process -f eap70-mysql-persistent-s2i.json \
   | oc create -f -
 ```
 
+
 ## Templates schreiben
 
 OpenShift Dokumentation: <https://docs.openshift.com/container-platform/4.3/openshift_images/using-templates.html>
@@ -163,6 +172,7 @@ Diese Werte werden im Template als Parameter definiert.
 Somit ist der erste Schritt nach dem Generieren einer Template-Definition das Definieren von Parametern.
 Das Template wird mit Variablen erweitert, welche dann mit den Parameterwerten ersetzt werden.
 So wird bspw. die Variable `${DB_PASSWORD}` durch den Parameter mit Namen `DB_PASSWORD` ersetzt.
+
 
 ### Generierte Parameter
 
@@ -181,12 +191,14 @@ Diese Definition würde ein zufälliges, 13 Zeichen langes Passwort mit Klein- u
 
 Auch wenn ein Parameter mit "generate"-Definition konfiguriert ist, kann er bei der Erzeugung überschrieben werden.
 
+
 ### Template Merge
 
 Wenn z.B eine App mit einer Datenbank zusammen verwendet wird, können die zwei Templates zusammengelegt werden.
 Dabei ist es wichtig, die Template Parameter zu konsolidieren.
 Dies sind meistens Werte für die Anbindung der Datenbank.
 Dabei einfach in beiden Templates die gleiche Variable vom gemeinsamen Parameter verwenden.
+
 
 ## Anwenden vom Templates
 

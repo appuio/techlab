@@ -2,7 +2,8 @@
 
 In diesem Lab werden wir gemeinsam das erste "pre-built" Container Image deployen und die OpenShift-Konzepte Pod, Service, DeploymentConfig und ImageStream etwas genauer anschauen.
 
-## Aufgabe: LAB4.1
+
+## Aufgabe 1: Container Image deployen
 
 Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployment eines pre-built Container Image von Docker Hub (oder einer anderen Image Registry) zu.
 
@@ -53,6 +54,7 @@ __Tipp__:
 Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen:
 <https://docs.openshift.com/container-platform/4.3/openshift_images/create-images.html>
 
+
 ## Betrachten der erstellten Ressourcen
 
 Als wir vorhin `oc new-app appuio/example-spring-boot` ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt.
@@ -61,6 +63,7 @@ Diese werden dafür benötigt, das Container Image zu deployen:
 - Service
 - [ImageStream](https://docs.openshift.com/container-platform/4.3/openshift_images/images-understand.html)
 - [DeploymentConfig](https://docs.openshift.com/container-platform/4.3/applications/deployments/what-deployments-are.html)
+
 
 ### Service
 
@@ -220,6 +223,7 @@ Events:            <none>
 
 Unter Endpoints finden Sie nun den aktuell laufenden Pod.
 
+
 ### ImageStream
 
 [ImageStreams](https://docs.openshift.com/container-platform/4.3/openshift_images/image-streams-manage.html) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Image verfügbar ist.
@@ -232,6 +236,7 @@ Mit dem folgenden Befehl können Sie zusätzliche Informationen über den ImageS
 ```bash
 oc get imagestream example-spring-boot -o json
 ```
+
 
 ### DeploymentConfig
 

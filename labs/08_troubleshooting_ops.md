@@ -62,6 +62,7 @@ KUBERNETES_PORT_53_TCP=tcp://172.30.0.1:53
 ...
 ```
 
+
 ## Logfiles betrachten
 
 Die Logfiles zu einem Pod können sowohl in der Web Console als auch auch im CLI angezeigt werden:
@@ -92,11 +93,13 @@ Melden Sie sich in Kibana an, schauen Sie sich um und versuchen Sie, eine Suche 
 
 Weitere Informationen und ein optionales Lab finden Sie [hier](../additional-labs/logging_efk_stack.md).
 
+
 ## Metriken
 
 Die OpenShift Platform stellt auch ein Grundset an Metriken zur Verfügung, welche einerseits in der Web Console integriert sind und andererseits dazu genutzt werden können, Pods automatisch zu skalieren.
 
 Sie können mit Hilfe eines direkten Logins auf einen Pod nun den Ressourcenverbrauch dieses Pods beeinflussen und die Auswirkungen dazu in der Web Console beobachten.
+
 
 ## Aufgabe 3: Port Forwarding
 
