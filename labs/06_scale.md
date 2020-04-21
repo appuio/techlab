@@ -259,6 +259,6 @@ In der Web Console ist gut zu beobachten, wie der Pod zuerst hellblau ist, bis d
 
 __Ende Lab 6__
 
-<p width="100px" align="right"><a href="07_troubleshooting_ops.md">Troubleshooting →</a></p>
+<p width="100px" align="right"><a href="07_operators.md">Operators →</a></p>
 
 [← zurück zur Übersicht](../README.md)

@@ -1,9 +1,9 @@
-# Lab 9: Code Changes durch Webhook triggern Rebuild auf OpenShift
+# Lab 10: Code Changes durch Webhook triggern Rebuild auf OpenShift
 
 In diesem Lab zeigen wir den Docker Build Workflow anhand eines Beispiels auf und Sie lernen, wie Sie mit einem Push in das Git Repository automatisch einen Build und ein Deployment der Applikation auf OpenShift starten.
 
-## Aufgabe: LAB9.1: Vorbereitung Github Account und Fork
 
+## Aufgabe 1: Vorbereitung Github Account und Fork
 ### Github Account
 
 Damit Sie Änderungen am Source Code unserer Beispielapplikation vornehmen können, benötigen Sie einen eigenen GitHub Account.
@@ -42,7 +42,7 @@ Nun exponieren wir den Service mit:
 oc expose service appuio-php-docker-ex
 ```
 
-## Aufgabe: LAB9.2: Webhook auf GitHub einrichten
+## Aufgabe 2: Webhook auf GitHub einrichten
 
 Beim Erstellen der App wurden in der BuildConfig (bc) direkt Webhooks definiert.
 Diese Webhooks können Sie von der Web Console kopieren.
@@ -67,7 +67,7 @@ Fügen Sie nun die kopierte GitHub Webhook URL ein:
 
 Ab jetzt triggern alle Pushes auf Ihrem GitHub Repository einen Build und deployen anschliessend die Code-Änderungen direkt auf die OpenShift-Plattform.
 
-## Aufgabe: LAB9.3: Code anpassen
+## Aufgabe 3: Code anpassen
 
 Klonen Sie Ihr Git Repository und wechseln Sie in das Code Verzeichnis:
 
@@ -114,7 +114,7 @@ oc get builds
 
 und deployed anschliessend die Änderungen.
 
-## Aufgabe: LAB9.4: Rollback
+## Aufgabe 4: Rollback
 
 Mit OpenShift lassen sich unterschiedliche Software-Stände aktivieren und deaktivieren, indem einfach eine andere Version des Image gestartet wird.
 
@@ -149,8 +149,8 @@ oc set triggers dc/appuio-php-docker-ex --auto
 
 ---
 
-__Ende Lab 9__
+__Ende Lab 10__
 
-<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
+<p width="100px" align="right"><a href="11_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
 
 [← zurück zur Übersicht](../README.md)

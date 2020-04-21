@@ -1,4 +1,4 @@
-# Lab 8: Datenbank anbinden
+# Lab 9: Datenbank anbinden
 
 Die meisten Applikationen sind in irgend einer Art stateful (sie haben also einen eigenen Zustand) und speichern Daten persistent ab.
 Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore.
@@ -8,7 +8,7 @@ Für dieses Beispiel verwenden wir das Spring Boot-Beispiel aus [Lab 4](04_deplo
 
 <details><summary><b>Tipp</b></summary>oc project [USERNAME]-dockerimage</details><br/>
 
-## Aufgabe: LAB8.1: MariaDB Service anlegen
+## Aufgabe 1: MariaDB Service anlegen
 
 Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MariaDB Datenbank mit EmptyDir Data Storage anlegt.
 Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MariaDB Pod alle Daten verloren gehen.
@@ -268,7 +268,7 @@ Sind die "Say Hello" Einträge von früher noch da?
 
 Fügen Sie ein paar neue "Say Hello" Einträge ein.
 
-## Aufgabe: LAB8.2.1: Secret referenzieren
+## Aufgabe 2: Secret referenzieren
 
 Weiter oben haben wir gesehen, wie OpenShift mittels Secrets sensitive Informationen von der eigentlichen Konfiguration entkoppelt und uns dabei hilft, Redundanzen zu vermeiden.
 Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert, allerings aber die Werte redundant und Plaintext in der DeploymentConfig abgelegt.
@@ -324,7 +324,7 @@ Sind die "Say Hello" Einträge von früher noch da?
 
 Fügen Sie ein paar neue "Say Hello" Einträge ein.
 
-## Aufgabe: LAB8.3: In MariaDB Service Pod einloggen und manuell auf DB verbinden
+## Aufgabe 3: Auf DB verbinden
 
 Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingeloggt werden:
 
@@ -365,7 +365,7 @@ Was enthält die hello-Tabelle?
 
 <details><summary><b>Tipp</b></summary>select * from hello;</details><br/>
 
-## Aufgabe: LAB8.4: Dump auf MariaDB DB einspielen
+## Aufgabe 4: Dump einspielen
 
 Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4.3/labs/data/08_dump/dump.sql) einzuspielen.
 
@@ -396,7 +396,7 @@ Sind die "Say Hello" Einträge von früher noch da?
 
 ---
 
-## Lösung: LAB8.4
+## Lösung Aufgabe 4
 
 Ein ganzes Verzeichnis (dump) syncen.
 Darin enthalten ist das File `dump.sql`.
@@ -441,8 +441,8 @@ mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABAS
 
 ---
 
-__Ende Lab 8__
+__Ende Lab 9__
 
-<p width="100px" align="right"><a href="09_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
+<p width="100px" align="right"><a href="10_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
 
 [← zurück zur Übersicht](../README.md)

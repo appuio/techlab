@@ -1,4 +1,4 @@
-# Lab 12: Eigene Templates erstellen
+# Lab 13: Eigene Templates erstellen
 
 Im Unterschied zu [Lab 11](11_template.md) schreiben wir hier unsere eigenen Templates bevor wir damit Applikationen erstellen.
 
@@ -195,6 +195,6 @@ Wenn die Parameter des Templates bereits mit `oc process` gesetzt wurden, brauch
 
 ---
 
-__Ende Lab 12__
+__Ende Lab 13__
 
 [← zurück zur Übersicht](../README.md)

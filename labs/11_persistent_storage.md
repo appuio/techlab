@@ -1,10 +1,10 @@
-# Lab 10: Persistent Storage anbinden und verwenden für Datenbank
+# Lab 11: Persistent Storage anbinden und verwenden für Datenbank
 
 Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispiel der Fall ist.
 Verschwindet also unser MariaDB-Pod bspw. aufgrund einer Änderung des Image, sind die bis zuvor noch vorhandenen Daten im neuen Pod nicht mehr vorhanden.
 Um genau dies zu verhindern hängen wir nun Persistent Storage an unseren MariaDB-Pod an.
 
-## Aufgabe: LAB10.1:
+## Aufgabe 1: Persistent Storage anbinden
 
 ### Storage anfordern
 
@@ -67,11 +67,12 @@ deploymentconfigs/mariadb
     mounted at /var/lib/mysql/data
 ```
 
-## Aufgabe: LAB10.2: Persistenz-Test
 
+## Aufgabe 2: Persistenz-Test
 ### Daten wiederherstellen
 
 Wiederholen Sie [Lab-Aufgabe 8.4](08_database.md#l%C3%B6sung-lab84).
+
 
 ### Test
 
@@ -79,8 +80,8 @@ Skalieren Sie nun den MariaDB-Pod auf 0 und anschliessend wieder auf 1. Beobacht
 
 ---
 
-__Ende Lab 10__
+__Ende Lab 11__
 
-<p width="100px" align="right"><a href="11_template.md">Applikationstemplates →</a></p>
+<p width="100px" align="right"><a href="12_template.md">Applikationstemplates →</a></p>
 
 [← zurück zur Übersicht](../README.md)

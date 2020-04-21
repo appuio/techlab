@@ -1,4 +1,4 @@
-# Lab 7: Troubleshooting
+# Lab 8: Troubleshooting
 
 In diesem Lab wird aufgezeigt, wie man im Fehlerfall vorgehen kann und welche Tools einem dabei zur Verfügung stehen.
 
@@ -12,7 +12,7 @@ Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen
 Dennoch gibt es Usecases, bei denen man sich in die Container einloggen muss.
 Zum Beispiel für Debugging und Analysen.
 
-## Aufgabe: LAB7.1
+## Aufgabe 1: Remote Shells
 
 Mit OpenShift können Remote Shells in die Pods geöffnet werden, ohne dass man darin vorgängig SSH installieren müsste.
 Dafür steht einem der Befehl `oc rsh` zur Verfügung.
@@ -39,7 +39,8 @@ drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 
 Mit `exit` bzw. `ctrl`+`d` kann wieder aus dem Pod bzw. der Shell ausgeloggt werden.
 
-## Aufgabe: LAB7.2
+
+## Aufgabe 2: Befehle ausführen im Container
 
 Einzelne Befehle innerhalb des Containers können über `oc exec` ausgeführt werden:
 
@@ -97,7 +98,7 @@ Die OpenShift Platform stellt auch ein Grundset an Metriken zur Verfügung, welc
 
 Sie können mit Hilfe eines direkten Logins auf einen Pod nun den Ressourcenverbrauch dieses Pods beeinflussen und die Auswirkungen dazu in der Web Console beobachten.
 
-## Aufgabe: LAB7.3 Port Forwarding
+## Aufgabe 3: Port Forwarding
 
 OpenShift erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf einen Pod weiterzuleiten.
 Dies ist z.B. nützlich, um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen, die nicht gegen das Internet exponiert werden und auch sonst nicht erreichbar sind.
@@ -127,8 +128,8 @@ Sobald das Port-Forwarding also nicht mehr benötigt wird, kann er mit ctrl+c ge
 
 ---
 
-__Ende Lab 7__
+__Ende Lab 8__
 
-<p width="100px" align="right"><a href="08_database.md">Datenbank deployen und anbinden →</a></p>
+<p width="100px" align="right"><a href="09_database.md">Datenbank deployen und anbinden →</a></p>
 
 [← zurück zur Übersicht](../README.md)

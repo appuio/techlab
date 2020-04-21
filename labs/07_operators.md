@@ -1,4 +1,4 @@
-# Operators
+# Lab 7: Operators
 
 Operators sind eine Art und Weise wie man Kubernetes-native Applikationen paketieren, deployen und verwalten kann. Kubernetes-native Applikationen sind Applikationen, die einerseits in Kubernetes/OpenShift deployed sind und andererseits auch über das Kubernetes/OpenShift-API (kubectl/oc) verwaltet werden. Seit OpenShift 4 verwendet auch OpenShift selber eine Reihe von Operators um den OpenShift-Cluster, also sich selber, zu verwalten.
 
@@ -202,5 +202,11 @@ Mit `oc get pod` können wir nun verifizieren, dass der Operator Pod entfernt wu
 
 * [OpenShift Dokumentation zu Operators](https://docs.openshift.com/container-platform/4.3/operators/olm-what-operators-are.html)
 * [Buch von O'Reilly über Operators](https://www.redhat.com/cms/managed-files/cl-oreilly-kubernetes-operators-ebook-f21452-202001-en_2.pdf)
+
+---
+
+__Ende Lab 7__
+
+<p width="100px" align="right"><a href="08_troubleshooting_ops.md">Troubleshooting →</a></p>
 
 [← zurück zur Übersicht](../README.md)
