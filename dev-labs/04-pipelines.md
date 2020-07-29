@@ -31,23 +31,23 @@ Pipeline workflows are defined in a Jenkinsfile, either embedded directly in the
 
 ## First pipeline
 
-You should have access to a project called **cicd-userXY**  , switch to this project via:
+You should have access to a project called **cicd-[USER]**  , switch to this project via:
 
 ```bash
-oc project cicd-userXY
+oc project cicd-[USER]
 ```
 
-**UserXY** will have admin rights on project **cicd-userXY**
+**[USER]** will have admin rights on project **cicd-[USER]**
 
 In this project, there should be a route with name jenkins. Let's see what routes exist in the project:
 
 ```bash
 $ oc get routes
 NAME      HOST/PORT                                                   PATH      SERVICES   PORT      TERMINATION     WILDCARD
-jenkins   jenkins-cicd-userXY.apps.cluster-centris-0c77.centris-0c77.example.opentlc.com             jenkins    <all>     edge/Redirect   None
+jenkins   jenkins-cicd-[USER].apps.cluster-centris-0c77.centris-0c77.example.opentlc.com             jenkins    <all>     edge/Redirect   None
 ```
 
-Now copy the url from this route, in this case *jenkins-cicd-userXY.apps.cluster-centris-0c77.centris-0c77.example.opentlc.com* from the route definition and open this url in a browser. **!Replace the route url with what you get from your own execution**
+Now copy the url from this route, in this case *jenkins-cicd-[USER].apps.cluster-centris-0c77.centris-0c77.example.opentlc.com* from the route definition and open this url in a browser. **!Replace the route url with what you get from your own execution**
 
 The first time you hit a OpenShift Jenkins with a specific user, you will get an OpenShift authentifikation mask.
 
@@ -105,7 +105,7 @@ spec:
 and let's create a resource based on this file on the cicd project.
 
 ```bash
-oc apply -f bc_first-pipeline.yaml -n cicd-userXY
+oc apply -f bc_first-pipeline.yaml -n cicd-[USER]
 ```
 
 **Note:** The command above creates the pipeline in CICD project. If the pipeline would be created in DEV stage then the cluster would try to provision a Jenkins master instance in the DEV stage. In the current step, a jenkins master should already be provisioned in the CICD project.
@@ -120,7 +120,7 @@ first-pipeline   JenkinsPipeline          0
 As soon as the pipeline is created, we can start it with the following command:
 
 ```bash
-oc start-build first-pipeline -n cicd-userXY
+oc start-build first-pipeline -n cicd-[USER]
 ```
 
 Now go to OpenShift web console (Developer mode) and go to pipelines view by clicking on Builds from the menu shown on left, see the image below:
@@ -173,7 +173,7 @@ Pipeline part of the BuildConfig would look like this:
 Update the build resource configuration:
 
 ```bash
-oc apply -f bc_first-pipeline.yaml -n cicd-userXY
+oc apply -f bc_first-pipeline.yaml -n cicd-[USER]
 ```
 
 By setting the agent to the label 'master', we define that the pipeline steps should be executed in the jenkins master. After updating the pipeline, run the pipeline again.
@@ -191,7 +191,7 @@ Let's continue to extend our pipeline.
 This time, we would like to checkout some source code and create a deployable artifact.
 We will update the existing pipeline ( **first-pipeline** ) with the following pipeline definition.
 
-**Note:** An easy way to change the pipeline is within the Jenkins gui. Go to the job `Jenkins -> cicd-userXY -> cicd-userXY -> first-pipeline` and click on Configure. Change the script in the Pipeline section. The new pipeline configuration will be synced back to the Build Config of the OpenShift CICD project.
+**Note:** An easy way to change the pipeline is within the Jenkins gui. Go to the job `Jenkins -> cicd-[USER] -> cicd-[USER] -> first-pipeline` and click on Configure. Change the script in the Pipeline section. The new pipeline configuration will be synced back to the Build Config of the OpenShift CICD project.
 
 ```Groovy
 pipeline {
@@ -282,15 +282,15 @@ A jar artifact is ready to be used within a container.
 
 We have 4 OpenShift projects for each user:
 
-- cicd-userXY : Jenkins and slaves
-- app-dev-userXY: Stage development
-- app-int-userXY: Stage integration
-- app-prod-userXY: Stage production
+- cicd-[USER] : Jenkins and slaves
+- app-dev-[USER]: Stage development
+- app-int-[USER]: Stage integration
+- app-prod-[USER]: Stage production
 
 Now that there is an artifact, namely a jar file that we would like to run, we need to create a container image from this jar file. A docker build with binary input seems appropriate for the job. We should build a container image in the **DEV** stage. So Use the following commands to create a bc, dc, service and route:
 
 ```bash
-oc project app-dev-userXY
+oc project app-dev-[USER]
 oc new-build java --name=spring-app --binary=true
 oc new-app spring-app --allow-missing-imagestream-tags --labels=app=spring-app
 oc set probe dc/spring-app --readiness --get-url=http://:8080/hello --failure-threshold=3 --initial-delay-seconds=10 --period-seconds=10 --success-threshold=1 --timeout-seconds=30
@@ -308,7 +308,7 @@ pipeline {
 
   environment {
     app = "spring-app"
-    devProject = 'app-dev-userXY'
+    devProject = 'app-dev-[USER]'
   }
 
   stages {
@@ -350,7 +350,7 @@ ERROR: Error running start-build on at least one item: [buildconfig/spring-app];
 {reference={}, err=Uploading file "target/artifact.jar" as binary input for the build ...
 
 Uploading finished
-Error from server (Forbidden): buildconfigs.build.openshift.io "spring-app" is forbidden: User "system:serviceaccount:cicd-userXY:jenkins" cannot create buildconfigs.build.openshift.io/instantiatebinary in the namespace "app-dev-user42": no RBAC policy matched, verb=start-build, cmd=oc --server=https://172.30.0.1:443 --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt --namespace=app-dev-userXY --token=XXXXX start-build buildconfig/spring-app --from-file=target/artifact.jar --wait -o=name , out=, status=1}
+Error from server (Forbidden): buildconfigs.build.openshift.io "spring-app" is forbidden: User "system:serviceaccount:cicd-[USER]:jenkins" cannot create buildconfigs.build.openshift.io/instantiatebinary in the namespace "app-dev-user42": no RBAC policy matched, verb=start-build, cmd=oc --server=https://172.30.0.1:443 --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt --namespace=app-dev-[USER] --token=XXXXX start-build buildconfig/spring-app --from-file=target/artifact.jar --wait -o=name , out=, status=1}
 
 Finished: FAILURE
 ```
@@ -360,15 +360,15 @@ The reason for this failure is that, CICD project service account which jenkins 
 Example command:
 
 ```bash
-oc policy add-role-to-user edit system:serviceaccount:cicd-userXY:jenkins -n app-dev-userXY
+oc policy add-role-to-user edit system:serviceaccount:cicd-[USER]:jenkins -n app-dev-[USER]
 ```
 
-This command creates a rolebinding in the project `app-dev-userXY` for the edit role and includes the serviceaccount jenkins from the project `cicd-userXY` in it.
+This command creates a rolebinding in the project `app-dev-[USER]` for the edit role and includes the serviceaccount jenkins from the project `cicd-[USER]` in it.
 
 This is reflected in the edit RoleBinding of your dev project:
 
 ```bash
-oc describe rolebinding edit -n app-dev-userXY
+oc describe rolebinding edit -n app-dev-[USER]
 ```
 
 Another approach is to add the token of a ServiceAccount in the target project to the tokens of the jenkins ServiceAccount, so it is able to access the target Project. See [documentation](https://docs.openshift.com/container-platform/4.3/openshift_images/using_images/images-other-jenkins.html#images-other-jenkins-cross-project_images-other-jenkins) for details.
@@ -382,7 +382,7 @@ Next step is to tag the image that was just built, but before that, let's trigge
 When we manage the deployment of the application from a pipeline, we have to remove the OpenShift triggers, otherwise new deployments would be immediately triggered:
 
 ```bash
-oc patch dc/spring-app -p '{"spec":{"triggers":[]}}' -n app-dev-userXY
+oc patch dc/spring-app -p '{"spec":{"triggers":[]}}' -n app-dev-[USER]
 ```
 
 Embed the *step* below into the pipeline to add a simple testing mechanism. A simple curl call is made and its HTTP return status code is checked after having a deployed the latest version of the app.
@@ -469,9 +469,9 @@ OpenShift templating is a simple yet powerful abstraction. To learn more about i
 One important thing to notice here is that, BuildConfig is not included in the template. Reason for that is, our goal is to use the same container image that is already built (Image Promotion). That means, integration and production stages need to pull container image from development stage. Commands below assign the correct permissions for int and prod stages on the dev stage:
 
 ```bash
-oc policy add-role-to-user system:image-puller system:serviceaccount:app-prod-userXY:default --namespace=app-dev-userXY
+oc policy add-role-to-user system:image-puller system:serviceaccount:app-prod-[USER]:default --namespace=app-dev-[USER]
 
-oc policy add-role-to-user system:image-puller system:serviceaccount:app-int-userXY:default --namespace=app-dev-userXY
+oc policy add-role-to-user system:image-puller system:serviceaccount:app-int-[USER]:default --namespace=app-dev-[USER]
 ```
 
 These commands allow the ServiceAccount deploying the application (and thus pulling the images) called `default` in the int and prod namespaces to pull images from the dev namespace. The dev namespace is where we push our images to from the pipeline.
@@ -481,22 +481,22 @@ With the following command, Openshift objects required for the application can b
 
 ```bash
 wget https://git.apps.cluster-centris-0c77.centris-0c77.example.opentlc.com/training/techlab/raw/master/labs/data/pipelines/template_spring-app.yml -O template_spring-app.yml
-for ns in 'app-int-userXY' 'app-prod-userXY';do oc process -f template_spring-app.yml DEV_PROJECT=app-dev-userXY | oc apply -f - -n "$ns";done
+for ns in 'app-int-[USER]' 'app-prod-[USER]';do oc process -f template_spring-app.yml DEV_PROJECT=app-dev-[USER] | oc apply -f - -n "$ns";done
 ```
 
 **Important**: Make sure you adapt the parameter `DEV_PROJECT` to your development project, as this is from where the images will be fetched. See the template how the parameter is being used.
 
 ### Step 6
 
-It's time to deploy to non-DEV stages. For that we will create a deployment pipeline in Jenkins. Create a new pipeline by clicking on 'New Item' on the main Jenkins screen inside the cicd-userXY folder and name it `deployment`. In this new screen, select the 'Pipeline' type and create a pipeline based on the code below.
+It's time to deploy to non-DEV stages. For that we will create a deployment pipeline in Jenkins. Create a new pipeline by clicking on 'New Item' on the main Jenkins screen inside the cicd-[USER] folder and name it `deployment`. In this new screen, select the 'Pipeline' type and create a pipeline based on the code below.
 
 By the way, you might run into couple of issues when running this new pipeline. Using what you've learned in the previous steps, you should be able to solve them.
 
 ```Groovy
 def app = 'spring-app'
-def devProject = 'app-dev-userXY'
-def intProject = 'app-int-userXY'
-def prodProject = 'app-prod-userXY'
+def devProject = 'app-dev-[USER]'
+def intProject = 'app-int-[USER]'
+def prodProject = 'app-prod-[USER]'
 def project = ''
 def imageTag = ''
 

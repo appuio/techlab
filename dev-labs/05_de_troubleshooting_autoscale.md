@@ -1,24 +1,26 @@
-# Troubleshooting, was ist im Pod?
+# Troubleshooting und Autoscaling
 
-In diesen Labs werden wir Applikationen Troubleshooten.
+In diesen Labs werden wir Applikationen autoscalen und troubleshooten.
 
 ## Troubleshooting
 
-Folgen Sie den Anweisungen im [Lab 7: Troubleshooting, was ist im Pod?](../labs/07_troubleshooting_ops.md).
+Folgen Sie den Anweisungen im [Lab 8: Troubleshooting](../labs/08_troubleshooting_ops.md).
 
 ## Autoscaling
 
-In diesem Beispiel werden wir eine Applikation automatisiert hoch- und runterskalieren, je nachdem unter wieviel Last die Applikation steht. Dazu verwenden wir eine Ruby Example Webapp.
+In diesem Beispiel werden wir eine Applikation automatisiert hoch- und runterskalieren, je nachdem unter wie viel Last die Applikation steht. Dazu verwenden wir eine Ruby Example Webapp.
 
-Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-autoscale`:
+Erstellen Sie daher ein neues Projekt mit dem Namen `autoscale-[USER]`:
 
-<details><summary>Tipp</summary>oc new-project [USER]-autoscale</details><br/>
+```bash
+oc new-project autoscale-[USER]
+```
 
 Auf dem Branch load gibt es einen CPU intensiven Endpunkt, welchen wir für unsere Tests verwenden werden. Dafür starten wir die App auf diesem Branch:
 
 ```bash
 oc new-app openshift/ruby:2.5~https://github.com/chrira/ruby-ex.git#load
-oc create route edge --insecure-policy=Redirect --service=ruby-ex
+oc create route edge --insecure-policy=Allow --service=ruby-ex
 ```
 
 Warten sie bis die Applikation gebaut und ready ist und erste Metriken auftauchen. Sie können dem Build wie auch den vorhandenden Pods folgen.
@@ -28,15 +30,17 @@ Bis die ersten Metriken auftauchen dauert es eine Weile, erst dann wird der Auto
 Nun definieren wir ein Set an Limiten für unsere Applikation, die für einen einzelnen Pod Gültigkeit hat.
 Dazu editieren wir die `ruby-ex` DeploymentConfig:
 
-<details><summary>Tipp</summary>oc edit dc ruby-ex</details><br/>
+```bash
+oc edit dc ruby-ex
+```
 
 Folgende Resource Limits fügen wir dem Container hinzu:
 
 ```yaml
-resources:
-  limits:
-    cpu: "0.2"
-    memory: "256Mi"
+        resources:
+          limits:
+            cpu: "0.2"
+            memory: "256Mi"
 ```
 
 Die Ressourcen sind ursprünglich leer: `resources: {}`. Achtung die `resources` müssen auf dem Container und nicht dem Deployment definiert werden.
@@ -45,24 +49,23 @@ Dies wird unser Deployment neu ausrollen und die Limiten enforcen.
 
 Sobald unser neuer Container läuft können wir nun den Autoscaler konfigurieren:
 
-Befehl mit Bestätigung:
-
 ```bash
-$ oc autoscale dc ruby-ex --min 1 --max 3 --cpu-percent=25
-horizontalpodautoscaler.autoscaling/ruby-ex autoscaled
+oc autoscale dc ruby-ex --min 1 --max 3 --cpu-percent=25
 ```
 
 In der Web Console ist ersichtlich, dass das manuelle Skalieren der Pods nicht mehr möglich ist. Dafür sind dort die Werte des Autoscaler ersichtlich.
 
 Nun können wir auf dem Service Last erzeugen.
 
-Ersetzen Sie dafür `[route]` mit Ihrer definierten Route:
+Ersetzen Sie dafür `[HOSTNAME]` mit Ihrer definierten Route:
 
-<details><summary>Tipp</summary>oc get route</details><br/>
+<details><summary>Hostname abfragen</summary>oc get route -o custom-columns=NAME:.metadata.name,HOSTNAME:.spec.host</details><br/>
 
 ```bash
-for i in {1..500}; do curl --insecure -s https://[route]/load ; done;
+for i in {1..500}; do curl -s https://[HOSTNAME]/load ; done;
 ```
+
+Jede Anfrage and den Load-Endpunkt sollte mit `Extensive task done` beantwortet werden.
 
 Die aktuellen Werte holen wir über:
 
@@ -78,6 +81,10 @@ oc get pods -w
 
 Sobald wir die Last beenden wird die Anzahl Pods nach einer gewissen Zeit automatisch wieder verkleinert. Die Kapazität wird jedoch eine Weile vorenthalten.
 
+## Zusatzfrage
+
+Es gibt auch einen `oc idle` Befahle. Was macht der?
+
 ## Zusatzübung für Schnelle
 
 Zum Troubleshooting von Container ohne installierte Debugging Tools wurde die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) entwickelt.
@@ -86,9 +93,11 @@ Zuerst versuchen wir das Debugging mit dem oc Tool.
 
 ### Projekt erstellen
 
-Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-debugbox".
+Erstellen Sie zunächst ein Projekt mit dem Namen `debugbox-[USER]`.
 
-<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-debugbox</details><br/>
+```bash
+oc new-project debugbox-[USER]
+```
 
 ### Test Applikation deployen
 
@@ -101,22 +110,24 @@ Von diesem Image eine neue Applikation erstellen:
   * ACCESS_KEY_ID=irgendoeppis
   * SECRET_ACCESS_KEY=x
 
-<details><summary>Befehl zum Erstellen der Applikation</summary>oc new-app -e ACCESS_KEY_ID=irgendoeppis -e SECRET_ACCESS_KEY=x mastertinner/s3manager</details><br/>
+```bash
+oc new-app -e ACCESS_KEY_ID=something -e SECRET_ACCESS_KEY=x mastertinner/s3manager
+```
 
 ### Debugging mit oc Tool
 
 Versuchen Sie eine Remote-Shell im Container zu öffnen:
 
 ```bash
-oc rsh s3manager-1-jw4sl
+oc rsh dc/s3manager
 ```
 
 Fehlermeldung:
 
 ```bash
-rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:235: starting container process caused "exec: \"/bin/sh\": stat /bin/sh: no such file or directory"
-
-command terminated with exit code 126
+ERRO[0000] exec failed: container_linux.go:349: starting container process caused "exec: \"/bin/sh\": stat /bin/sh: no such file or directory"
+exec failed: container_linux.go:349: starting container process caused "exec: \"/bin/sh\": stat /bin/sh: no such file or directory"
+command terminated with exit code 1
 ```
 
 Das hat nicht funktioniert, weil im Container keine Shell vorhanden ist.
@@ -124,15 +135,15 @@ Das hat nicht funktioniert, weil im Container keine Shell vorhanden ist.
 Können wir wenigstens das Environment ausgeben?
 
 ```bash
-oc exec s3manager-1-jw4sl env
+oc exec dc/s3manager env
 ```
 
 Fehlermeldung:
 
 ```bash
-rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:235: starting container process caused "exec: \"env\": executable file not found in $PATH"
-
-command terminated with exit code 126
+time="2020-04-27T06:25:13Z" level=error msg="exec failed: container_linux.go:349: starting container process caused \"exec: \\\"env\\\": executable file not found in $PATH\""
+exec failed: container_linux.go:349: starting container process caused "exec: \"env\": executable file not found in $PATH"
+command terminated with exit code 1
 ```
 
 Auch das geht nicht, der env Befehl steht nicht zur Verfügung.
@@ -152,7 +163,7 @@ Installieren Sie die [k8s-debugbox](https://github.com/puzzle/k8s-debugbox) anha
 Befehl mit Ausgabe:
 
 ```bash
-k8s-debugbox -h
+$ k8s-debugbox -h
 Debug pods based on minimal images.
 
 Examples:
@@ -179,14 +190,11 @@ Wir wenden die Debugbox am s3manager Pod an:
 <details><summary>Tipp für Pod Suche</summary>oc get pods</details><br/>
 
 ```bash
-k8s-debugbox pod s3manager-1-jw4sl
-```
-
-```bash
-Uploading debugging tools into pod s3manager-1-jw4sl
-rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:235: starting container process caused "exec: \"tar\": executable file not found in $PATH"
-
-error: Internal error occurred: error executing command in container: read unix @->/var/run/docker.sock: read: connection reset by peer
+$ k8s-debugbox pod s3manager-1-jw4sl
+Uploading debugging tools into pod s3manager-1-hnb6x
+time="2020-04-27T06:26:44Z" level=error msg="exec failed: container_linux.go:349: starting container process caused \"exec: \\\"tar\\\": executable file not found in $PATH\""
+exec failed: container_linux.go:349: starting container process caused "exec: \"tar\": executable file not found in $PATH"
+command terminated with exit code 1
 
 Couldn't upload debugging tools!
 Instead you can patch the controller (deployment, deploymentconfig, daemonset, ...) to use an init container with debugging tools, this requires a new deployment though!

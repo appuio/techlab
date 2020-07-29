@@ -10,7 +10,7 @@ This lab shows how to proceed in case of errors and troubleshooting and which to
 
 ## Log in to container
 
-We use the project `develop-userXY` again. **Tip:** `oc project develop-userXY`
+We use the project `develop-[USER]` again. **Tip:** `oc project develop-[USER]`
 
 Running containers are treated as unchangeable infrastructure and should generally not be modified. However, there are use cases where you have to log in to the containers. For example for debugging and analysis.
 
@@ -104,21 +104,21 @@ OpenShift allows you to forward arbitrary ports from the development workstation
 Lab: Accessing the Spring Boot Metrics.
 
 ```bash
-oc get pod --namespace="develop-userXY"
-oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="develop-userXY"
+oc get pod --namespace="develop-[USER]"
+oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="develop-[USER]"
 ```
 
 If you are in a single shell (e.g. using the terminal application through the WebUI) your shell is blocked as soon as you start forwarding the port. You can send the forward command to the background by appending an ampersand to it:
 
 ```bash
-oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="develop-userXY" &
+oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="develop-[USER]" &
 ```
 
 Later you will be able to get it back to the foreground by using `fg`:
 
 ```bash
 $ fg 1
-oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="develop-userXY"
+oc port-forward example-spring-boot-1-xj1df 9000:9000 --namespace="develop-[USER]"
 ^C
 ```
 
@@ -146,14 +146,16 @@ In an earlier task, we set up a readiness check on one /health for the Rolling u
 
 In this example we will scale an automated application up and down, depending on how much load the application is under. For this we use our old Ruby example webapp.
 
+Create a new project with the name `autoscale-[USER]`:
+
 ```bash
-oc new-project autoscale-userXY
+oc new-project autoscale-[USER]
 ```
 
 On the branch load there is a CPU intensive endpoint which we will use for our tests. Therefore we start the app on this branch:
 
 ```bash
-oc new-app openshift/ruby:2.5~https://git.apps.cluster-centris-0c77.centris-0c77.example.opentlc.com/training/ruby-ex.git#load
+oc new-app openshift/ruby:2.5~https://github.com/chrira/ruby-ex.git#load
 oc create route edge --insecure-policy=Allow --service=ruby-ex
 ```
 
@@ -162,6 +164,7 @@ Wait until the application is built and ready and the first metrics appear. You 
 It will take a while until the first metrics appear, then the autoscaler will be able to work properly.
 
 Now we define a set of limits for our application that are valid for a single Pod:
+For this we edit the `ruby-ex` DeploymentConfig:
 
 ```bash
 oc edit dc ruby-ex
@@ -186,10 +189,13 @@ As soon as our new container is running we can now configure the autoscaler:
 oc autoscale dc ruby-ex --min 1 --max 3 --cpu-percent=25
 ```
 
+In the web console we can see that the manual scaling of the pods is no longer possile. Instead we se the values of the autoscaler.
+
 Now we can generate load on the service.
 
-**Note** Use this command to get the Hostname of the route
-`oc get route -o custom-columns=NAME:.metadata.name,HOSTNAME:.spec.host`
+Replace `[HOSTNAME]` with the hostname of your route.
+
+<details><summary>Get Hostname</summary>oc get route -o custom-columns=NAME:.metadata.name,HOSTNAME:.spec.host</details><br/>
 
 ```bash
 for i in {1..500}; do curl -s https://[HOSTNAME]/load ; done;
@@ -223,10 +229,10 @@ First we try debugging with the oc tool.
 
 ### Create project
 
-First create a project called "debugbox-userXY".
+First create a project called `debugbox-[USER]`.
 
 ```bash
-oc new-project debugbox-userXY
+oc new-project debugbox-[USER]
 ```
 
 ### Deploy test application
@@ -317,7 +323,7 @@ Usage:
 
 We use the debug box on the s3manager Pod:
 
-**Tip to get the pod:** `oc get pods`
+<details><summary>Tip to get the pod</summary>oc get pods</details><br/>
 
 ```bash
 $ k8s-debugbox pod s3manager-1-jw4sl
@@ -330,8 +336,7 @@ Couldn't upload debugging tools!
 Instead you can patch the controller (deployment, deploymentconfig, daemonset, ...) to use an init container with debugging tools, this requires a new deployment though!
 ```
 
-This attempt also fails because the tools cannot be copied into the container without tar. However, we have received information from the debug box that we should do the installation via deployment.
-The deployment configuration is expanded with an init container. The init container copies the tools into a volume, which can then be used by the s3manager container.
+This attempt also fails because the tools cannot be copied into the container without tar. However, we have received information from the debug box that we should do the installation via deployment. The deployment configuration is expanded with an init container. The init container copies the tools into a volume, which can then be used by the s3manager container.
 
 Patching the deployment configuration:
 
@@ -357,14 +362,10 @@ After another deployment of the pod, we are in a shell in the container. We have
 
 Where are the debugging tools located?
 
-```bash
-/tmp/box/bin/
-```
+<details><summary>Solution</summary>/tmp/box/bin/</details><br/>
 
 **Tip** By entering `exit` we end the debug box.
 
 How can we undo the changes to the DeploymentConfiguration?
 
-```bash
-k8s-debugbox dc s3manager --remove
-```
+<details><summary>Solution</summary>k8s-debugbox dc s3manager --remove</details><br/>
