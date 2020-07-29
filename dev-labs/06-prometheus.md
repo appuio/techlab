@@ -5,7 +5,7 @@
 You have a project pre-provisioned where you will run your workload to monitor, to which you are now switching:
 
 ```bash
-oc project prometheus-userXY
+oc project prometheus-[USER]
 ```
 
 ## Deploy example app
@@ -69,7 +69,7 @@ Important here is the selector using labels and the endpoint that scrapes metric
 Either copy the resource definition into the Import YAML in the webui
 
 1. Developer view
-1. select project prometheus-userXY
+1. select project prometheus-[USER]
 1. click on `+Add`
 1. select the YAML box
 1. paste the above YAML
