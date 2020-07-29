@@ -10,10 +10,10 @@ After using the Source-to-Image workflow as well as a binary and docker build to
 
 As a first step we create a new project.
 
-Therefore, create a new project with the name `develop-userXY`:
+Therefore, create a new project with the name `develop-[USER]`:
 
 ```
-$ oc new-project develop-userXY
+$ oc new-project develop-[USER]
 ```
 
 `oc new-project` automatically changes to the newly created project. With `oc get` command, resources of a certain type can be displayed.
@@ -74,7 +74,7 @@ $ oc get pods -w
 Depending on your internet connection or whether the image on your OpenShift Node has already been downloaded, this may take a while. Check the current status of the deployment in the Web Console:
 
 1. Log in to the Web Console
-2. Select your project `develop-userXY`.
+2. Select your project `develop-[USER]`.
 3. Click on Applications
 4. Select Pods
 
@@ -215,7 +215,7 @@ $ oc describe service example-spring-boot
 
 ```
 Name:      example-spring-boot
-Namespace:    develop-userXY
+Namespace:    develop-[USER]
 Labels:      app=example-spring-boot
 Selector:    app=example-spring-boot,deploymentconfig=example-spring-boot
 Type:      ClusterIP
@@ -281,7 +281,7 @@ Currently the following protocols are supported:
 
 ## Task
 
-Make sure that you are in the project `develop-userXY`. **Tip:** `oc project develop-userXY`
+Make sure that you are in the project `develop-[USER]`. **Tip:** `oc project develop-[USER]`
 
 Create a route for the `example-spring-boot` service and make it publicly available.
 
@@ -332,7 +332,7 @@ In this lab we show you how to scale applications in OpenShift. Furthermore, we 
 For this we use the previous project
 
 ```
-$ oc project develop-userXY
+$ oc project develop-[USER]
 ```
 
 If we want to scale our example application, we have to tell our replication controller (rc) that we always want 3 replicas of the image to work.
@@ -679,7 +679,7 @@ In the web console you can observe how the Pod is light blue at first, until the
 
 Most applications are stateful in some way and store data persistently. Be it in a database or as files on a file system or objectstore. In this lab we will create a MySQL service in our project and connect it to our application so that several application pod can access the same database.
 
-For this example we use the Spring Boot example `develop-userxy`. **Tip: ** `oc project develop-userxy`
+For this example we use the Spring Boot example `develop-[USER]`. **Tip: ** `oc project develop-[USER]`
 
 ## Task: Create MySQL Service
 

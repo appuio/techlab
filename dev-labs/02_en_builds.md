@@ -68,7 +68,7 @@ One or more war can be placed in the deployments folder. In this example an exis
 mkdir tmp-bin
 cd tmp-bin
 mkdir deployments
-wget -O deployments/ROOT.war 'https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true'
+cp [TECHLAB_REPO_ROOT]/dev-labs/data/hello-world-war-1.0.0.war deployments/ROOT.war
 ```
 
 ### Create a new build using the Wildfly container image
