@@ -2,17 +2,16 @@
 
 Melden Sie sich bei der Web Console an und machen Sie sich mit der Benutzeroberfläche vertraut.
 
+Ein Projekt ist eine Gruppierung von Ressourcen (container and docker images, pods, services, routes, configuration, quotas, limits and more). Die für das Projekt berechtigten Benutzer können diese Ressourcen verwalten. Der Projektname muss innerhalb des OpenShift clusters eindeutig sein.
 Erstellen Sie über die Web Console ein neues Projekt mit dem Namen:
 
     [USER]-webui
 
 ## Loggen Sie mit der CLI ein
 
-Kopieren Sie den Login-Befehl von der Web Console
+Kopieren Sie den Login-Befehl von der Web Console (haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
 
-(haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
-
-    oc login https://techlab.openshift.ch:443 --token=XYZ
+    oc login https://[CLUSTER_URL] --token=XYZ
     oc whoami
 
 Mit dem Token haben Sie eine angemeldete Sitzung und können sich über die CLI (auf der API) anmelden, ohne dort die Authentifizierung vorzunehmen.
@@ -29,7 +28,7 @@ oc cli bietet eine Hilfeausgabe sowie eine ausführlichere Hilfe für jeden Befe
 
 ## Erstellen Sie ein neues Projekt mit dem CLI
 
-Erstellen Sie ein Projekt mit dem Namen "[USER]-cli"
+Erstellen Sie ein Projekt mit dem Namen `cli-[USER]`
 
 Damit erhalten Sie Hilfe zur Projekt Erstellung
 
@@ -43,9 +42,9 @@ Wir wechseln automatisch zu unserem Projekt:
 
 Wir können unser Projekt überprüfen, indem wir es entweder beschreiben oder eine yaml (oder json) formatierte Ausgabe unseres erstellten Projekts erhalten.
 
-    oc describe project [USER]-cli
-    oc get project [USER]-webui -o yaml
-    oc get project [USER]-webui -o json
+    oc describe project cli-[USER]
+    oc get project webui-[USER] -o yaml
+    oc get project webui-[USER] -o json
 
 ## Hinzufügen von Benutzern zu einem Projekt
 
@@ -53,7 +52,7 @@ OpenShift kann mehrere Benutzer (auch mit unterschiedlichen Rollen) in einem Pro
 
 Benutzer oder Gruppen können unterschiedliche Rollen innerhalb des gesamten Clusters oder lokal innerhalb eines Projekts haben.
 
-Weitere Informationen zu Rollen finden Sie [hier](https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#roles) und zu deren Verwaltung [hier](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_rbac.html).
+Weitere Informationen zu Rollen finden Sie [hier](https://docs.openshift.com/container-platform/4.3/authentication/using-rbac.html) und zu deren Verwaltung [hier](https://docs.openshift.com/container-platform/4.3/authentication/using-rbac.html#viewing-cluster-roles_using-rbac).
 
 Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie folgendes eingeben:
 
@@ -61,22 +60,26 @@ Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie folgen
 
 Für Ihr webui Projekt:
 
-    oc describe rolebinding.rbac -n [USER]-webui
+    oc describe rolebinding.rbac -n webui-[USER]
 
 Wir können Rollen verwalten, indem wir Befehle für `oc adm policy` absetzen:
 
     oc adm policy -h
 
-Für dieses Lab gibt es eine Gruppe namens "techlab", in der alle Techlab-Benutzer enthalten sind.
+Für dieses Lab gibt es eine Gruppe namens `techlab`, in der alle Techlab-Benutzer enthalten sind.
 
 Fügen wir diese Gruppe mit der Administrator Rolle zu unserem aktuellen Projekt hinzu, damit wir die Sachen in diesen Projekten gemeinsam entwickeln können.
 
     oc adm policy add-role-to-group -h
-    oc adm policy add-role-to-group admin techlab
+    oc adm policy add-role-to-group admin techlab -n cli-[USER]
 
 Zu viele Rechte? Zumindest für unser webui Projekt, also lasst uns die Benutzer nur als Viewer hinzufügen:
 
-    oc adm policy add-role-to-group view techlab -n [USER]-webui
+    oc adm policy add-role-to-group view techlab -n webui-[USER]
+
+Sie können auch die bisherigen Berechtigungen des `cli-[USER]` Projekts entfernen.
+
+    oc adm policy remove-role-from-group admin techlab -n cli-[USER]
 
 Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die aktuelle Liste der Projekte an:
 
@@ -92,24 +95,26 @@ Sie können alle Ressourcen Ihres aktuellen Projekts abrufen, indem Sie folgende
 
     oc get all
 
-Sie können auch alle Ressourcen der Namespaces (Projekte) abrufen, auf die Sie Zugriff haben.
-Nehmen Sie das Projekt `openshift-web-console`, das einige Ressourcen zum untersuchen enthält.
-Klicken Sie auf Befehl, wenn Sie keine Lösung gefunden haben, wie Sie den Namespace zum Befehl hinzufügen können.
+Sie sehen nichts? Oder nur "No resources found."
+Dies liegt daran, dass wir noch nichts deployed haben. Sie können eine infache Applikation deployen und den `oc get` Befahl wiederholen.
 
-<details><summary>Befehl</summary>oc get all -n openshift-web-console</details><br/>
+    oc new-app https://github.com/appuio/example-php-sti-helloworld.git
+
+Sie können auch alle Ressourcen der Namespaces (Projekte) abrufen, auf die Sie Zugriff haben.
+
+    oc get all -n [NAMESPACE]
 
 Wenn Sie eine interessante Ressource gefunden haben, die Sie untersuchen möchten, können Sie jede einzelne mit den Befehlen `describe/get` anschauen:
 
-<details><summary>allgemeiner Befehl</summary>oc describe resrourceXY resourceName -n openshift-web-console</details>
-<details><summary>Befehl zum Überprüfen eines Service</summary>oc describe service webconsole -n openshift-web-console</details><br/>
+    oc describe [RESOURCE_TYPE] [RESOURCE_NAME]
 
 Sie können die Ressourcen auch bearbeiten:
 
-    oc edit resrourceXY resourceName
+    oc edit [RESOURCE_TYPE] [RESOURCE_NAME]
 
 Lassen Sie uns zum Beispiel unser webui Projekt bearbeiten.
 
-<details><summary>Befehl</summary>oc edit project [USER]-webui</details><br/>
+    oc edit project webui-[USER]
 
 Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingeben: _ESC_ und _:_ und _q_
 
@@ -117,7 +122,7 @@ Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingebe
 
 Sie sind nicht glücklich darüber, wie Ihre aktuellen Projekte verlaufen sind und möchten von vorne beginnen?
 
-    oc delete project [USER]-webui
+    oc delete project webui-[USER]
 
 Dadurch werden alle von diesem Projekt gebündelten Ressourcen gelöscht. Projekte sind eine einfache Möglichkeit, Dinge auszuprobieren, und wenn Sie fertig sind, können Sie sie problemlos bereinigen.
 
