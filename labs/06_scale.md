@@ -87,7 +87,7 @@ Events:            <none>
 Skalieren von Pods innerhalb eines Service ist sehr schnell, da OpenShift einfach eine neue Instanz des Container Images als Container startet.
 
 __Tipp__:
-OpenShift unterstützt auch [Autoscaling](https://docs.openshift.com/container-platform/4.3/nodes/pods/nodes-pods-autoscaling.html).
+OpenShift unterstützt auch [Autoscaling](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html).
 
 
 ## Aufgabe 3: Skalierte App in der Web Console
@@ -187,10 +187,10 @@ Im folgenden Kapitel wird beschrieben, wie Sie Ihre Services konfigurieren könn
 
 ## Unterbruchsfreies Deployment dank Health Checks und Rolling Update
 
-Die "[Rolling Strategy](https://docs.openshift.com/container-platform/4.3/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies)" ermöglicht unterbruchsfreie Deployments.
+Die "[Rolling Strategy](https://docs.openshift.com/container-platform/latest/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies)" ermöglicht unterbruchsfreie Deployments.
 Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Requests auf den neuen Pod geleitet und die alte Version entfernt.
 
-Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/container-platform/4.3/applications/application-health.html#application-health-configuring_application-health) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden übermitteln.
+Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/container-platform/latest/applications/application-health.html#application-health-configuring_application-health) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden übermitteln.
 
 Grundsätzlich gibt es zwei Arten von Health Checks, die implementiert werden können:
 

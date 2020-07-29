@@ -52,7 +52,7 @@ In der Zwischenzeit können Sie sich in der Web Console den aktuellen Status des
 
 __Tipp__:
 Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen:
-<https://docs.openshift.com/container-platform/4.3/openshift_images/create-images.html>
+<https://docs.openshift.com/container-platform/latest/openshift_images/create-images.html>
 
 
 ## Betrachten der erstellten Ressourcen
@@ -61,8 +61,8 @@ Als wir vorhin `oc new-app appuio/example-spring-boot` ausführten, hat OpenShif
 Diese werden dafür benötigt, das Container Image zu deployen:
 
 - Service
-- [ImageStream](https://docs.openshift.com/container-platform/4.3/openshift_images/images-understand.html)
-- [DeploymentConfig](https://docs.openshift.com/container-platform/4.3/applications/deployments/what-deployments-are.html)
+- [ImageStream](https://docs.openshift.com/container-platform/latest/openshift_images/images-understand.html)
+- [DeploymentConfig](https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html)
 
 
 ### Service
@@ -226,7 +226,7 @@ Unter Endpoints finden Sie nun den aktuell laufenden Pod.
 
 ### ImageStream
 
-[ImageStreams](https://docs.openshift.com/container-platform/4.3/openshift_images/image-streams-manage.html) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Image verfügbar ist.
+[ImageStreams](https://docs.openshift.com/container-platform/latest/openshift_images/image-streams-manage.html) werden dafür verwendet, automatische Tasks auszuführen wie bspw. ein Deployment zu aktualisieren, wenn eine neue Version des Image verfügbar ist.
 
 Builds und Deployments können ImageStreams beobachten und auf Änderungen reagieren.
 In unserem Beispiel wird der Image Stream dafür verwendet, ein Deployment zu triggern, sobald etwas am Image geändert hat.
@@ -240,7 +240,7 @@ oc get imagestream example-spring-boot -o json
 
 ### DeploymentConfig
 
-In der [DeploymentConfig](https://docs.openshift.com/container-platform/4.3/applications/deployments/what-deployments-are.html) werden folgende Punkte definiert:
+In der [DeploymentConfig](https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html) werden folgende Punkte definiert:
 
 - Update Strategy: Wie werden Applikationsupdates ausgeführt, wie erfolgt das Austauschen der Container?
 - Triggers: Welche Ereignisse führen zu einem automatischen Deployment?

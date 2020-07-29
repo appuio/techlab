@@ -159,7 +159,7 @@ Gleichzeitig haben wir damit die Möglichkeit, dieselben Secrets in mehreren Con
 
 Secrets können entweder, wie oben bei der MariaDB-Datenbank, in Umgebungsvariablen gemappt oder direkt als Files via Volumes in einen Container gemountet werden.
 
-Weitere Informationen zu Secrets können in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/4.3/nodes/pods/nodes-pods-secrets.html) gefunden werden.
+Weitere Informationen zu Secrets können in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-secrets.html) gefunden werden.
 
 ## Aufgabe: LAB8.2: Applikation an die Datenbank anbinden
 
@@ -376,7 +376,7 @@ Was enthält die hello-Tabelle?
 
 ## Aufgabe 4: Dump einspielen
 
-Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4.3/labs/data/08_dump/dump.sql) einzuspielen.
+Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4.x/data/08_dump/dump.sql) einzuspielen.
 
 __Tipp__:
 Mit `oc rsync` oder `oc cp` können Sie lokale Dateien in einen Pod kopieren.
