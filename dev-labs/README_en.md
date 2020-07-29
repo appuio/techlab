@@ -1,24 +1,24 @@
-# OpenShift Developer Techlab
+# Techlab
 
 ## Agenda
 
-### 1. Tag
+### Day 1
 
-* [Mit der Umgebung vertraut machen](01_de_using_oc_cli.md)
+* [Familiarize with Environment](01_en_using_oc_cli.md)
 
-### 2. Tag
+### Day 2
 
-* [Building auf OpenShift](02_de_builds.md)
-* [Applikationen entwickeln](03_de_develop.md)
+* [Building on OpenShift](02_en_builds.md)
+* [Develop Applications](03_en_develop.md)
 
-### 3. Tag
+### Day 3
 
 * [Pipelines](04_pipelines.md)
 * Bonus: [Openshift Pipelines / Tekton](../additional-labs/tekton_pipelines.md)
 
-### 4. Tag
+### Day 4
 
-* [Troubleshoot / Autoscale](05_de_troubleshooting_autoscale.md)
+* [Troubleshoot / Autoscale](05_en_troubleshooting_autoscale.md)
 * [Prometheus / Application Monitoring](06_prometheus.md)
 
 ## Extras
@@ -26,5 +26,5 @@
 * [Openshift Pipelines / Tekton](../additional-labs/tekton_pipelines.md)
 * [Templating](../additional-labs/templating.md)
   * [OpenShift Templates](../additional-labs/openshift_templates.md)
-* [Operators](../labs/07_operators.md)
+* [Operators](../additional-labs/en_operators.md)
 * [Coolstore](../additional-labs/coolstore.md)
