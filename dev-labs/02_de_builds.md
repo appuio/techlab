@@ -14,16 +14,18 @@ Einfachster Einstieg von einer Codebasis (z. B. Ruby, Python, PHP) in eine ausge
 
 Es erstellt alle erforderlichen Build- und Deployment-Konfigurationen.
 
-Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-s2i"
+Erstellen Sie zunächst ein Projekt mit dem Namen `s2i-[USER]`.
 
-<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-s2i</details><br/>
+<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project s2i-[USER]</details><br/>
 
 Unser Beispiel basiert auf einer sehr einfachen PHP-Anwendung, welche auf APPUiO GitHub gehostet wird.
-Erstellen Sie eine Applikation mit dem Namen s2i aus diesem Repository: <https://github.com/appuio/example-php-sti-helloworld.git>
+Erstellen Sie eine Applikation mit dem Namen `s2i` aus diesem Repository: <https://github.com/appuio/example-php-sti-helloworld.git>
 
 Hinweis zur Befehlshilfe:
 
-    oc new-app -h
+```bash
+oc new-app -h
+```
 
 <details><summary>Befehl zum Erstellen einer App</summary>oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=s2i</details><br/>
 
@@ -31,13 +33,19 @@ Die `new-app` Funkionalität erkennt das Git Repo als PHP Projekt und erstellt e
 
 Überprüfen Sie den Status Ihres Projekts.
 
-<details><summary>Projektstatusbefehl</summary>oc status</details><br/>
+```bash
+oc status
+```
 
 Erkunden Sie die verschiedenen Ressourcen, die mit dem `new-app` Befehl erstellt wurden.
 
 Um etwas im Browser anzuzeigen, erstellen Sie eine Route für den Zugriff auf die Anwendung:
 
-    oc create route edge --service=s2i
+```bash
+oc create route edge --insecure-policy=Allow --service=s2i
+```
+
+Die URL, welche nun auf unsere ruby applikation zeigt, erhalten wir indem wir die route beschreiben (`oc describe`). Sie finden die URL auch in der Web Console. Sehen sie sich die applikation auch dort an.
 
 ## Binary build
 
@@ -46,22 +54,15 @@ Das Beispiel ist vom APPUiO-Blog inspiriert: <http://docs.appuio.ch/de/latest/ap
 
 ### Erstellen Sie ein neues Projekt
 
-Erstellen Sie ein Projekt mit dem Namen "[USER]-binary-build"
-
-<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-binary-build</details><br/>
+```bash
+oc new-project binary-build-[USER]
+```
 
 ### Erstellen Sie die Deployment Verzeichnisstruktur
 
 Bereiten Sie einen temporären Ordner vor und erstellen Sie darin die Deployment Verzeichnisstruktur.
 
 Mindestens ein War-File kann im Deployment Ordner abgelegt werden. In diesem Beispiel wird eine vorhandene War-Datei aus einem Git-Repository heruntergeladen.
-
-* Verzeichnis: `tmp-bin/deployments`
-* Datei: [hello-world-war-1.0.0.war](https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true)
-
-**Note:** Das War-File muss den Namen `ROOT.war` haben, damit die Anwendung direkt auf der Route verfügbar ist. Wenn die Datei [hello-world-war-1.0.0.war](https://github.com/appuio/hello-world-war/blob/master/repo/ch/appuio/hello-world-war/1.0.0/hello-world-war-1.0.0.war?raw=true) manuell heruntergeladen wurde, muss sie umbenannt werden: `tmp-bin/deployments/ROOT.war`
-
-Befehle für Shell und PowerShell:
 
 ```bash
 mkdir tmp-bin
@@ -72,16 +73,7 @@ wget -O deployments/ROOT.war 'https://github.com/appuio/hello-world-war/blob/mas
 
 ### Erstellen Sie einen neuen Build mit dem Wildfly Container Image
 
-Erstellen Sie eine Build-Konfiguration für einen binary-Build mit folgenden Attributen:
-
-- Basis Container Image: `openshift/wildfly-160-centos7`
-- Name: `hello-world`
-- Label: `app=hello-world`.
-- Typ: `binary`
-
-Das Flag _binary=true_ zeigt an, dass dieser Build seine Daten direkt als Input erhält, anstatt via URL (Git Repo).
-
-Befehl:
+Das Flag *binary=true* zeigt an, dass dieser Build seine Daten direkt als Input erhält, anstatt via URL (Git Repo).
 
 ```bash
 oc new-build --docker-image=openshift/wildfly-160-centos7 --binary=true --name=hello-world -l app=hello-world
@@ -91,7 +83,7 @@ Befehl mit Ausgabe:
 
 ```bash
 $ oc new-build --docker-image=openshift/wildfly-160-centos7 --binary=true --name=hello-world -l app=hello-world
---> Found Docker image 7ff222e (7 months old) from Docker Hub for "openshift/wildfly-160-centos7"
+--> Found Docker image 5b42148 (6 weeks old) from Docker Hub for "openshift/wildfly-160-centos7"
 
     WildFly 16.0.0.Final
     --------------------
@@ -99,15 +91,15 @@ $ oc new-build --docker-image=openshift/wildfly-160-centos7 --binary=true --name
 
     Tags: builder, wildfly, wildfly16
 
-    * An image stream tag will be created as "wildfly-160-centos7:latest" that will track the source image
+    * An image stream will be created as "wildfly-160-centos7:latest" that will track the source image
     * A source build using binary input will be created
-      * The resulting image will be pushed to image stream tag "hello-world:latest"
+      * The resulting image will be pushed to image stream "hello-world:latest"
       * A binary build was created, use 'start-build --from-dir' to trigger a new build
 
 --> Creating resources with label app=hello-world ...
-    imagestream.image.openshift.io "wildfly-160-centos7" created
-    imagestream.image.openshift.io "hello-world" created
-    buildconfig.build.openshift.io "hello-world" created
+    imagestream "wildfly-160-centos7" created
+    imagestream "hello-world" created
+    buildconfig "hello-world" created
 --> Success
 ```
 
@@ -132,7 +124,7 @@ Das _--follow_-Flag zeigt das Build-Protokoll auf der Konsole an und wartet, bis
 
 ### Eine neue Applikation erstellen
 
-Erstellen Sie eine neue App basierend auf dem Docker-Image, das mit dem Binary-Build erstellt wurde.
+Erstellen Sie eine neue App basierend auf dem Container-Image, das mit dem Binary-Build erstellt wurde.
 
 ```bash
 oc new-app hello-world -l app=hello-world
@@ -155,28 +147,19 @@ Klicken Sie in der Web Console auf die Route, um die Ausgabe der `hello-world`-A
 
 Wir können auch beliebige Container basierend auf Dockerfiles erstellen.
 
-Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-docker-build"
+Erstellen Sie zunächst ein Projekt mit dem Namen `docker-build-[USER]`
 
-<details><summary>Projektbefehl erstellen</summary>oc new-project [USER]-docker-build</details><br/>
+```bash
+oc new-project binary-build-[USER]
+```
 
 Befehl zum Erstellen eines Docker-Builds:
 
-```bash
-oc new-build --strategy=docker --binary=true --name=web -l app=web centos/httpd-24-centos7
-```
-
-Klonen Sie das techlab Git-Repository, falls Sie es noch nicht getan haben. Alternativ kann das Repository als Zip-Datei [hier](https://github.com/appuio/techlab/archive/lab-3.11.zip) geholt und entpackt werden.
+Stellen Sie sicher, dass Sie das techlab repo geklont haben und sich auf dem richtigen branch im Stammverzeichnis befinden.
 
 ```bash
-git clone https://github.com/appuio/techlab.git --branch=lab-3.11
-```
-
-Navigieren Sie zum Stammverzeichnis des Git-Repositorys (`cd techlab`). Stellen Sie sicher, dass Sie sich auf dem `lab-3.11` Git Branch befinden.
-
-Starten Sie den Build mit den Daten aus `dev-labs/data/02_httpd`:
-
-```bash
-oc start-build web --from-dir=dev-labs/data/02_httpd --follow
+oc new-build --strategy=docker --binary=true --name=httpd -l app=httpd centos/httpd-24-centos7
+oc start-build httpd --from-dir=dev-labs/data/02_httpd --follow
 ```
 
 Verfolgen Sie, wie der Build abläuft und ob das Image in Ihrer Registry vorhanden sein wird.
@@ -184,13 +167,13 @@ Verfolgen Sie, wie der Build abläuft und ob das Image in Ihrer Registry vorhand
 Erstellen Sie eine Applikation mit diesem Image und machen Sie es verfügbar:
 
 ```bash
-oc new-app web -l app=web
-oc create route edge --service=web
+oc new-app httpd -l app=httpd
+oc create route edge --insecure-policy=Allow --service=httpd
 ```
 
 Klicken Sie in der Web Console auf die Route, um die Website Ihrer Anwendung anzuzeigen.
 
-Versuchen Sie, ein Easter-Egg unter der URL `/easter-egg.txt` hinzuzufügen. Nach der Anpassung muss ein neuer Build gestartet werden.
+Versuchen Sie, ein Easter-Egg unter der URL `/easter-egg.txt` hinzuzufügen. Wie würden Sie vorgehen?
 Untersuchen Sie "dev-labs/data/02_httpd" auf einen Hinweis.
 
 <details>
@@ -199,7 +182,5 @@ Untersuchen Sie "dev-labs/data/02_httpd" auf einen Hinweis.
     ...<br/>
     COPY ./easter-egg.txt /var/www/html/<br/>
     ...<br/>
-    Starten Sie einen neuen Build.
+    Nach der Anpassung muss ein neuer Build gestartet werden.
 </details>
-
-Hat es funktioniert? -> <https://web-[USER]-docker-build.techlab-apps.openshift.ch/easter-egg.txt>
