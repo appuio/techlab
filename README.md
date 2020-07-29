@@ -34,10 +34,13 @@ __Ziele dieses Techlabs__:
 - [Cron Jobs in OpenShift](additional-labs/cronjobs_and_jobs.md)
 - [ConfigMaps](additional-labs/configmaps.md)
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
+- [Coolstore](additional-labs/coolstore.md)
+- [Templating](additional-labs/templating.md)
+- [Tekton Pipelines](additional-labs/tekton_pipelines.md)
 
 ### OpenShift Developer Techlab
 
-Unterlagen für ein zweitägiges Developer Techlab sind im Verzeichnis [dev-labs](dev-labs/) abgelegt.
+Unterlagen für ein zweitägiges Developer Techlab sind im Verzeichnis [dev-labs](dev-labs) abgelegt.
 
 ## Weiterführende Dokumentation
 
