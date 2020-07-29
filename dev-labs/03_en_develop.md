@@ -487,9 +487,9 @@ The following chapter describes how to configure your services to allow interrup
 
 ## Uninterrupted deployment using Readiness Probe and Rolling Update
 
-The update strategy [Rolling](https://docs.openshift.com/container-platform/3.11/dev_guide/deployments/deployment_strategies.html#rolling-strategy) allows interruption-free deployments. This will launch the new version of the application, as soon as the application is ready, Request will be routed to the new Pod and the old version undeployed.
+The update strategy [Rolling](https://docs.openshift.com/container-platform/4.3/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies) allows interruption-free deployments. This will launch the new version of the application, as soon as the application is ready, Request will be routed to the new Pod and the old version undeployed.
 
-In addition, the deployed application can give the platform detailed feedback about its current state via [Container Health Checks](https://docs.openshift.com/container-platform/3.11/dev_guide/application_health.html).
+In addition, the deployed application can give the platform detailed feedback about its current state via [Container Health Checks](https://docs.openshift.com/container-platform/4.3/applications/application-health.html).
 
 Basically, there are two checks that can be implemented:
 
@@ -788,7 +788,7 @@ With Secrets we can store sensitive information (credetials, certificates, keys,
 
 Secrets can either be mapped into environment variables, as in the MySQL database above, or mounted directly into a container as files via volumes.
 
-More information about Secrets can be found in the [official documentation](https://docs.openshift.com/container-platform/3.11/dev_guide/secrets.html).
+More information about Secrets can be found in the [official documentation](https://docs.openshift.com/container-platform/4.3/nodes/pods/nodes-pods-secrets.html).
 
 ## Task: Connect application to database
 
@@ -967,7 +967,7 @@ Display all tables.
 
 ## Task: Import dump to MySQL DB
 
-The task is to import the [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) into the MySQL Pod.
+The task is to import the [Dump](../labs/data/08_dump/dump.sql) into the MySQL Pod.
 
 
 **Tip:** Use `oc rsync` to copy local files to a Pod. Alternatively you can use curl in the mysql container.

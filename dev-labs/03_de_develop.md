@@ -20,13 +20,13 @@ Folgen Sie den Anweisungen im [Lab 6: Pod Scaling, Readiness Probe und Self Heal
 
 ### Datenbank anbinden
 
-Folgen Sie den Anweisungen im [Lab 8: Datenbank anbinden](../labs/08_database.md).
+Folgen Sie den Anweisungen im [Lab 9: Datenbank anbinden](../labs/09_database.md).
 
 ## Zusatzübung für Schnelle
 
 Ziel ist es eine Java Spring Boot Applikation lokal zu bauen und mittels Binary Build auf die Plattform zu bringen.
 
-- Siehe dazu das Binary Build Beispiel des Labs [dev-labs/02_builds.md](./02_builds.md).
+- Siehe dazu das Binary Build Beispiel des Labs [dev-labs/02_builds.md](./02_de_builds.md).
 - GitHub Repository mit dem Sourcecode: <https://github.com/appuio/example-spring-boot-helloworld>
 - Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk8-jdk/>
 
@@ -127,4 +127,4 @@ Im Browser oder mit curl das Funktionieren der Applikation überprüfen.
 
 ## Zusatzübung für ganz Schnelle
 
-Folgen Sie den Anweisungen im [Lab 9: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/09_dockerbuild_webhook.md).
+Folgen Sie den Anweisungen im [Lab 10: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/10_dockerbuild_webhook.md).
