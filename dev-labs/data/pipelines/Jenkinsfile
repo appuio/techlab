@@ -1,0 +1,204 @@
+node('maven-appdev') {
+  
+  def app = params.APP //This parameter is passed due to parameterized build
+  def contextDir = app
+  
+  def cicdProject = 'mitzicom-poc-cicd'
+  def devProject = 'mitzicom-poc-dev'
+  def prodProject = 'mitzicom-poc-prod'
+  def appUrl = "http://${app}.${devProject}.svc:8080"
+
+  // Define Maven Command. Make sure it points to the correct
+  // settings for our Nexus installation (use the service to
+  // bypass the router). The file nexus_openshift_settings.xml
+  // needs to be in the Source Code repository.
+  def pomFile = "${contextDir}/pom.xml"
+  def mvnCmd = "mvn -s nexus_settings.xml -f ${pomFile}"
+
+  // Checkout Source Code
+  stage('Checkout Source') {
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'f5cc5f5b-7342-421a-b82d-c94124aad7be', url: 'http://gogs-mitzicom-poc-cicd.apps.na37.openshift.opentlc.com/mc/parks.git']]])
+  }
+ 
+  // The following variables need to be defined at the top level
+  // and not inside the scope of a stage - otherwise they would not
+  // be accessible from other stages.
+  // Extract version and other properties from the pom.xml
+  def groupId    = getGroupIdFromPom(pomFile)
+  def artifactId = getArtifactIdFromPom(pomFile)
+  def version    = getVersionFromPom(pomFile)
+
+  // Set the tag for the development image: version + build number
+  def devTag  = "${version}-${BUILD_NUMBER}"
+  // Set the tag for the production image: version
+  def prodTag = version
+     
+  // Using Maven build the war file
+  // Do not run tests in this step
+  stage('Build artifact') {
+    echo "Building version ${version}"
+    if(app=='parks' ){
+        sh "${mvnCmd} clean package spring-boot:repackage -DskipTests -Dcom.redhat.xpaas.repo.redhatga"
+    }else{
+        sh "${mvnCmd}  -Dmaven.test.skip=true -U clean package"
+    }
+  }
+
+  // Running unit tests & code coverage in parallel
+  stage('Unit Tests & Code coverage') {
+      //parallel( 
+      //  'Unit Test': {
+            sh "${mvnCmd} test"
+      //  }, 
+      //  'Code coverage': {
+            sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube-mitzicom-poc-cicd.apps.na37.openshift.opentlc.com -Dsonar.projectName=${app}"
+      //  },
+      //failFast: true)
+  }
+
+  stage('Publish to Nexus') {
+    echo "Publish to Nexus"
+    // Clean up pom version(get rid of -SNAPSHOT postfixes,etc.)
+    sh "${mvnCmd} versions:set -DnewVersion=${devTag}"
+    // Publish artifact on nexus
+    sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3.mitzicom-poc-cicd.svc.cluster.local:8081/repository/releases"
+  }
+  // Build the OpenShift Image in OpenShift and tag it.
+  stage('Build and Tag OpenShift Image') {
+    echo "Building OpenShift container image tasks:${devTag}"
+   
+    // Start Binary Build in OpenShift using the file we just published
+    sh "oc start-build ${app} --follow --from-file=./${contextDir}/target/${app}.${app=='mlbparks'?'w':'j'}ar -n ${devProject}"
+    // Verify build
+    openshiftVerifyBuild bldCfg: app, checkForTriggeredDeployments: 'false', namespace: devProject, verbose: 'false', waitTime: ''
+    // Tag the image using the devTag
+    openshiftTag alias: 'false', destStream: app, destTag: devTag, destinationNamespace: devProject, namespace: devProject, srcStream: app, srcTag: 'latest', verbose: 'false'
+  }
+  
+  stage('Rollout deployment'){
+    // Deploy to dev
+    openshiftDeploy depCfg: app, namespace: devProject, verbose: 'false', waitTime: '180', waitUnit: 'sec'
+    // Verify dev deployment
+    openshiftVerifyDeployment  depCfg: app, namespace: devProject, replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '180', waitUnit: 'sec'
+  }
+  
+  stage('Integration tests for backends'){
+    // Verify service on dev
+    openshiftVerifyService namespace: devProject, svcName: app, verbose: 'false'
+    sleep 10
+    // Integration test on dev
+    loadAppDataForBackEndApps(app,appUrl)
+    // Tag the image on dev namespace with prod tag
+    openshiftTag alias: 'false', destStream: app, destTag: prodTag, destinationAuthToken: '', destinationNamespace: devProject, namespace: devProject, srcStream: app, srcTag: devTag, verbose: 'false'
+  }
+
+
+  // Copy Image to Nexus Docker Registry
+  stage('Copy Image to Nexus Docker Registry') {
+    echo "Copy image to Nexus Docker Registry"
+    sh script: "skopeo copy --src-creds=user:\$(oc whoami -t) --dest-creds=admin:admin123 --src-tls-verify=false --dest-tls-verify=false docker://docker-registry.default.svc:5000/${devProject}/${app}:${prodTag} docker://nexus3-docker.${cicdProject}.svc:5000/${devProject}/${app}:${prodTag}"
+  }
+
+  // Blue/Green Deployment into Production
+  // -------------------------------------
+  // Do not activate the new version yet.
+  def destApp   = ""
+  def activeApp = ""
+
+  stage('Blue/Green Production Deployment') {
+    // Figure which one is the active app? blue or green edition
+    activeApp = sh(script: "oc get route ${app} -o jsonpath=\'{ .spec.to.name }\' -n ${prodProject}", returnStdout: true)
+    echo "Active service: ${activeApp}"
+
+    if(activeApp.endsWith('green')){
+      destApp = "${app}-blue"
+    }else if(activeApp.endsWith('blue')){
+      destApp = "${app}-green"
+    }else{
+      assert false: 'Active app should be blue or green'
+    }
+
+    echo "Destapp: ${destApp}"
+    // Pause deployment to prod
+    sh "oc patch dc/${destApp} -p '{\"spec\":{\"paused\":true}}' -n ${prodProject}"
+    // Make sure there is only 1 replica
+    sh "oc patch dc/${destApp} -p '{\"spec\":{\"replicas\":1}}' -n ${prodProject}"
+    // Update image to be used in prod to the production tag
+    sh "oc set image dc/${destApp} ${destApp}=docker-registry.default.svc:5000/${devProject}/${app}:${prodTag} -n ${prodProject}"
+    // Unpause deployment
+    sh "oc patch dc/${destApp} -p '{\"spec\":{\"paused\":false}}' -n ${prodProject}"
+
+    // Deploy to prod
+    openshiftDeploy apiURL: '', authToken: '', depCfg: destApp, namespace: prodProject, verbose: 'false', waitTime: '180', waitUnit: 'sec'
+    // Verify prod deployment
+    openshiftVerifyDeployment apiURL: '', authToken: '', depCfg: destApp, namespace: prodProject, replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '180', waitUnit: 'sec'
+    // Verify prod service
+    openshiftVerifyService apiURL: '', authToken: '', namespace: prodProject, svcName: destApp, verbose: 'false'
+
+    // sleep 30
+    // echo "Calling endpoint:${appUrl}/ws/healthz"
+    // def health ="curl -f ${appUrl}/ws/healthz".execute().with{
+    //         def output = new StringWriter()
+    //         def error = new StringWriter()
+    //         it.waitForProcessOutput(output, error)
+    //         assert it.exitValue() == 0 : error
+    //         echo "App:${app} health:"+output
+    // }
+
+    // Integration test
+    loadAppDataForBackEndApps(app,appUrl)
+  }
+
+  stage('Switch over to new Version') {
+    // Ask for user permission/input
+    input message:  "Go live with the new version:${version} in production?"
+    echo "Switching Production application to ${destApp}."
+    
+    if (app!="parksmap") {
+      // Label service with correct type
+      def result =sh(script: "oc label --overwrite service ${destApp} type=parksmap-backend -n ${prodProject}", returnStdout: true)
+      echo "Result of 'type=parksmap-backend' override: ${result}"
+      // Disable inactive service with the 'type' label
+      result = sh(script: "oc label --overwrite service ${activeApp} type=nada -n ${prodProject}", returnStdout: true)
+      echo "Result of 'type=nada' override: ${result}"
+    }
+    // Set route to use active service
+    sh(script: "oc patch route/${app} -p '{\"spec\":{\"to\":{\"name\":\"${destApp}\"}}}' -n ${prodProject}", returnStdout: true)
+    // Save some resources by set replica count to 0 for inactive app
+    sh "oc patch dc/${activeApp} -p '{\"spec\":{\"replicas\":0}}'  -n ${prodProject}"
+  }
+}
+
+// Convenience Functions to read variables from the pom.xml
+// Do not change anything below this line.
+// --------------------------------------------------------
+def getVersionFromPom(pom) {
+  def matcher = readFile(pom) =~ '<version>(.+)</version>'
+  def version= matcher ? matcher[0][1] : null
+  if(version.endsWith('.RELEASE')){
+    version = version.substring(0,version.lastIndexOf('.'))
+  }
+  return version
+}
+def getGroupIdFromPom(pom) {
+  def matcher = readFile(pom) =~ '<groupId>(.+)</groupId>'
+  matcher ? matcher[0][1] : null
+}
+def getArtifactIdFromPom(pom) {
+  def matcher = readFile(pom) =~ '<artifactId>(.+)</artifactId>'
+  matcher ? matcher[0][1] : null
+}
+
+def loadAppDataForBackEndApps(app,appUrl){
+  echo 'Calling data load endpoint'
+  if(app=='mlbparks' || app == 'nationalparks'){
+       def loadData ="curl -f ${appUrl}/ws/data/load".execute().with{
+            def output = new StringWriter()
+            def error = new StringWriter()
+            it.waitForProcessOutput(output, error)
+            assert it.exitValue() == 0: error
+            echo "Data load endpoint result:"+output
+        }
+    }
+}
+
