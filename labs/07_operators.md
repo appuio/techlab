@@ -158,7 +158,7 @@ Wir können nun einfach den ETCD-Cluster über die EtcdCluster-Resource verände
 Wir werden mit `oc edit` die Cluser-Size (.spec.size) auf 5 erhöhen, also den ETCD-Cluster hochskalieren.
 
 ```
-oc edit etcd example
+oc edit etcdcluster example
 # update .spec.size to 5
 ```
 
@@ -181,7 +181,7 @@ e514d358ce1b7704: name=example-5fx5jxdh88 peerURLs=http://example-5fx5jxdh88.exa
 Um den ETCD-Cluster zu entfernen, müssen wir lediglich die EtcdCluster Resource entfernen:
 
 ```
-oc delete etcd example
+oc delete etcdcluster example
 ```
 
 
