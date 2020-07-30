@@ -12,7 +12,7 @@ Dafür erstellen wir ein neues Projekt mit dem Namen `[USERNAME]-scale`.
 Fügen Sie dem Projekt eine Applikation hinzu:
 
 ```bash
-oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker
+oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker --as-deployment-config
 ```
 
 Und stellen den Service `appuio-php-docker` zur Verfügung (expose).
