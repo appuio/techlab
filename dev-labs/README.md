@@ -57,7 +57,7 @@ Zusatzübung:
 
 #### Lab 04
 
-- OpenShift Projekt aus Lab 03: [USER]-dockerimage
+- OpenShift Projekt aus Lab 03: [USERNAME]-dockerimage
 - Repo: <https://github.com/chrira/ruby-ex.git#load>
 - OpenShift ImageStream: "openshift/ruby:2.5"
 - OpenShift metrics server: <https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html>

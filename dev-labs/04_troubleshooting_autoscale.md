@@ -10,9 +10,9 @@ Folgen Sie den Anweisungen im [Lab 8: Troubleshooting](../labs/08_troubleshootin
 
 In diesem Beispiel werden wir eine Applikation automatisiert hoch- und runterskalieren, je nachdem unter wie viel Last die Applikation steht. Dazu verwenden wir eine Ruby Example Webapp.
 
-Erstellen Sie daher ein neues Projekt mit dem Namen `[USER]-autoscale`:
+Erstellen Sie daher ein neues Projekt mit dem Namen `[USERNAME]-autoscale`:
 
-<details><summary>Tipp</summary>oc new-project [USER]-autoscale</details><br/>
+<details><summary>Tipp</summary>oc new-project [USERNAME]-autoscale</details><br/>
 
 Auf dem Branch load gibt es einen CPU intensiven Endpunkt, welchen wir für unsere Tests verwenden werden. Dafür starten wir die App auf diesem Branch:
 
@@ -92,9 +92,9 @@ Zuerst versuchen wir das Debugging mit dem oc Tool.
 
 ### Projekt erstellen
 
-Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-debugbox".
+Erstellen Sie zunächst ein Projekt mit dem Namen "[USERNAME]-debugbox".
 
-<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-debugbox</details><br/>
+<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USERNAME]-debugbox</details><br/>
 
 ### Test Applikation deployen
 

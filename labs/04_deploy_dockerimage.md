@@ -262,7 +262,7 @@ Für viele der Resource Types gibt es auch eine Kurzform. So können Sie bspw. a
 
 ## Zusatzaufgabe für Schnelle ;-)
 
-Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USER]-example1` an. Alternativ kann das Projekt `openshift-web-console` verwendet werden.
+Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USERNAME]-example1` an. Alternativ kann das Projekt `openshift-web-console` verwendet werden.
 
 ---
 

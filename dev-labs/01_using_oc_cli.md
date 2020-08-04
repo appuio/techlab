@@ -5,7 +5,7 @@ Melden Sie sich bei der Web Console an und machen Sie sich mit der Benutzeroberf
 Ein Projekt ist eine Gruppierung von Ressourcen (container and docker images, pods, services, routes, configuration, quotas, limits and more). Die für das Projekt berechtigten Benutzer können diese Ressourcen verwalten. Der Projektname muss innerhalb des OpenShift clusters eindeutig sein.
 Erstellen Sie über die Web Console ein neues Projekt mit dem Namen:
 
-    [USER]-webui
+    [USERNAME]-webui
 
 ## Loggen Sie mit der CLI ein
 
@@ -28,13 +28,13 @@ oc cli bietet eine Hilfeausgabe sowie eine ausführlichere Hilfe für jeden Befe
 
 ## Erstellen Sie ein neues Projekt mit dem CLI
 
-Erstellen Sie ein Projekt mit dem Namen "[USER]-cli"
+Erstellen Sie ein Projekt mit dem Namen "[USERNAME]-cli"
 
 Damit erhalten Sie Hilfe zur Projekt Erstellung
 
     oc new-project -h
 
-<details><summary>Lösung</summary>oc new-project [USER]-cli</details><br/>
+<details><summary>Lösung</summary>oc new-project [USERNAME]-cli</details><br/>
 
 Wir wechseln automatisch zu unserem Projekt:
 
@@ -42,9 +42,9 @@ Wir wechseln automatisch zu unserem Projekt:
 
 Wir können unser Projekt überprüfen, indem wir es entweder beschreiben oder eine yaml (oder json) formatierte Ausgabe unseres erstellten Projekts erhalten.
 
-    oc describe project [USER]-cli
-    oc get project [USER]-webui -o yaml
-    oc get project [USER]-webui -o json
+    oc describe project [USERNAME]-cli
+    oc get project [USERNAME]-webui -o yaml
+    oc get project [USERNAME]-webui -o json
 
 ## Hinzufügen von Benutzern zu einem Projekt
 
@@ -60,7 +60,7 @@ Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie folgen
 
 Für Ihr webui Projekt:
 
-    oc describe rolebinding.rbac -n [USER]-webui
+    oc describe rolebinding.rbac -n [USERNAME]-webui
 
 Wir können Rollen verwalten, indem wir Befehle für `oc adm policy` absetzen:
 
@@ -71,15 +71,15 @@ Für dieses Lab gibt es eine Gruppe namens `techlab`, in der alle Techlab-Benutz
 Fügen wir diese Gruppe mit der Administrator Rolle zu unserem aktuellen Projekt hinzu, damit wir die Sachen in diesen Projekten gemeinsam entwickeln können.
 
     oc adm policy add-role-to-group -h
-    oc adm policy add-role-to-group admin techlab -n [USER]-cli
+    oc adm policy add-role-to-group admin techlab -n [USERNAME]-cli
 
 Zu viele Rechte? Zumindest für unser webui Projekt, also lasst uns die Benutzer nur als Viewer hinzufügen:
 
-    oc adm policy add-role-to-group view techlab -n [USER]-webui
+    oc adm policy add-role-to-group view techlab -n [USERNAME]-webui
 
-Sie können auch die bisherigen Berechtigungen des `[USER]-cli` Projekts entfernen.
+Sie können auch die bisherigen Berechtigungen des `[USERNAME]-cli` Projekts entfernen.
 
-    oc adm policy remove-role-from-group admin techlab -n [USER]-cli
+    oc adm policy remove-role-from-group admin techlab -n [USERNAME]-cli
 
 Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die aktuelle Liste der Projekte an:
 
@@ -118,7 +118,7 @@ Sie können die Ressourcen auch bearbeiten:
 
 Lassen Sie uns zum Beispiel unser webui Projekt bearbeiten.
 
-<details><summary>Befehl</summary>oc edit project [USER]-webui</details><br/>
+<details><summary>Befehl</summary>oc edit project [USERNAME]-webui</details><br/>
 
 Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingeben: _ESC_ und _:_ und _q_
 
@@ -126,7 +126,7 @@ Dies war nur ein Beispiel. Verlassen Sie den Editor, indem Sie Folgendes eingebe
 
 Sie sind nicht glücklich darüber, wie Ihre aktuellen Projekte verlaufen sind und möchten von vorne beginnen?
 
-    oc delete project [USER]-webui
+    oc delete project [USERNAME]-webui
 
 Dadurch werden alle von diesem Projekt gebündelten Ressourcen gelöscht. Projekte sind eine einfache Möglichkeit, Dinge auszuprobieren, und wenn Sie fertig sind, können Sie sie problemlos bereinigen.
 

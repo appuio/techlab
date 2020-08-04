@@ -14,9 +14,9 @@ Einfachster Einstieg von einer Codebasis (z. B. Ruby, Python, PHP) in eine ausge
 
 Es erstellt alle erforderlichen Build- und Deployment-Konfigurationen.
 
-Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-s2i"
+Erstellen Sie zunächst ein Projekt mit dem Namen "[USERNAME]-s2i"
 
-<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-s2i</details><br/>
+<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USERNAME]-s2i</details><br/>
 
 Unser Beispiel basiert auf einer sehr einfachen PHP-Anwendung, welche auf APPUiO GitHub gehostet wird.
 Erstellen Sie eine Applikation mit dem Namen `s2i` aus diesem Repository: <https://github.com/appuio/example-php-sti-helloworld.git>
@@ -52,9 +52,9 @@ Das Beispiel ist vom APPUiO-Blog inspiriert: <http://docs.appuio.ch/de/latest/ap
 
 ### Erstellen Sie ein neues Projekt
 
-Erstellen Sie ein Projekt mit dem Namen "[USER]-binary-build"
+Erstellen Sie ein Projekt mit dem Namen "[USERNAME]-binary-build"
 
-<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-binary-build</details><br/>
+<details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USERNAME]-binary-build</details><br/>
 
 ### Erstellen Sie die Deployment Verzeichnisstruktur
 
@@ -161,9 +161,9 @@ Klicken Sie in der Web Console auf die Route, um die Ausgabe der `hello-world`-A
 
 Wir können auch beliebige Container basierend auf Dockerfiles erstellen.
 
-Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-docker-build"
+Erstellen Sie zunächst ein Projekt mit dem Namen "[USERNAME]-docker-build"
 
-<details><summary>Projektbefehl erstellen</summary>oc new-project [USER]-docker-build</details><br/>
+<details><summary>Projektbefehl erstellen</summary>oc new-project [USERNAME]-docker-build</details><br/>
 
 Befehl zum Erstellen eines Docker-Builds:
 
@@ -208,4 +208,4 @@ Untersuchen Sie "dev-labs/data/02_httpd" auf einen Hinweis.
     Nach der Anpassung muss ein neuer Build gestartet werden.
 </details>
 
-Hat es funktioniert? -> <https://web-[USER]-docker-build.techlab-apps.openshift.ch/easter-egg.txt>
+Hat es funktioniert? -> <https://web-[USERNAME]-docker-build.techlab-apps.openshift.ch/easter-egg.txt>
