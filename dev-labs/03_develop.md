@@ -20,7 +20,7 @@ Folgen Sie den Anweisungen im [Lab 6: Pod Scaling, Readiness Probe und Self Heal
 
 ### Datenbank anbinden
 
-Folgen Sie den Anweisungen im [Lab 8: Datenbank anbinden](../labs/08_database.md).
+Folgen Sie den Anweisungen im [Lab 9: Datenbank anbinden](../labs/09_database.md).
 
 ## Zusatzübung für Schnelle
 
@@ -127,4 +127,4 @@ Im Browser oder mit curl das Funktionieren der Applikation überprüfen.
 
 ## Zusatzübung für ganz Schnelle
 
-Folgen Sie den Anweisungen im [Lab 9: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/09_dockerbuild_webhook.md).
+Folgen Sie den Anweisungen im [Lab 10: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/10_dockerbuild_webhook.md).

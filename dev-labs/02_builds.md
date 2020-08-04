@@ -19,11 +19,13 @@ Erstellen Sie zunächst ein Projekt mit dem Namen "[USER]-s2i"
 <details><summary>Befehl zum Erstellen eines Projekts</summary>oc new-project [USER]-s2i</details><br/>
 
 Unser Beispiel basiert auf einer sehr einfachen PHP-Anwendung, welche auf APPUiO GitHub gehostet wird.
-Erstellen Sie eine Applikation mit dem Namen s2i aus diesem Repository: <https://github.com/appuio/example-php-sti-helloworld.git>
+Erstellen Sie eine Applikation mit dem Namen `s2i` aus diesem Repository: <https://github.com/appuio/example-php-sti-helloworld.git>
 
 Hinweis zur Befehlshilfe:
 
-    oc new-app -h
+```bash
+oc new-app -h
+```
 
 <details><summary>Befehl zum Erstellen einer App</summary>oc new-app https://github.com/appuio/example-php-sti-helloworld.git --name=s2i</details><br/>
 
@@ -37,7 +39,11 @@ Erkunden Sie die verschiedenen Ressourcen, die mit dem `new-app` Befehl erstellt
 
 Um etwas im Browser anzuzeigen, erstellen Sie eine Route für den Zugriff auf die Anwendung:
 
-    oc create route edge --service=s2i
+```bash
+oc create route edge --insecure-policy=Allow --service=s2i
+```
+
+Die URL, welche nun auf unsere ruby applikation zeigt, erhalten wir indem wir die route beschreiben (`oc describe`). Sie finden die URL auch in der Web Console. Sehen sie sich die applikation auch dort an.
 
 ## Binary build
 
@@ -132,7 +138,7 @@ Das _--follow_-Flag zeigt das Build-Protokoll auf der Konsole an und wartet, bis
 
 ### Eine neue Applikation erstellen
 
-Erstellen Sie eine neue App basierend auf dem Docker-Image, das mit dem Binary-Build erstellt wurde.
+Erstellen Sie eine neue App basierend auf dem Container-Image, das mit dem Binary-Build erstellt wurde.
 
 ```bash
 oc new-app hello-world -l app=hello-world
@@ -168,10 +174,10 @@ oc new-build --strategy=docker --binary=true --name=web -l app=web centos/httpd-
 Klonen Sie das techlab Git-Repository, falls Sie es noch nicht getan haben. Alternativ kann das Repository als Zip-Datei [hier](https://github.com/appuio/techlab/archive/lab-3.11.zip) geholt und entpackt werden.
 
 ```bash
-git clone https://github.com/appuio/techlab.git --branch=lab-3.11
+git clone https://github.com/appuio/techlab.git --branch=lab-4
 ```
 
-Navigieren Sie zum Stammverzeichnis des Git-Repositorys (`cd techlab`). Stellen Sie sicher, dass Sie sich auf dem `lab-3.11` Git Branch befinden.
+Navigieren Sie zum Stammverzeichnis des Git-Repositorys (`cd techlab`). Stellen Sie sicher, dass Sie sich auf dem `lab-4` Git Branch befinden.
 
 Starten Sie den Build mit den Daten aus `dev-labs/data/02_httpd`:
 
@@ -190,7 +196,7 @@ oc create route edge --service=web
 
 Klicken Sie in der Web Console auf die Route, um die Website Ihrer Anwendung anzuzeigen.
 
-Versuchen Sie, ein Easter-Egg unter der URL `/easter-egg.txt` hinzuzufügen. Nach der Anpassung muss ein neuer Build gestartet werden.
+Versuchen Sie, ein Easter-Egg unter der URL `/easter-egg.txt` hinzuzufügen. Wie würden Sie vorgehen?
 Untersuchen Sie "dev-labs/data/02_httpd" auf einen Hinweis.
 
 <details>
@@ -199,7 +205,7 @@ Untersuchen Sie "dev-labs/data/02_httpd" auf einen Hinweis.
     ...<br/>
     COPY ./easter-egg.txt /var/www/html/<br/>
     ...<br/>
-    Starten Sie einen neuen Build.
+    Nach der Anpassung muss ein neuer Build gestartet werden.
 </details>
 
 Hat es funktioniert? -> <https://web-[USER]-docker-build.techlab-apps.openshift.ch/easter-egg.txt>

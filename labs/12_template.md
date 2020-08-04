@@ -73,7 +73,7 @@ oc import-image example-spring-boot
 
 Mit diesem Befehl wird die Datenbank ausgerollt:
 
-```
+```bash
 oc rollout latest mysql
 ```
 
@@ -88,7 +88,7 @@ Verwenden Sie dafür den Befehl `oc get -o json` bzw `oc get -o yaml`.
 
 Bspw.:
 
-```
+```bash
 oc get is,bc,dc,route,service -o json > example-spring-boot-template.json
 ```
 

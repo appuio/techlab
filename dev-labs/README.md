@@ -10,7 +10,7 @@
 
 ### 2. Tag
 
-- [Debugging / Logging / Metrics](04_debugging_logs_metrics.md)
+- [Troubleshooting / Autoscale](04_troubleshooting_autoscale.md)
 
 ### Anforderungen an die Dev-Labs
 

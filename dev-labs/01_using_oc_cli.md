@@ -2,15 +2,14 @@
 
 Melden Sie sich bei der Web Console an und machen Sie sich mit der Benutzeroberfläche vertraut.
 
+Ein Projekt ist eine Gruppierung von Ressourcen (container and docker images, pods, services, routes, configuration, quotas, limits and more). Die für das Projekt berechtigten Benutzer können diese Ressourcen verwalten. Der Projektname muss innerhalb des OpenShift clusters eindeutig sein.
 Erstellen Sie über die Web Console ein neues Projekt mit dem Namen:
 
     [USER]-webui
 
 ## Loggen Sie mit der CLI ein
 
-Kopieren Sie den Login-Befehl von der Web Console
-
-(haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
+Kopieren Sie den Login-Befehl von der Web Console (haben Sie diese Option gefunden? -> im Menü auf der rechten Seite)
 
     oc login https://techlab.openshift.ch:443 --token=XYZ
     oc whoami
@@ -53,7 +52,7 @@ OpenShift kann mehrere Benutzer (auch mit unterschiedlichen Rollen) in einem Pro
 
 Benutzer oder Gruppen können unterschiedliche Rollen innerhalb des gesamten Clusters oder lokal innerhalb eines Projekts haben.
 
-Weitere Informationen zu Rollen finden Sie [hier](https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#roles) und zu deren Verwaltung [hier](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_rbac.html).
+Weitere Informationen zu Rollen finden Sie [hier](https://docs.openshift.com/container-platform/latest/authentication/using-rbac.html) und zu deren Verwaltung [hier](https://docs.openshift.com/container-platform/4.3/authentication/using-rbac.html#viewing-cluster-roles_using-rbac).
 
 Um alle aktiven Rollen in Ihrem aktuellen Projekt anzuzeigen, können Sie folgendes eingeben:
 
@@ -67,16 +66,20 @@ Wir können Rollen verwalten, indem wir Befehle für `oc adm policy` absetzen:
 
     oc adm policy -h
 
-Für dieses Lab gibt es eine Gruppe namens "techlab", in der alle Techlab-Benutzer enthalten sind.
+Für dieses Lab gibt es eine Gruppe namens `techlab`, in der alle Techlab-Benutzer enthalten sind.
 
 Fügen wir diese Gruppe mit der Administrator Rolle zu unserem aktuellen Projekt hinzu, damit wir die Sachen in diesen Projekten gemeinsam entwickeln können.
 
     oc adm policy add-role-to-group -h
-    oc adm policy add-role-to-group admin techlab
+    oc adm policy add-role-to-group admin techlab -n [USER]-cli
 
 Zu viele Rechte? Zumindest für unser webui Projekt, also lasst uns die Benutzer nur als Viewer hinzufügen:
 
     oc adm policy add-role-to-group view techlab -n [USER]-webui
+
+Sie können auch die bisherigen Berechtigungen des `[USER]-cli` Projekts entfernen.
+
+    oc adm policy remove-role-from-group admin techlab -n [USER]-cli
 
 Wie viele andere haben uns zu ihren Projekten hinzugefügt? Schauen wir uns die aktuelle Liste der Projekte an:
 
@@ -92,7 +95,13 @@ Sie können alle Ressourcen Ihres aktuellen Projekts abrufen, indem Sie folgende
 
     oc get all
 
+Sie sehen nichts? Oder nur "No resources found."
+Dies liegt daran, dass wir noch nichts deployed haben. Sie können eine infache Applikation deployen und den `oc get` Befahl wiederholen.
+
+    oc new-app https://github.com/appuio/example-php-sti-helloworld.git
+
 Sie können auch alle Ressourcen der Namespaces (Projekte) abrufen, auf die Sie Zugriff haben.
+
 Nehmen Sie das Projekt `openshift-web-console`, das einige Ressourcen zum untersuchen enthält.
 Klicken Sie auf Befehl, wenn Sie keine Lösung gefunden haben, wie Sie den Namespace zum Befehl hinzufügen können.
 
@@ -100,12 +109,12 @@ Klicken Sie auf Befehl, wenn Sie keine Lösung gefunden haben, wie Sie den Names
 
 Wenn Sie eine interessante Ressource gefunden haben, die Sie untersuchen möchten, können Sie jede einzelne mit den Befehlen `describe/get` anschauen:
 
-<details><summary>allgemeiner Befehl</summary>oc describe resrourceXY resourceName -n openshift-web-console</details>
+<details><summary>allgemeiner Befehl</summary>oc describe [RESOURCE_TYPE] [RESOURCE_NAME] -n openshift-web-console</details>
 <details><summary>Befehl zum Überprüfen eines Service</summary>oc describe service webconsole -n openshift-web-console</details><br/>
 
 Sie können die Ressourcen auch bearbeiten:
 
-    oc edit resrourceXY resourceName
+    oc edit [RESOURCE_TYPE] [RESOURCE_NAME]
 
 Lassen Sie uns zum Beispiel unser webui Projekt bearbeiten.
 
