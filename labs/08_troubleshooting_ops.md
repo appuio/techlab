@@ -1,4 +1,4 @@
-# Lab 7: Troubleshooting
+# Lab 8: Troubleshooting
 
 In diesem Lab wird aufgezeigt, wie man im Fehlerfall vorgehen kann und welche Tools einem dabei zur Verfügung stehen.
 
@@ -12,7 +12,7 @@ Laufende Container werden als unveränderbare Infrastruktur behandelt und sollen
 Dennoch gibt es Usecases, bei denen man sich in die Container einloggen muss.
 Zum Beispiel für Debugging und Analysen.
 
-## Aufgabe: LAB7.1
+## Aufgabe 1: Remote Shells
 
 Mit OpenShift können Remote Shells in die Pods geöffnet werden, ohne dass man darin vorgängig SSH installieren müsste.
 Dafür steht einem der Befehl `oc rsh` zur Verfügung.
@@ -42,7 +42,8 @@ drwxr-xr-x. 4 root    root   28 May 16 13:34 src
 
 Mit `exit` bzw. `ctrl`+`d` kann wieder aus dem Pod bzw. der Shell ausgeloggt werden.
 
-## Aufgabe: LAB7.2
+
+## Aufgabe 2: Befehle ausführen im Container
 
 Einzelne Befehle innerhalb des Containers können über `oc exec` ausgeführt werden:
 
@@ -63,6 +64,7 @@ KUBERNETES_PORT_53_UDP_PROTO=udp
 KUBERNETES_PORT_53_TCP=tcp://172.30.0.1:53
 ...
 ```
+
 
 ## Logfiles betrachten
 
@@ -94,13 +96,15 @@ Melden Sie sich in Kibana an, schauen Sie sich um und versuchen Sie, eine Suche 
 
 Weitere Informationen und ein optionales Lab finden Sie [hier](../additional-labs/logging_efk_stack.md).
 
+
 ## Metriken
 
 Die OpenShift Platform stellt auch ein Grundset an Metriken zur Verfügung, welche einerseits in der Web Console integriert sind und andererseits dazu genutzt werden können, Pods automatisch zu skalieren.
 
 Sie können mit Hilfe eines direkten Logins auf einen Pod nun den Ressourcenverbrauch dieses Pods beeinflussen und die Auswirkungen dazu in der Web Console beobachten.
 
-## Aufgabe: LAB7.3 Port Forwarding
+
+## Aufgabe 3: Port Forwarding
 
 OpenShift erlaubt es, beliebige Ports von der Entwicklungs-Workstation auf einen Pod weiterzuleiten.
 Dies ist z.B. nützlich, um auf Administrationskonsolen, Datenbanken, usw. zuzugreifen, die nicht gegen das Internet exponiert werden und auch sonst nicht erreichbar sind.
@@ -122,7 +126,7 @@ Die Metrics können nun unter folgender URL abgerufen werden: [http://localhost:
 Die Metrics werden Ihnen als JSON angezeigt.
 Mit demselben Konzept können Sie nun bspw. mit Ihrem lokalen SQL Client auf eine Datenbank verbinden.
 
-In der [Dokumentation](https://docs.openshift.com/container-platform/4.2/nodes/containers/nodes-containers-port-forwarding.html) sind weiterführende Informationen zu Port Forwarding zu finden.
+In der [Dokumentation](https://docs.openshift.com/container-platform/latest/nodes/containers/nodes-containers-port-forwarding.html) sind weiterführende Informationen zu Port Forwarding zu finden.
 
 __Note__:
 Der `oc port-forward`-Prozess wird solange weiterlaufen, bis er vom User abgebrochen wird.
@@ -130,8 +134,8 @@ Sobald das Port-Forwarding also nicht mehr benötigt wird, kann er mit ctrl+c ge
 
 ---
 
-__Ende Lab 7__
+__Ende Lab 8__
 
-<p width="100px" align="right"><a href="08_database.md">Datenbank deployen und anbinden →</a></p>
+<p width="100px" align="right"><a href="09_database.md">Datenbank deployen und anbinden →</a></p>
 
 [← zurück zur Übersicht](../README.md)

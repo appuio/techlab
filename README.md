@@ -1,6 +1,6 @@
 # APPUiO - OpenShift 4 Techlab
 
-Dieses Techlab basiert auf OpenShift 4.2.
+Dieses Techlab basiert auf OpenShift 4.
 
 ## Einführung
 
@@ -21,12 +21,13 @@ __Ziele dieses Techlabs__:
 4. [Ein Container Image deployen](labs/04_deploy_dockerimage.md)
 5. [Routen erstellen](labs/05_create_route.md)
 6. [Skalieren](labs/06_scale.md)
-7. [Troubleshooting](labs/07_troubleshooting_ops.md)
-8. [Datenbank deployen und anbinden](labs/08_database.md)
-9. [Code Änderungen via Webhook direkt integrieren](labs/09_dockerbuild_webhook.md)
-10. [Persistent Storage anbinden und verwenden für Datenbank](labs/10_persistent_storage.md)
-11. [Applikationstemplates](labs/11_template.md)
-12. [Eigene Templates erstellen](labs/12_template_creation.md)
+7. [Operators](labs/07_operators.md)
+8. [Troubleshooting](labs/08_troubleshooting_ops.md)
+9. [Datenbank deployen und anbinden](labs/09_database.md)
+10. [Code Änderungen via Webhook direkt integrieren](labs/10_dockerbuild_webhook.md)
+11. [Persistent Storage anbinden und verwenden für Datenbank](labs/11_persistent_storage.md)
+12. [Applikationstemplates](labs/12_template.md)
+13. [Eigene Templates erstellen](labs/13_template_creation.md)
 
 ### Zusätzliche Labs
 
@@ -40,7 +41,7 @@ Unterlagen für ein zweitägiges Developer Techlab sind im Verzeichnis [dev-labs
 
 ## Weiterführende Dokumentation
 
-- [OpenShift Container Platform 4.2 Dokumentation](https://docs.openshift.com/container-platform/4.2/welcome/index.html)
+- [OpenShift Container Platform 4 Dokumentation](https://docs.openshift.com/container-platform/latest/welcome/index.html)
 - [APPUiO Dokumentation](http://docs.appuio.ch)
 
 ### APPUiO Examples

@@ -1,6 +1,7 @@
-# Lab 11: Applikationstemplates
+# Lab 12: Applikationstemplates
 
 In diesem Lab zeigen wir auf, wie Templates ganze Infrastrukturen beschreiben und entsprechend mit einem Befehl instanziert werden können.
+
 
 ## Templates
 
@@ -24,7 +25,8 @@ oc get template -n openshift
 
 Diese Templates können im JSON- oder YAML-Format sowohl im Git Repository neben Ihrem Source Code abgelegt werden als auch über eine URL aufgerufen oder gar lokal im Filesystem abgelegt sein.
 
-## Aufgabe: LAB11.1: Template instanzieren
+
+## Aufgabe 1: Template instanzieren
 
 Die einzelnen Schritte die wir in den vorherigen Labs manuell vorgenommen haben, können nun mittels Template in einem "Rutsch" durchgeführt werden.
 
@@ -95,7 +97,7 @@ Ansonsten wird der erste Build nicht funktionieren.
 
 ---
 
-__Ende Lab 11__
+__Ende Lab 12__
 
 <p width="100px" align="right"><a href="12_template_creation.md">Eigene Templates erstellen →</a></p>
 

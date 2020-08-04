@@ -3,7 +3,7 @@
 In diesem Lab zeigen wir auf, wie man Applikationen in OpenShift skaliert.
 Des Weiteren zeigen wir, wie OpenShift dafür sorgt, dass jeweils die Anzahl erwarteter Pods gestartet wird und wie eine Applikation der Plattform zurückmelden kann, dass sie bereit für Requests ist.
 
-## Aufgabe: LAB6.1 Beispiel-Applikation hochskalieren
+## Aufgabe 1: Beispiel-Applikation hochskalieren
 
 Dafür erstellen wir ein neues Projekt mit dem Namen `[USERNAME]-scale`.
 
@@ -12,7 +12,7 @@ Dafür erstellen wir ein neues Projekt mit dem Namen `[USERNAME]-scale`.
 Fügen Sie dem Projekt eine Applikation hinzu:
 
 ```bash
-oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker
+oc new-app appuio/example-php-docker-helloworld --name=appuio-php-docker --as-deployment-config
 ```
 
 Und stellen den Service `appuio-php-docker` zur Verfügung (expose).
@@ -35,7 +35,8 @@ Für mehr Details json- oder yaml-Output ausgeben lassen.
 
 Der rc sagt uns, wieviele Pods wir erwarten (spec) und wieviele aktuell deployt sind (status).
 
-## Aufgabe: LAB6.2 Skalieren unserer Beispiel Applikation
+
+## Aufgabe 2: Skalieren unserer Beispiel Applikation
 
 Nun skalieren wir unsere Beispiel-Applikation auf 3 Replicas.
 Der soeben betrachtete ReplicationController wird über die DeploymentConfig (dc) gesteuert, weshalb wir diese skalieren müssen, damit die gewünschte Anzahl Repclias vom rc übernommen wird:
@@ -86,12 +87,14 @@ Events:            <none>
 Skalieren von Pods innerhalb eines Service ist sehr schnell, da OpenShift einfach eine neue Instanz des Container Images als Container startet.
 
 __Tipp__:
-OpenShift unterstützt auch [Autoscaling](https://docs.openshift.com/container-platform/4.2/nodes/pods/nodes-pods-autoscaling.html).
+OpenShift unterstützt auch [Autoscaling](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html).
 
-## Aufgabe: LAB6.3 Skalierte App in der Web Console
+
+## Aufgabe 3: Skalierte App in der Web Console
 
 Schauen Sie sich die skalierte Applikation auch in der Web Console an.
 Wie können Sie die Anzahl Replicas via Web Console steuern?
+
 
 ## Unterbruchsfreies Skalieren überprüfen
 
@@ -181,12 +184,13 @@ Es kann sogar passieren, dass der Service gar nicht mehr online ist und der Rout
 
 Im folgenden Kapitel wird beschrieben, wie Sie Ihre Services konfigurieren können, damit unterbruchsfreie Deployments möglich werden.
 
+
 ## Unterbruchsfreies Deployment dank Health Checks und Rolling Update
 
-Die "[Rolling Strategy](https://docs.openshift.com/container-platform/4.2/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies)" ermöglicht unterbruchsfreie Deployments.
+Die "[Rolling Strategy](https://docs.openshift.com/container-platform/latest/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies)" ermöglicht unterbruchsfreie Deployments.
 Damit wird die neue Version der Applikation gestartet, sobald die Applikation bereit ist, werden Requests auf den neuen Pod geleitet und die alte Version entfernt.
 
-Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/container-platform/3.11/dev_guide/application_health.html) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden übermitteln.
+Zusätzlich kann mittels [Container Health Checks](https://docs.openshift.com/container-platform/latest/applications/application-health.html#application-health-configuring_application-health) die deployte Applikation der Plattform detailliertes Feedback über ihr aktuelles Befinden übermitteln.
 
 Grundsätzlich gibt es zwei Arten von Health Checks, die implementiert werden können:
 
@@ -202,7 +206,8 @@ Dafür verwenden wir die Readiness Probe. Unsere Beispielapplikation gibt unter 
 http://[route]/health/
 ```
 
-## Aufgabe: LAB6.4
+
+## Aufgabe 4: Readiness Probe
 
 Fügen Sie die Readiness Probe mit folgendem Befehl in der DeploymentConfig (dc) hinzu:
 
@@ -233,6 +238,7 @@ oc rollout latest appuio-php-docker
 
 Jetzt sollten die Antworten ohne Unterbruch vom neuen Pod kommen.
 
+
 ## Self Healing
 
 Über den Replication Controller haben wir nun der Plattform mitgeteilt, dass jeweils __n__ Replicas laufen sollen. Was passiert nun, wenn wir einen Pod löschen?
@@ -259,6 +265,6 @@ In der Web Console ist gut zu beobachten, wie der Pod zuerst hellblau ist, bis d
 
 __Ende Lab 6__
 
-<p width="100px" align="right"><a href="07_troubleshooting_ops.md">Troubleshooting →</a></p>
+<p width="100px" align="right"><a href="07_operators.md">Operators →</a></p>
 
 [← zurück zur Übersicht](../README.md)

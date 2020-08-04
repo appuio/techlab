@@ -1,4 +1,4 @@
-# Lab 8: Datenbank anbinden
+# Lab 9: Datenbank anbinden
 
 Die meisten Applikationen sind in irgend einer Art stateful (sie haben also einen eigenen Zustand) und speichern Daten persistent ab.
 Sei dies in einer Datenbank oder als Files auf einem Filesystem oder Objectstore.
@@ -8,7 +8,8 @@ Für dieses Beispiel verwenden wir das Spring Boot-Beispiel aus [Lab 4](04_deplo
 
 <details><summary><b>Tipp</b></summary>oc project [USERNAME]-dockerimage</details><br/>
 
-## Aufgabe: LAB8.1: MariaDB Service anlegen
+
+## Aufgabe 1: MariaDB Service anlegen
 
 Für unser Beispiel verwenden wir in diesem Lab ein OpenShift Template, welches eine MariaDB Datenbank mit EmptyDir Data Storage anlegt.
 Dies ist nur für Testumgebungen zu verwenden, da beim Restart des MariaDB Pod alle Daten verloren gehen.
@@ -23,6 +24,7 @@ Um dasselbe Ergebnis zu erhalten müssen lediglich Datenbankname, Username, Pass
 - `MYSQL_PASSWORD: appuio`
 - `MYSQL_DATABASE: appuio`
 - `DATABASE_SERVICE_NAME: mariadb`
+
 
 ### CLI
 
@@ -47,12 +49,13 @@ service/mariadb created
 deploymentconfig.apps.openshift.io/mariadb created
 ```
 
+
 ### Web Console
 
 In der Web Console kann der MariaDB (Ephemeral) Service via Catalog in der Developer-Ansicht dem Projekt hinzugefügt werden:
 
 - Zuerst sicherstellen, dass oben links von der Administrator- auf die Developer-Ansicht gewechselt wurde
-- Auf "\+Add" klicken
+- Auf "\+Add" klicken (links oben)
 - "From Catalog" wählen
 - Auswahl mit Klick auf "Databases", "MariaDB" einschränken
 - Das Feld "MariaDB (Ephemeral)" und anschliessend "Instantiate Template" auswählen
@@ -60,6 +63,7 @@ In der Web Console kann der MariaDB (Ephemeral) Service via Catalog in der Devel
 - Die restlichen Formularfelder leer oder auf deren Standardwert belassen und mit "Create" erstellen lassen
 
 ![MariaDBService](../images/lab_08_mariadb.png)
+
 
 ### Passwort und Username als Plaintext?
 
@@ -155,7 +159,7 @@ Gleichzeitig haben wir damit die Möglichkeit, dieselben Secrets in mehreren Con
 
 Secrets können entweder, wie oben bei der MariaDB-Datenbank, in Umgebungsvariablen gemappt oder direkt als Files via Volumes in einen Container gemountet werden.
 
-Weitere Informationen zu Secrets können in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/4.2/nodes/pods/nodes-pods-secrets.html) gefunden werden.
+Weitere Informationen zu Secrets können in der [offiziellen Dokumentation](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-secrets.html) gefunden werden.
 
 ## Aufgabe: LAB8.2: Applikation an die Datenbank anbinden
 
@@ -203,7 +207,7 @@ Projektname = techlab-dockerimage
 mariadb.techlab-dockerimage.svc.cluster.local
 ```
 
-Über das CLI kann der MariaDB Service wie folgt angelegt werden:
+Über das CLI kann der MariaDB Service wie folgt angebunden werden:
 
 __Note__:
 Die Backslashes (`\`) dienen dazu, den langen Befehl übersichtlicher auf mehreren Zeilen abzubilden.
@@ -257,6 +261,7 @@ Die Konfiguration kann auch in der Web Console angeschaut und verändert werden:
 - Wählen Sie die example-spring-boot DC aus, indem Sie auf das OpenShift-Symbol klicken
 - Im neu geöffneten Seitenfenster wählen Sie oben rechts unter "Actions" die Option "Edit DeploymentConfig"
 
+
 ### Spring Boot Applikation
 
 Öffnen Sie die Applikation im Browser.
@@ -268,7 +273,8 @@ Sind die "Say Hello" Einträge von früher noch da?
 
 Fügen Sie ein paar neue "Say Hello" Einträge ein.
 
-## Aufgabe: LAB8.2.1: Secret referenzieren
+
+## Aufgabe 2: Secret referenzieren
 
 Weiter oben haben wir gesehen, wie OpenShift mittels Secrets sensitive Informationen von der eigentlichen Konfiguration entkoppelt und uns dabei hilft, Redundanzen zu vermeiden.
 Unsere Springboot Applikation aus dem vorherigen Lab haben wir zwar korrekt konfiguriert, allerings aber die Werte redundant und Plaintext in der DeploymentConfig abgelegt.
@@ -313,6 +319,7 @@ Mittels `oc edit dc example-spring-boot -o json` kann die DeploymentConfig im JS
 
 Nun werden die Werte für Username und Passwort sowohl beim MariaDB-Pod wie auch beim Springboot-Pod aus dem selben Secret gelesen.
 
+
 ### Spring Boot Applikation
 
 Öffnen Sie die Applikation im Browser.
@@ -324,7 +331,8 @@ Sind die "Say Hello" Einträge von früher noch da?
 
 Fügen Sie ein paar neue "Say Hello" Einträge ein.
 
-## Aufgabe: LAB8.3: In MariaDB Service Pod einloggen und manuell auf DB verbinden
+
+## Aufgabe 3: Auf DB verbinden
 
 Wie im Lab [07](07_troubleshooting_ops.md) beschrieben kann mittels `oc rsh [POD]` in einen Pod eingeloggt werden:
 
@@ -368,9 +376,10 @@ Was enthält die hello-Tabelle?
 
 <details><summary><b>Tipp</b></summary>select * from hello;</details><br/>
 
-## Aufgabe: LAB8.4: Dump auf MariaDB DB einspielen
 
-Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-3.3/labs/data/08_dump/dump.sql) einzuspielen.
+## Aufgabe 4: Dump einspielen
+
+Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4.x/data/08_dump/dump.sql) einzuspielen.
 
 __Tipp__:
 Mit `oc rsync` oder `oc cp` können Sie lokale Dateien in einen Pod kopieren.
@@ -388,6 +397,7 @@ __Tipp__:
 Die bestehende Datenbank muss vorgängig leer sein.
 Sie kann auch gelöscht und neu angelegt werden.
 
+
 ### Spring Boot Applikation
 
 Öffnen Sie die Applikation im Browser.
@@ -399,7 +409,8 @@ Sind die "Say Hello" Einträge von früher noch da?
 
 ---
 
-## Lösung: LAB8.4
+
+## Lösung Aufgabe 4
 
 Ein ganzes Verzeichnis (dump) syncen.
 Darin enthalten ist das File `dump.sql`.
@@ -447,8 +458,8 @@ mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABAS
 
 ---
 
-__Ende Lab 8__
+__Ende Lab 9__
 
-<p width="100px" align="right"><a href="09_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
+<p width="100px" align="right"><a href="10_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
 
 [← zurück zur Übersicht](../README.md)
