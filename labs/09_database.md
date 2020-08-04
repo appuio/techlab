@@ -379,7 +379,7 @@ Was enthält die hello-Tabelle?
 
 ## Aufgabe 4: Dump einspielen
 
-Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4.x/data/08_dump/dump.sql) einzuspielen.
+Die Aufgabe ist es, in den MariaDB Pod den [Dump](https://raw.githubusercontent.com/appuio/techlab/lab-4/labs/data/08_dump/dump.sql) einzuspielen.
 
 __Tipp__:
 Mit `oc rsync` oder `oc cp` können Sie lokale Dateien in einen Pod kopieren.
