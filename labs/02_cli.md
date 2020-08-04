@@ -2,11 +2,9 @@
 
 In diesem Lab werden wir gemeinsam das CLI-Tool `odo` installieren und konfigurieren, damit wir danach die ersten Schritte auf der OpenShift Techlab Plattform durchführen können.
 
-
 ## `oc`
 
 Der __oc client__ stellt ein Interface zu OpenShift bereit.
-
 
 ### Installation
 
@@ -15,10 +13,9 @@ Gemäss [offizieller Dokumentation](https://docs.openshift.com/container-platfor
 __Tipp__:
 Alternativ kann die Binary auch mittels folgenden Befehlen im Terminal installiert werden:
 
-```
+```bash
 curl -fsSL https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz | sudo tar xfz - -C /usr/bin
 ```
-
 
 ### bash Command Completion (optional)
 
@@ -29,7 +26,7 @@ Dieser Schritt ist optional und funktioniert nicht auf Windows. Damit Command Co
 __Tipp__:
 Alternativ kann die Bash Command Completion auch mittels folgenden Befehlen im Terminal installiert werden:
 
-```
+```bash
 oc completion bash | sudo tee /etc/bash_completion.d/oc_bash_completion
 ```
 

@@ -2,7 +2,6 @@
 
 In diesem Lab werden wir gemeinsam das erste "pre-built" Container Image deployen und die OpenShift-Konzepte Pod, Service, DeploymentConfig und ImageStream etwas genauer anschauen.
 
-
 ## Aufgabe 1: Container Image deployen
 
 Nachdem wir im [Lab 3](03_first_steps.md) den Source-to-Image Workflow verwendet haben, um eine Applikation auf OpenShift zu deployen, wenden wir uns nun dem Deployment eines pre-built Container Image von Docker Hub (oder einer anderen Image Registry) zu.
@@ -54,7 +53,6 @@ __Tipp__:
 Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die folgenden Best Practices befolgen:
 <https://docs.openshift.com/container-platform/latest/openshift_images/create-images.html>
 
-
 ## Betrachten der erstellten Ressourcen
 
 Als wir vorhin `oc new-app appuio/example-spring-boot` ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt.
@@ -63,7 +61,6 @@ Diese werden dafür benötigt, das Container Image zu deployen:
 - Service
 - [ImageStream](https://docs.openshift.com/container-platform/latest/openshift_images/images-understand.html)
 - [DeploymentConfig](https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html)
-
 
 ### Service
 
@@ -260,6 +257,12 @@ Im Gegensatz zur DeploymentConfig, mit welcher man OpenShift sagt, wie eine Appl
 
 __Tipp__:
 Für viele der Resource Types gibt es auch eine Kurzform. So können Sie bspw. anstelle von `oc get deploymentconfig` auch einfach `oc get dc` schreiben, oder `svc` anstelle von `service`.
+
+---
+
+## Zusatzaufgabe für Schnelle ;-)
+
+Schauen Sie sich die erstellten Ressourcen mit `oc get [ResourceType] [Name] -o json` und `oc describe [ResourceType] [Name]` aus dem ersten Projekt `[USERNAME]-example1` an. Alternativ kann das Projekt `openshift-web-console` verwendet werden.
 
 ---
 
