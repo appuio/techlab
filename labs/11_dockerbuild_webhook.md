@@ -1,4 +1,4 @@
-# Lab 10: Code Changes durch Webhook triggern Rebuild auf OpenShift
+# Lab 11: Code Changes durch Webhook triggern Rebuild auf OpenShift
 
 In diesem Lab zeigen wir den Docker Build Workflow anhand eines Beispiels auf und Sie lernen, wie Sie mit einem Push in das Git Repository automatisch einen Build und ein Deployment der Applikation auf OpenShift starten.
 
@@ -156,8 +156,8 @@ oc set triggers dc/appuio-php-docker-ex --auto
 
 ---
 
-__Ende Lab 10__
+__Ende Lab 11__
 
-<p width="100px" align="right"><a href="11_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
+<p width="100px" align="right"><a href="12_template.md">Applikationstemplates →</a></p>
 
 [← zurück zur Übersicht](../README.md)

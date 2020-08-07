@@ -460,6 +460,6 @@ mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABAS
 
 __Ende Lab 9__
 
-<p width="100px" align="right"><a href="10_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
+<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
 
 [← zurück zur Übersicht](../README.md)

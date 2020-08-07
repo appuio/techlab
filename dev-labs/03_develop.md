@@ -127,4 +127,4 @@ Im Browser oder mit curl das Funktionieren der Applikation überprüfen.
 
 ## Zusatzübung für ganz Schnelle
 
-Folgen Sie den Anweisungen im [Lab 10: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/10_dockerbuild_webhook.md).
+Folgen Sie den Anweisungen im [Lab 11: Code Changes durch Webhook triggern Rebuild auf OpenShift](../labs/11_dockerbuild_webhook.md).

@@ -30,7 +30,7 @@ Weitere Informationen zu Cron Jobs sind auf derselben [OpenShift Dokumentationss
 
 ## Aufgabe: Job für MariaDB-Dump erstellen
 
-Ähnlich wie in [Lab-Aufgabe 8.4](../labs/08_database.md) wollen wir nun einen Dump der laufenden MariaDB-Datenbank erstellen, aber ohne uns in den Pod einloggen zu müssen.
+Ähnlich wie in [Lab-Aufgabe 9.4](../labs/09_database.md) wollen wir nun einen Dump der laufenden MariaDB-Datenbank erstellen, aber ohne uns in den Pod einloggen zu müssen.
 
 Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [Lab 4](../labs/04_deploy_dockerimage.md), `[USERNAME]-dockerimage`.
 
@@ -68,6 +68,13 @@ Um alle Pods, welche zu einem Job gehören, in maschinenlesbarer Form auszugeben
 ```bash
 oc get pods --selector=job-name=mysql-dump --output=jsonpath={.items..metadata.name}
 ```
+
+Um zu schauen ob der Job erfolgreich war können die logs des pods ausgelesen werden.
+
+```bash
+oc logs $(oc get pods --selector=job-name=mysql-dump --output=jsonpath={.items..metadata.name})
+```
+
 
 ## Aufgabe: Cron Job einrichten
 
