@@ -421,7 +421,7 @@ oc rsync ./labs/data/08_dump mariadb-1-diccy:/tmp/
 ```
 
 __Tipp__:
-Falls `oc rsync` nicht funktioniert, `oc cp ./labs/data/08_dump mysql-1-diccy:/tmp/` verwenden.
+Falls `oc rsync` nicht funktioniert, `oc cp ./labs/data/08_dump mariadb-1-diccy:/tmp/` verwenden.
 
 In den MariaDB-Pod einloggen:
 

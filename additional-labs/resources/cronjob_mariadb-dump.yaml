@@ -1,7 +1,7 @@
 apiVersion: batch/v2alpha1
 kind: CronJob
 metadata:
-  name: mysql-backup
+  name: mariadb-backup
 spec:
   concurrencyPolicy: Forbid
   jobTemplate:
@@ -9,8 +9,8 @@ spec:
       template:
         spec:
           containers:
-            - name: mysql-backup
-              image: mysql:5.6
+            - name: mariadb-backup
+              image: mariadb
               command:
                 - "bash"
                 - "-eo"

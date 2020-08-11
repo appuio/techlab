@@ -1,13 +1,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: mysql-dump
+  name: mariadb-dump
 spec:
   template:
     spec:
       containers:
-        - name: mysql
-          image: mysql:5.6
+        - name: mariadb
+          image: mariadb
           command:
             - "bash"
             - "-eo"
