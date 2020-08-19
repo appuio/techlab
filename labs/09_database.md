@@ -421,7 +421,7 @@ oc rsync ./labs/data/08_dump mariadb-1-diccy:/tmp/
 ```
 
 __Tipp__:
-Falls `oc rsync` nicht funktioniert, `oc cp ./labs/data/08_dump mysql-1-diccy:/tmp/` verwenden.
+Falls `oc rsync` nicht funktioniert, `oc cp ./labs/data/08_dump mariadb-1-diccy:/tmp/` verwenden.
 
 In den MariaDB-Pod einloggen:
 
@@ -460,6 +460,6 @@ mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MARIADB_SERVICE_HOST $MYSQL_DATABAS
 
 __Ende Lab 9__
 
-<p width="100px" align="right"><a href="10_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
+<p width="100px" align="right"><a href="10_persistent_storage.md">Persistent Storage anbinden und verwenden für Datenbank →</a></p>
 
 [← zurück zur Übersicht](../README.md)

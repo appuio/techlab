@@ -1,4 +1,4 @@
-# Lab 11: Persistent Storage anbinden und verwenden für Datenbank
+# Lab 10: Persistent Storage anbinden und verwenden für Datenbank
 
 Per se sind Daten in einem Pod nicht persistent, was u.a. auch in unserem Beispiel der Fall ist.
 Verschwindet also unser MariaDB-Pod bspw. aufgrund einer Änderung des Image, sind die bis zuvor noch vorhandenen Daten im neuen Pod nicht mehr vorhanden.
@@ -25,7 +25,7 @@ In [Lab 6](06_scale.md) bearbeiteten wir die DeploymentConfig, um die Readiness 
 Dasselbe tun wir nun für das Persistent Volume.
 Im Unterschied zu [Lab 6](06_scale.md) können wir aber mit `oc set volume` die DeploymentConfig automatisch erweitern.
 
-Wir verwenden dafür das Projekt aus [Lab 8](08_database.md) [USERNAME]-dockerimage.
+Wir verwenden dafür das Projekt aus [Lab 9](09_database.md) [USERNAME]-dockerimage.
 
 <details><summary><b>Tipp</b></summary>oc project [USERNAME]-dockerimage</details><br/>
 
@@ -72,7 +72,7 @@ deploymentconfigs/mariadb
 ## Aufgabe 2: Persistenz-Test
 ### Daten wiederherstellen
 
-Wiederholen Sie [Lab-Aufgabe 8.4](08_database.md#l%C3%B6sung-lab84).
+Wiederholen Sie [Lab-Aufgabe 9.4](09_database.md#l%C3%B6sung-lab84).
 
 
 ### Test
@@ -81,8 +81,8 @@ Skalieren Sie nun den MariaDB-Pod auf 0 und anschliessend wieder auf 1. Beobacht
 
 ---
 
-__Ende Lab 11__
+__Ende Lab 10__
 
-<p width="100px" align="right"><a href="12_template.md">Applikationstemplates →</a></p>
+<p width="100px" align="right"><a href="11_dockerbuild_webhook.md">Code Änderungen via Webhook direkt integrieren →</a></p>
 
 [← zurück zur Übersicht](../README.md)

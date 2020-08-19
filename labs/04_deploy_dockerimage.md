@@ -23,7 +23,7 @@ um alle Projekte anzuzeigen, auf die Sie berechtigt sind.
 Sobald das neue Projekt erstellt wurde, können wir in OpenShift mit dem folgenden Befehl das Container Image deployen:
 
 ```bash
-oc new-app appuio/example-spring-boot
+oc new-app appuio/example-spring-boot --as-deployment-config
 ```
 
 Für unser Lab verwenden wir ein APPUiO-Beispiel (Java Spring Boot Applikation):

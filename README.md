@@ -24,8 +24,8 @@ __Ziele dieses Techlabs__:
 7. [Operators](labs/07_operators.md)
 8. [Troubleshooting](labs/08_troubleshooting_ops.md)
 9. [Datenbank deployen und anbinden](labs/09_database.md)
-10. [Code Änderungen via Webhook direkt integrieren](labs/10_dockerbuild_webhook.md)
-11. [Persistent Storage anbinden und verwenden für Datenbank](labs/11_persistent_storage.md)
+10. [Persistent Storage anbinden und verwenden für Datenbank](labs/10_persistent_storage.md)
+11. [Code Änderungen via Webhook direkt integrieren](labs/11_dockerbuild_webhook.md)
 12. [Applikationstemplates](labs/12_template.md)
 13. [Eigene Templates erstellen](labs/13_template_creation.md)
 

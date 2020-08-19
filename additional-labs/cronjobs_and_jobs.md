@@ -30,14 +30,14 @@ Weitere Informationen zu Cron Jobs sind auf derselben [OpenShift Dokumentationss
 
 ## Aufgabe: Job für MariaDB-Dump erstellen
 
-Ähnlich wie in [Lab-Aufgabe 8.4](../labs/08_database.md) wollen wir nun einen Dump der laufenden MariaDB-Datenbank erstellen, aber ohne uns in den Pod einloggen zu müssen.
+Ähnlich wie in [Lab-Aufgabe 9.4](../labs/09_database.md) wollen wir nun einen Dump der laufenden MariaDB-Datenbank erstellen, aber ohne uns in den Pod einloggen zu müssen.
 
 Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [Lab 4](../labs/04_deploy_dockerimage.md), `[USERNAME]-dockerimage`.
 
 <details><summary><b>Tipp</b></summary>oc project [USERNAME]-dockerimage</details>
 
 Schauen wir uns zuerst die Job-Ressource an, die wir erstellen wollen.
-Sie ist unter [additional-labs/resources/job_mysql-dump.yaml](additional-labs/resources/job_mysql-dump.yaml) zu finden.
+Sie ist unter [additional-labs/resources/job_mariadb-dump.yaml](additional-labs/resources/job_mariadb-dump.yaml) zu finden.
 Unter `.spec.template.spec.containers[0].image` sehen wir, dass wir dasselbe Image verwenden wie für die laufende Datenbank selbst.
 Wir starten anschliessend aber keine Datenbank, sondern wollen einen `mysqldump`-Befehl ausführen, wie unter `.spec.template.spec.containers[0].command` aufgeführt.
 Dazu verwenden wir, wie schon im Datenbank-Deployment, dieselben Umgebungsvariablen, um Hostname, User oder Passwort innerhalb des Pods definieren zu können.
@@ -48,13 +48,13 @@ Insgesamt soll 3 mal probiert werden den Job auszuführen (`backoffLimit`).
 Erstellen wir nun also unseren Job:
 
 ```bash
-oc create -f ./additional-labs/resources/job_mysql-dump.yaml
+oc create -f ./additional-labs/resources/job_mariadb-dump.yaml
 ```
 
 Überprüfen wir, ob der Job erfolgreich war:
 
 ```bash
-oc describe jobs/mysql-dump
+oc describe jobs/mariadb-dump
 ```
 
 Den ausgeführten Pod können wir wie folgt anschauen:
@@ -66,8 +66,15 @@ oc get pods
 Um alle Pods, welche zu einem Job gehören, in maschinenlesbarer Form auszugeben, kann bspw. folgender Befehl verwendet werden:
 
 ```bash
-oc get pods --selector=job-name=mysql-dump --output=jsonpath={.items..metadata.name}
+oc get pods --selector=job-name=mariadb-dump --output=jsonpath={.items..metadata.name}
 ```
+
+Um zu überprüfen ob der Job erfolgreich war, können die Logs des Pod ausgelesen werden.
+
+```bash
+oc logs $(oc get pods --selector=job-name=mariadb-dump --output=jsonpath={.items..metadata.name})
+```
+
 
 ## Aufgabe: Cron Job einrichten
 
@@ -77,13 +84,13 @@ Nun wollen wir sicherstellen, dass dieser Datebank Dump nächtlich einmal ausgef
 Dafür erstellen wir nun eine Resource vom Typ Cron Job. Der Cron Job soll jeweils um 23:12 jeden Tag einen Job ausführen, welcher einen Dump der Datenbank erstellt und sichert.
 
 ```bash
-oc create -f ./additional-labs/resources/cronjob_mysql-dump.yaml
+oc create -f ./additional-labs/resources/cronjob_mariadb-dump.yaml
 ```
 
 Schauen wir uns nun diesen Cron Job an:
 
 ```bash
-oc get cronjob mysql-backup -o yaml
+oc get cronjob mariadb-backup -o yaml
 ```
 
 __Wichtig__:
