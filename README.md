@@ -33,6 +33,7 @@ __Ziele dieses Techlabs__:
 
 - [Cron Jobs in OpenShift](additional-labs/cronjobs_and_jobs.md)
 - [ConfigMaps](additional-labs/configmaps.md)
+- [Pipelines](additional-labs/pipelines.md)
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 
 ### OpenShift Developer Techlab
