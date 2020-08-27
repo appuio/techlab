@@ -12,7 +12,6 @@ __Ziele dieses Techlabs__:
 - Grundkonzepte verstehen
 - Erste Applikation auf OpenShift deployed
 
-
 ## Labs
 
 1. [Quicktour durch OpenShift 4](labs/01_quicktour.md)
@@ -33,7 +32,7 @@ __Ziele dieses Techlabs__:
 
 - [Cron Jobs in OpenShift](additional-labs/cronjobs_and_jobs.md)
 - [ConfigMaps](additional-labs/configmaps.md)
-- [Pipelines](additional-labs/pipelines.md)
+- [Jenkins](additional-labs/jenkins.md)
 - [Eigene OpenShift Entwicklungsumgebung](additional-labs/development_environment.md)
 
 ### OpenShift Developer Techlab
