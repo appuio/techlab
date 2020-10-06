@@ -21,7 +21,7 @@ oc new-app openshift/ruby:2.5~https://github.com/chrira/ruby-ex.git#load
 oc create route edge --insecure-policy=Redirect --service=ruby-ex
 ```
 
-Warten sie bis die Applikation gebaut und ready ist und erste Metriken auftauchen. Sie können dem Build wie auch den vorhandenden Pods folgen.
+Warten sie bis die Applikation gebaut und ready ist und erste Metriken auftauchen (siehe Web Console -> Monitoring). Sie können dem Build wie auch den vorhandenden Pods folgen.
 
 Bis die ersten Metriken auftauchen dauert es eine Weile, erst dann wird der Autoscaler richtig arbeiten können.
 
