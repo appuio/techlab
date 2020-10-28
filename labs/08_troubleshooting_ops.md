@@ -89,13 +89,6 @@ Entsprechend funktioniert dieser Befehl nur, wenn es tatsächlich einen Pod zuvo
 Mit OpenShift wird ein EFK-Stack (Elasticsearch, Fluentd, Kibana) mitgeliefert, der sämtliche Logfiles sammelt, rotiert und aggregiert.
 Kibana erlaubt es Logs zu durchsuchen, zu filtern und grafisch aufzubereiten.
 
-Kibana ist über den Link "View Archive" in der Web Console bei den Logs des Pods erreichbar.
-Melden Sie sich in Kibana an, schauen Sie sich um und versuchen Sie, eine Suche für bestimmte Logs zu definieren.
-
-<details><summary><b>Beispiel</b>: mysql Container Logs ohne Error-Meldungen</summary>kubernetes.container_name:"mysql" AND -message:"error"</details><br/>
-
-Weitere Informationen und ein optionales Lab finden Sie [hier](../additional-labs/logging_efk_stack.md).
-
 
 ## Metriken
 
