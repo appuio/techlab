@@ -38,7 +38,7 @@ Ersetzen Sie `[YourGithubUser]` mit dem Namen Ihres GitHub Accounts.
 
 <details>
   <summary>Applikation Erstellen Befehl</summary>
-  oc new-app https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
+  oc new-app --as-deployment-config https://github.com/[YourGithubUser]/example-php-docker-helloworld.git --strategy=docker --name=appuio-php-docker-ex
 </details><br/>
 
 Mittels Parameter `--strategy=docker` sagen wir dem `oc new-app` Befehl nun explizit, er soll im angegebenen Git Repository nach einem Dockerfile suchen und dieses für den Build verwenden.
