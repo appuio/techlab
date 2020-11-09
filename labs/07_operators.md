@@ -57,7 +57,7 @@ oc -n openshift-marketplace get packagemanifests.packages.operators.coreos.com |
 
 ***Hinweis***: Als Cluster-Administrator kann man dies über die WebConsole machen (Operators -> OperatorHub).
 
-Den ETCD-Operator können wir nun installieren, in dem wir eine Subscription anlegen:
+Den ETCD-Operator können wir nun installieren, in dem wir eine Subscription anlegen. Mit vorhandenem `cat`-Binary kann dies mit folgendem Befehl gemacht werden, alternativ kann der Inhalt in ein File geschrieben und mit `oc create -f <Filename>` erstellt werden.
 
 ```
 cat <<EOF | oc create -f -
