@@ -2,14 +2,14 @@
 
 Mit Jenkins Pipelines auf OpenShift hat man die Möglichkeit, komplexe CI/CD Prozesse voll integriert abzubilden. In diesem Lab zeigen wir, wie man mit Jenkins Pipelines arbeitet und so Applikationen buildet, testet und entsprechend kontrolliert in die verschiedenen Stages deployt.
 
-Die offizielle Dokumentation ist unter <https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/openshift_pipeline.html> zu finden.
+Die offizielle Dokumentation ist unter [OpenShift 3 Pipeline Builds](https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/openshift_pipeline.html) zu finden.
 
-- [ ] TODO Update Link
-- [ ] TODO Hinweis auf Tekton
+Die OpenShift Plattform setzt, seit Version 4, für die integrierten Pipeline Builds auf Tekton.
+Diese, Tekton basierten, Pipelines sind jedoch erst als Technology Preview Feature verfügbar [OpenShift 4 Pipeline Builds](https://docs.openshift.com/container-platform/latest/pipelines/understanding-openshift-pipelines.html).
 
 ## Grundprinzip
 
-OpenShift Pipelines basieren auf Jenkins Pipelines, welche voll integriert mit OpenShift fungieren. So hat man BuildConfigs vom Typ `jenkinsPipelineStrategy` anzulegen, welche wieder eine Jenkins Pipeline referenzieren.
+OpenShift Jenkins Pipelines basieren auf Jenkins Pipelines, welche voll integriert mit OpenShift fungieren. So hat man BuildConfigs vom Typ `jenkinsPipelineStrategy` anzulegen, welche wieder eine Jenkins Pipeline referenzieren.
 
 ## LAB: Eine einfache OpenShift Pipeline anlegen und ausführen
 
@@ -27,21 +27,37 @@ oc get template/jenkins-ephemeral -n openshift -o yaml | oc process --param MEMO
 
 Wir legen mit folgendem Befehl die entsprechende BuildConfig an, welche das JenkinsFile, also die Pipeline, direkt beinhaltet. Ebenso wird eine zweite BuildConfig erstellt. Diese enthält die Docker BuildConfig für die eigentliche Applikation, die wir im Rahmen dieser Pipeline deployen wollen. Im vorliegenden Beispiel eine simple PHP Applikation:
 
-- [ ] TODO Hinweis Deprecation
-
 ```bash
 oc apply -f ./additional-labs/resources/simple-jenkins-pipeline.yaml
 ```
 
 Während OpenShift arbeitet, schauen wir uns noch die verwendete Konfigurationsdatei an: [additional-labs/resources/simple-jenkins-pipeline.yaml](resources/simple-jenkins-pipeline.yaml)
 
-Aufgrund der BuildConfig deployt OpenShift automatisch eine integrierte Jenkins Instanz. Schauen wir uns dies in der Web Console an. Im Projekt befindet sich nach erfolgreichem Deployment eine laufende Jenkins Instanz, welche über eine Route exposed ist. Der Zugriff auf Jenkins über die Route ist mittels OpenShift OAuth gesichert. Loggen Sie sich dort ein und erteilen Sie der OAuth entsprechende Rechte. Ebenso wurde die vorher angelegte Build Pipeline synchronisiert und automatisch angelegt.
+Aufgrund der BuildConfig deployt OpenShift automatisch eine integrierte Jenkins Instanz. Schauen wir uns dies in der Web Console an. Im Projekt befindet sich nach erfolgreichem Deployment eine laufende Jenkins Instanz, welche über eine Route exposed ist. Der Zugriff auf Jenkins über die Route ist mittels OpenShift OAuth gesichert. Rufen Sie die URL der Route auf.
 
-![Jenkins Overview](../images/pipeline-jenkins-overview.png)
+Wenn Sie zum ersten Mal einen OpenShift Jenkins aufrufen, erhalten Sie eine OpenShift-Authentifizierungsmaske.
+
+![Jenkins OAuth2 Login](../images/jenkins_oauth2_login.png "Jenkins OAuth2 Login")
+
+Danach wird ein Berechtigungs-Bildschirm angezeigt, in dem Sie nach Autorisierungs-Berechtigungen gefragt werden.
+Siehe das Bild unten.
+
+![Jenkins OAuth2 permissions](../images/jenkins_oauth2_permissions.png "Jenkins OAuth2 permissions")
+
+Akzeptieren Sie diese und wechseln Sie zum nächsten Bildschirm, indem Sie auf 'Alow selected permissions' klicken.
+
+Der nächste Bildschirm sollte der berühmte/klassische (oder berüchtigte) Jenkins-Begrüssungsbildschirm sein.
+
+![Jenkins welcome](../images/pipeline-jenkins-overview.png "Jenkins welcome")
 
 Die Pipeline aus der BuildConfig ist im Ordner vom unserem OpenShift Projekt sichtbar.
+Sie wurde automatisch synchronisiert und angelegt.
 
-Zurück in der OpenShift Web Console können wir nun über Builds --> *appuio-sample-pipeline* die Pipeline starten: Actions --> Start Build
+Zurück in der OpenShift Web Console können wir nun über Builds --> *appuio-sample-pipeline* die Pipeline anschauen.
+
+__Note__: Hier wird die 'Pipeline build strategy deprecation' angezeigt. Wie einleitend erklärt, setzt OpenShift neu auf Tekton.
+
+Zum Starten der Pipeline klicken wir auf Actions --> Start Build
 
 ![Start Pipeline](../images/openshift-pipeline-start.png)
 
@@ -50,9 +66,12 @@ Dabei wird von OpenShift der Jenkins Job gestartet und entsprechend in die Pipel
 Builds --> *appuio-sample-pipeline* --> Builds Tab --> *appuio-sample-pipeline-1*
 
 ![Run Pipeline](../images/openshift-pipeline-run.png)
+
+Die gleichen Informationen sind auch im Jenkins GUI zu sehen.
+
 ![Run Pipeline Jenkins](../images/openshift-pipeline-jenkins-view-run.png)
 
-Unser Beispiel hier enthält eine Test-Pipeline, die das generelle Prinzip veranschaulicht. Jedoch bieten Jenkins Pipelines volle Flexiblität um komplexe CI/CD Pipelines abzubilden.
+Unser Beispiel hier enthält eine Test-Pipeline, die das generelle Prinzip veranschaulicht. Jedoch bieten Jenkins Pipelines volle Flexibilität um komplexe CI/CD Pipelines abzubilden.
 
 ```groovy
 def project=""
@@ -99,7 +118,7 @@ Die Testpipeline besteht aus sechs Pipeline-Stages, welche auf zwei Jenkins Slav
 
 Die letzten drei Steps werden bedingt durch den Node Selector `node ('maven') { ... }` auf einem Jenkins Slave mit dem Namen `maven` ausgeführt. Dabei startet OpenShift mittels Kubernetes Plugin dynamisch einen Jenkins Slave Pod und führt entsprechend diese Build-Stages auf diesem Slave aus.
 
-Der `maven` Slave ist im Kubernetes Plugin vorkonfiguriert und die Pipeline-Stages werden via Image `registry.access.redhat.com/openshift3/jenkins-slave-maven-rhel7:v3.11` ausgeführt. Weiter unten im Kapitel zu Custom Slaves werden Sie lernen, wie man individuelle Slaves dazu verwendet um Pipelines darauf auszuführen.
+Der `maven` Slave ist im Kubernetes Cloud Plugin vom Jenkins vorkonfiguriert. Weiter unten im Kapitel zu Custom Slaves werden Sie lernen, wie man individuelle Slaves dazu verwendet um Pipelines darauf auszuführen.
 
 ## BuildConfig Optionen
 
