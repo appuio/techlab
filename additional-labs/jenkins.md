@@ -2,7 +2,7 @@
 
 Mit Jenkins Pipelines auf OpenShift hat man die Möglichkeit, komplexe CI/CD Prozesse voll integriert abzubilden. In diesem Lab zeigen wir, wie man mit Jenkins Pipelines arbeitet und so Applikationen buildet, testet und entsprechend kontrolliert in die verschiedenen Stages deployt.
 
-Die offizielle Dokumentation ist unter [OpenShift 3 Pipeline Builds](https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/openshift_pipeline.html) zu finden.
+Die offizielle Dokumentation ist unter [Pipeline build](https://docs.openshift.com/container-platform/latest/builds/build-strategies.html#builds-strategy-pipeline-build_build-strategies) oder [OpenShift 3 Pipeline Builds](https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/openshift_pipeline.html) zu finden.
 
 Die OpenShift Plattform setzt, seit Version 4, für die integrierten Pipeline Builds auf Tekton.
 Diese, Tekton basierten, Pipelines sind jedoch erst als Technology Preview Feature verfügbar [OpenShift 4 Pipeline Builds](https://docs.openshift.com/container-platform/latest/pipelines/understanding-openshift-pipelines.html).
@@ -142,9 +142,7 @@ spec:
 
 Der durch OpenShift dynamisch deployte Jenkins ist durch eine Reihe von OpenShift Jenkins Plugins vollständig mit OpenShift gekoppelt. Einerseits kann so direkt auf Ressourcen innerhalb des Projekts zugegriffen werden, andererseits können durch entsprechendes Labelling dynamische Slaves aufgesetzt werden. Des Weiteren wird auch ein entsprechender Serviceaccount (`jenkins`) erstellt. Die Rechtevergabe kann entsprechend über diesen Serviceacount erfolgen.
 
-Zusätzliche Informationen finden Sie hier: <https://docs.openshift.com/container-platform/3.11/install_config/configuring_pipeline_execution.html#openshift-jenkins-client-plugin>
-
-- [ ] TODO Update Link
+Zusätzliche Informationen finden Sie hier: <https://docs.openshift.com/container-platform/latest/builds/build-strategies.html#builds-strategy-pipeline-build_build-strategies>
 
 ### OpenShift Jenkins Pipeline
 
@@ -161,8 +159,6 @@ openshift.withCluster() {
 Das Plugin funktioniert als Wrapper zum `oc client`. Mit dem Plugin stehen einem also sämtliche Funktionen des Clients zur Verfügung.
 
 Weitere Informationen dazu sind unter <https://github.com/openshift/jenkins-client-plugin/blob/master/README.md> zu finden.
-
-Zusätzlich zum Client Plugin existiert das Vorgänger-Plugin (Jenkins Pipeline Plugin), welches weniger Funktionalität bietet, allerdings gemäss <https://docs.openshift.com/container-platform/3.11/using_images/other_images/jenkins.html#pipeline-plug-in> supportet bleibt.
 
 ### OpenShift Jenkins Sync Plugin
 
@@ -201,6 +197,7 @@ oc label is custom-jenkins-slave role=jenkins-slave
 Nach maximal 5 Minuten ist der Custom Slave im Jenkins verfügbar. Der Sync Mechanismus läuft nur alle 5 Minuten.
 
 Schauen wir uns die Konfiguration im Jenkins Konfigurations-Menu an: https://[jenkins-route]/configureClouds/
+
 Unser `custom-jenkins-slave` ist in den Pod Templates ersichtlich:
 
 ![CustomSlave Pipeline Jenkins](../images/pipeline-jenkins-custom-podtemplate.png)
