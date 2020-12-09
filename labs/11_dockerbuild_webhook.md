@@ -4,6 +4,7 @@ In diesem Lab zeigen wir den Docker Build Workflow anhand eines Beispiels auf un
 
 
 ## Aufgabe 1: Vorbereitung Github Account und Fork
+
 ### Github Account
 
 Damit Sie Änderungen am Source Code unserer Beispielapplikation vornehmen können, benötigen Sie einen eigenen GitHub Account.

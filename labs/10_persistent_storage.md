@@ -70,6 +70,7 @@ deploymentconfigs/mariadb
 
 
 ## Aufgabe 2: Persistenz-Test
+
 ### Daten wiederherstellen
 
 Wiederholen Sie [Lab-Aufgabe 9.4](09_database.md#l%C3%B6sung-lab84).
