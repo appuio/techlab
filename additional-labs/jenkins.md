@@ -212,6 +212,17 @@ node ('custom-jenkins-slave') {
 }
 ```
 
+Erweitern Sie ihre Pipeline mit dieser Stage entweder im Jenkins Job, der Web Console oder in der BuildConfig.
+
+__Note__:
+Der einfachste Weg ist die Pipeline im Jenkins GUI zu Erweitern.
+Dazu den Job `appuio-sample-pipeline` auswählen und `Configure` anklicken.
+Dort ist der Code der Pipeline in einem Editor Fenster veränderbar.
+Einfach das `custom-jenkins-slave` Code Snippet am Schluss der Pipeline einfügen.
+Mit `Build Now` einen neuen Build starten.
+
+Überprüfen Sie, dass die neue Stage ausgeführt wurde.
+
 Über diesen Mechanismus lassen sich beliebige - auch selbst gebuildete - Jenkins Slaves aufsetzen und verwenden. Es stehen out-of-the-box ein `maven und gradle` sowie ein `NodeJS` Slave zur Verfügung.
 
 Will man selber Jenkins Slaves builden, sollte man auf dem `openshift/jenkins-slave-base-centos7` Image basieren.
@@ -286,7 +297,7 @@ Danach können wir noch die Applikation exposen.
 
 In der Pipeline können wir nun mittels Setzen eines bestimmten Tags auf dem Imagestream der gebuildeten Applikation bspw. `application:dev`, das entsprechende Image in die passende Stage promoten und deployen.
 
-Passen Sie ihre Pipeline entweder in der Web Console oder in der BuildConfig wie folgt an (die Werte für die Variablen `dev_project`, `test_project`, `prod_project` entsprechend setzen):
+Passen Sie ihre Pipeline entweder im Jenkins Job, der Web Console oder in der BuildConfig wie folgt an (die Werte für die Variablen `dev_project`, `test_project`, `prod_project` entsprechend setzen):
 
 ```groovy
 def project=""
@@ -326,7 +337,7 @@ node ('maven') {
             }
             openshift.withProject(dev_project) {
                 // trigger Deployment in dev project
-                def dc = openshift.selector('dc', "application")
+                def dc = openshift.selector('deploy', "application")
                 dc.rollout().status()
             }
         }
@@ -340,7 +351,7 @@ node ('maven') {
             }
             openshift.withProject(test_project) {
                 // trigger Deployment in test project
-                def dc = openshift.selector('dc', "application")
+                def dc = openshift.selector('deploy', "application")
                 dc.rollout().status()
             }
         }
@@ -358,7 +369,7 @@ node ('maven') {
             }
             openshift.withProject(prod_project) {
                 // trigger Deployment in prod project
-                def dc = openshift.selector('dc', "application")
+                def dc = openshift.selector('deploy', "application")
                 dc.rollout().status()
             }
         }
@@ -368,15 +379,17 @@ node ('maven') {
 
 Führen Sie die Pipeline erneut aus und schauen Sie sich an, wie nun die gebuildete Applikation von Stage zu Stage deployt wird.
 
+![Run Pipeline Jenkins](../images/openshift-pipeline-rollout.png)
+
 ## Jenkins Pipeline Sprache
 
 Unter <https://github.com/puzzle/jenkins-techlab> finden Sie ein entsprechendes Hands-on Lab zur Jenkins Pipeline Sprache. Die Syntax ist [hier](https://jenkins.io/doc/book/pipeline/syntax/) beschrieben.
 
 ## Deployment von Resourcen und Konfiguration
 
-Bisher haben wir nur die Applikation mittels unserer Deployment Pipeline deployt. Wie können wir nun unsere Pipeline auch dazu verwenden, um Resourcen (DeploymentConfigs, Routen, Cronjobs...) zu deployen?
+Bisher haben wir nur die Applikation mittels unserer Deployment Pipeline deployt. Wie können wir nun unsere Pipeline auch dazu verwenden, um Resourcen (Deployments, Routen, Cronjobs...) zu deployen?
 
-Ebenso haben wir weiter oben mit dem Befehl `oc new-app [USER]-buildpipeline/application:stage -n [USER]-pipeline-stage` im Hintergrund die nötigen Ressourcen angelegt. In unserem Fall `Service` und `DeploymentConfig`.
+Ebenso haben wir weiter oben mit dem Befehl `oc new-app [USER]-buildpipeline/application:stage -n [USER]-pipeline-stage` im Hintergrund die nötigen Ressourcen angelegt. In unserem Fall `Service` und `Deployment`.
 
 Diese Resourcen sind Konfiguration, die sich analog der eigentlichen Applikation weiterentwickeln können und ebenso mittels CI/CD Pipeline deployt werden sollten.
 
