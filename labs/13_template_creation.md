@@ -11,12 +11,6 @@ Auflisten aller Befehle:
 oc help
 ```
 
-Konzepte und Typen:
-
-```
-$ oc types
-```
-
 Übersicht (fast) aller Ressourcen:
 
 ```bash
