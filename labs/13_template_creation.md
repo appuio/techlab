@@ -157,7 +157,7 @@ oc create -f processed-template.json
 Dies kann auch in einem Schritt erledigt werden:
 
 ```bash
-oc process -f eap70-mysql-persistent-s2i.json \
+oc process -f eap72-mysql-persistent-s2i.json \
   -v PARAM1=value1,PARAM2=value2 \
   | oc create -f -
 ```
