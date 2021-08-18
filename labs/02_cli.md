@@ -8,7 +8,7 @@ Der __oc client__ stellt ein Interface zu OpenShift bereit.
 
 ### Installation
 
-Gemäss [offizieller Dokumentation](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands) kann der __oc client__ von der __Infrastructure Provider__ Seite heruntergeladen werden, oder einfacher gleich direkt von folgender URL: <https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/>
+Gemäss [offizieller Dokumentation](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands) kann der __oc client__ von der __Infrastructure Provider__ Seite heruntergeladen werden, oder einfacher gleich direkt von folgender URL: <https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/>
 
 __Tipp__:
 Alternativ kann die Binary auch mittels folgenden Befehlen im Terminal installiert werden:
