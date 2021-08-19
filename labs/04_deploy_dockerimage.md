@@ -23,13 +23,13 @@ um alle Projekte anzuzeigen, auf die Sie berechtigt sind.
 Sobald das neue Projekt erstellt wurde, können wir in OpenShift mit dem folgenden Befehl das Container Image deployen:
 
 ```bash
-oc new-app appuio/example-spring-boot --as-deployment-config
+oc new-app quay.io/appuio/example-spring-boot --as-deployment-config
 ```
 
 Für unser Lab verwenden wir ein APPUiO-Beispiel (Java Spring Boot Applikation):
 
 - GitHub (Source): <https://github.com/appuio/example-spring-boot-helloworld>
-- Docker Hub: <https://hub.docker.com/r/appuio/example-spring-boot/>
+- Quay.io: <https://quay.io/appuio/example-spring-boot/>
 
 Beim Ausführen obigen Befehls legt OpenShift die nötigen Ressourcen an, lädt das Container Image (in diesem Fall von Docker Hub) herunter und deployt anschliessend den Pod.
 
@@ -55,7 +55,7 @@ Um Ihre eigenen Container Images für OpenShift zu erstellen, sollten Sie die fo
 
 ## Betrachten der erstellten Ressourcen
 
-Als wir vorhin `oc new-app appuio/example-spring-boot` ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt.
+Als wir vorhin `oc new-app quay.io/appuio/example-spring-boot` ausführten, hat OpenShift im Hintergrund einige Ressourcen für uns angelegt.
 Diese werden dafür benötigt, das Container Image zu deployen:
 
 - Service
