@@ -99,6 +99,6 @@ Ansonsten wird der erste Build nicht funktionieren.
 
 __Ende Lab 12__
 
-<p width="100px" align="right"><a href="12_template_creation.md">Eigene Templates erstellen →</a></p>
+<p width="100px" align="right"><a href="13_template_creation.md">Eigene Templates erstellen →</a></p>
 
 [← zurück zur Übersicht](../README.md)
