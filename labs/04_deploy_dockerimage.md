@@ -59,7 +59,7 @@ Als wir vorhin `oc new-app quay.io/appuio/example-spring-boot` ausführten, hat 
 Diese werden dafür benötigt, das Container Image zu deployen:
 
 - Service
-- [ImageStream](https://docs.openshift.com/container-platform/latest/openshift_images/images-understand.html)
+- [ImageStream](https://docs.openshift.com/container-platform/latest/openshift_images/index.html#about-containers-images-and-image-streams)
 - [DeploymentConfig](https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html)
 
 ### Service
