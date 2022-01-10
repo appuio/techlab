@@ -54,7 +54,7 @@ oc exec [POD] -- env
 Zum Beispiel:
 
 ```bash
-$ oc exec -- example-spring-boot-4-8mbwe env
+$ oc exec example-spring-boot-4-8mbwe -- env
 PATH=/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=example-spring-boot-4-8mbwe
 KUBERNETES_SERVICE_PORT_DNS_TCP=53
