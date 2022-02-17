@@ -94,7 +94,7 @@ __Tipp__:
 Eine so erstellte Applikation mitsamt den zusätzlich angelegten Ressourcen kann mithilfe von Labels auf einen Schlag gelöscht werden, bspw. mit folgendem Befehl:
 
 ```bash
-oc delete all --selector app.kubernetes.io/component=example-php-sti-helloworld
+oc delete all --selector app=example-php-sti-helloworld-git
 ```
 
 Um die Labels der verschiedenen Ressourcen anzuzeigen kann folgender Befehl verwendet werden:
