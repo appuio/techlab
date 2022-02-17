@@ -60,7 +60,7 @@ oc -n openshift-marketplace get packagemanifests.packages.operators.coreos.com |
 Den ETCD-Operator können wir nun installieren, in dem wir eine Subscription anlegen. Mit vorhandenem `cat`-Binary kann dies mit folgendem Befehl gemacht werden, alternativ kann der Inhalt in ein File geschrieben und mit `oc create -f <Filename>` erstellt werden.
 
 ```
-cat <<EOF | oc create -f -
+oc create -f - <<EOF
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
@@ -132,7 +132,7 @@ Diese ermöglichen es uns in der nächsten Aufgabe, die CustomResource `EtcdClus
 Wir werden nun eine EtcdCluster-Resource anlegen, um einen ETCD-Cluster zu starten:
 
 ```
-cat <<EOF | oc create -f -
+oc create -f - <<EOF
 apiVersion: etcd.database.coreos.com/v1beta2
 kind: EtcdCluster
 metadata:
