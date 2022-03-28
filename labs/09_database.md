@@ -168,7 +168,7 @@ Dies kann über das Setzen der folgenden Umgebungsvariablen entsprechend auf uns
 
 - `SPRING_DATASOURCE_USERNAME: appuio`
 - `SPRING_DATASOURCE_PASSWORD: appuio`
-- `SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.jdbc.Driver`
+- `SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver`
 - `SPRING_DATASOURCE_URL: jdbc:mysql://[Adresse des MariaDB Service]/appuio?autoReconnect=true`
 
 Für die Adresse des MariaDB Service können wir entweder dessen Cluster IP (`oc get service`) oder aber dessen DNS-Namen (`<service>`) verwenden.
@@ -218,7 +218,7 @@ oc set env dc example-spring-boot \
     -e SPRING_DATASOURCE_URL="jdbc:mysql://mariadb/appuio?autoReconnect=true" \
     -e SPRING_DATASOURCE_USERNAME=appuio \
     -e SPRING_DATASOURCE_PASSWORD=appuio \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
 ```
 
 Durch die Änderung des Environments wird automatisch ein Deployment der example-spring-boot Applikation angestossen.
@@ -248,7 +248,7 @@ oc get dc example-spring-boot -o json
     },
     {
         "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME",
-        "value": "com.mysql.jdbc.Driver"
+        "value": "com.mysql.cj.jdbc.Driver"
     }
 ],
 ...
@@ -307,7 +307,7 @@ Mittels `oc edit dc example-spring-boot -o json` kann die DeploymentConfig im JS
     },
     {
         "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME",
-        "value": "com.mysql.jdbc.Driver"
+        "value": "com.mysql.cj.jdbc.Driver"
     },
     {
         "name": "SPRING_DATASOURCE_URL",
