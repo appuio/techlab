@@ -1,6 +1,6 @@
 # Lab 13: Eigene Templates erstellen
 
-Im Unterschied zu [Lab 11](11_template.md) schreiben wir hier unsere eigenen Templates bevor wir damit Applikationen erstellen.
+Im Unterschied zu [Lab 12](12_template.md) schreiben wir hier unsere eigenen Templates bevor wir damit Applikationen erstellen.
 
 
 ## Hilfreiche `oc`-Befehle
