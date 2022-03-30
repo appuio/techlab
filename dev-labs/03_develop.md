@@ -66,9 +66,8 @@ Für den Binary Build eine Verzeichnisstruktur vorbereiten mit dem Jar vom Java 
 Befehle für Shell und PowerShell:
 
 ```bash
-mkdir tmp-jar
+mkdir -p tmp-jar/deployments
 cd tmp-jar
-mkdir deployments
 cp ../build/libs/springboots2idemo-0.0.1-SNAPSHOT.jar deployments/
 ```
 
