@@ -77,7 +77,7 @@ cp ../build/libs/springboots2idemo-0.0.1-SNAPSHOT.jar deployments/
 Dockerfile mit diesem Inhalt erstellen.
 
 ```Dockerfile
-FROM fabric8/java-centos-openjdk8-jdk
+FROM fabric8/java-centos-openjdk11-jdk
 
 COPY deployments/*.jar deployments/
 
@@ -98,7 +98,7 @@ Applikation ist unter <http://localhost:8080> erreichbar.
 Dockerfile Build im OpenShift erstellen.
 
 ```bash
-oc new-build -D $'FROM fabric8/java-centos-openjdk8-jdk\nCOPY deployments/*.jar deployments/\nEXPOSE 8080' --to spring-boot
+oc new-build -D $'FROM fabric8/java-centos-openjdk11-jdk\nCOPY deployments/*.jar deployments/\nEXPOSE 8080' --to spring-boot
 ```
 
 Wie ist der Name des ImageSteam, in welchen das gebaute Image gepushed wird?
