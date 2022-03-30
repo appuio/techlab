@@ -48,7 +48,7 @@ Die URL, welche nun auf unsere ruby applikation zeigt, erhalten wir indem wir di
 ## Binary build
 
 In diesem Beispiel wird beschrieben, wie Sie ein Webarchiv (war) in Wildfly mithilfe des OpenShift-Clients (oc) im binary Modus deployen.
-Das Beispiel ist vom APPUiO-Blog inspiriert: <http://docs.appuio.ch/de/latest/app/wildflybinarydeployment.html>
+Das Beispiel ist vom APPUiO-Blog inspiriert: <http://docs.appuio.ch/en/latest/app/wildflybinarydeployment.html>
 
 ### Erstellen Sie ein neues Projekt
 
