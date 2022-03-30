@@ -82,7 +82,7 @@ Sobald wir die Last beenden wird die Anzahl Pods nach einer gewissen Zeit automa
 
 ## Zusatzfrage
 
-Es gibt auch einen `oc idle` Befahle. Was macht der?
+Es gibt auch einen `oc idle` Befehl. Was macht der?
 
 ## Zusatzübung für Schnelle
 
