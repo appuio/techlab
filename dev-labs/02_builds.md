@@ -89,13 +89,13 @@ Das Flag _binary=true_ zeigt an, dass dieser Build seine Daten direkt als Input 
 Befehl:
 
 ```bash
-oc new-build --docker-image=openshift/wildfly-160-centos7 --binary=true --name=hello-world -l app=hello-world
+oc new-build --image=openshift/wildfly-160-centos7 --binary=true --name=hello-world -l app=hello-world
 ```
 
 Befehl mit Ausgabe:
 
 ```bash
-$ oc new-build --docker-image=openshift/wildfly-160-centos7 --binary=true --name=hello-world -l app=hello-world
+$ oc new-build --image=openshift/wildfly-160-centos7 --binary=true --name=hello-world -l app=hello-world
 --> Found Docker image 7ff222e (7 months old) from Docker Hub for "openshift/wildfly-160-centos7"
 
     WildFly 16.0.0.Final
