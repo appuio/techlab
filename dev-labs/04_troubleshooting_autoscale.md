@@ -30,6 +30,8 @@ Dazu editieren wir die `ruby-ex` DeploymentConfig:
 
 <details><summary>Tipp</summary>oc edit dc ruby-ex</details><br/>
 
+<details><summary>Tipp 2</summary>Falls die deploymentconfig nicht gefunden wird, dc durch deployment ersetzen:<br/>oc edit deployment ruby-ex</details><br/>
+
 Folgende Resource Limits fügen wir dem Container hinzu:
 
 ```yaml
@@ -49,6 +51,13 @@ Befehl mit Bestätigung:
 
 ```bash
 $ oc autoscale dc ruby-ex --min 1 --max 3 --cpu-percent=25
+horizontalpodautoscaler.autoscaling/ruby-ex autoscaled
+```
+
+bzw:
+
+```bash
+$ oc autoscale deployment ruby-ex --min 1 --max 3 --cpu-percent=25
 horizontalpodautoscaler.autoscaling/ruby-ex autoscaled
 ```
 
