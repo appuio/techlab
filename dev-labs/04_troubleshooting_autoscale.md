@@ -17,7 +17,7 @@ Erstellen Sie daher ein neues Projekt mit dem Namen `[USERNAME]-autoscale`:
 Auf dem Branch load gibt es einen CPU intensiven Endpunkt, welchen wir für unsere Tests verwenden werden. Dafür starten wir die App auf diesem Branch:
 
 ```bash
-oc new-app openshift/ruby:2.5~https://github.com/chrira/ruby-ex.git#load
+oc new-app openshift/ruby:2.5~https://github.com/chrira/ruby-ex.git#load --as-deployment-config
 oc create route edge --insecure-policy=Redirect --service=ruby-ex
 ```
 
