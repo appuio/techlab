@@ -107,7 +107,7 @@ Von diesem Image eine neue Applikation erstellen:
   * ACCESS_KEY_ID=irgendoeppis
   * SECRET_ACCESS_KEY=x
 
-<details><summary>Befehl zum Erstellen der Applikation</summary>oc new-app -e ACCESS_KEY_ID=irgendoeppis -e SECRET_ACCESS_KEY=x mastertinner/s3manager</details><br/>
+<details><summary>Befehl zum Erstellen der Applikation</summary>oc new-app -e ACCESS_KEY_ID=irgendoeppis -e SECRET_ACCESS_KEY=x mastertinner/s3manager --as-deployment-config</details><br/>
 
 ### Debugging mit oc Tool
 
