@@ -130,7 +130,7 @@ Das hat nicht funktioniert, weil im Container keine Shell vorhanden ist.
 Können wir wenigstens das Environment ausgeben?
 
 ```bash
-oc exec dc/s3manager env
+oc exec dc/s3manager -- env
 ```
 
 Fehlermeldung:
