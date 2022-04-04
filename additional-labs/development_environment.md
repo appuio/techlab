@@ -4,11 +4,11 @@ Diese Seite zeigt verschiedene Möglichkeiten, wie selbst entwickelte Container 
 
 ## CodeReady Containers
 
-[CodeReady Containers](https://code-ready.github.io/crc/) ermöglicht es, einen minimalen OpenShift 4 Cluster auf dem lokalen Computer laufen zu lassen.
+[CodeReady Containers](https://crc.dev/crc/) ermöglicht es, einen minimalen OpenShift 4 Cluster auf dem lokalen Computer laufen zu lassen.
 
 ## Minishift
 
-[Minishift](https://www.okd.io/minishift/) erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM mit KVM, Hyper-V oder VirtualBox, __ermöglicht aber nur den Einsatz von OpenShift 3, nicht OpenShift 4__.
+[Minishift](https://docs.okd.io/3.11/minishift/index.html) erlaubt den Betrieb einer lokalen OpenShift-Installation auf dem eigenen Notebook in einer VM mit KVM, Hyper-V oder VirtualBox, __ermöglicht aber nur den Einsatz von OpenShift 3, nicht OpenShift 4__.
 Minishift ist ursprünglich ein Fork von Minikube und verwendet [OKD](https://www.okd.io/), das Upstream-Projekt von OpenShift Container Platform.
 Für den Einsatz von OCP 3 muss auf das Red Hat CDK ausgewichen werden.
 
