@@ -104,7 +104,7 @@ spec:
         - name: SPRING_DATASOURCE_PASSWORD
           value: appuio
         - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-          value: com.mysql.jdbc.Driver
+          value: com.mysql.cj.jdbc.Driver
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql/appuio?autoReconnect=true
         image: appuio/example-spring-boot
@@ -131,7 +131,7 @@ spec:
 Anschliessend kann im Container im File `/etc/config/properties.properties` auf die Werte zugegriffen werden.
 
 ```bash
-oc exec [POD] cat /etc/config/properties.properties
+oc exec [POD] -- cat /etc/config/properties.properties
 key=appuio
 key2=openshift
 ```
