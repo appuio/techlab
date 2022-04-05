@@ -142,7 +142,7 @@ spec:
 
 Der durch OpenShift dynamisch deployte Jenkins ist durch eine Reihe von OpenShift Jenkins Plugins vollständig mit OpenShift gekoppelt. Einerseits kann so direkt auf Ressourcen innerhalb des Projekts zugegriffen werden, andererseits können durch entsprechendes Labelling dynamische Slaves aufgesetzt werden. Des Weiteren wird auch ein entsprechender Serviceaccount (`jenkins`) erstellt. Die Rechtevergabe kann entsprechend über diesen Serviceacount erfolgen.
 
-Zusätzliche Informationen finden Sie hier: <https://docs.openshift.com/container-platform/latest/builds/build-strategies.html#builds-strategy-pipeline-build_build-strategies>
+Zusätzliche Informationen finden Sie hier: <https://docs.openshift.com/container-platform/latest/cicd/builds/build-strategies.html#builds-strategy-pipeline-build_build-strategies>
 
 ### OpenShift Jenkins Pipeline
 
