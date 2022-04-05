@@ -28,7 +28,7 @@ Ziel ist es eine Java Spring Boot Applikation lokal zu bauen und mittels Binary 
 
 - Siehe dazu das Binary Build Beispiel des Labs [dev-labs/02_builds.md](./02_builds.md).
 - GitHub Repository mit dem Sourcecode: <https://github.com/appuio/example-spring-boot-helloworld>
-- Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk8-jdk/>
+- Docker Hub Repository mit Java Docker Image: <https://hub.docker.com/r/fabric8/java-centos-openjdk11-jdk/>
 
 ### Projekt erstellen
 
@@ -42,7 +42,7 @@ Zuerst das GitHub Repository klonen oder als [Zip-Datei](https://github.com/appu
 
 <details><summary>Git Clone Befehl</summary>git clone https://github.com/appuio/example-spring-boot-helloworld.git</details><br/>
 
-Danach die Applikation bauen, es wird nur das JDK 1.8 benötigt.
+Danach die Applikation bauen, es wird nur das JDK 11 benötigt.
 
 <details>
     <summary>Applikation bauen</summary>
@@ -76,7 +76,7 @@ cp ../build/libs/springboots2idemo-0.0.1-SNAPSHOT.jar deployments/
 Dockerfile mit diesem Inhalt erstellen.
 
 ```Dockerfile
-FROM fabric8/java-centos-openjdk8-jdk
+FROM fabric8/java-centos-openjdk11-jdk
 
 COPY deployments/*.jar deployments/
 
@@ -97,7 +97,7 @@ Applikation ist unter <http://localhost:8080> erreichbar.
 Dockerfile Build im OpenShift erstellen.
 
 ```bash
-oc new-build -D $'FROM fabric8/java-centos-openjdk8-jdk\nCOPY deployments/*.jar deployments/\nEXPOSE 8080' --to spring-boot
+oc new-build -D $'FROM fabric8/java-centos-openjdk11-jdk\nCOPY deployments/*.jar deployments/\nEXPOSE 8080' --to spring-boot
 ```
 
 Wie ist der Name des ImageSteam, in welchen das gebaute Image gepushed wird?
