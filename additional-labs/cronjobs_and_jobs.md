@@ -37,7 +37,7 @@ Für dieses Beispiel verwenden wir das Spring Boot Beispiel aus [Lab 4](../labs/
 <details><summary><b>Tipp</b></summary>oc project [USERNAME]-dockerimage</details>
 
 Schauen wir uns zuerst die Job-Ressource an, die wir erstellen wollen.
-Sie ist unter [additional-labs/resources/job_mariadb-dump.yaml](additional-labs/resources/job_mariadb-dump.yaml) zu finden.
+Sie ist unter [resources/job_mariadb-dump.yaml](resources/job_mariadb-dump.yaml) zu finden.
 Unter `.spec.template.spec.containers[0].image` sehen wir, dass wir dasselbe Image verwenden wie für die laufende Datenbank selbst.
 Wir starten anschliessend aber keine Datenbank, sondern wollen einen `mysqldump`-Befehl ausführen, wie unter `.spec.template.spec.containers[0].command` aufgeführt.
 Dazu verwenden wir, wie schon im Datenbank-Deployment, dieselben Umgebungsvariablen, um Hostname, User oder Passwort innerhalb des Pods definieren zu können.
