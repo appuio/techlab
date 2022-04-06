@@ -52,8 +52,8 @@ Zugriff auf die Techlab OpenShift Plattform testen. Wenn folgende Tests erfolgre
 Zusatzübung:
 
 - Repo: <https://github.com/appuio/example-spring-boot-helloworld.git> / ([Zip](https://github.com/appuio/example-spring-boot-helloworld/archive/master.zip))
-- JDK 1.8
-- Docker (optional)
+- JDK 11
+- optional: Docker
 
 #### Lab 04
 
