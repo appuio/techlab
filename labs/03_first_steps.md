@@ -62,7 +62,7 @@ Die OpenShift Web Console erlaubt es den Benutzern gewisse Tasks direkt via Brow
 
    1. Stellen Sie sicher, dass bei "Project" Ihr neu erstelltes Projekt selektiert ist.
 
-   1. Wählen Sie nun unten links unter "Developer Catalog" den Punkt "All services"
+   1. Unter "No resources found" wählen Sie "Add page" und dann unter "Developer Catalog" den Punkt "All services"
 
    1. Schränken Sie die Auswahl über einen Klick auf _Languages_ und anschliessend _PHP_ ein
 
